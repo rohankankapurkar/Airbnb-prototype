@@ -299,12 +299,12 @@ p   {
                 <form role="form">
                     <div class="form-group">
                         <label for="exampleInputPassword1">First name</label>
-                        <input ng-model = "fname" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                        <input ng-model = "fname" type="text" class="form-control" id="exampleInputPassword1" placeholder="First Name"/>
                     </div>
                     
                     <div class="form-group">
                         <label for="exampleInputPassword1">Last name</label>
-                        <input ng-model = "lname" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                        <input ng-model = "lname" type="text" class="form-control" id="exampleInputPassword1" placeholder="Last Name"/>
                     </div>
                     
                     <div class="form-group">
@@ -321,7 +321,7 @@ p   {
                         <input ng-model = "confirm_password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
                     </div>
                  
-                  <button type="submit" class="btn btn-danger">Submit</button>
+                  <button type="submit" class="btn btn-danger" ng-click = "register">Submit</button>
                 </form>
                 
                 
@@ -346,16 +346,7 @@ p   {
 
 
 <!-- Post Info -->
-<div style='position:fixed;bottom:0;left:0; background:lightgray;width:100%;'>
-    About this SO Question:
-    <a href='http://stackoverflow.com/q/26562900/1366033'>
-        Twitter Bootstap - form in Modal fomatting
-    </a><br/>
-    Fork This Skeleton Here: 
-    <a href='http://jsfiddle.net/KyleMit/kcpma/'>
-        Bootstrap 3 Skeleton
-    </a><br/>
-</div>
+
 
         
 <!-- Container (About Section) -->
