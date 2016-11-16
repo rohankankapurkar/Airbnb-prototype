@@ -2,9 +2,9 @@
  * http://usejsdoc.org/
  */
 
-var eBayApp = angular.module('airbnbApp',['ui.router']);
+var airbnbApp = angular.module('airbnbApp',['ui.router']);
 //handles client side routing
-eBayApp.config(function($stateProvider, $urlRouterProvider){
+airbnbApp.config(function($stateProvider, $urlRouterProvider){
 	
 	$urlRouterProvider.
 		otherwise('/');
@@ -13,16 +13,16 @@ eBayApp.config(function($stateProvider, $urlRouterProvider){
 		.state('home',
 				{
 					url:'/',
-					templateUrl : './templates/view.homepage.html'
-					/*resolve : {
-						userSession : function($http){
-							 return $http({
-									method : "POST",
-									url : '/getSession'
-									});
-							}
-					},*/
-					/*controller : 'controllerHome'*/
+					templateUrl : './templates/view.homepage.html',
+//					resolve : {
+//					userSession : function($http){
+//						 return $http({
+//								method : "POST",
+//									url : '/getSession'
+//									});
+//							}
+//					},
+					controller : 'controllerHome'
 				})
 		/*.state('home.adv',
 				{
@@ -150,5 +150,4 @@ eBayApp.config(function($stateProvider, $urlRouterProvider){
 				})
 		*/
 })
-.controller('mainCntrl',function(){})
 

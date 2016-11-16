@@ -1,0 +1,32 @@
+  <div class="modal-body" ng-controller = "register_controller">
+                
+                <form role="form">
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">First name</label>
+                        <input ng-model = "fname" type="text" class="form-control" id="exampleInputPassword1" placeholder="First Name"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Last name</label>
+                        <input ng-model = "lname" type="text" class="form-control" id="exampleInputPassword1" placeholder="Last Name"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input ng-model = "email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input ng-model= "password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Confirm Password</label>
+                        <input ng-model = "confirm_password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                    </div>
+                 
+                  <button type="submit" class="btn btn-danger" ng-click = "register">Submit</button>
+                </form>
+                
+                
+            </div>
