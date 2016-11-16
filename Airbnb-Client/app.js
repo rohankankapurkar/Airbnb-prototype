@@ -25,12 +25,13 @@ session = require('express-session')
  */
 mongo = require("./routes/utils/util.mongo");
 
+
    
 /**
  * All route dependencies
  */
 var usersession = require('./routes/misc/misc.session'); //contains functions related to session management
-
+var analytics = require("./routes/misc/misc.analytics"); //contains functions related to logging of client activities
    
 var mongoSessionConnectURL = "mongodb://localhost:27017/sessions";
 var mongoStore = require("connect-mongo")(session);
@@ -69,6 +70,8 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 
 app.post('/getusersession',usersession.getSession);
+app.post('/analytics', analytics.logdata);
+
 
 
 mongo.connect(mongoSessionConnectURL, function(){  
