@@ -6,7 +6,8 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.2.6",
-    "ejs": "*"
+    "amqp": "^0.2.6",
+    "ejs": "*",
+    "express": "3.2.6"
   }
 }
