@@ -149,6 +149,7 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http){
 			window.setTimeout(function(){
 				window.location = '/';
 			}, 3000);
+			
     });
   };
 
