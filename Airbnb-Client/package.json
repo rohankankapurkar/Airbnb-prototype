@@ -1,0 +1,16 @@
+{
+  "name": "Airbnb-Client",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "connect-mongo": "^1.3.2",
+    "ejs": "*",
+    "express": "3.2.6",
+    "express-session": "^1.14.2",
+    "mongodb": "^2.2.11",
+    "serve-favicon": "^2.3.2"
+  }
+}

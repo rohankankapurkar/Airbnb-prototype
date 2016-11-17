@@ -1,0 +1,201 @@
+<div id="header">
+	<nav class="navbar navbar-light bg-faded">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"> <!--  <img src="logo.png" style="display: inline-block;">-->
+					<span style="display: inline-block;"></span>
+				</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#about">Become a Host</a></li>
+					<li><a data-toggle="modal" data-target="#myModalNorm">Sign
+							up</a></li>
+					<li><a href="#portfolio">Browse</a></li>
+					<li><a data-toggle="modal" data-target="#myModalSignIn">Login</a></li>
+					<li><a href="#contact">Help</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</div>
+
+
+<!-- main UI VIEW -->
+<div ui-view>
+	<div id="middle" ng-controller="controllerHome">
+		<div class="jumbotron text-center container">
+			<h2>
+				<b>Live there.</b>Book unique homes and experience a city
+						like a local.
+			</h2>
+			<form class="form form-inline " style="padding : 10px ;outline: 1px solid #ddd;">
+				<div class="form-group" style="padding : 10px ;outline: 1px solid #ddd;">
+					<p>Where</p>
+					<label class="sr-only" for="inputOne">Source</label>
+					<input type="text" class="form-control input-lg" id="hmpgwhere" name="hmpgwhere" ng-model="hmpgwhere" placeholder="City">
+				</div>
+				<div class="form-group " style="padding : 10px ;outline: 1px solid #ddd;">
+					<p>Guests</p>
+					<label class="sr-only" for="inputTwo">Guests</label>
+					<input type="text" class="form-control input-lg" id="hmpgguests" name="hmpgguests" ng-model="hmpgguests" placeholder="Number of people" style="margin-left: -5px;">
+				</div>
+				<div class="form-group " style="padding : 10px ;outline: 1px solid #ddd;">
+					<p>when</p>
+					<label class="sr-only" for="inputTwo">When</label>
+					<input type="date" class="form-control input-lg " id="hmpgwhen" name="hmpgwhen" ng-model="hmpgwhen" placeholder="From" style="margin-left: -5px;">
+				</div>
+				<div class="form-group " style="padding : 10px ;outline: 1px solid #ddd;">
+					<p>Till</p>
+					<label class="sr-only" for="inputTwo">Till</label>
+					<input type="date" class="form-control input-lg" id="hmpgtill" id="hmpgtill" ng-model="hmpgtill" placeholder="upto" style="margin-left: -5px;">
+				</div>
+				<div class="form-group " style="padding : 10px ;outline: 1px solid #ddd;">
+					<button type="submit" class="btn btn-danger btn-lg"	 ng-click="test()">Search</button>
+				</div>
+			</form>
+		</div>
+
+		<!-- model for sign up -->
+		<!--   this is for showing models for signup     -->
+				<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    	<div class="modal-dialog">
+        	<div class="modal-content">
+            	<!-- Modal Header -->
+            	<div class="modal-header">
+                	<button type="button" class="close" data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                	</button>
+                	<h4 class="modal-title" id="myModalLabel">Sign up</h4>
+            	</div>
+                <!-- Modal Body -->
+            	<div class="modal-body" >
+                	<form role="form">
+                    	<div class="form-group inner-addon right-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                        	<input  type="text" class="form-control" id="regfname" name="regfname" placeholder="First Name" ng-model="regfname" > 
+                            
+                    	</div>
+                        
+                   		<div class="form-group inner-addon right-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                            <input ng-model="reglname" type="text" class="form-control" id="reglname" name="reglname" placeholder="Last Name"/>
+                    	</div>
+                        
+                        <div class="form-group inner-addon right-addon">
+                            <i class="glyphicon glyphicon-envelope"></i>
+                            <input ng-model="regemail" type="email" class="form-control" id="regemail" name="regemail" placeholder="Enter email"/>
+                    	</div>
+                    	
+                        <div class="form-group inner-addon right-addon">
+                            <i class="glyphicon glyphicon-lock"></i>
+                            <input ng-model="regpassword" type="password" class="form-control" id="regpassword" name="regpassword" placeholder="Password"/>
+                    	</div>    
+                        
+                        <div class="form-group inner-addon right-addon">
+                            <i class="glyphicon glyphicon-glass"></i>
+                            <input ng-model="regbday" type="date" class="form-control" id="regbday" name="regbday" ng-model="regbday" placeholder="Password"/>
+                    	</div>
+                  		<button id="register" name="register" type="submit" class="btn btn-danger btn-lg btn-block" ng-click="signup()">Signup</button>
+                	</form> 
+            	</div>
+            
+            	<!-- Modal Footer -->
+           		<!--<div class="modal-footer">
+                	<button type="button" class="btn btn-default" data-dismiss="modal">
+                            Close
+                	</button>
+                	<button type="button" class="btn btn-primary">
+                    	Save changes
+                	</button>
+            	</div>-->
+        	</div>
+    	</div>
+	</div>
+
+
+                
+                
+		<!-- model for sign in -->
+		<!--   this is for showing models for signin     -->
+		<div class="modal fade" id="myModalSignIn" tabindex="-1" role="dialog"
+		     aria-labelledby="myModalLabel" aria-hidden="true">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <!-- Modal Header -->
+		            <div class="modal-header">
+		                <button type="button" class="close"
+		                   data-dismiss="modal">
+		                       <span aria-hidden="true">&times;</span>
+		                       <span class="sr-only">Close</span>
+		                </button>
+		                <h4 class="modal-title" id="myModalLabel">
+		                    Sign In
+		                </h4>
+		            </div>
+
+		            <!-- Modal Body -->
+		            <div class="modal-body">
+		              <form role="form">
+		                <div class="form-group">
+		                  <input ng-model = "email" type="email" class="form-control" id="hmpgusername" name="hmpgusername" placeholder="Enter email"/>
+		                </div>
+		                <div class="form-group">
+		                  <input ng-model= "password" type="password" class="form-control" id="hmpgpassword" name="hmpgpassword" placeholder="Password"/>
+		                </div>
+
+		                <div class="form-group clearfix space-1">
+		                    <input type="checkbox" name="remember_me" id="remember_me2" value="true" class="remember_me">
+		                    Remember me
+		                    <a href="/forgot_password" class="forgot-password pull-right" data-from="email">Reset password</a>
+		                </div>
+		                <button id = "login" name="login" type="submit" class="btn btn-block signup-login-form__btn-xl btn-primary btn-danger" id="user-login-btn"  ng-click = "signin()">
+		                  Log in
+		                </button>
+		              </form>
+
+		            </div>
+
+		            <!-- Modal Footer -->
+		           <div class="modal-footer">
+		                Dont have an account yet?
+		                <a data-toggle="modal" data-dismiss = "model" data-target="#myModalNorm"><button type="button" class="btn btn-primary" id = "signup1">
+		                    Sign up
+		                </button></a>
+		            </div>
+
+		        </div>
+		    </div>
+		</div>
+<!--                adding javascript for changing the models for signin and signup-->
+<script>
+
+    function signup() {
+    $("#myModalSignIn").removeClass("fade").modal("hide");
+    //$("#myModalNorm").modal("show");
+    }
+
+
+    $("#signup1").on("click", function () {
+    signup();
+    });
+
+    //$("#test").on("click", function () {
+    //    $(".modal-backdrop").fadeOut("slow");
+    //});                   
+ 
+</script>>
+
+	</div>
+
+</div>
+
+</div>
+</div>
+
