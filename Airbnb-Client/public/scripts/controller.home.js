@@ -133,7 +133,7 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http){
       method : "POST",
       url : '/user/signin',
       data : {
-        "email": $scope.email,
+        "username": $scope.email,
         "password": $scope.password
       }
     }).success(function(data) {
