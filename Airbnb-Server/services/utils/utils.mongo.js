@@ -9,7 +9,7 @@ exports.connect = function(callback){
 		if (err) { 
 			throw new Error('Could not connect: '+err); 
 		}      
-		console.log("Connected to : "+url)
+		console.log("Connected to : "+ MongoUrl);
 		db = _db;      
 		connected = true;            
 		callback(db);     

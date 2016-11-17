@@ -26,7 +26,7 @@ cnn.on('ready', function(){
 			util.log(util.format( deliveryInfo.routingKey, message));
 			util.log("Message: "+JSON.stringify(message));
 			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
-			signin.siginUser(message, function(err,res){
+			signin.signinUser(message, function(err,res){
 				console.log('in publishing');
 				//return index sent
 				cnn.publish(m.replyTo, res, {

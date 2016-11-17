@@ -10,7 +10,6 @@ if(MODE == "CONNECTION_POOL"){
 }
 
 
-
 exports.signupUser = function(msg, callback){
 	
 	var res = {};

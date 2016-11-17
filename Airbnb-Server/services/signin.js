@@ -20,10 +20,12 @@ exports.signinUser = function(msg, callback){
 		coll.findOne({username:msg.username, password :msg.password}, function(err, user){
 			if (user) {
 				// return status = 0 on successfull login
+				console.log('logged in');
 				res.status = 0;
 				res.data = user;
 			} else {
 				// return status = 1 if login fails 
+				console.log('not logged in');
 				res.status = 1;
 			}
 			callback(null, res);
