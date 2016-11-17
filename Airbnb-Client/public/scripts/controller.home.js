@@ -36,9 +36,9 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http){
 				data : {
 					"username" : $scope.regemail,
 					"password" : $scope.regpassword,
-					"FirstName" : $scope.regfname,
-					"LastName" : $scope.reglname,
-					"Birthdat" : $scope.regbday
+					"firstname" : $scope.regfname,
+					"lastname" : $scope.reglname,
+					"birthday" : $scope.regbday
 				}
 			}).success(function(data){		
 				if (data.statuscode == 0)
