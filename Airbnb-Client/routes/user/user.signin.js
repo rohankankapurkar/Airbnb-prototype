@@ -10,6 +10,7 @@ var LocalStrategy = require("passport-local").Strategy;
 var mq_client = require('../../rpc/client');
 
 module.exports = function(passport) {
+	
 	passport.use('signin', new LocalStrategy(function(username, password, done) 
 	{		
 		var msg_payload = {username : username, password : password}
