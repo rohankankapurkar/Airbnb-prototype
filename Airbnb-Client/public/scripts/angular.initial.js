@@ -24,6 +24,20 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 					},
 					controller : 'controllerHome'
 				})
+		.state('home.becomeHost',
+			{
+				url:'/becomeHost',
+				templateUrl : './templates/view.becomeHost.html',
+				/*resolve : {
+					session : function($http){
+						return $http({
+							method : "POST",
+							url : '/getusersession'
+						});
+					}
+				},*/
+				controller : 'controllerBecomeHost'
+			})
 })
 
 

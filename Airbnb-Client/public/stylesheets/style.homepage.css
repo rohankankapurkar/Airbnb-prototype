@@ -28,13 +28,15 @@
 
 
 .jumbotron {
-  padding-right: 20px;
-    padding-left: 20px;
+  /* padding-right: 20px;
+    padding-left: 20px; */
   
   border: 1px solid #ddd;
   width: 1300px;
  }
-
+.carousel-inner {
+    width: 100%;
+}
 
 
 
@@ -93,6 +95,7 @@ p   {
       color: #787878 ;
       padding: 100px 25px;
       font-family: Montserrat, sans-serif;
+      width:100%
       
   }
   .container-fluid {
