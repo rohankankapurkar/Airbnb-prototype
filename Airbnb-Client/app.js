@@ -27,6 +27,7 @@ session = require('express-session')
  * Utilities dependencies should be added after this
  */
 mongo = require("./routes/utils/util.mongo");
+register = require("./routes/user/user.register");
 
 
    
@@ -76,7 +77,7 @@ app.get('/users', user.list);
 
 app.post('/getusersession',usersession.getSession);
 app.post('/analytics', analytics.logdata);
-
+app.post('/user/register', register.signup);
 
 
 mongo.connect(mongoSessionConnectURL, function(){  

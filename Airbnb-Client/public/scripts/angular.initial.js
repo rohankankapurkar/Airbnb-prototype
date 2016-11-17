@@ -14,14 +14,14 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 				{
 					url:'/',
 					templateUrl : './templates/view.homepage.html',
-					/*resolve : {
-						userSession : function($http){
+					resolve : {
+						session : function($http){
 							 return $http({
 									method : "POST",
-									url : '/getSession'
+									url : '/getusersession'
 									});
 							}
-					},*/
+					},
 					controller : 'controllerHome'
 				})
 })
