@@ -1,11 +1,5 @@
-
-
-
-<!-- main UI VIEW -->
-<div ui-view>
-	<div id="middle" ng-controller="controllerHome">
 <!--adding navbar here        -->
-<div id="header">
+<div id="header" ng-controller="controllerHeader">
 	<nav class="navbar navbar-light bg-faded">
 		<div class="container">
 			<div class="navbar-header">
@@ -20,7 +14,7 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#about">Become a Host</a></li>
+					<li><a ng-click="becomeHost()">Become a Host</a></li>
 					<li><a data-toggle="modal" data-target="#myModalNorm">Sign
 							up</a></li>
 					<li><a href="#portfolio">Browse</a></li>
@@ -31,6 +25,12 @@
 		</div>
 	</nav>
 </div>
+
+
+<!-- main UI VIEW -->
+<div ui-view>
+	<div id="middle" ng-controller="controllerHome">
+
 <!--adding for carousal	-->
         <div id="myCarousel" class="carousel slide">
       <div class="carousel-inner">
