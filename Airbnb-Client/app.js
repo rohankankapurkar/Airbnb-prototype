@@ -9,6 +9,9 @@ var express = require('express')
   , http = require('http')
   , path = require('path');
 
+// favicon to display favicon icon in tab
+  favicon = require('serve-favicon');
+
 /**
  * passport dependencies
  */
@@ -37,6 +40,8 @@ var mongoSessionConnectURL = "mongodb://localhost:27017/sessions";
 var mongoStore = require("connect-mongo")(session);
 
 var app = express();
+
+app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
 
 //session properties
 app.use(session({
