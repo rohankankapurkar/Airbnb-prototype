@@ -83,7 +83,7 @@ app.get('/users', user.list);
 app.post('/getusersession',usersession.getSession);
 app.post('/analytics', analytics.logdata);
 app.post('/user/register', register.signup);
-app.post('/signin',function(req, res, next) 
+app.post('/user/signin',function(req, res, next) 
 		{
 			passport.authenticate('signin', function(err, user) 
 			{
