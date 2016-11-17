@@ -17,7 +17,7 @@
 					<li><a data-toggle="modal" data-target="#myModalNorm">Sign
 							up</a></li>
 					<li><a href="#portfolio">Browse</a></li>
-					<li><a href="#pricing">Sign in</a></li>
+					<li><a data-toggle="modal" data-target="#myModalSignIn">Login</a></li>
 					<li><a href="#contact">Help</a></li>
 				</ul>
 			</div>
@@ -41,12 +41,12 @@
 				</div>
 				<div class="form-group well well-sm">
 					<p>Guests</p>
-					<label class="sr-only" for="inputTwo">Guests</label> 
+					<label class="sr-only" for="inputTwo">Guests</label>
 					<input type="text" class="form-control input-lg" id="hmpgguests" name="hmpgguests" ng-model="hmpgguests" placeholder="Number of people" style="margin-left: -5px;">
 				</div>
 				<div class="form-group well well-sm">
 					<p>when</p>
-					<label class="sr-only" for="inputTwo">When</label> 
+					<label class="sr-only" for="inputTwo">When</label>
 					<input type="date" class="form-control input-lg" id="hmpgwhen" name="hmpgwhen" ng-model="hmpgwhen" placeholder="From" style="margin-left: -5px;">
 				</div>
 				<div class="form-group well well-sm">
@@ -60,7 +60,7 @@
 			</form>
 		</div>
 	</div>
-	
+
 	<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     	<div class="modal-dialog">
         	<div class="modal-content">
@@ -90,15 +90,15 @@
                     	<div class="form-group">
                         	<label for="regpassword">Password</label>
                         	<input ng-model="regpassword" type="password" class="form-control" id="regpassword" name="regpassword" placeholder="Password"/>
-                    	</div>    
+                    	</div>
                     	<div class="form-group">
                         	<label for="regbday">Birthday</label>
                         	<input ng-model="regbday" type="date" class="form-control" id="regbday" name="regbday" ng-model="regbday" placeholder="Password"/>
                     	</div>
                   		<button id="register" name="register" type="submit" class="btn btn-danger" ng-click="register()">Submit</button>
-                	</form> 
+                	</form>
             	</div>
-            
+
             	<!-- Modal Footer -->
            		<!--<div class="modal-footer">
                 	<button type="button" class="btn btn-default" data-dismiss="modal">
@@ -111,9 +111,60 @@
         	</div>
     	</div>
 	</div>
-	
-	
-	
-	
-	
+
+	<!-- model for sign in -->
+	<!--   this is for showing models for signup     -->
+	<div class="modal fade" id="myModalSignIn" tabindex="-1" role="dialog"
+	     aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <!-- Modal Header -->
+	            <div class="modal-header">
+	                <button type="button" class="close"
+	                   data-dismiss="modal">
+	                       <span aria-hidden="true">&times;</span>
+	                       <span class="sr-only">Close</span>
+	                </button>
+	                <h4 class="modal-title" id="myModalLabel">
+	                    Sign In
+	                </h4>
+	            </div>
+
+	            <!-- Modal Body -->
+	            <div class="modal-body">
+	              <form role="form">
+	                <div class="form-group">
+	                  <input ng-model = "email" type="email" class="form-control" id="hmpgusername" name="hmpgusername" placeholder="Enter email"/>
+	                </div>
+	                <div class="form-group">
+	                  <input ng-model= "password" type="password" class="form-control" id="hmpgpassword" name="hmpgpassword" placeholder="Password"/>
+	                </div>
+
+	                <div class="form-group clearfix space-1">
+	                    <input type="checkbox" name="remember_me" id="remember_me2" value="true" class="remember_me">
+	                    Remember me
+	                    <a href="/forgot_password" class="forgot-password pull-right" data-from="email">Reset password</a>
+	                </div>
+	                <button id = "login" name="login" type="submit" class="btn btn-block signup-login-form__btn-xl btn-primary btn-danger" id="user-login-btn"  ng-click = "login()">
+	                  Log in
+	                </button>
+	              </form>
+
+	            </div>
+
+	            <!-- Modal Footer -->
+	           <div class="modal-footer">
+	                Dont have an account yet?
+	                <button type="button" class="btn btn-primary">
+	                    Sign up
+	                </button>
+	            </div>
+
+	        </div>
+	    </div>
+	</div>
+
+
+
+
 </div>
