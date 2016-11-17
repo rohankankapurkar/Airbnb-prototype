@@ -7,7 +7,9 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  
+	
 
 // favicon to display favicon icon in tab
   favicon = require('serve-favicon');
@@ -16,6 +18,7 @@ var express = require('express')
  * passport dependencies
  */
 passport = require('passport');
+require('./routes/user/user.signin')(passport);
    
 /**
  * Session dependencies
@@ -27,7 +30,6 @@ session = require('express-session')
  * Utilities dependencies should be added after this
  */
 mongo = require("./routes/utils/util.mongo");
-register = require("./routes/user/user.register");
 
 
    
@@ -36,6 +38,8 @@ register = require("./routes/user/user.register");
  */
 var usersession = require('./routes/misc/misc.session'); //contains functions related to session management
 var analytics = require("./routes/misc/misc.analytics"); //contains functions related to logging of client activities
+var register = require("./routes/user/user.register");
+
    
 var mongoSessionConnectURL = "mongodb://localhost:27017/sessions";
 var mongoStore = require("connect-mongo")(session);
@@ -46,7 +50,7 @@ app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
 
 //session properties
 app.use(session({
-	secret: 'eBay_client_session',
+	secret: 'airbnb_client_session',
 	resave : false,
 	saveUninitialized : false,
 	duration: 30 * 60 * 1000,    
@@ -66,6 +70,7 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
 
 // development only
 if ('development' == app.get('env')) {
@@ -77,7 +82,26 @@ app.get('/users', user.list);
 
 app.post('/getusersession',usersession.getSession);
 app.post('/analytics', analytics.logdata);
-//app.post('/user/register', register.signup);
+app.post('/user/register', register.signup);
+app.post('/signin',function(req, res, next) 
+		{
+			passport.authenticate('signin', function(err, user) 
+			{
+				if(err)
+				{	
+					res.send({"flag" : false, "username":null});  
+				} 
+				if(user == false)
+				{
+					res.send({"flag" : false, "username":null});
+				}
+				else
+				{
+					utilSession.setSession(req, user);
+					res.send({"flag" : true, "username":user});
+				}
+			})(req, res, next);
+		});
 
 
 mongo.connect(mongoSessionConnectURL, function(){  
