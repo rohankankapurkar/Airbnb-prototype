@@ -1,6 +1,12 @@
 //super simple rpc server example
 var amqp = require('amqp')
-, util = require('util');
+, util = require('util')
+,process = require('process');
+
+
+// set the mode here like connection pooling, sql caching and many more.
+// process.env.MODE = "NONE";
+process.env.MODE = "CONNECTION_POOL";
 
 
 var signin = require('./services/signin');
@@ -33,7 +39,6 @@ cnn.on('ready', function(){
 	});
 
 
-
 	// Signup queue for enabing the user to register
 	cnn.queue('signup_queue', function(q){
 		q.subscribe(function(message, headers, deliveryInfo, m){
@@ -54,10 +59,6 @@ cnn.on('ready', function(){
 		});
 	});
 
-
 });
-
-
-
 
 

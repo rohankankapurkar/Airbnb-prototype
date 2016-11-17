@@ -1,11 +1,20 @@
-var mongo = require("./utils/utils.mongo")
-var mongoURL = "mongodb://localhost:27017/test";
+var process = require('process');
+
+var MODE = process.env.MODE;
+
+//Identify the mode and then import the required libraries
+if(MODE == "CONNECTION_POOL"){
+	var mongo = require('./utils/utils.mongo');
+}else{
+	var mongo = require('./utils/utils.mongo');
+}
+
 
 exports.signinUser = function(msg, callback){
 	
 	var res = {};
 	
-	mongo.connect(mongoURL, function(){
+	mongo.connect(function(){
 		var coll = mongo.collection('newCollection');
 
 		coll.findOne({username:msg.username, password :msg.password}, function(err, user){
