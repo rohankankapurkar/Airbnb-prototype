@@ -1,3 +1,10 @@
+
+
+
+<!-- main UI VIEW -->
+<div ui-view>
+	<div id="middle" ng-controller="controllerHome">
+<!--adding navbar here        -->
 <div id="header">
 	<nav class="navbar navbar-light bg-faded">
 		<div class="container">
@@ -24,12 +31,69 @@
 		</div>
 	</nav>
 </div>
+<!--adding for carousal	-->
+        <div id="myCarousel" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="../images/home1.png" alt="">
+            <div class="carousel-caption">
+              <h1>Example headline.</h1>
+                <p class="lead">Sapaliga</p>
+              <a class="btn btn-large btn-primary" data-toggle="modal" data-target="#myModalNorm">Sign up today</a>
+            </div>
+          
+        </div>
+        <div class="item">
+          <img src="../images/home2.png" alt="">
+            <div class="carousel-caption">
+                              <a class="btn btn-large btn-primary" data-toggle="modal" data-target="#myModalNorm">Sign up today</a>
 
-
-<!-- main UI VIEW -->
-<div ui-view>
-	<div id="middle" ng-controller="controllerHome">
-		<div class="jumbotron text-center container">
+            </div>
+        </div>
+        <div class="item">
+          <img src="../images/home3.png" alt="">
+            <div class="carousel-caption">
+              <h1>One more for good measure.</h1>
+              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <a class="btn btn-large btn-primary" href="#">Browse gallery</a>
+            </div>
+          
+        </div>
+            <div class="item">
+          <img src="../images/home4.png" alt="">
+            <div class="carousel-caption">
+              <h1>One more for good measure.</h1>
+              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <a class="btn btn-large btn-primary" href="#">Browse gallery</a>
+            </div>
+          
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+    </div><!-- /.carousel -->
+        <script type="text/javascript">
+  $(document).ready(function() {
+    $('.myCarousel').carousel({
+      interval: 60
+    })
+  });
+</script>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+<!--        end of carousal-->
+		<div class="jumbotron text-center ">
 			<h2>
 				<b>Live there.</b>Book unique homes and experience a city
 						like a local.
