@@ -29,33 +29,33 @@
 <!-- main UI VIEW -->
 <div ui-view>
 	<div id="middle" ng-controller="controllerHome">
-		<div class="jumbotron text-center">
+		<div class="jumbotron text-center container">
 			<h2>
-				<b>Live there.<b>Book unique homes and experience a city
+				<b>Live there.</b>Book unique homes and experience a city
 						like a local.
 			</h2>
-			<form class="form-inline ">
-				<div class="form-group well well-sm">
+			<form class="form form-inline " style="padding : 10px ;outline: 1px solid #ddd;">
+				<div class="form-group" style="padding : 10px ;outline: 1px solid #ddd;">
 					<p>Where</p>
 					<label class="sr-only" for="inputOne">Source</label>
 					<input type="text" class="form-control input-lg" id="hmpgwhere" name="hmpgwhere" ng-model="hmpgwhere" placeholder="City">
 				</div>
-				<div class="form-group well well-sm">
+				<div class="form-group " style="padding : 10px ;outline: 1px solid #ddd;">
 					<p>Guests</p>
 					<label class="sr-only" for="inputTwo">Guests</label>
 					<input type="text" class="form-control input-lg" id="hmpgguests" name="hmpgguests" ng-model="hmpgguests" placeholder="Number of people" style="margin-left: -5px;">
 				</div>
-				<div class="form-group well well-sm">
+				<div class="form-group " style="padding : 10px ;outline: 1px solid #ddd;">
 					<p>when</p>
 					<label class="sr-only" for="inputTwo">When</label>
-					<input type="date" class="form-control input-lg" id="hmpgwhen" name="hmpgwhen" ng-model="hmpgwhen" placeholder="From" style="margin-left: -5px;">
+					<input type="date" class="form-control input-lg " id="hmpgwhen" name="hmpgwhen" ng-model="hmpgwhen" placeholder="From" style="margin-left: -5px;">
 				</div>
-				<div class="form-group well well-sm">
+				<div class="form-group " style="padding : 10px ;outline: 1px solid #ddd;">
 					<p>Till</p>
 					<label class="sr-only" for="inputTwo">Till</label>
 					<input type="date" class="form-control input-lg" id="hmpgtill" id="hmpgtill" ng-model="hmpgtill" placeholder="upto" style="margin-left: -5px;">
 				</div>
-				<div class="form-group well well-lg">
+				<div class="form-group " style="padding : 10px ;outline: 1px solid #ddd;">
 					<button type="submit" class="btn btn-danger btn-lg"	 ng-click="test()">Search</button>
 				</div>
 			</form>
@@ -78,35 +78,29 @@
             	<div class="modal-body" >
                 	<form role="form">
                     	<div class="form-group inner-addon right-addon">
-<!--                        	<label for="regfname">First name</label>-->
                             <i class="glyphicon glyphicon-user"></i>
                         	<input  type="text" class="form-control" id="regfname" name="regfname" placeholder="First Name" ng-model="regfname" > 
                             
                     	</div>
                         
                    		<div class="form-group inner-addon right-addon">
-<!--                        	<label for="reglname">Last name</label>-->
                             <i class="glyphicon glyphicon-user"></i>
-
-                        	<input ng-model="reglname" type="text" class="form-control" id="reglname" name="reglname" placeholder="Last Name"/>
+                            <input ng-model="reglname" type="text" class="form-control" id="reglname" name="reglname" placeholder="Last Name"/>
                     	</div>
                         
                         <div class="form-group inner-addon right-addon">
-<!--                    	    <label for="regemail">Email address</label>-->
-                             <i class="glyphicon glyphicon-envelope"></i>
+                            <i class="glyphicon glyphicon-envelope"></i>
                             <input ng-model="regemail" type="email" class="form-control" id="regemail" name="regemail" placeholder="Enter email"/>
                     	</div>
-                    	<div class="form-group inner-addon right-addon">
-<!--                        	<label for="regpassword">Password</label>-->
-                        <i class="glyphicon glyphicon-lock"></i>
-
-                        	<input ng-model="regpassword" type="password" class="form-control" id="regpassword" name="regpassword" placeholder="Password"/>
+                    	
+                        <div class="form-group inner-addon right-addon">
+                            <i class="glyphicon glyphicon-lock"></i>
+                            <input ng-model="regpassword" type="password" class="form-control" id="regpassword" name="regpassword" placeholder="Password"/>
                     	</div>    
-                    	<div class="form-group inner-addon right-addon">
-                             <i class="glyphicon glyphicon-glass"></i>
-
-<!--                        	<label for="regbday">Birthday</label>-->
-                        	<input ng-model="regbday" type="date" class="form-control" id="regbday" name="regbday" ng-model="regbday" placeholder="Password"/>
+                        
+                        <div class="form-group inner-addon right-addon">
+                            <i class="glyphicon glyphicon-glass"></i>
+                            <input ng-model="regbday" type="date" class="form-control" id="regbday" name="regbday" ng-model="regbday" placeholder="Password"/>
                     	</div>
                   		<button id="register" name="register" type="submit" class="btn btn-danger btn-lg btn-block" ng-click="signup()">Signup</button>
                 	</form> 

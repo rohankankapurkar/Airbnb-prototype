@@ -27,7 +27,13 @@
 #myModalSignIn .modal-dialog  {width:25%;}
 
 
-
+.jumbotron {
+  padding-right: 20px;
+    padding-left: 20px;
+  
+  border: 1px solid #ddd;
+  width: 1300px;
+ }
 
 
 
@@ -41,16 +47,29 @@ body .modal {
 
 
   body {
-      font: 400 15px Lato, sans-serif;
+font-family: 'Poppins', sans-serif;
       line-height: 1.8;
       color: #818181;
   }
   h2 {
-      font-size: 24px;
+      font-size: 35px;
       color: #303030;
       font-weight: 600;
       margin-bottom: 30px;
+      font-family: 'Poppins', sans-serif;
+      
   }
+  
+  
+   h1 {
+      font-size: 9px;
+      color: #303030;
+      font-weight: 600;
+      margin-bottom: 30px;
+      font-family: 'Poppins', sans-serif;
+      
+  }
+  
       
  a {
       font-size: 12px;
@@ -58,6 +77,8 @@ body .modal {
       
 p   {
           font-color: #000000;
+          font-family: 'Poppins', sans-serif;
+          
       }
       
   h4 {
