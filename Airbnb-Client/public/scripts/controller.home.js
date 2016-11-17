@@ -1,5 +1,5 @@
 
-airbnbApp.controller('controllerHome',function($scope,$log){
+airbnbApp.controller('controllerHome',function($scope,$log, $http){
 
 	$scope.check = "";
 	$scope.hmpgwhere = "";
@@ -19,6 +19,8 @@ airbnbApp.controller('controllerHome',function($scope,$log){
    |-----------------------------------------------------------
   */
   $scope.signin = function() {
+		console.log("---------------signin-------------");
+		console.log($scope.email);
     $http({
       method : "POST",
       url : '/user/signin',
