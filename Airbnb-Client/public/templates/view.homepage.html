@@ -1,0 +1,64 @@
+<div id="header">
+	<nav class="navbar navbar-light bg-faded">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"> <!--  <img src="logo.png" style="display: inline-block;">-->
+					<span style="display: inline-block;"></span>
+				</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#about">Become a Host</a></li>
+					<li><a data-toggle="modal" data-target="#myModalNorm">Sign
+							up</a></li>
+					<li><a href="#portfolio">Browse</a></li>
+					<li><a href="#pricing">Sign in</a></li>
+					<li><a href="#contact">Help</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</div>
+
+
+<div ui-view>
+	<div id="middle" ng-controller="controllerHome">
+		<div class="jumbotron text-center">
+			<h2>
+				<b>Live there.<b>Book unique homes and experience a city
+						like a local.
+			</h2>
+			<form class="form-inline ">
+				<div class="form-group well well-sm">
+					<p>Where</p>
+					<label class="sr-only" for="inputOne">Source</label>
+					<input type="text" class="form-control input-lg" id="hmpgwhere" name="hmpgwhere" ng-model="hmpgwhere" placeholder="City">
+				</div>
+				<div class="form-group well well-sm">
+					<p>Guests</p>
+					<label class="sr-only" for="inputTwo">Guests</label> 
+					<input type="text" class="form-control input-lg" id="hmpgguests" name="hmpgguests" ng-model="hmpgguests" placeholder="Number of people" style="margin-left: -5px;">
+				</div>
+				<div class="form-group well well-sm">
+					<p>when</p>
+					<label class="sr-only" for="inputTwo">When</label> 
+					<input type="date" class="form-control input-lg" id="hmpgwhen" name="hmpgwhen" ng-model="hmpgwhen" placeholder="From" style="margin-left: -5px;">
+				</div>
+				<div class="form-group well well-sm">
+					<p>Till</p>
+					<label class="sr-only" for="inputTwo">Till</label>
+					<input type="date" class="form-control input-lg" id="hmpgtill" id="hmpgtill" ng-model="hmpgtill" placeholder="upto" style="margin-left: -5px;">
+				</div>
+				<div class="form-group well well-lg">
+					<button type="submit" class="btn btn-danger btn-lg"	style="margin-left: -5px;" ng-click="test()">Search</button>
+				</div>
+			</form>
+		</div>
+
+	</div>
+</div>

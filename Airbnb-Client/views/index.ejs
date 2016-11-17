@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Airbnb</title>
+    
+    <!-- bootstrap stylesheet -->
+  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<!-- bootstrap theme css -->
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  	<!-- bootstrap jquery minified -->
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  	<!-- bootstrap javascript -->
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<!-- angular.js minified -->
+  	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+  	<!-- jquery ui -->
+	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+	<!-- angular-js-library -->
+  	<script src="/libraries/angular-ui-router.js"></script>
+  	
+  	<script src="/scripts/angular.initial.js"></script>
+  	<script src="/scripts/controller.home.js"></script>
+    
+    
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.homepage.css' />
+    
+  </head>
+  <body ng-app="airbnbApp" class="mainBody">
+	
+	<!-- Main Container -->
+	<div id="main" class = "container">
+	
+	<div ui-view></div>
+	</div>
+  </body>
+</html>
