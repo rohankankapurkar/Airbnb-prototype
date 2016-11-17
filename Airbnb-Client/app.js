@@ -77,7 +77,7 @@ app.get('/users', user.list);
 
 app.post('/getusersession',usersession.getSession);
 app.post('/analytics', analytics.logdata);
-app.post('/user/register', register.signup);
+//app.post('/user/register', register.signup);
 
 
 mongo.connect(mongoSessionConnectURL, function(){  

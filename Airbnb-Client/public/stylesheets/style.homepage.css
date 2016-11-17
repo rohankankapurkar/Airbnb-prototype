@@ -1,3 +1,45 @@
+
+/*  glyphicons inside the textboxes*/
+.inner-addon { 
+    position: relative; 
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align icon */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+
+
+/*in order to restrict the size of text box in model popup  */
+
+
+#myModalNorm .modal-dialog  {width:25%;}
+#myModalSignIn .modal-dialog  {width:25%;}
+
+
+
+
+
+
+
+body .modal {
+    /* new custom width */
+   /*add here to model  */
+    
+    /* must be half of the width, minus scrollbar on the left (30px) */
+}
+
+
   body {
       font: 400 15px Lato, sans-serif;
       line-height: 1.8;
