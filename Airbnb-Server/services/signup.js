@@ -1,4 +1,5 @@
 var process = require('process');
+var encryption = require('./utils/utils.encryption');
 
 var MODE = process.env.MODE;
 
@@ -10,24 +11,32 @@ if(MODE == "CONNECTION_POOL"){
 }
 
 
-
 exports.signupUser = function(msg, callback){
 	
 	var res = {};
-	
+	var alreadyExists = false;
 	mongo.connect(function(){
 		var coll = mongo.collection('newCollection');
-		console.log("I am here " + msg);
-		// Insert the user details into db
-		coll.insertOne(msg, function(err, user){
+		
+		coll.findOne({username:msg.username},function(err, user){
 			if(user){
-				// return status = 0 on successfull registration
-				res.status = 0;
+				res.message = "User already exists";
 			}else{
-				// return 1 if any error occurs
-				res.status = 1;
+				msg['password'] = encryption.encrypt(msg['password']);
+				
+				//insert user details into the db
+				coll.insertOne(msg, function(err, user){
+					if(user){
+						// return status = 0 on successfull registration
+						res.statuscode = 0;
+				 	}else{
+						// return 1 if any error occurs
+						res.statuscode = 1;
+						res.message = "Error occurred while registering the user";
+					}
+				});
 			}
 			callback(null, res);
-		});
+		});				
 	});
 }
