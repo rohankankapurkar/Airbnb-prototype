@@ -21,13 +21,9 @@ cnn.on('ready', function(){
 	// Signin qeue to make user sigin into the system
 	cnn.queue('signin_queue', function(q){
 		q.subscribe(function(message, headers, deliveryInfo, m){
-			console.log(message);
-			console.log('-----');
 			util.log(util.format( deliveryInfo.routingKey, message));
-			util.log("Message: "+JSON.stringify(message));
 			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
 			signin.signinUser(message, function(err,res){
-				console.log('in publishing');
 				//return index sent
 				cnn.publish(m.replyTo, res, {
 					contentType:'application/json',
@@ -42,13 +38,9 @@ cnn.on('ready', function(){
 	// Signup queue for enabing the user to register
 	cnn.queue('signup_queue', function(q){
 		q.subscribe(function(message, headers, deliveryInfo, m){
-			console.log(message);
-			console.log('-----');
 			util.log(util.format( deliveryInfo.routingKey, message));
-			util.log("Message: "+JSON.stringify(message));
 			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
 			signup.signupUser(message, function(err,res){
-				console.log('in publishing');
 				//return index sent
 				cnn.publish(m.replyTo, res, {
 					contentType:'application/json',
