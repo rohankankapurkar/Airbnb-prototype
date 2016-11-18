@@ -118,7 +118,7 @@
 				<div class="form-group " style="padding : 10px ;">
 					<p>when</p>
 					<label class="sr-only" for="inputTwo">When</label>
-					<input type="text" class="form-control input-lg" id="hmpgwhen" name="hmpgwhen" ng-model="hmpgwhen" placeholder="From" style="margin-left: -5px;" onclick="$(this).datepicker();">
+					<input type="text" class="form-control input-lg" id="hmpgwhen" name="hmpgwhen" ng-model="hmpgwhen" placeholder="From" style="margin-left: -5px;">
 				</div>
 				<div class="form-group " style="padding : 10px ;">
 					<p>Till</p>
@@ -239,7 +239,10 @@
 <!-- including date picker -->
 <script src='stylesheets/bootstrap-datepicker.js'></script>
 <script>
-
+		//datepicker
+		$('#hmpgwhen').datepicker();
+		$('#hmpgtill').datepicker();
+		
     function signup() {
     $("#myModalSignIn").removeClass("fade").modal("hide");
     //$("#myModalNorm").modal("show");

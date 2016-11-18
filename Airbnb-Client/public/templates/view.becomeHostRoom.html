@@ -1,0 +1,178 @@
+<div class="left-backdrop"></div>
+<div class="list-your-space__content">
+	<div class="centered-content clearfix">
+		<div class="main-panel-container main-panel-outer-half clearfix">
+			<div class="main-panel main-panel-padding main-panel-progress pull-right main-panel-inner-half space-sm-8">
+				<div class="panel--no-border panel-title"><h3 class="no-margin-padding">What kind of place are you listing?</h3></div>
+				<div class="space-4">
+					<div>
+						<label for="house-type" class="h4 text-gray text-normal"><span>What type of property is this?</span></label>
+						<div class="select select-block select-jumbo">
+							<select id="house-type" name="house_type" class="">
+								<option value="" disabled=""> </option>
+								<option value="2">House</option>
+								<option value="1">Apartment</option>
+								<option value="-1" disabled="" >──────────────</option>
+								<option value="3">Bed &amp; Breakfast</option>
+								<option value="43">Boutique hotel</option>
+								<option value="44">Nature lodge</option>
+								<option value="45">Hostel</option>
+								<option value="46">Timeshare</option>
+								<option value="47">Serviced apartment</option>
+								<option value="48">Minsu (Taiwan)</option>
+								<option value="49">Ryokan (Japan)</option>
+								<option value="50">Pension (Korea)</option>
+								<option value="51">Heritage hotel (India)</option>
+								<option value="-2" disabled="">──────────────</option>
+								<option value="8">Boat</option>
+								<option value="38">Bungalow</option>
+								<option value="4">Cabin</option>
+								<option value="5">Castle</option>
+								<option value="18">Cave</option>
+								<option value="22">Chalet</option>
+								<option value="37">Condominium</option>
+								<option value="9">Dorm</option>
+								<option value="23">Earth House</option>
+								<option value="40">Guesthouse</option>
+								<option value="24">Hut</option>
+								<option value="12">Igloo</option>
+								<option value="19">Island</option>
+								<option value="10">Lighthouse</option>
+								<option value="35">Loft</option>
+								<option value="28">Plane</option>
+								<option value="32">Camper/RV</option>
+								<option value="34">Tent</option>
+								<option value="16">Tipi</option>
+								<option value="36">Townhouse</option>
+								<option value="25">Train</option>
+								<option value="6">Treehouse</option>
+								<option value="11">Villa</option>
+								<option value="15">Yurt</option>
+								<option value="33">Other</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="space-top-4 space-4">
+					<div>
+						<label for="house-type" class="h4 text-gray text-normal">
+							<span>What will guests have?</span>
+						</label>
+						<div class="select select-block select-jumbo">
+							<select id="room-type" name="room_type" class="">
+								<option value="entire_home">Entire place</option>
+								<option selected="" value="private_room">Private room</option>
+								<option value="shared_room">Shared room</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="space-top-4 space-4">
+					<div>
+						<label for="building-size" class="h4 text-gray text-normal">How many total rooms does your property have?</label>
+						<div class="select select-block select-jumbo">
+							<select id="building-size" name="category_building_size" class="">
+								<option selected="" value="building_lt_5_rooms">1-5 Rooms</option>
+								<option value="building_lt_25_rooms">6-25 Rooms</option>
+								<option value="building_lt_50_rooms">26-50 Rooms</option>
+								<option value="building_gt_50_rooms">50+ Rooms</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="space-top-4 space-4">
+					<label for="residence-type" class="h4 text-gray text-normal">Is this your personal home?</label>
+					<div class="space-2">
+						<div class="block-radio-button">
+							<label class="btn btn-block block-radio-button__panel" for="residence-type-residence_type_personal_home">
+								<div class="row no-margin-h">
+									<i class="pull-left icon icon-with-label icon-gray icon-font-size-20"></i>
+									<div class="pull-left text-lead block-radio-button__label">
+										<span>Yes</span>
+									</div>
+									<div class="pull-right">
+										<input id="residence-type-residence_type_personal_home" type="radio" name="residenceType" value="residence_type_personal_home" checked="" class="pointer-input">
+									</div>
+								</div>
+							</label>
+						</div>
+						<div class="block-radio-button">
+							<label class="btn btn-block block-radio-button__panel" for="residence-type-residence_type_professional_rental">
+								<div class="row no-margin-h">
+									<i class="pull-left icon icon-with-label icon-gray icon-font-size-20"></i>
+									<div class="pull-left text-lead block-radio-button__label">
+										<span>No</span>
+									</div>
+									<div class="pull-right">
+										<input id="residence-type-residence_type_professional_rental" type="radio" name="residenceType" value="residence_type_professional_rental" class="pointer-input">
+									</div>
+								</div>
+							</label>
+						</div>
+					</div>
+					<label for="building-size-tip" class="h4 text-gray text-large text-normal">Guests like to know if this is a place you live and keep your personal belongings in.</label>
+				</div>
+			</div>
+			<div class="main-panel__actions-wrapper">
+				<div class="centered-content clearfix">
+					<div class="bg-white main-panel-outer-half clearfix">
+						<div class="no-margin-padding__sm main-panel-padding main-panel-progress pull-right main-panel-inner-half space-sm-8">
+							<div class="divider hide-sm"></div>
+							<div class="row no-margin-padding__sm">
+								<div class="main-panel__actions col-sm-12 no-margin-padding__sm">
+									<div>
+										<a class="btn-progress-back link-icon va-container va-container-v pull-left text-gray link--accessibility-outline" ng-click="becomeHost()">
+											<span class="icon hide-sm"></span>
+											<span class="va-middle"><h5 class="text-normal"><span>Back</span></h5></span>
+										</a>
+										<a class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md disabled btn-primary" ng-click="chooseBedroom()">
+											<div class="btn-progress-next__text">
+												<span>Next</span>
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="help-panel-container">
+			<div class="hide-sm help-panel panel">
+				<div class="panel-body">
+					<div class="help-panel__bulb-img space-2"></div>
+					<div class="help-panel__text">
+						<div>
+							<p>
+								<span class="help-panel__title">
+									<span>Entire place</span><br>
+								</span>
+								<span>Guests will rent the entire place. Includes in-law units.</span>
+							</p>
+							<p>
+								<span class="help-panel__title">
+									<span>Private room</span><br>
+								</span>
+								<span>Guests share some spaces but they’ll have their own private room for sleeping.</span>
+							</p>
+							<p>
+								<span class="help-panel__title">
+									<span>Shared room</span><br>
+								</span>
+								<span>Guests don’t have a room to themselves.</span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="show-sm help-panel__floating-container">
+				<span class="tooltip-popup__transition-container">
+					<div class="help-panel--collapsed help-panel__bulb-img-bubble">
+						<div class="help-panel__bulb-img img-center"></div>
+					</div>
+				</span>
+			</div>
+		</div>
+	</div>
+</div>
