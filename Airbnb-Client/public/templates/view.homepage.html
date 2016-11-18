@@ -42,16 +42,15 @@
         <div id="myCarousel" class="carousel slide">
       <div class="carousel-inner">
         <div class="item active">
-          <img src="../images/home1.png" alt="">
+          <img src="../images/home1.png" alt="" height= "50" class="img-responsive">
             <div class="carousel-caption">
-				<h1 style="font-size: large">Airbnb Experiences</h1>
                 <p class="lead">Homes, experiences, and places — all in one app.</p>
               <a class="btn btn-large btn-primary" data-toggle="modal" data-target="#myModalNorm">Sign up today</a>
             </div>
 
         </div>
         <div class="item">
-          <img src="../images/home2.png" alt="">
+          <img src="../images/home2.png" alt="" height="50" class="img-responsive">
             <div class="carousel-caption">
                               <a class="btn btn-large btn-primary" data-toggle="modal" data-target="#myModalNorm">Sign up today</a>
 
@@ -105,28 +104,28 @@
 				<b>Live there.</b>Book unique homes and experience a city
 						like a local.
 			</h2>
-			<form class="form form-inline " style="padding : 10px ;outline: 1px solid #ddd;">
-				<div class="form-group" style="padding : 10px ;outline: 1px solid #ddd;">
+			<form class="form form-inline " style"outline: 2px solid #ddd;">
+				<div class="form-group" style="padding : 10px ;">
 					<p>Where</p>
 					<label class="sr-only" for="inputOne">Source</label>
 					<input type="text" class="form-control input-lg" id="hmpgwhere" name="hmpgwhere" ng-model="hmpgwhere" placeholder="City">
 				</div>
-				<div class="form-group " style="padding : 10px ;outline: 1px solid #ddd;">
+				<div class="form-group " style="padding : 10px ;">
 					<p>Guests</p>
 					<label class="sr-only" for="inputTwo">Guests</label>
 					<input type="text" class="form-control input-lg" id="hmpgguests" name="hmpgguests" ng-model="hmpgguests" placeholder="Number of people" style="margin-left: -5px;">
 				</div>
-				<div class="form-group " style="padding : 10px ;outline: 1px solid #ddd;">
+				<div class="form-group " style="padding : 10px ;">
 					<p>when</p>
 					<label class="sr-only" for="inputTwo">When</label>
 					<input type="text" class="form-control input-lg" id="hmpgwhen" name="hmpgwhen" ng-model="hmpgwhen" placeholder="From" style="margin-left: -5px;" onclick="$(this).datepicker();">
 				</div>
-				<div class="form-group " style="padding : 10px ;outline: 1px solid #ddd;">
+				<div class="form-group " style="padding : 10px ;">
 					<p>Till</p>
 					<label class="sr-only" for="inputTwo">Till</label>
 					<input type="date" class="form-control input-lg" id="hmpgtill" id="hmpgtill" ng-model="hmpgtill" placeholder="upto" style="margin-left: -5px;">
 				</div>
-				<div class="form-group " style="padding : 10px ;outline: 1px solid #ddd;">
+				<div class="form-group " style="padding : 10px ;">
 					<button type="submit" class="btn btn-danger btn-lg"	 ng-click="test()">Search</button>
 				</div>
 			</form>
