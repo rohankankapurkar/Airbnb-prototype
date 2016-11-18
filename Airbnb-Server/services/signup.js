@@ -14,9 +14,8 @@ if(MODE == "CONNECTION_POOL"){
 exports.signupUser = function(msg, callback){
 	
 	var res = {};
-	var alreadyExists = false;
 	mongo.connect(function(){
-		var coll = mongo.collection('newCollection');
+		var coll = mongo.collection('users');
 		
 		coll.findOne({username:msg.username},function(err, user){
 			if(user){
@@ -25,6 +24,7 @@ exports.signupUser = function(msg, callback){
 				msg['password'] = encryption.encrypt(msg['password']);
 				
 				//insert user details into the db
+				msg['ishost']=  false;
 				coll.insertOne(msg, function(err, user){
 					if(user){
 						// return status = 0 on successfull registration

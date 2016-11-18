@@ -11,6 +11,7 @@ process.env.MODE = "CONNECTION_POOL";
 
 var signin = require('./services/signin');
 var signup = require('./services/signup');
+var hostService = require('./services/hosts/hosts.service');
 
 var cnn = amqp.createConnection({host:'127.0.0.1'});
 
@@ -51,6 +52,23 @@ cnn.on('ready', function(){
 		});
 	});
 
-});
 
+	// Service to check if the user is host or not
+	cnn.queue('checkIsHost_queue', function(q){
+		q.subscribe(function(message, headers, deliveryInfo, m){
+			util.log(util.format( deliveryInfo.routingKey, message));
+			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+			hostService.checkIsHost(message, function(err,res){
+				//return index sent
+				cnn.publish(m.replyTo, res, {
+					contentType:'application/json',
+					contentEncoding:'utf-8',
+					correlationId:m.correlationId
+				});
+			});
+		});
+	});	
+
+
+});
 

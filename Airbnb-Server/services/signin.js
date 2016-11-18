@@ -16,19 +16,22 @@ exports.signinUser = function(msg, callback){
 	var res = {};
 	
 	mongo.connect(function(){
-		var coll = mongo.collection('newCollection');
+		var coll = mongo.collection('users');
 		msg.password = encryption.encrypt(msg.password);
 		coll.findOne({username:msg.username, password :msg.password}, function(err, user){
 			if (user) {
 				// return status = 0 on successfull login
 				res.statuscode = 0;
-				res.data = user;
+				coll.update({username:msg.username},{$set:{"lastLogin":(new Date()).toString()}}, function(err, user){
+					res.data = user;
+					callback(null, res);
+				});
 			} else {
 				// return status = 1 if login fails 
 				res.statuscode = 1;
 				res.message = "Username or Password is not valid";
+				callback(null, res);
 			}
-			callback(null, res);
 		});
 	});
 }
