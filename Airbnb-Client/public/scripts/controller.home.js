@@ -1,6 +1,8 @@
 
 airbnbApp.controller('controllerHome',function($scope,$log,$http){
-	
+
+	//session validator
+	$scope.validSession = false;
 	//hide signInError message on get signin page
 	$scope.signInError = false;
 	//Signup variables
@@ -16,7 +18,33 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http){
 	$scope.invPaswd = "";
 	$scope.invEmail = "";
 	$scope.invBday = "";
-	
+
+
+	/*
+	 |-----------------------------------------------------------
+	 | Check for user session
+	 |-----------------------------------------------------------
+	*/
+	$http({
+		method : "POST",
+		url : '/usergetsession'
+	}).success(function(data) {
+		if(data == 0) {
+			$scope.validSession = true;
+			$scope.username = data.username;
+		}
+		else {
+			//code to show error for session
+			$scope.validSession = false;
+			$scope.username = null;
+		}
+	}).error(function(error) {
+		// alert("Internal sever error occured");
+		// window.setTimeout(function(){
+		// 	window.location = '/';
+		// }, 3000);
+	});
+
 
 
 	//This function will called after submitting the signup form
@@ -40,13 +68,13 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http){
 					"lastname" : $scope.reglname,
 					"birthday" : $scope.regbday
 				}
-			}).success(function(data){		
+			}).success(function(data){
 				if (data.statuscode == 0)
 				{
 					//$state.go('signin');
 				}
 				else
-				{				
+				{
 					if(data.message != null)
 					{
 						$scope.invEmail = "";
@@ -62,7 +90,7 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http){
 			console.log("Error in submitted values");
 		}
 	}
-	
+
 	$scope.clearInvSignUpMessages = function(){
 		$scope.invFname = "";
 		$scope.invLname = "";
@@ -70,18 +98,18 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http){
 		$scope.invemail = "";
 		$scope.invBday = "";
 	}
-	
+
 	$scope.applyValidations = function(){
-		
+
 		var validationsFlag = false;
 		var fnameValidation = "";
 		var lnameValidation ="";
-		
+
 		if($scope.regfname  != "")
 			fnameValidation = $scope.regfname.match(/\d+/g);
 		if($scope.reglname != "")
 			lnameValidation = $scope.reglname.match(/\d+/g);
-		
+
 		if(fnameValidation != null && lnameValidation == null)
 		{
 			$scope.invFname = "Invalid First Name";
@@ -101,15 +129,15 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http){
 			$scope.invLname = "First Name & Last Name Invalid";
 			validationsFlag = true;
 		}
-		
+
 		if($scope.regpassword.length < 8)
 		{
 			console.log($scope.regpassword);
 			console.log("passw");
 			$scope.invPaswd = "Password should have 8 or more characters";
-			validationsFlag = true;			
+			validationsFlag = true;
 		}
-		
+
 		var bday = new Date($scope.regbday);
 		var currdate = new Date();
 		if(bday > currdate)
@@ -138,11 +166,11 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http){
       }
     }).success(function(data) {
     	console.log(data);
-      if(data.statuscode ==0) 
+      if(data.statuscode ==0)
       {
     	  window.location = '/';
       }
-      else 
+      else
       {
     	  //code to show error for signin
 		  $scope.signInError = true;
@@ -152,7 +180,7 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http){
 			window.setTimeout(function(){
 				window.location = '/';
 			}, 3000);
-			
+
     });
   };
 
