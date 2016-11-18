@@ -137,13 +137,16 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http){
         "password": $scope.password
       }
     }).success(function(data) {
-      if(data == 0) {
-        window.location = '/';
-			}
-      else {
-				//code to show error for signin
-				$scope.signInError = true;
-			}
+    	console.log(data);
+      if(data.statuscode ==0) 
+      {
+    	  window.location = '/';
+      }
+      else 
+      {
+    	  //code to show error for signin
+		  $scope.signInError = true;
+	  }
     }).error(function(error) {
 			alert("Internal sever error occured");
 			window.setTimeout(function(){

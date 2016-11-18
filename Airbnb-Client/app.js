@@ -39,7 +39,7 @@ mongo = require("./routes/utils/util.mongo");
 var usersession = require('./routes/misc/misc.session'); //contains functions related to session management
 var analytics = require("./routes/misc/misc.analytics"); //contains functions related to logging of client activities
 var register = require("./routes/user/user.register");
-
+var utilSession = require("./routes/misc/misc.session")
    
 var mongoSessionConnectURL = "mongodb://localhost:27017/sessions";
 var mongoStore = require("connect-mongo")(session);
@@ -87,18 +87,26 @@ app.post('/user/signin',function(req, res, next)
 		{
 			passport.authenticate('signin', function(err, user) 
 			{
+				console.log("after auth")
 				if(err)
-				{	
-					res.send({"flag" : false, "username":null});  
+				{		
+					console.log("in error")
+					res.send({"statuscode" : 1, "username":null});  
 				} 
 				if(user == false)
-				{
-					res.send({"flag" : false, "username":null});
+				{	
+					console.log("in user error")
+					res.send({"statuscode" : 1, "username":null});
 				}
 				else
 				{
+					console.log("authenticated")
 					utilSession.setSession(req, user);
-					res.send({"flag" : true, "username":user});
+					var response = {
+						statuscode : 0,
+						user : user
+					}
+					res.send(response);
 				}
 			})(req, res, next);
 		});
