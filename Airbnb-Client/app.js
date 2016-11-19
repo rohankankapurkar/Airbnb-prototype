@@ -38,8 +38,8 @@ mongo = require("./routes/utils/util.mongo");
  */
 var usersession = require('./routes/misc/misc.session'); //contains functions related to session management
 var analytics = require("./routes/misc/misc.analytics"); //contains functions related to logging of client activities
-var register = require("./routes/user/user.register");
-var utilSession = require("./routes/misc/misc.session")
+var register = require("./routes/user/user.register"); //contains function related to sign up of an user
+ 
    
 var mongoSessionConnectURL = "mongodb://localhost:27017/sessions";
 var mongoStore = require("connect-mongo")(session);

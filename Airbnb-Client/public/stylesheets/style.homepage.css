@@ -270,3 +270,9 @@ p   {
 .landing__left-col{
     padding-left: 60px !important;
 }
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+ }
+

@@ -29,23 +29,23 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http){
 		method : "POST",
 		url : '/getusersession'
 	}).success(function(data) {
-		if(data.statuscode == 0) {
-			
+		if(data.statuscode == 0) 
+		{
+			signedinhost = true;
 			$scope.signedin = true;
-			$scope.signedHost = false;
 			$scope.default = false;
 		}
-		else {
-
+		else 
+		{
 			$scope.signedin = false;
 			$scope.signedHost = false;
 			$scope.default = true;
 		}
 	}).error(function(error) {
-		// alert("Internal sever error occured");
-		// window.setTimeout(function(){
-		// 	window.location = '/';
-		// }, 3000);
+			console.log("Internal Server error occurred")
+			$scope.signedin = false;
+			$scope.signedHost = false;
+			$scope.default = true;
 	});
 
 
@@ -58,7 +58,6 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http){
 	  */
 	$scope.signup = function()
 	{
-		console.log($scope.regtest);
 		if(!$scope.applyValidations())
 		{
 			$http({
@@ -94,6 +93,12 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http){
 		}
 	}
 
+	//Function for clearing up the invalid input messages showed after sign up
+	/*
+	   |-----------------------------------------------------------
+	   | Clear Invalid Input Messages 
+	   |-----------------------------------------------------------
+	  */
 	$scope.clearInvSignUpMessages = function(){
 		$scope.invFname = "";
 		$scope.invLname = "";
@@ -101,7 +106,13 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http){
 		$scope.invemail = "";
 		$scope.invBday = "";
 	}
-
+	
+	//Function applies validations to the input values submitted by the user upon sign up
+	/*
+	   |-----------------------------------------------------------
+	   | Apply Validations 
+	   |-----------------------------------------------------------
+	  */
 	$scope.applyValidations = function(){
 
 		var validationsFlag = false;
@@ -152,44 +163,54 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http){
 		return validationsFlag;
 	}
 
+	//Function for sign in 
 	/*
    |-----------------------------------------------------------
    | User signin
    |-----------------------------------------------------------
   */
-  $scope.signin = function() {
-		console.log("---------------signin-------------");
-		console.log($scope.email);
-    $http({
-      method : "POST",
-      url : '/user/signin',
-      data : {
-        "username": $scope.email,
-        "password": $scope.password
-      }
-    }).success(function(data) {
-    	console.log(data);
-      if(data.statuscode ==0)
-      {
-    	  	$scope.signedin = true;
-			$scope.signedHost = false;
-			$scope.default = false;
-      }
-      else
-      {
-      		$scope.signedin = false;
-			$scope.signedHost = false;
-			$scope.default = true;
-    	  	//code to show error for signin
-		  	$scope.signInError = true;
-	  }
-    }).error(function(error) {
+  $scope.signin = function() 
+  {
+	    $http({
+      		method : "POST",
+      		url : '/user/signin',
+      		data : {
+        		"username": $scope.email,
+        		"password": $scope.password
+      		}
+    	}).success(function(data) 
+    	{
+    	  	if(data.statuscode == 0)
+    		{
+    			if(data.user.ishost == true)
+				{
+					$scope.signedinhost = true;
+					$scope.signedin = true;
+					$scope.default = false;
+				}	
+				else
+				{
+					$scope.signedin = true;
+					$scope.signedhost = false;
+					$scope.default = false;	
+				}		
+    		}
+    		else
+    		{
+    			$scope.signedin = false;
+				$scope.signedhost = false;
+				$scope.default = true;		
+    		}
+    	
+    	}).error(function(error) 
+    	{
 			alert("Internal sever error occured");
-			window.setTimeout(function(){
+			window.setTimeout(function()
+			{
 				window.location = '/';
 			}, 3000);
 
-    });
-  };
+    	});
+  	};
 
 })

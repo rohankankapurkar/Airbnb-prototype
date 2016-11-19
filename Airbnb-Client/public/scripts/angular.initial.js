@@ -11,46 +11,28 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 	
 	$stateProvider
 		.state('home',
-				{
-					url:'/',
-					templateUrl : './templates/view.homepage.html',
-					resolve : {
-						session : function($http){
-							 return $http({
-									method : "POST",
-									url : '/getusersession'
-									});
-							}
-					},
-					controller : 'controllerHome'
-				})
+			{
+				url:'/',
+				templateUrl : './templates/view.homepage.html',
+				controller : 'controllerHome'
+			})
 		.state('home.becomeHost',
 			{
 				url:'becomeHost',
 				templateUrl : './templates/view.becomeHost.html',
-				/*resolve : {
-					session : function($http){
-						return $http({
-							method : "POST",
-							url : '/getusersession'
-						});
-					}
-				},*/
 				controller : 'controllerBecomeHost'
 			})
 		.state('home.becomeHostRoom',
 			{
 				url:'becomeHost/room',
 				templateUrl : './templates/view.becomeHostRoom.html',
-				/*resolve : {
-					session : function($http){
-						return $http({
-							method : "POST",
-							url : '/getusersession'
-						});
-					}
-				},*/
 				controller : 'controllerBecomeHost'
+			})
+		.state('home.profile',
+			{
+				url:'profile',
+				templateUrl : './templates/view.profile.html',
+				controller : 'controllerProfile'
 			})
 })
 
