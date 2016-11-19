@@ -8,25 +8,34 @@
 
 
 		<div class="container">
-				<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#myNavbar">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#"> <!--  <img src="logo.png" style="display: inline-block;">-->
+				<a class="navbar-brand" href="#"> 
+					<!--  <img src="logo.png" style="display: inline-block;">-->
 					<span style="display: inline-block;"></span>
 				</a>
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav navbar-right">
-					<li><a ng-click="becomeHost()">Become a Host</a></li>
-					<li><a href="#" ng-show= validSession>Trips</a></li>
-					<li><a href="#" ng-show= validSession>Messages</a></li>
+				<!--This is a the default header of a not signed in user-->
+				<ul class="nav navbar-nav navbar-right" ng-show="default"> 
+					<li><a ui-sref="home.becomeHost">Become a Host</a></li>
 					<li><a href="#contact">Help</a></li>
-					<li><a data-toggle="modal" data-target="#myModalNorm" ng-show= !validSession>Sign
-							up</a></li>
-					<li><a data-toggle="modal" data-target="#myModalSignIn" ng-show= !validSession>Login</a></li>
+					<li><a data-toggle="modal" data-target="#myModalNorm">Sign up</a></li>
+					<li><a data-toggle="modal" data-target="#myModalSignIn">Login</a></li>
+				</ul>
+				<!--This is the header when the user has signed in and is not a host-->
+				<ul class="nav navbar-nav navbar-right" ng-show="signedin"> 
+					<li><a ui-sref="home.becomeHost">Become a Host</a></li>
+					<li><a href="#contact">Help</a></li>
+					<li><a data-toggle="modal" data-target="#myModalNorm">Profile</a></li>
+				</ul>	
+				<!--This is the header when the user has signed in and is a host-->
+				<ul class="nav navbar-nav navbar-right" ng-show="signedhost"> 
+					<li><a href="#contact">Help</a></li>
+					<li><a data-toggle="modal" data-target="#myModalNorm">Profile</a></li>
 				</ul>
 			</div>
 		</div>

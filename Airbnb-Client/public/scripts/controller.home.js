@@ -1,10 +1,6 @@
 
 airbnbApp.controller('controllerHome',function($scope,$log,$http){
 
-	//session validator
-	$scope.validSession = false;
-	//hide signInError message on get signin page
-	$scope.signInError = false;
 	//Signup variables
 	$scope.regfname="";
 	$scope.reglname="";
@@ -19,6 +15,10 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http){
 	$scope.invEmail = "";
 	$scope.invBday = "";
 
+	//Header scope variables
+	$scope.default = true;
+	$scope.signedin = false;
+	$scope.signedhost = false;
 
 	/*
 	 |-----------------------------------------------------------
@@ -27,16 +27,19 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http){
 	*/
 	$http({
 		method : "POST",
-		url : '/usergetsession'
+		url : '/getusersession'
 	}).success(function(data) {
-		if(data == 0) {
-			$scope.validSession = true;
-			$scope.username = data.username;
+		if(data.statuscode == 0) {
+			
+			$scope.signedin = true;
+			$scope.signedHost = false;
+			$scope.default = false;
 		}
 		else {
-			//code to show error for session
-			$scope.validSession = false;
-			$scope.username = null;
+
+			$scope.signedin = false;
+			$scope.signedHost = false;
+			$scope.default = true;
 		}
 	}).error(function(error) {
 		// alert("Internal sever error occured");
@@ -168,12 +171,17 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http){
     	console.log(data);
       if(data.statuscode ==0)
       {
-    	  window.location = '/';
+    	  	$scope.signedin = true;
+			$scope.signedHost = false;
+			$scope.default = false;
       }
       else
       {
-    	  //code to show error for signin
-		  $scope.signInError = true;
+      		$scope.signedin = false;
+			$scope.signedHost = false;
+			$scope.default = true;
+    	  	//code to show error for signin
+		  	$scope.signInError = true;
 	  }
     }).error(function(error) {
 			alert("Internal sever error occured");

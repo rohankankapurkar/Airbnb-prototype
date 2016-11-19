@@ -22,9 +22,12 @@ exports.signinUser = function(msg, callback){
 			if (user) {
 				// return status = 0 on successfull login
 				res.statuscode = 0;
-				coll.update({username:msg.username},{$set:{"lastLogin":(new Date()).toString()}}, function(err, user){
-					res.data = user;
-					callback(null, res);
+				coll.update({username:msg.username},{$set:{"lastLogin":(new Date()).toString()}}, function(err, innerResult){
+					if(!err){
+						res.data = user;
+						callback(null, res);	
+					}
+					
 				});
 			} else {
 				// return status = 1 if login fails 

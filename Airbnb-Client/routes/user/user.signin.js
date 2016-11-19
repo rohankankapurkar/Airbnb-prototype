@@ -18,9 +18,15 @@ module.exports = function(passport) {
 		var msg_payload = {username : username, password : password}
     	mq_client.make_request('signin_queue',msg_payload, function(err,result){
     		
-    		if(result.statuscode == 0){
-    			
-    			done(null, result.data.username);
+    		if(result.statuscode == 0)
+            {
+                var response = { 
+                    username : result.data.username,
+                    firstname : result.data.firstname,
+                    lastname : result.data.lastname,
+                    ishost : result.data.ishost
+                }
+    			done(null, response);
     		}
     		else 
     		{

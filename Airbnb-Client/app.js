@@ -93,7 +93,7 @@ app.post('/user/signin',function(req, res, next)
 					console.log("in error")
 					res.send({"statuscode" : 1, "username":null});  
 				} 
-				if(user == false)
+				else if(user == false)
 				{	
 					console.log("in user error")
 					res.send({"statuscode" : 1, "username":null});

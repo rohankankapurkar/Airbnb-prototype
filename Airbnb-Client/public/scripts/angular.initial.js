@@ -26,7 +26,7 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 				})
 		.state('home.becomeHost',
 			{
-				url:'/becomeHost',
+				url:'becomeHost',
 				templateUrl : './templates/view.becomeHost.html',
 				/*resolve : {
 					session : function($http){
@@ -40,7 +40,7 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 			})
 		.state('home.becomeHostRoom',
 			{
-				url:'/becomeHost/room',
+				url:'becomeHost/room',
 				templateUrl : './templates/view.becomeHostRoom.html',
 				/*resolve : {
 					session : function($http){
