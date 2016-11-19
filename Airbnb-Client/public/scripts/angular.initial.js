@@ -18,14 +18,20 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 			})
 		.state('home.becomeHost',
 			{
-				url:'becomeHost',
+				url:'/becomeHost',
 				templateUrl : './templates/view.becomeHost.html',
 				controller : 'controllerBecomeHost'
 			})
-		.state('home.becomeHostRoom',
+		.state('home.becomeHostStep1',
 			{
-				url:'becomeHost/room',
+				url:'/becomeHost/room',
 				templateUrl : './templates/view.becomeHostRoom.html',
+				controller : 'controllerBecomeHost'
+			})
+		.state('home.becomeHostStep2',
+			{
+				url:'/becomeHost/images',
+				templateUrl : './templates/view.becomeHostImages.html',
 				controller : 'controllerBecomeHost'
 			})
 		.state('home.profile',
