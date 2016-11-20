@@ -39,6 +39,7 @@ mongo = require("./routes/utils/util.mongo");
 var usersession = require('./routes/misc/misc.session'); //contains functions related to session management
 var analytics = require("./routes/misc/misc.analytics"); //contains functions related to logging of client activities
 var register = require("./routes/user/user.register"); //contains function related to sign up of an user
+var profile = require("./routes/user/user.profile"); //contains function related user profile
  
    
 var mongoSessionConnectURL = "mongodb://localhost:27017/sessions";
@@ -108,6 +109,7 @@ app.post('/user/signin',function(req, res, next)
 			})(req, res, next);
 		});
 app.post('/user/logout',usersession.sessionDestroy);
+app.post('/user/update_profile',profile.update_profile);
 
 mongo.connect(mongoSessionConnectURL, function(){  
 	console.log('Connected to mongo at: ' + mongoSessionConnectURL); 

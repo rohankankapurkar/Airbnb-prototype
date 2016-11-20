@@ -94,7 +94,7 @@ p   {
       background-color: #FFFFFF;
       color: #787878 ;
       padding: 100px 25px;
-      font-family: Montserrat, sans-serif;
+      font-family: 'Poppins', sans-serif;
       width:100%
       
   }
@@ -191,14 +191,31 @@ p   {
       line-height: 1.42857143 !important;
       letter-spacing: 2px;
       border-radius: 0;
-      font-family: Montserrat, sans-serif;
+      font-family: 'Poppins', sans-serif;
   }
+  
+  .navbar-inverse {
+      margin-bottom: 0;
+      background-color: #58595b !important;
+      color: #58595b !important;     
+      border: 0;
+      font-size: 14px !important;
+      line-height: 1.12857143 !important;
+      letter-spacing: 2px;
+      border-radius: 0;
+      font-family: 'Poppins', sans-serif;
+  }
+  
+  
+  
+  
   .navbar li a, .navbar .navbar-brand {
             color: #787878 ;!important;
   }
   .navbar-nav li a:hover, .navbar-nav li.active a {
       color: #F08080 !important;
       background-color: #fff !important;
+      
   }
   .navbar-default .navbar-toggle {
       border-color: transparent;
