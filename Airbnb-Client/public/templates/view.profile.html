@@ -3,16 +3,26 @@
 
 
 
-<div class="collapse navbar-collapse navbar-inverse" id="myNavbar">				
+<div class="collapse navbar-collapse navbar-inverse " id="myNavbar">				
 				<!--This is the header for profile update-->
 				<ul class="nav navbar-nav navbar-left" ng-show="signedin"> 
-					<li><a href="#contact">Dashboard</a></li>
-                    <li><a href="#contact">Profile</a></li>
-					<li><a href="#contact">Your Listings</a></li>
-					<li><a href="#contact">Your Trips</a></li>
+                    <li> <a ui-sref=".dashboard">Dashboard</a></li>
+
+                    <li> <a ui-sref=".listing">Your Listing</a></li>
+                    <li> <a ui-sref=".trips">Your Trips</a></li>
+<!--                    <li><a href="#profile">Profile</a></li>-->
+                    <li> <a ui-sref=".profileUpdate">Profile</a></li>
+                  
                 </ul>	
 				
 </div>
 
-<div ui-view></div>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+
+<div id="main" >
+	
+	<div ui-view></div>
 	</div>
+
+</body>
