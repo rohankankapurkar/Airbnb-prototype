@@ -1,5 +1,5 @@
 
-airbnbApp.controller('controllerHome',function($scope,$log,$http){
+airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$stateParams){
 
 	//Signup variables
 	$scope.regfname="";
@@ -127,27 +127,21 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http){
 		if(fnameValidation != null && lnameValidation == null)
 		{
 			$scope.invFname = "Invalid First Name";
-			console.log("fname");
 			validationsFlag = true;
 		}
 		else if(fnameValidation == null && lnameValidation != null)
 		{
 			$scope.invLname = "Invalid Last Name";
-			console.log("lname");
 			validationsFlag = true;
 		}
 		else if(fnameValidation != null && lnameValidation != null)
-		{
-			console.log("flname");
-			console.log($scope.regfname+" "+$scope.reglname);
+		{	
 			$scope.invLname = "First Name & Last Name Invalid";
 			validationsFlag = true;
 		}
 
 		if($scope.regpassword.length < 8)
 		{
-			console.log($scope.regpassword);
-			console.log("passw");
 			$scope.invPaswd = "Password should have 8 or more characters";
 			validationsFlag = true;
 		}
@@ -156,7 +150,6 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http){
 		var currdate = new Date();
 		if(bday > currdate)
 		{
-			console.log("bday");
 			invBday = "Incorrect Birthday";
 			validationsFlag = true;
 		}
@@ -187,19 +180,22 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http){
 					$scope.signedinhost = true;
 					$scope.signedin = true;
 					$scope.default = false;
+					window.location = '/';
 				}	
 				else
 				{
 					$scope.signedin = true;
 					$scope.signedhost = false;
 					$scope.default = false;	
+					window.location = '/';
 				}		
     		}
     		else
     		{
     			$scope.signedin = false;
 				$scope.signedhost = false;
-				$scope.default = true;		
+				$scope.default = true;
+				window.location = '/';		
     		}
     	
     	}).error(function(error) 

@@ -90,18 +90,15 @@ app.post('/user/signin',function(req, res, next)
 				console.log("after auth")
 				if(err)
 				{		
-					console.log("in error")
 					res.send({"statuscode" : 1, "username":null});  
 				} 
 				else if(user == false)
 				{	
-					console.log("in user error")
 					res.send({"statuscode" : 1, "username":null});
 				}
 				else
 				{
-					console.log("authenticated")
-					utilSession.setSession(req, user);
+					usersession.setSession(req, user);
 					var response = {
 						statuscode : 0,
 						user : user
