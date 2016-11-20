@@ -21,7 +21,7 @@ exports.setSession = function(req,username){
 
 /*
  * Called by :
- * 
+ * /getusersession
  * Functionality :
  * 
  * Check if session is valid.
@@ -78,9 +78,10 @@ exports.getSession = function(req,res){
 
 /*
  * Called by :
- * 
+ * /user/logout
+ *
  * Functionality :
- * 
+ *
  * Delete user session.
  * If successful
  * 		statuscode = 0,

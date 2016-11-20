@@ -107,7 +107,7 @@ app.post('/user/signin',function(req, res, next)
 				}
 			})(req, res, next);
 		});
-
+app.post('/user/logout',usersession.sessionDestroy);
 
 mongo.connect(mongoSessionConnectURL, function(){  
 	console.log('Connected to mongo at: ' + mongoSessionConnectURL); 

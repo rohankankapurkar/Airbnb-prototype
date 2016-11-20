@@ -209,4 +209,46 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
     	});
   	};
 
+
+  	//Function for sign in 
+	/*
+   |-----------------------------------------------------------
+   | User Logout
+   |-----------------------------------------------------------
+  */
+  $scope.logout = function() 
+  {
+	    $http({
+      		method : "POST",
+      		url : '/user/logout'
+    	}).success(function(data) 
+    	{
+    	  	if(data.statuscode == 0)
+    		{
+    			$scope.signedin = false;
+				$scope.signedhost = false;
+				$scope.default = true;		
+				window.location = '/';		
+    		}
+    		else
+    		{
+    			$scope.signedin = false;
+				$scope.signedhost = false;
+				$scope.default = true;		
+				window.location = '/';    			
+    		}
+    	
+    	}).error(function(error) 
+    	{
+			alert("Internal sever error occured");
+			window.setTimeout(function()
+			{
+				window.location = '/';
+			}, 3000);
+
+    	});
+  	};
+
+
+
 })
