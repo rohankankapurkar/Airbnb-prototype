@@ -3269,10 +3269,7 @@ input::-moz-placeholder, textarea::-moz-placeholder, .input-prefix::-moz-placeho
     color: #767676
 }
 
-input:-ms--placeholder, textarea:-ms--placeholder, .input-prefix:-ms--placeholder,
-.input-suffix:-ms--placeholder {
-    color: #767676
-}
+
 
 [lang="ja"] input, [lang="ja"] textarea, [lang="ja"] .input-prefix, [lang="ja"] .input-suffix
 {
@@ -3474,7 +3471,7 @@ select::-ms-expand {
     padding-bottom: 9px
 }
 
-}
+
 .ie .select:before {
     display: none
 }
@@ -3577,7 +3574,7 @@ input[type="checkbox"]:checked:before {
 
 .input-prefix.btn, .input-suffix.btn {
     padding-top: 7px;
-    padding-bottom: 6px
+    padding-bottom: 7px;
 }
 
 .input-prefix.select select, .input-suffix.select select {
@@ -5783,18 +5780,6 @@ table col[class^="col-"], table td[class^="col-"], table th[class^="col-"]
     filter: alpha(opacity = 90)
 }
 
-@
--webkit-keyframes rotate { 0%{
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg)
-}
-
-100%{
-    -webkit-transform
-    :rotate(360deg)
-;transform
-:rotate(360deg)
-}
 
 .segmented-control {
     display: inline-block;
