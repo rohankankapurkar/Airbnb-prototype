@@ -5,8 +5,37 @@
 var process = require('process');
 
 var MODE = process.env.MODE;
+var mongo = require('../utils/utils.mongo');
+
+
+exports.show_Profile = function(msg, callback){
+    console.log("The user name is boom"+ msg.username);
+
+    var res = {};
+    mongo.connect(function(){
+        var coll = mongo.collection('users');
+        console.log("The user name is"+ msg.username);
+
+        coll.findOne({username:msg.username},function(err, user){
+            if(user){
+
+                console.log("printing the blah blah"+msg.username);
+                callback(null, user);
+
+
+
+            }else{
+
+                res.message = "No user found. Error";
+
+
+            }
+        });
+    });
+}
 
 exports.update_Profile = function(msg, callback){
+    console.log("The user name is boom"+ msg.username);
 
     var res = {};
     mongo.connect(function(){
@@ -17,10 +46,12 @@ exports.update_Profile = function(msg, callback){
             if(user){
                 res.message = "Found the user";
                 console.log("printing the mess"+msg.username);
+//printing the complete JSON man{"firstname":"bapu","lastname":"chandan","user_sex":"Female","username":"slash@gmail.com","user_phone":"1111","user_preferred_locale":"ca","user_native_currency":"BRL","user_city":"dan","user_about":"san"}
 
-                coll.updateOne(msg, function(err, user){
+                coll.updateOne({username:msg.username},{$set : {firstname:msg.firstname, lastname:msg.lastname,sex:msg.user_sex,username:msg.username,phone:msg.user_phone,user_preferred_locale:msg.user_preferred_locale,user_native_currency:msg.user_native_currency,city:msg.user_city,about:msg.user_about}},{upsert:true}, function(err, user){
                     if(user){
                         // return status = 0 on successfull registration
+                        console.log("updated the user successfully");
                         res.statuscode = 0;
                         callback(null, res);
 
@@ -28,11 +59,15 @@ exports.update_Profile = function(msg, callback){
                         // return 1 if any error occurs
                         res.statuscode = 1;
                         res.message = "Error occurred while updating the user's information";
+                        callback(null, res);
+
                     }
                 });
             }else{
 
              res.message = "No user found. Error";
+                callback(null, res);
+
             }
         });
     });

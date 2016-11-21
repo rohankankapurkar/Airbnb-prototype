@@ -54,7 +54,7 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 			})
 		.state('home.profile.profileUpdate',
 			{
-				url:'update_profile',
+				url:'/update_profile',
 				templateUrl : './templates/view.update_profile.html',
 				controller : 'controllerProfile'
 			})

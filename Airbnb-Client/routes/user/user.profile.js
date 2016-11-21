@@ -8,7 +8,7 @@ var mq_client = require('../../rpc/client');
  */
 exports.update_profile = function(req, res){
 	
-	console.log("inside update profile "+req.param('user_first_name') + req.session.username.username );
+	console.log("inside update profile "+req.param('user_first_name') + req.session.username);
 
 	var validRegistration = { "flag" : false, "message": null};
 	
@@ -16,7 +16,8 @@ exports.update_profile = function(req, res){
 	var user_last_name =req.param("user_last_name")
 	var user_sex = req.param("user_sex")
 	var user_birthday = req.param("user_birthday")
-	var user_email = req.session.username.username;
+	var user_email = req.session.username;
+
 	var user_phone = req.param("user_phone") 
 	var user_preferred_locale=req.param("user_preferred_locale")
 	var user_native_currency=req.param("user_native_currency")
@@ -35,18 +36,52 @@ exports.update_profile = function(req, res){
 		user_city : user_city,
 		user_about : user_about
 	}
+	
+	console.log("printing teh msg payload"+msg_payload);
+	//console.log("printing the complete JSON man" +JSON.stringify(msg_payload));
 
 	mq_client.make_request('profile_update_queue',msg_payload, function(err,result){
 		console.log("sending data to profile_update_queue");
 		if(result.err){
-			res.send(result);
+			//res.send(result);
+			System.out.println("error"+result.err);
 		}
 		else 
-		{
+		{		console.log("successfully updated the user.");
+
 			res.send(result);
+			
 		}  
 	});
 };
 
+exports.show_profile = function(req, res){
+	
+	console.log("inside showing the  profile "+ req.session.username);
 
+	var validRegistration = { "flag" : false, "message": null};
+	
+	
+	
+	var msg_payload = {
+		username:req.session.username
+	}
+	
+	console.log("printing teh msg payload"+msg_payload);
+
+	mq_client.make_request('profile_show_queue',msg_payload, function(err,result){
+		console.log("sending data to profile_update_queue");
+		if(result.err){
+			//res.send(result);
+			System.out.println("error"+result.err);
+		}
+		else 
+		{		
+		console.log("successfully got the info for the user the user.");
+		console.log("printing the user name here baby"+result.username+ JSON.stringify(result));
+		result.statuscode= 0 ;
+		res.send(result)
+		}  
+	});
+};
 

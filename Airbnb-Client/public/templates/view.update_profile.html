@@ -24,7 +24,7 @@
             First Name 
             </label>
             <div class="col-sm-9">
-            <input id="user_first_name" name="user_first_name" size="30" type="text" value="username" ng-model="user_first_name" />
+            <input id="user_first_name" name="user_first_name" size="30" type="text" value={{data.firstname}} ng-model="user_first_name" />
             </div>
         </div>
 
@@ -36,7 +36,7 @@
             Last Name 
             </label>
             <div class="col-sm-9">
-            <input id="user_last_name" name="user_last_name" size="30" type="text" value="lastname" ng-model="user_last_name" />
+            <input id="user_last_name" name="user_last_name" size="30" type="text" value={{data.lastname}} ng-model="user_last_name" />
             <div class="text-muted space-top-1">This is only shared once you have a confirmed booking with another Airbnb user.</div>
             </div>
       </div>
@@ -47,7 +47,7 @@
             </label>
             <div class="col-sm-9">
                 <div class="select">
-                    <select id="user_sex" name="user_sex" ng-model ="user_sex"><option value="">Gender</option>
+                    <select id="user_sex" name="user_sex" ng-model ="sex" value = {{data.sex}}><option value="">Gender</option>
                         <option value="Male" selected="selected">Male</option>
                         <option value="Female">Female</option>
                         <option value="Other">Other</option>
@@ -176,7 +176,7 @@
                 Email Address <i class="glyphicon glyphicon-lock" data-behavior="tooltip" title="Private"></i>
             </label>
             <div class="col-sm-9">
-                <input id="user_email" name="user_email" size="30" type="text" ng-model="user_email" />
+                <input id="user_email" name="user_email" size="30" value = {{data.username}} type="text" ng-model="user_email" />
                 <div class="text-muted space-top-1">We won’t share your private email address with other Airbnb users. <a href="/help/article/694" target="blank">Learn more</a>.</div>
             </div>
     </div>
@@ -186,7 +186,7 @@
                 Phone Number <i class="glyphicon glyphicon-lock" data-behavior="tooltip" title="Private"></i>
             </label>
             <div class="col-sm-9">
-                <input id="user_email" name="user_phone" size="30" type="text" ng-model="user_phone" />
+                <input id="user_email" name="user_phone" size="30" type="text" ng-model="phone" value={{data.phone}} />
             </div>
     </div>
 
@@ -199,7 +199,7 @@
             <div class="col-sm-9">
           
     <div class="select">
-        <select id="user_preferred_locale" name="user_preferred_locale" ng-model= "user_preferred_locale">
+        <select id="user_preferred_locale" name="user_preferred_locale" ng-model= "user_preferred_locale" value= {{data.user_preferred_locale}}>
             <option value="id">Bahasa Indonesia</option>
             <option value="ms">Bahasa Melayu</option>
             <option value="ca">Català</option>
@@ -243,7 +243,7 @@
         <div class="col-sm-9">
           
         <div class="select">
-        <select id="user_native_currency" name="user_native_currency" ng-model = "user_native_currency">
+        <select id="user_native_currency" name="user_native_currency" ng-model = "user_native_currency" value = {{data.user_native_currency}}>
             <option value="AED">AED</option>
             <option value="ARS">ARS</option>
             <option value="AUD">AUD</option>
@@ -304,7 +304,7 @@
           Where You Live 
         </label>
         <div class="col-sm-9">
-      <input id="user_city" name="user_city" placeholder="e.g. Paris, France / Brooklyn, NY / Chicago, IL" size="30" type="text" value="San Jose, California, United States" ng-model = "user_city" />
+      <input id="user_city" name="user_city" placeholder="e.g. Paris, France / Brooklyn, NY / Chicago, IL" size="30" type="text" value={{data.city}} ng-model = "city" />
 
           
         </div>
@@ -316,7 +316,7 @@
         </label>
         <div class="col-sm-9">
           
-      <textarea cols="40" id="user_about" name="user_about" ng-model= "user_about" rows="5"></textarea>
+      <textarea cols="40" id="user_about" name="user_about" value={{data.about}} ng-model= "about" rows="5"></textarea>
          
       
     
@@ -343,7 +343,7 @@ Business Travel  </div>
             Work mail
             </label>
             <div class="col-sm-9">
-            <input id="user_first_name" name="user_first_name" size="30" type="text" value="username" ng-model="user_work_mail" />
+            <input id="user_first_name" name="user_first_name" size="30" type="text" value={{data.work_email}} ng-model="user_work_mail" />
             </br></br>
            <button type="submit" class="btn btn-primary btn-large" ng-click=update_Profile()>
   Save

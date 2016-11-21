@@ -110,6 +110,8 @@ app.post('/user/signin',function(req, res, next)
 		});
 app.post('/user/logout',usersession.sessionDestroy);
 app.post('/user/update_profile',profile.update_profile);
+app.get('/user/update_profile',profile.show_profile);
+
 
 mongo.connect(mongoSessionConnectURL, function(){  
 	console.log('Connected to mongo at: ' + mongoSessionConnectURL); 
