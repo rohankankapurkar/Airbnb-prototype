@@ -1,5 +1,6 @@
 var process = require('process');
 var encryption = require('./utils/utils.encryption');
+var ssn = require('ssn');
 
 var MODE = process.env.MODE;
 
@@ -24,7 +25,9 @@ exports.signupUser = function(msg, callback){
 				msg['password'] = encryption.encrypt(msg['password']);
 				
 				//insert user details into the db
+				ssnId = ssn.generate();
 				msg['ishost']=  false;
+				msg['id'] = ssnId;
 				coll.insertOne(msg, function(err, user){
 					if(user){
 						// return status = 0 on successfull registration
