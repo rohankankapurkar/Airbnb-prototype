@@ -18,7 +18,6 @@ exports.checkCredentials = function(msg, callback){
 	var res = {};
 	mongo.connect(function(){
 		var coll = mongo.collection('users');
-
 		coll.findOne({username:msg.username},{"_id":0, "ishost":1, "isadmin":1}, function(err, result){
 			if(result){
 				res['statuscode'] = 0;

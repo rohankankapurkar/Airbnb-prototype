@@ -14,6 +14,7 @@
  * user.signin.js
  * 
  */
+var mq_client = require('../../rpc/client');
 
 exports.setSession = function(req,username){
 	req.session.username = username;
@@ -47,13 +48,25 @@ exports.getSession = function(req,res){
 	};
 	try
 	{
-		
 		if(req.session.username)
-		{	
-			response.statuscode = 0;
-			response.message = "valid session";
-			response.result = req.session.username;
-			res.send(response);
+		{
+			msg_payload = {username : req.session.username}	
+			mq_client.make_request('checkCredentials_queue',msg_payload, function(err,result){
+				if(result.err){
+					response.statuscode = 1;
+					response.message = "invalid session";
+					response.result = null;
+					res.send(response);				
+				}
+				else 
+				{
+					response.statuscode = result.statuscode;
+					response.message = "valid session";
+					response.username = req.session.username;
+					response.credentials = result.data
+					res.send(response);
+				}  
+			});	
 		}
 		else
 		{

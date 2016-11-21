@@ -42,6 +42,12 @@
 						<li><a href="#contact">Help</a></li>
 						<li><a data-toggle="modal" data-target="#myModalNorm">Profile</a></li>
 					</ul>
+					<!--This is the header for an Admin-->
+					<ul class="nav navbar-nav navbar-right" ng-show="admin"> 
+						<li><a ui-sref="home">Dashboard</a></li>
+						<li><a ui-sref="home">Pending Approvals</a></li>
+						<li><a ui-sref="home">Logout</a></li>
+					</ul>	
 				</div>
 			</div>
 		</nav>
@@ -196,6 +202,7 @@
 		                    	<input type="checkbox" name="remember_me" id="remember_me2" value="true" class="remember_me">Remember me
 		                    	<a href="/forgot_password" class="forgot-password pull-right" data-from="email">Reset password</a>
 		                	</div>
+		                	<div class="text-danger">{{invLogin}}</div>
 		                	<button name="login" type="submit" class="btn btn-block signup-login-form__btn-xl btn-primary btn-danger" id="user-login-btn"  ng-click="signin()">
 		                  	Log in
 		                	</button>

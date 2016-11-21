@@ -99,7 +99,7 @@ app.post('/user/signin',function(req, res, next)
 				}
 				else
 				{
-					usersession.setSession(req, user);
+					usersession.setSession(req, user.username);
 					var response = {
 						statuscode : 0,
 						user : user
