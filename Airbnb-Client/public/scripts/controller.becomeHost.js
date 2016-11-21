@@ -26,5 +26,9 @@ airbnbApp.controller('controllerBecomeHost',function($scope,$state,$log,$http){
     $scope.becomeHost = function () {
         $state.go('home.becomeHost');
     };
+    $scope.becomeHostDates = function () {
+        $state.go('home.becomeHostDates');
+    };
+
 
 })
