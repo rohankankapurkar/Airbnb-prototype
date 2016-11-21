@@ -26,6 +26,7 @@ exports.signup = function(req, res){
 	}
 
 	mq_client.make_request('signup_queue',msg_payload, function(err,result){
+		console.log(result);
 		console.log("In rmq queue");
 		if(result.err){
 			res.send(result);

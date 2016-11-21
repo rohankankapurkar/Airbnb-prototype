@@ -13,7 +13,7 @@ if(MODE == "CONNECTION_POOL"){
 
 exports.signupUser = function(msg, callback){
 	
-	var res = {};
+	var res = {statuscode : 0, message : ""};
 	mongo.connect(function(){
 		var coll = mongo.collection('users');
 		
@@ -28,7 +28,7 @@ exports.signupUser = function(msg, callback){
 				coll.insertOne(msg, function(err, user){
 					if(user){
 						// return status = 0 on successfull registration
-						res.statuscode = 0;
+						res['statuscode'] = 0;
 				 	}else{
 						// return 1 if any error occurs
 						res.statuscode = 1;

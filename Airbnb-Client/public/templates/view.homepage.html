@@ -1,123 +1,101 @@
 <!-- including date picker -->
 <link rel='stylesheet' href='stylesheets/datepicker.css' />
-
 <!--adding navbar here        -->
 <div id="header">
 	<nav class="navbar navbar-light bg-faded" data-offcanvass="yes">
 		<a ui-sref="home"><img  class="pull-left" src="images/logo.png" alt="" width="5%" height="5%"  /></a>
-
-
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="myNavbar">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> 
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#"> 
-					<!--  <img src="logo.png" style="display: inline-block;">-->
-					<span style="display: inline-block;"></span>
-				</a>
+		<nav class="navbar navbar-light bg-faded">
+			<a ui-sref="home"><img  class="pull-left" src="images/logo.png" alt="" width="5%" height="5%"/></a>
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="myNavbar">
+						<span class="icon-bar"></span> 
+						<span class="icon-bar"></span> 
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#"> 
+						<!--  <img src="logo.png" style="display: inline-block;">-->
+						<span style="display: inline-block;"></span>
+					</a>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<!--This is a the default header of a not signed in user-->
+					<ul class="nav navbar-nav navbar-right" ng-show="default"> 
+						<li><a ui-sref="home.becomeHost">Become a Host</a></li>
+						<li><a href="#contact">Help</a></li>
+						<li><a data-toggle="modal" data-target="#myModalNorm">Sign up</a></li>
+						<li><a data-toggle="modal" data-target="#myModalSignIn">Login</a></li>
+					</ul>
+					<!--This is the header when the user has signed in and is not a host-->
+					<ul class="nav navbar-nav navbar-right" ng-show="signedin"> 
+						<li><a ui-sref="home.becomeHost">Become a Host</a></li>
+						<li><a href="#contact">Help</a></li>
+						<li class="dropdown"><a ui-sref="home.profile" class="dropdown-toggle" data-toggle="dropdown">Profile</a>
+					    	<ul class="dropdown-menu">
+                             	<li><a ui-sref="home.profile" ng-click= "edit_profile()">Edit Profile</a></li>
+                             	<li><a ui-sref="home" ng-click="logout()">Logout</a></li>
+                        	</ul>
+						</li>
+					</ul>	
+					<!--This is the header when the user has signed in and is a host-->
+					<ul class="nav navbar-nav navbar-right" ng-show="signedhost"> 
+						<li><a href="#contact">Help</a></li>
+						<li><a data-toggle="modal" data-target="#myModalNorm">Profile</a></li>
+					</ul>
+				</div>
 			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<!--This is a the default header of a not signed in user-->
-				<ul class="nav navbar-nav navbar-right" ng-show="default"> 
-					<li><a ui-sref="home.becomeHost">Become a Host</a></li>
-					<li><a href="#contact">Help</a></li>
-					<li><a data-toggle="modal" data-target="#myModalNorm">Sign up</a></li>
-					<li><a data-toggle="modal" data-target="#myModalSignIn">Login</a></li>
-				</ul>
-				<!--This is the header when the user has signed in and is not a host-->
-				<ul class="nav navbar-nav navbar-right" ng-show="signedin"> 
-					<li><a ui-sref="home.becomeHost">Become a Host</a></li>
-					<li><a href="#contact">Help</a></li>
-					<li class="dropdown"><a ui-sref="home.profile" class="dropdown-toggle" data-toggle="dropdown">Profile</a>
-					    <ul class="dropdown-menu">
-                             <li><a ui-sref="home.profile" ng-click= "edit_profile()">Edit Profile</a></li>
-                             <li><a ui-sref="home" ng-click="logout()">Logout</a></li>
-                        </ul>
-					</li>
-				</ul>	
-				<!--This is the header when the user has signed in and is a host-->
-				<ul class="nav navbar-nav navbar-right" ng-show="signedhost"> 
-					<li><a href="#contact">Help</a></li>
-					<li><a data-toggle="modal" data-target="#myModalNorm">Profile</a></li>
-				</ul>
-			</div>
-		</div>
+		</nav>
 	</nav>
 </div>
-
-
 <!-- main UI VIEW -->
 <div ui-view>
 	<div id="middle" ng-controller="controllerHome">
-
-<!--adding for carousal	-->
-        <div id="myCarousel" class="carousel slide">
-      <div class="carousel-inner">
-        <div class="item active">
-          <img src="../images/home1.png" alt="" width="100%" height= "40%" class="img-responsive">
-            <div class="carousel-caption">
-                <p class="lead">Homes, experiences, and places — all in one app.</p>
-              <a class="btn btn-large btn-primary" data-toggle="modal" data-target="#myModalNorm">Sign up today</a>
-            </div>
-
-        </div>
-        <div class="item">
-          <img src="../images/home2.png" alt="" width="100%" height= "40%" class="img-responsive">
-            <div class="carousel-caption">
-                              <a class="btn btn-large btn-primary" data-toggle="modal" data-target="#myModalNorm">Sign up today</a>
-
-            </div>
-        </div>
-        <div class="item">
-          <img src="../images/home3.png" width="100%" height= "40%" alt="">
-            <div class="carousel-caption">
-              <h1 style="font-size: large">Airbnb Places</h1>
-              <p class="lead">Get lost in a city with insiders, like Woody.</p>
-              <a class="btn btn-large btn-primary" href="#">See what's New</a>
-            </div>
-
-        </div>
-            <div class="item">
-          <img src="../images/home4.png" width="100%" height= "40%" alt="">
-            <div class="carousel-caption">
-              <h1 style="font-size: large">Welcome to the world of trips.</h1>
-              <p class="lead">Homes, experiences, and places — all in one app.</p>
-              <a class="btn btn-large btn-primary" href="#">Browse gallery</a>
-            </div>
-
-        </div>
-      </div>
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
-    </div><!-- /.carousel -->
-        <script type="text/javascript">
-  $(document).ready(function() {
-    $('.myCarousel').carousel({
-      interval: 60
-    })
-  });
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--        end of carousal-->
+	<!--adding for carousal	-->
+    	<div id="myCarousel" class="carousel slide">
+      		<div class="carousel-inner">
+        		<div class="item active">
+          			<img src="../images/home1.png" alt="" width="100%" height= "40px" class="img-responsive">
+            		<div class="carousel-caption">
+                		<p class="lead">Homes, experiences, and places — all in one app.</p>
+              			<a class="btn btn-large btn-primary" data-toggle="modal" data-target="#myModalNorm">Sign up today</a>
+            		</div>
+	        	</div>
+        		<div class="item">
+          			<img src="../images/home2.png" alt="" width="100%" height= "40px" class="img-responsive">
+            		<div class="carousel-caption">
+                    	<a class="btn btn-large btn-primary" data-toggle="modal" data-target="#myModalNorm">Sign up today</a>
+	            	</div>
+        		</div>
+        		<div class="item">
+         			<img src="../images/home3.png" width="100%" height= "40px" alt="">
+            		<div class="carousel-caption">
+              			<h1 style="font-size: large">Airbnb Places</h1>
+              			<p class="lead">Get lost in a city with insiders, like Woody.</p>
+              			<a class="btn btn-large btn-primary" href="#">See what's New</a>
+            		</div>
+       	 		</div>
+            	<div class="item">
+          			<img src="../images/home4.png" width="100%" height= "40px" alt="">
+            		<div class="carousel-caption">
+              			<h1 style="font-size: large">Welcome to the world of trips.</h1>
+              			<p class="lead">Homes, experiences, and places — all in one app.</p>
+              			<a class="btn btn-large btn-primary" href="#">Browse gallery</a>
+            		</div>
+        		</div>
+      		</div>
+      		<a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+      		<a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+    	</div><!-- /.carousel -->
+    	<script type="text/javascript">
+  			$(document).ready(function() {
+    			$('.myCarousel').carousel({
+      				interval: 60
+    			})
+  			});
+		</script>
+		<!--end of carousal-->
 		<div class="jumbotron text-center ">
-			<h2>
-				<b>Live there.</b>Book unique homes and experience a city
-						like a local.
-			</h2>
+			<h2><b>Live there.</b>Book unique homes and experience a city like a local.</h2>
 			<form class="form form-inline " style"outline: 2px solid #ddd;">
 				<div class="form-group" style="padding : 10px ;">
 					<p>Where</p>
@@ -140,145 +118,120 @@
 					<input type="date" class="form-control input-lg" id="hmpgtill" id="hmpgtill" ng-model="hmpgtill" placeholder="upto" style="margin-left: -5px;">
 				</div>
 				<div class="form-group " style="padding : 10px ;">
-					<button type="submit" class="btn btn-large btn-primary"	 ng-click="test()">Search</button>
+					<button id="hmpgsearch" type="submit" class="btn btn-large btn-primary"	 ng-click="test()">Search</button>
 				</div>
 			</form>
 		</div>
-
 		<!-- model for sign up -->
 		<!--   this is for showing models for signup     -->
-				<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    	<div class="modal-dialog">
-        	<div class="modal-content">
-            	<!-- Modal Header -->
-            	<div class="modal-header">
-                	<button type="button" class="close" data-dismiss="modal">
-                       <span aria-hidden="true">&times;</span>
-                       <span class="sr-only">Close</span>
-                	</button>
-                	<h4 class="modal-title" id="myModalLabel">Sign up</h4>
-            	</div>
-                <!-- Modal Body -->
-            	<div class="modal-body" >
-                	<form role="form">
-                    	<div class="form-group inner-addon right-addon">
-                            <i class="glyphicon glyphicon-user"></i>
-                        	<input  type="text" class="form-control" id="regfname" name="regfname" placeholder="First Name" ng-model="regfname" >
-
-                    	</div>
-
-                   		<div class="form-group inner-addon right-addon">
-                            <i class="glyphicon glyphicon-user"></i>
-                            <input ng-model="reglname" type="text" class="form-control" id="reglname" name="reglname" placeholder="Last Name"/>
-                    	</div>
-
-                        <div class="form-group inner-addon right-addon">
-                            <i class="glyphicon glyphicon-envelope"></i>
-                            <input ng-model="regemail" type="email" class="form-control" id="regemail" name="regemail" placeholder="Enter email"/>
-                    	</div>
-
-                        <div class="form-group inner-addon right-addon">
-                            <i class="glyphicon glyphicon-lock"></i>
-                            <input ng-model="regpassword" type="password" class="form-control" id="regpassword" name="regpassword" placeholder="Password"/>
-                    	</div>
-
-                        <div class="form-group inner-addon right-addon">
-                            <i class="glyphicon glyphicon-glass"></i>
-                            <input ng-model="regbday" type="date" class="form-control" id="regbday" name="regbday" ng-model="regbday" placeholder="Password"/>
-                    	</div>
-                  		<button id="register" name="register" type="submit" class="btn btn-block signup-login-form__btn-xl btn-primary btn-danger" ng-click="signup()">Signup</button>
-                	</form>
-            	</div>
-
-
-        	</div>
-    	</div>
-	</div>
-
-
-
-
-		<!-- model for sign in -->
-		<!--   this is for showing models for signin     -->
-		<div class="modal fade" id="myModalSignIn" tabindex="-1" role="dialog"
-		     aria-labelledby="myModalLabel" aria-hidden="true">
-		    <div class="modal-dialog">
-		        <div class="modal-content">
-		            <!-- Modal Header -->
-		            <div class="modal-header">
-		                <button type="button" class="close"
-		                   data-dismiss="modal">
-		                       <span aria-hidden="true">&times;</span>
-		                       <span class="sr-only">Close</span>
-		                </button>
-		                <h4 class="modal-title" id="myModalLabel">
-		                    Sign In
-		                </h4>
-		            </div>
-
-		            <!-- Modal Body -->
-		            <div class="modal-body">
-		              <form role="form">
-		                <div class="form-group">
-		                  <input ng-model = "email" type="email" class="form-control" id="hmpgusername" name="hmpgusername" placeholder="Enter email"/>
-		                </div>
-		                <div class="form-group">
-		                  <input ng-model= "password" type="password" class="form-control" id="hmpgpassword" name="hmpgpassword" placeholder="Password"/>
-		                </div>
-
-		                <div class="form-group clearfix space-1">
-		                    <input type="checkbox" name="remember_me" id="remember_me2" value="true" class="remember_me">
-		                    Remember me
-		                    <a href="/forgot_password" class="forgot-password pull-right" data-from="email">Reset password</a>
-		                </div>
-		                <button id = "login" name="login" type="submit" class="btn btn-block signup-login-form__btn-xl btn-primary btn-danger" id="user-login-btn"  ng-click = "signin()">
-		                  Log in
-		                </button>
-		              </form>
-
-		            </div>
-
-		            <!-- Modal Footer -->
-		           <div class="modal-footer">
-		                Dont have an account yet?
-		                <a data-toggle="modal" data-dismiss = "model" data-target="#myModalNorm"><button type="button" class="btn btn-primary" id = "signup1">
-		                    Sign up
-		                </button></a>
-		            </div>
-
-		        </div>
-		    </div>
+		<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    		<div class="modal-dialog">
+        		<div class="modal-content">
+            		<!-- Modal Header -->
+            		<div class="modal-header">
+                		<button id="hmpgsignupclose" type="button" class="close" data-dismiss="modal">
+                       		<span aria-hidden="true">&times;</span>
+                       		<span class="sr-only">Close</span>
+                		</button>
+                		<h4 class="modal-title" id="myModalLabel">Sign up</h4>
+            		</div>
+                	<!-- Modal Body -->
+            		<div class="modal-body" >
+                		<form role="form">
+                			<div class="text-success">{{regsuccess}}</div>
+                    		<div class="form-group inner-addon right-addon">
+                            	<i class="glyphicon glyphicon-user"></i>
+                        		<input  type="text" class="form-control" id="regfname" name="regfname" placeholder="First Name" ng-model="regfname">
+                        		<div class="text-danger">{{invFname}}</div>
+                    		</div>
+                   			<div class="form-group inner-addon right-addon">
+                            	<i class="glyphicon glyphicon-user"></i>
+                            	<input ng-model="reglname" type="text" class="form-control" id="reglname" name="reglname" placeholder="Last Name"/>
+                            	<div class="text-danger">{{invLname}}</div>
+                    		</div>
+                        	<div class="form-group inner-addon right-addon">
+                            	<i class="glyphicon glyphicon-envelope"></i>
+                            	<input ng-model="regemail" type="email" class="form-control" id="regemail" name="regemail" placeholder="Enter email"/>
+                            	<div class="text-danger">{{invEmail}}</div>
+                    		</div>
+                        	<div class="form-group inner-addon right-addon">
+                            	<i class="glyphicon glyphicon-lock"></i>
+                            	<input ng-model="regpassword" type="password" class="form-control" id="regpassword" name="regpassword" placeholder="Password"/>
+                            	<div class="text-danger">{{invPaswd}}</div>
+                    		</div>
+                        	<div class="form-group inner-addon right-addon">
+                            	<i class="glyphicon glyphicon-glass"></i>
+                            	<input ng-model="regbday" type="date" class="form-control" id="regbday" name="regbday" ng-model="regbday" />
+                            	<div class="text-danger">{{invBday}}</div>
+                    		</div>
+                  			<button id="register" name="register" type="submit" class="btn btn-block signup-login-form__btn-xl btn-primary btn-danger" ng-click="signup()">Signup</button>
+                		</form>
+            		</div>
+        		</div>
+    		</div>
 		</div>
-<!--                adding javascript for changing the models for signin and signup-->
-<!-- including date picker -->
-<!-- <script src='stylesheets/bootstrap-datepicker.js'></script> -->
-<script>
-		//datepicker
-		$('#hmpgwhen').datepicker();
-		$('#hmpgtill').datepicker();
+    	<!-- model for sign in -->
+		<!--   this is for showing models for signin     -->
+		<div class="modal fade" id="myModalSignIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+		    	<div class="modal-content">
+		        	<!-- Modal Header -->
+		        	<div class="modal-header">
+		            	<button id="hmpgsignupclose" type="button" class="close" data-dismiss="modal">
+		                	<span aria-hidden="true">&times;</span>
+		                	<span class="sr-only">Close</span>
+		            	</button>
+		            	<h4 class="modal-title" id="myModalLabel">Sign In</h4>
+		        	</div>
+                	<!-- Modal Body -->
+	            	<div class="modal-body">
+		            	<form role="form">
+		                	<div class="form-group">
+		                  		<input ng-model = "email" type="email" class="form-control" id="hmpgusername" name="hmpgusername" placeholder="Enter email"/>
+		                	</div>
+		                	<div class="form-group">
+		                  		<input ng-model= "password" type="password" class="form-control" id="hmpgpassword" name="hmpgpassword" placeholder="Password"/>
+		                	</div>
+		                	<div class="form-group clearfix space-1">
+		                    	<input type="checkbox" name="remember_me" id="remember_me2" value="true" class="remember_me">Remember me
+		                    	<a href="/forgot_password" class="forgot-password pull-right" data-from="email">Reset password</a>
+		                	</div>
+		                	<button name="login" type="submit" class="btn btn-block signup-login-form__btn-xl btn-primary btn-danger" id="user-login-btn"  ng-click="signin()">
+		                  	Log in
+		                	</button>
+		            	</form>
+	            	</div>
+	            	<!-- Modal Footer -->
+		        	<div class="modal-footer">
+		            	Dont have an account yet?
+		            	<a data-toggle="modal" data-dismiss="model" data-target="#myModalNorm">
+		            		<button type="button" class="btn btn-primary" id="signup1">Sign up</button>
+		           		</a>
+		        	</div>
+	        	</div>
+			</div>
+		</div>
+		<!--adding javascript for changing the models for signin and signup-->
+		<!--including date picker -->
+		<script>
+			//datepicker
+			$('#hmpgwhen').datepicker();
+			$('#hmpgtill').datepicker();
 		
-    function signup() {
-    $("#myModalSignIn").removeClass("fade").modal("hide");
-    //$("#myModalNorm").modal("show");
-    }
+    		function signup() {
+    			$("#myModalSignIn").removeClass("fade").modal("hide");
+    			//$("#myModalNorm").modal("show");
+    		}
 
-
-    $("#signup1").on("click", function () {
-    signup();
-    });
-
-    //$("#test").on("click", function () {
-    //    $(".modal-backdrop").fadeOut("slow");
-    //});
-
-		//Date picker
-		// $('#hmpgwhen').datepicker();
-
-</script>
+    		$("#signup1").on("click", function () {
+    			signup();
+    		});
+		</script>
+		<script src="/scripts/util.client.logging.js"></script>
 
 	</div>
-
 </div>
 
 </div>
 </div>
+

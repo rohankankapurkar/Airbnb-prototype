@@ -19,8 +19,8 @@
   	<script src="/libraries/angular-ui-router.js"></script>
      <!--  	fonts-->
   	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-      
-      
+    
+    
   	<script src="/scripts/angular.initial.js"></script>
   	<script src="/scripts/controller.home.js"></script>
     <script src="/scripts/controller.becomeHost.js"></script>
@@ -30,6 +30,44 @@
     <link rel='stylesheet' href='/stylesheets/style.homepage.css' />
      <link rel='stylesheet' href='/stylesheets/style.becomeHost.css' />
      <link rel='stylesheet' href='/stylesheets/style.common.airbnb.css' />
+
+     <script>
+     $(document).ready(function (){
+      var strLocation = window.location.href;
+      var strPrevLocation = window.location.href;
+      pagetime = 0;
+      var starttime = new Date();
+
+      var calculatepagetime = function(){
+          if (strLocation != window.location.href)
+          {
+            strPrevLocation = strLocation
+            strLocation = window.location.href;
+            var endtime = new Date();
+            pagetime = (endtime - starttime)/1000;
+            starttime = endtime;
+            endtime = "";
+              
+            $( window.location ).trigger(
+                "change",
+                {
+                    currentHref: strLocation,
+                    previousHref: strPrevLocation                      
+                });
+                    
+                $.post("/analytics/pagetime",
+                {
+                  page : strPrevLocation,
+                  pagetime : pagetime
+                });
+              }
+            }
+            setInterval( calculatepagetime, 100 );
+
+     })
+     </script>
+
+
     
   </head>
   <body ng-app="airbnbApp" class="mainBody">
@@ -39,5 +77,6 @@
 	
 	<div ui-view></div>
 	</div>
+
   </body>
 </html>

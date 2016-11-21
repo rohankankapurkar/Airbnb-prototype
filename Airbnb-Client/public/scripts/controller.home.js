@@ -8,6 +8,7 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
 	$scope.regemail="";
 	$scope.regbday="";
 	$scope.regtest="";
+	$scope.regsuccess="";
 	//Invalid signup message holders
 	$scope.invFname = "";
 	$scope.invLname = "";
@@ -73,13 +74,17 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
 			}).success(function(data){
 				if (data.statuscode == 0)
 				{
-					//$state.go('signin');
+					$scope.regsuccess = "Successfully Registered. Please Log In"
 				}
 				else
 				{
 					if(data.message != null)
 					{
 						$scope.invEmail = "";
+						$scope.invFname = "";
+						$scope.invLname = "";
+						$scope.invPaswd = "";
+						$scope.invBday = "";
 						$scope.invEmail = data.message;
 					}
 				}

@@ -5,7 +5,7 @@ $(document).ready(function()
     		var viewURL = $(location).attr("pathname");
 			var clickid = this.id;
 			var currentdate = new Date(); 
-			var property = "test";
+			var property = "NA";
 
     		var datetime = currentdate.getDate() + "/"
             	    + (currentdate.getMonth()+1)  + "/" 
@@ -14,7 +14,7 @@ $(document).ready(function()
                 	+ currentdate.getMinutes() + ":" 
                 	+ currentdate.getSeconds();
     		
-            $.post("/analytics",
+            $.post("/analytics/clicks",
     			    {
     			        url : viewURL,
     			        id : clickid,
