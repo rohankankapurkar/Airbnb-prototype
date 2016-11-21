@@ -2683,7 +2683,8 @@ ul.panel-body>li>*:last-child, ol.panel-body>li>*:last-child {
     -ms-user-select: none;
     user-select: none;
     white-space: nowrap;
-    cursor: pointer
+    cursor: pointer;
+
 }
 
 .btn:hover, .btn:focus {
@@ -2819,9 +2820,9 @@ ul.panel-body>li>*:last-child, ol.panel-body>li>*:last-child {
 }
 
 .btn-primary {
-    border-color: #ff5a5f;
-    background-color: #ff5a5f;
-    color: #fff
+    border-color: #ff7e82 !important;
+    background-color: #ff7e82 !important;
+    color: #fff !important;
 }
 
 .btn-primary:hover, .btn-primary:focus {
