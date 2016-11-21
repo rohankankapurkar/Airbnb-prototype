@@ -173,9 +173,17 @@
                   			<button id="register" name="register" type="submit" class="btn btn-block signup-login-form__btn-xl btn-primary btn-danger" ng-click="signup()">Signup</button>
                 		</form>
             		</div>
+                    <div class="modal-footer">
+Already have an account ?		            	<a data-toggle="modal" data-dismiss="model" data-target="#myModalSignIn">
+		            		<button type="button" class="btn btn-primary" id="signup">Sign in</button>
+		           		</a>
+		        	</div>
         		</div>
     		</div>
 		</div>
+        
+        
+        
     	<!-- model for sign in -->
 		<!--   this is for showing models for signin     -->
 		<div class="modal fade" id="myModalSignIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -225,13 +233,38 @@
 			$('#hmpgwhen').datepicker();
 			$('#hmpgtill').datepicker();
 		
-    		function signup() {
+    		function remove_signin() {
     			$("#myModalSignIn").removeClass("fade").modal("hide");
     			//$("#myModalNorm").modal("show");
     		}
+            
+            function remove_signup() {
+    			$("#myModalNorm").removeClass("fade").modal("hide");
+    			//$("#myModalNorm").modal("show");
+    		}
+            
+            function show_signin() {
+    			$("#myModalSignIn").modal("show");
+    		}
+            
 
     		$("#signup1").on("click", function () {
-    			signup();
+    			 remove_signin();
+    		});
+            
+            $("#signup").on("click", function () {
+    			 remove_signup();
+//                write here the logic for removing register screen and showing login screen
+                //show_signin();
+
+    		});
+            
+            
+            $("#register").on("click", function () {
+    			 //remove_signup();
+//                write here the logic for removing register screen and showing login screen
+                //show_signin();
+
     		});
 		</script>
 		<script src="/scripts/util.client.logging.js"></script>
