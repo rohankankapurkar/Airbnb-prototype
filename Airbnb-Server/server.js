@@ -9,10 +9,11 @@ var amqp = require('amqp')
 process.env.MODE = "CONNECTION_POOL";
 
 
-var signin = require('./services/signin');
-var signup = require('./services/signup');
+var signinService = require('./services/signin');
+var signupService = require('./services/signup');
 var hostService = require('./services/hosts/hosts.service');
 var updateProfile = require('./services/user/update_profile');
+var miscService = require('./services/misc/misc.commons');
 
 var cnn = amqp.createConnection({host:'127.0.0.1'});
 
@@ -25,7 +26,7 @@ cnn.on('ready', function(){
 		q.subscribe(function(message, headers, deliveryInfo, m){
 			util.log(util.format( deliveryInfo.routingKey, message));
 			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
-			signin.signinUser(message, function(err,res){
+			signinService.signinUser(message, function(err,res){
 				//return index sent
 				cnn.publish(m.replyTo, res, {
 					contentType:'application/json',
@@ -42,7 +43,7 @@ cnn.on('ready', function(){
 		q.subscribe(function(message, headers, deliveryInfo, m){
 			util.log(util.format( deliveryInfo.routingKey, message));
 			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
-			signup.signupUser(message, function(err,res){
+			signupService.signupUser(message, function(err,res){
 				//return index sent
 				cnn.publish(m.replyTo, res, {
 					contentType:'application/json',
@@ -77,6 +78,23 @@ cnn.on('ready', function(){
 			util.log(util.format( deliveryInfo.routingKey, message));
 			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
 			hostService.validateAddress(message, function(err,res){
+				//return index sent
+				cnn.publish(m.replyTo, res, {
+					contentType:'application/json',
+					contentEncoding:'utf-8',
+					correlationId:m.correlationId
+				});
+			});
+		});
+	});
+
+
+	// Service to  check the credentials of given user, i.e. admin or host or both
+	cnn.queue('checkCredentials_queue', function(q){
+		q.subscribe(function(message, headers, deliveryInfo, m){
+			util.log(util.format( deliveryInfo.routingKey, message));
+			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+			miscService.checkCredentials(message, function(err,res){
 				//return index sent
 				cnn.publish(m.replyTo, res, {
 					contentType:'application/json',
