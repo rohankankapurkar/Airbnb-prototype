@@ -40,6 +40,7 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
     			$scope.signedin = false;
 				$scope.default = false;
 				$scope.signedinhost = false;
+				$state.go('home.admin');
 			}
 			else
 			{
@@ -212,7 +213,7 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
     	{
     	  	if(data.statuscode == 0)
     		{
-    			//window.location = "/";				
+    			window.location = "/";				
     		}
     		else
     		{
@@ -224,7 +225,7 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
 			alert("Internal sever error occured");
 			window.setTimeout(function()
 			{
-				//window.location = '/';
+				window.location = '/';
 			}, 3000);
 
     	});

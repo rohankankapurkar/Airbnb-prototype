@@ -24,16 +24,22 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 			})
 		.state('home.becomeHostStep1',
 			{
-				url:'becomeHost/room',
+				url:'becomeHost',
 				templateUrl : './templates/view.becomeHostRoom.html',
 				controller : 'controllerBecomeHost'
 			})
 		.state('home.becomeHostStep2',
 			{
-				url:'becomeHost/images',
+				url:'becomeHost',
 				templateUrl : './templates/view.becomeHostImages.html',
 				controller : 'controllerBecomeHost'
 			})
+		.state('home.becomeHostDesc',
+ 			{
+ 				url:'becomeHost',
+ 				templateUrl : './templates/view.becomeHostDescription.html',
+ 				controller : 'controllerBecomeHost'
+ 			})
 		.state('home.profile',
 			{
 				url:'profile',
@@ -63,6 +69,12 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 				url:'update_profile',
 				templateUrl : './templates/view.dashboard.html',
 				controller : 'controllerProfile'
+			})
+		.state('home.admin',
+			{
+				url:'admin',
+				templateUrl : './templates/view.admin.html'
+				//controller : 'controllerAdmin'
 			})
 })
 
