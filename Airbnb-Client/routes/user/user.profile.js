@@ -17,6 +17,7 @@ exports.update_profile = function(req, res){
 	var user_sex = req.param("user_sex")
 	var user_birthday = req.param("user_birthday")
 	var user_email = req.session.username;
+	var user_creditcard = req.param("credit_card");
 
 	var user_phone = req.param("user_phone") 
 	var user_preferred_locale=req.param("user_preferred_locale")
@@ -34,7 +35,8 @@ exports.update_profile = function(req, res){
 		user_preferred_locale : user_preferred_locale,
 		user_native_currency : user_native_currency,
 		user_city : user_city,
-		user_about : user_about
+		user_about : user_about,
+		credit_card:user_creditcard
 	}
 	
 	console.log("printing teh msg payload"+msg_payload);

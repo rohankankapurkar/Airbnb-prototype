@@ -27,6 +27,7 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http){
 			$scope.about=data.about;
 			$scope.user_native_currency= data.user_native_currency;
 			$scope.user_preferred_locale=data.user_preferred_locale;
+			$scope.user_creditcard = data.credit_card;
 			
 		}
 		else
@@ -61,12 +62,13 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http){
 					"user_preferred_locale" : $scope.user_preferred_locale,
 					"user_native_currency" :$scope.user_native_currency,
 					"user_city" : $scope.city,
-					"user_about":$scope.about
+					"user_about":$scope.about,
+					"credit_card" : $scope.user_creditcard
 				}
 			}).success(function(data){
 				if (data.statuscode == 0)
 				{
-					//$state.go('signin');
+					console.log("updated the profile successfully");
 				}
 				else
 				{

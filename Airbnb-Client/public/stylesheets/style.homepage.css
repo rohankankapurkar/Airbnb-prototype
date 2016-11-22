@@ -312,6 +312,9 @@ p   {
 .home-main-search{
   margin-left : 350px;
 
+ 
+ 
+
 }
 
 .home-main-search-flds{
@@ -325,7 +328,7 @@ p   {
 
 #home-main-srch-btn{
     float: left;
-    margin-left: 70px;
+    margin-left: 50%;
 }
 
 .home-main-search-intag{
@@ -335,13 +338,30 @@ p   {
 }
 
 .home-main-search-tag{
+  width: 10%;
+  float : left;
+  margin : 0px 5px 5px 10px;
+  margin-right: 20px
+}
+
+
+
+.home-main-guest-lbl{
   width: 100%;
   float : left;
   margin : 0px 5px 5px 10px;
+  margin-right: 20px
 }
 #home-main-srch-intag-cont{
   margin-top : 25px;
 
+}
+
+
+.guest
+{
+	
+	width : 100%;
 }
 
 #datepickerTill{
@@ -355,8 +375,8 @@ p   {
 }
 
 #home-main-dest {
-  width: 50%;
-  width: 70%;
+  width: 100%;
+
 margin-left : 5px;
     border: 0px;
     border-bottom: 1px solid #ccc;
@@ -364,7 +384,7 @@ margin-left : 5px;
 
 #home-main-guests{
     margin: 0px 5px;
-    width: 40%;
+    width: 100%;
     border: 0px;
     border-bottom: 1px solid #ccc;
 }
