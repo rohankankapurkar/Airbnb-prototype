@@ -89,6 +89,23 @@ cnn.on('ready', function(){
 	});
 
 
+	// Service to add property in db and make user a host or send his request for approval to admin
+	cnn.queue('becomeHost_queue', function(q){
+		q.subscribe(function(message, headers, deliveryInfo, m){
+			util.log(util.format( deliveryInfo.routingKey, message));
+			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+			hostService.becomeHost(message, function(err,res){
+				//return index sent
+				cnn.publish(m.replyTo, res, {
+					contentType:'application/json',
+					contentEncoding:'utf-8',
+					correlationId:m.correlationId
+				});
+			});
+		});
+	});
+
+
 	// Service to  check the credentials of given user, i.e. admin or host or both
 	cnn.queue('checkCredentials_queue', function(q){
 		q.subscribe(function(message, headers, deliveryInfo, m){
@@ -104,6 +121,7 @@ cnn.on('ready', function(){
 			});
 		});
 	});
+
 
 // Service to show the user profile
 	cnn.queue('profile_show_queue', function(q){

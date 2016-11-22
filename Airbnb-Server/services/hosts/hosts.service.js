@@ -61,3 +61,60 @@ exports.validateAddress = function(msg, callback){
 		callback(null, res);
 	});
 }
+
+
+exports.becomeHost = function(msg, callback){
+
+	var res = {};
+	mongo.connect(function(){
+
+		var coll = mongo.collection('users');
+		var prop = mongo.collection('properties');
+
+		//check for user in the db with given username
+		coll.findOne({username:msg.username}, function(err, user){
+
+			if(err){
+				res['statuscode'] = 1;
+				res['message'] = "Unexpected error occurred while adding property";
+			}
+			if(result){
+				// user exists in db
+				// delete user name from request and add host_id as we are inserting this document in property collection.
+				delete msg['username'];
+				msg['host_id'] = result['id'];
+
+				//insert property in the property collection
+				prop.insertOne(msg, function(err, propResult){
+					if(!err){
+
+						// Now property has been added. Check is host has approval
+						if(user.hasOwnProperty('approved')){
+							res['statuscode'] = 0;
+
+							// host has been approved already, then send him final message of acknoweldgement 
+							if(user['approved'] == true){
+								res['message'] = "Your proprty has been listed. Congratulations!!!";
+							}else{   // host is not approved yet, approved=false means host already requested, so ask hime to be patient.
+								res['message'] = "Your request to become host is in process. Be patient."
+							}
+						}else{ // approved does not exists in document, means user is becoming host for first time. so add 'approved = false' key in document.
+
+							coll.updateOne({username:msg.username},{$set:{ishost:true, approved:false}}, function(err, result){
+								// Now ishost=true mean user became host and awaiting for approval. 
+								// approved=false, means admin will approve it and approved will become true for SURE :D.
+								if(!err){
+									res['message'] = "Your request has been submitted for approval.";
+								}else{
+									res['statuscode'] = 1;
+									res['message'] = "Unexpected error occurred while sending your request for approval";
+								}
+							});
+						}
+					}
+				});
+			}
+		});
+	});
+}
+
