@@ -47,7 +47,7 @@
                                                     <span>Currency</span>
                                                 </label>
                                                 <div class="select select-block select-large select-jumbo">
-                                                    <select id="select-listing_native_currency" name="listing_native_currency">
+                                                    <select id="select-listing_native_currency" name="listing_native_currency" ng-model="currency">
                                                         <option value="placeholder" disabled="">Select currency</option>
                                                         <option selected="" value="CAD">CAD</option>
                                                         <option value="CLP">CLP</option>
@@ -65,7 +65,7 @@
                                              <label class="h4 text-muted text-normal">
                                                  <span>Make Available for Bidding</span>
 
-                                                     <input id="residence-type-residence_type_professional_rental" type="checkbox" name="residenceType" value="residence_type_professional_rental" class="pointer-input">
+                                                     <input id="residence-type-residence_type_professional_rental" type="checkbox" name="residenceType" value="residence_type_professional_rental" class="pointer-input" ng-model="bidding">
                                                 
                                              </label>
 

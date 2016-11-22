@@ -8,7 +8,7 @@
 					<div>
 						<label for="house-type" class="h4 text-gray text-normal"><span>What type of property is this?</span></label>
 						<div class="select select-block select-jumbo">
-							<select id="house-type" name="house_type" class="">
+							<select id="house-type" name="house_type" class="" ng-model="typeofprop">
 								<option value="" disabled=""> </option>
 								<option value="2">House</option>
 								<option value="1">Apartment</option>
@@ -59,7 +59,7 @@
 							<span>What will guests have?</span>
 						</label>
 						<div class="select select-block select-jumbo">
-							<select id="room-type" name="room_type" class="">
+							<select id="room-type" name="room_type" class="" ng-model="guestoption">
 								<option value="entire_home">Entire place</option>
 								<option selected="" value="private_room">Private room</option>
 								<option value="shared_room">Shared room</option>
@@ -71,7 +71,7 @@
 					<div>
 						<label for="building-size" class="h4 text-gray text-normal">How many total rooms does your property have?</label>
 						<div class="select select-block select-jumbo">
-							<select id="building-size" name="category_building_size" class="">
+							<select id="building-size" name="category_building_size" class="" ng-model="buildingopts">
 								<option selected="" value="building_lt_5_rooms">1-5 Rooms</option>
 								<option value="building_lt_25_rooms">6-25 Rooms</option>
 								<option value="building_lt_50_rooms">26-50 Rooms</option>
@@ -91,7 +91,7 @@
 										<span>Yes</span>
 									</div>
 									<div class="pull-right">
-										<input id="residence-type-residence_type_personal_home" type="radio" name="residenceType" value="residence_type_personal_home" checked="" class="pointer-input">
+										<input id="residence-type-residence_type_personal_home" type="radio" name="residenceType" value="residence_type_personal_home" checked="" class="pointer-input" ng-model="hometype" ng-value="'yes'">
 									</div>
 								</div>
 							</label>
@@ -104,7 +104,7 @@
 										<span>No</span>
 									</div>
 									<div class="pull-right">
-										<input id="residence-type-residence_type_professional_rental" type="radio" name="residenceType" value="residence_type_professional_rental" class="pointer-input">
+										<input id="residence-type-residence_type_professional_rental" type="radio" name="residenceType" value="residence_type_professional_rental" class="pointer-input" ng-model="hometype" ng-value="'no'">
 									</div>
 								</div>
 							</label>

@@ -14,7 +14,7 @@
 								<label for="address-form-field-country_code"> <span>Country</span>
 								</label>
 								<div class="select select-block select-jumbo whole-width">
-									<select class="" name="country_code" id="address-form-field-country_code">
+									<select class="" name="country_code" id="address-form-field-country_code" ng-model="country">
 										<option value="">Select country</option>
 										<option value="AF" data-prefix="93">Afghanistan</option>
 										<option value="AX" data-prefix="358">Åland Islands</option>
@@ -264,31 +264,31 @@
 									<label for="address-form-field-street">
 										<span>Street Address</span>
 									</label>
-									<input class="input input-block input-jumbo lys-address-form__input lys-invalid" id="address-form-field-street" name="street" type="text" autocomplete="off" placeholder="e.g. 123 Main St.">
+									<input class="input input-block input-jumbo lys-address-form__input lys-invalid" id="address-form-field-street" name="street" type="text" autocomplete="off" placeholder="e.g. 123 Main St." ng-model="street">
 								</div>
 								<div class="space-top-2 col-sm-12">
 									<label for="address-form-field-apt">
 										<span>Apt, Suite, Bldg.(optional)</span>
 									</label>
-									<input class="input input-block input-jumbo lys-address-form__input" id="address-form-field-apt" name="apt" type="text" autocomplete="off" placeholder="e.g. Apt #7">
+									<input class="input input-block input-jumbo lys-address-form__input" id="address-form-field-apt" name="apt" type="text" autocomplete="off" placeholder="e.g. Apt #7" ng-model="apt">
 								</div>
 								<div class="space-top-2 col-sm-12 col-md-6">
 									<label for="address-form-field-city">
 										<span>City</span>
 									</label>
-									<input class="input input-block input-jumbo lys-address-form__input lys-invalid" id="address-form-field-city" name="city" type="text" autocomplete="off" placeholder="e.g. San Francisco">
+									<input class="input input-block input-jumbo lys-address-form__input lys-invalid" id="address-form-field-city" name="city" type="text" autocomplete="off" placeholder="e.g. San Francisco" ng-model="city">
 								</div>
 								<div class="space-top-2 col-sm-12 col-md-6">
 									<label for="address-form-field-state">
 										<span>State</span>
 									</label>
-									<input class="input input-block input-jumbo lys-address-form__input lys-invalid" id="address-form-field-state" name="state" type="text" autocomplete="off" placeholder="e.g. CA">
+									<input class="input input-block input-jumbo lys-address-form__input lys-invalid" id="address-form-field-state" name="state" type="text" autocomplete="off" placeholder="e.g. CA" ng-model="state">
 								</div>
 								<div class="space-top-2 col-sm-12 col-md-6">
 									<label for="address-form-field-zipcode">
 										<span>ZIP Code</span>
 									</label>
-									<input class="input input-block input-jumbo lys-address-form__input lys-invalid" id="address-form-field-zipcode" name="zipcode" type="text" autocomplete="off" placeholder="e.g. 94103">
+									<input class="input input-block input-jumbo lys-address-form__input lys-invalid" id="address-form-field-zipcode" name="zipcode" type="text" autocomplete="off" placeholder="e.g. 94103" ng-model="zip">
 								</div>
 							</div>
 						</form>

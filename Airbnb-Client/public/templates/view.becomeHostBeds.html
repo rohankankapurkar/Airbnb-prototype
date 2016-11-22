@@ -9,7 +9,7 @@
 				</div>
 				<div class="space-6">
 					<div class="select select-block select-jumbo">
-						<select name="bedrooms" class="">
+						<select name="bedrooms" class="" ng-model="totalbeds">
 							<option selected="" value="0">Studio</option>
 							<option value="1">1 bedroom</option>
 							<option value="2">2 bedrooms</option>
@@ -33,7 +33,7 @@
 						<div class="increment-btn btn-group no-padding no-border-bottom-radius">
 							<fieldset class="lys-input__fieldset">
 								<!-- <textarea class="lys-summary__textarea1 hide-scroll col-md-9" placeholder=""></textarea> -->
-								<input class="text-gray btn increment-btn__label increment-jumbo" type="number">
+								<input class="text-gray btn increment-btn__label increment-jumbo" min="1" type="number" ng-model="noofguests">
 							</fieldset>
 						</div>
 					</div>
@@ -46,7 +46,7 @@
 						<div class="increment-btn btn-group no-padding no-border-bottom-radius">
 							<fieldset class="lys-input__fieldset">
 								<!-- <textarea class="lys-summary__textarea1 hide-scroll col-md-9" placeholder=""></textarea> -->
-								<input class="text-gray btn increment-btn__label increment-jumbo" type="number">
+								<input class="text-gray btn increment-btn__label increment-jumbo" min="1" type="number" ng-model="bedsforuse">
 							</fieldset>
 						</div>
 					</div>
@@ -60,7 +60,7 @@
 						<div class="increment-btn btn-group no-padding no-border-bottom-radius">
 							<fieldset class="lys-input__fieldset">
 								<!-- <input class="lys-summary__textarea1 hide-scroll col-md-9" type="number"></textarea> -->
-								<input class="text-gray btn increment-btn__label increment-jumbo" type="number">
+								<input class="text-gray btn increment-btn__label increment-jumbo" min="1" type="number" ng-model="bathsforuse">
 							</fieldset>
 						</div>
 					</div>

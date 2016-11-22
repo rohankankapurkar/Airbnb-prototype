@@ -20,50 +20,70 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 			{
 				url:'becomeHost',
 				templateUrl : './templates/view.becomeHost.html',
-				controller : 'controllerBecomeHost'
+				controller : 'controllerBecomeHost',
+				params : {
+					firstStep : null,
+					secondstep : null
+				}
 			})
 		.state('home.becomeHostStep1',
 			{
 				url:'becomeHost',
 				templateUrl : './templates/view.becomeHostRoom.html',
-				controller : 'controllerBecomeHost'
+				controller : 'controllerBecomeHostStep1'
 			})
 		.state('home.becomeHostBeds',
 			{
 				url:'becomeHost',
 				templateUrl : './templates/view.becomeHostBeds.html',
-				controller : 'controllerBecomeHost'
+				controller : 'controllerBecomeHostBeds',
+				params : {step1det : null}
 			})
 
 		.state('home.becomeHostLocation',
 			{
 				url:'becomeHost',
 				templateUrl : './templates/view.becomeHostLocation.html',
-				controller : 'controllerBecomeHost'
+				controller : 'controllerBecomeHostLocation',
+				params : {
+					step2det : null
+				}
 			})
 		.state('home.becomeHostStep2',
 			{
 				url:'becomeHost',
 				templateUrl : './templates/view.becomeHostImages.html',
-				controller : 'controllerBecomeHost'
+				controller : 'controllerBecomeHostStep2',
+				params : {
+					firstStep : null
+				}
 			})
 		.state('home.becomeHostDesc',
  			{
  				url:'becomeHost',
  				templateUrl : './templates/view.becomeHostDescription.html',
- 				controller : 'controllerBecomeHost'
+ 				controller : 'controllerBecomeHostDesc',
+ 				params : {
+ 					imagestep : null
+ 				}
  			})
 		.state('home.becomeHostStep3',
 			{
 				url:'becomeHost',
 				templateUrl : './templates/view.becomeHostPrice.html',
-				controller : 'controllerBecomeHost'
+				controller : 'controllerBecomeHostStep3',
+				params :{
+					secondstep : null
+				}
 			})
 		.state('home.becomeHostDates',
 			{
 				url:'becomeHost',
 				templateUrl : './templates/view.becomeHostCalender.html',
-				controller : 'controllerBecomeHost'
+				controller : 'controllerBecomeHostDates',
+				params :{
+					pricestep : null
+				}
 			})
 		.state('home.profile',
 			{
