@@ -1,5 +1,6 @@
 <!-- including date picker -->
-<link rel='stylesheet' href='stylesheets/datepicker.css' />
+<link rel='stylesheet' href='/stylesheets/datepicker.css'/>
+
 <!--adding navbar here        -->
 <div id="header">
 	<nav class="navbar navbar-light bg-faded" data-offcanvass="yes">
@@ -102,7 +103,7 @@
 		<!--end of carousal-->
 		<div class="jumbotron text-center ">
 			<h2><b>Live there.</b>Book unique homes and experience a city like a local.</h2>
-			<form class="form form-inline " style"outline: 2px solid #ddd;">
+			<!-- <form class="form form-inline " style"outline: 2px solid #ddd;">
 				<div class="form-group" style="padding : 10px ;">
 					<p>Where</p>
 					<label class="sr-only" for="inputOne">Source</label>
@@ -126,8 +127,42 @@
 				<div class="form-group " style="padding : 10px ;">
 					<button id="hmpgsearch" type="submit" class="btn btn-large btn-primary"	 ng-click="test()">Search</button>
 				</div>
-			</form>
+			</form> -->
+
+			<div class="home-main-search" id="home-search">
+				<div class="home-main-search-flds" id="home-where-search">
+					<div class="home-main-dest-lbl">
+						<label class="home-main-search-tag">Where</lable>
+					</div>
+					<div>
+						<input type="text" class="col-sm-3" id="home-main-dest" placeholder="Destination">
+					</div>
+				</div>
+				<div class="home-main-search-flds" id="home-when-search">
+
+					<label class="home-main-search-tag">When</label><br>
+					<div id="home-main-srch-intag-cont">
+						<div class="home-main-search-intag" id="home-srch-when">
+							<input type="text" class="col-sm-3 home-main-srch-inp" id="datepickerWhen" placeholder="Check In">
+						</div>
+						<div class="home-main-search-intag" id="home-srch-till">
+							<input type="text" class="col-sm-3 home-main-srch-inp" id="datepickerTill" placeholder="Check Out">
+						</div>
+					</div>
+				</div>
+				<div class="home-main-search-flds" id="home-guests-srch">
+					<div class="home-main-guest-lbl">
+						<label class="home-main-search-tag">Guests</label>
+					</div>
+					<div class="home-main-guest-inp">
+						<input type="text" class="col-sm-3" id="home-main-guests" placeholder="Guests">
+					<div class="home-main-search-btn">
+						<button id="home-main-srch-btn" class="btn btn-large btn-primary" ng-click="test()">Search</button> 
+					</div>
+				</div>
+			</div>
 		</div>
+
 		<!-- model for sign up -->
 		<!--   this is for showing models for signup     -->
 		<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -228,11 +263,14 @@ Already have an account ?		            	<a data-toggle="modal" data-dismiss="mod
 		</div>
 		<!--adding javascript for changing the models for signin and signup-->
 		<!--including date picker -->
+
+		<script src="stylesheets/bootstrap-datepicker.js"></script>
+		<link rel='stylesheet' href='/stylesheets/datepicker.css'/>
+
 		<script>
-			//datepicker
-			$('#hmpgwhen').datepicker();
-			$('#hmpgtill').datepicker();
-		
+			$("#datepickerTill").datepicker();
+			$("#datepickerWhen").datepicker();
+
     		function remove_signin() {
     			$("#myModalSignIn").removeClass("fade").modal("hide");
     			//$("#myModalNorm").modal("show");

@@ -2,10 +2,43 @@
   fill: steelblue;
 }
 
+.bar1 {
+  fill: steelblue;
+}
+
 .bar:hover {
+  fill: brown;
+}
+.bar1:hover {
   fill: brown;
 }
 
 .axis--x path {
   display: none;
+}
+
+.arc text {
+  font: 10px sans-serif;
+  text-anchor: middle;
+}
+
+.arc path {
+  stroke: #fff;
+}
+
+#admin-top-cities{
+	margin-left : 400px;
+}
+
+.chart{
+	margin-left : 400px;
+}
+.chart rect {
+  fill: steelblue;
+}
+
+.chart text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: end;
 }
