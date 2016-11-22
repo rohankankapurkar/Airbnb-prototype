@@ -112,10 +112,10 @@ var images=[];
         {
             var tmppath = URL.createObjectURL(event.target.files[i]);
             images.push(tmppath);
-            $('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files[i])+"' height='200' width='200'>");
+            $('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files[i])+"' height='200' width='200'>&nbsp;&nbsp;&nbsp;");
             document.getElementById('mainDiv').style.visibility="hidden";
             document.getElementById('mainDiv2').style.visibility="visible";
-           
+
         }
     });
     $('#hostImage2').change( function(event)
@@ -126,7 +126,7 @@ var images=[];
             var tmppath = URL.createObjectURL(event.target.files[i]);
             images.push(tmppath);
 
-            $('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files[i])+"' height='200' width='200'>");
+            $('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files[i])+"' height='200' width='200'>&nbsp;&nbsp;&nbsp;");
 
         }
     });
