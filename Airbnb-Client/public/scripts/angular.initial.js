@@ -34,12 +34,7 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 				templateUrl : './templates/view.becomeHostBeds.html',
 				controller : 'controllerBecomeHost'
 			})
-		.state('home.becomeHostBath',
-			{
-				url:'becomeHost',
-				templateUrl : './templates/view.becomeHostBath.html',
-				controller : 'controllerBecomeHost'
-			})
+
 		.state('home.becomeHostLocation',
 			{
 				url:'becomeHost',
