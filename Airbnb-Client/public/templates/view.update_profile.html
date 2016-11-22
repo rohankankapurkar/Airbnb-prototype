@@ -3,7 +3,7 @@
 <link href="https://a1.muscache.com/airbnb/static/packages/common-e2aa11d9210d88c08eb62a0e67b5f554.css" media="all" rel="stylesheet" type="text/css" />
 <link href="https://a1.muscache.com/airbnb/static/packages/address_widget-4f18ee66a37930ce1c93c8f33690c7b0.css" media="screen" rel="stylesheet" type="text/css" />
 <link href="https://a2.muscache.com/airbnb/static/packages/phonenumbers-67b13441cd68e5c9161e38a0dab88b54.css" media="screen" rel="stylesheet" type="text/css" /><link href="https://a2.muscache.com/airbnb/static/business_travel/quick_enroll-9fe44fac8aa94516d93764b9b4e57633.css" media="screen" rel="stylesheet" type="text/css" /><link href="https://a1.muscache.com/airbnb/static/packages/edit_profile-ac1fc053a07a8229d28854f4afdc24e6.css" media="screen" rel="stylesheet" type="text/css" />
-		<link rel='stylesheet' href='../stylesheets/datepicker.css'/>
+<!--		<link rel='stylesheet' href='../stylesheets/datepicker.css'/>-->
 
 
 
@@ -71,11 +71,13 @@
         <div class="col-sm-9">
           
     <div class="select" >
-                  <input id="user_birthdate" name="user_birthday" ng-model="user_birthday" type = "text" class="bdaypicker">
+                  <input id="user_birthdate" name="user_birthday" ng-model="user_birthday" type = "date" >
                 </input>
+<!--
             <script>
                 $("#user_birthdate").datepicker('getDate');
             </script>
+-->
             </div>
           <div class="text-muted space-top-1">The magical day you were dropped from the sky by a stork. We use this data for analysis and never share it with other users.</div>
         </div>
