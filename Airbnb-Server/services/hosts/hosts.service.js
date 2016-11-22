@@ -98,6 +98,9 @@ exports.becomeHost = function(msg, callback){
 							}else{   // host is not approved yet, approved=false means host already requested, so ask hime to be patient.
 								res['message'] = "Your request to become host is in process. Be patient."
 							}
+
+							callback(null,res);
+
 						}else{ // approved does not exists in document, means user is becoming host for first time. so add 'approved = false' key in document.
 
 							coll.updateOne({username:msg.username},{$set:{ishost:true, approved:false}}, function(err, result){
@@ -110,13 +113,16 @@ exports.becomeHost = function(msg, callback){
 									res['statuscode'] = 1;
 									res['message'] = "Unexpected error occurred while sending your request for approval";
 								}
+								callback(null, res);
 							});
 						}
+					}else{
+						res['statuscode'] = 1;
+						res['message'] = "Unexpected error occurred while performing database operation";
+						callback(null, res);
 					}
 				});
 			}
-			console.log(res);
-			callback(null,res);
 		});
 	});
 }
