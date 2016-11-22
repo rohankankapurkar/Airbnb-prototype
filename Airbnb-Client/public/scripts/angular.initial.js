@@ -98,8 +98,8 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 		.state('home.admin',
 			{
 				url:'admin',
-				templateUrl : './templates/view.admin.html'
-				//controller : 'controllerAdmin'
+				templateUrl : './templates/view.admin.html',
+				controller : 'controllerAdmin'
 			})
 })
 

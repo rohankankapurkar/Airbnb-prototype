@@ -1,44 +1,14 @@
-.bar {
-  fill: steelblue;
+.admin-bar-chart{
+  height: 40%;
 }
 
-.bar1 {
-  fill: steelblue;
+
+.admin-pie-chart-inner{
+  margin-top: 20%;
+  margin-bottom: 20%;
 }
 
-.bar:hover {
-  fill: brown;
-}
-.bar1:hover {
-  fill: brown;
-}
-
-.axis--x path {
-  display: none;
-}
-
-.arc text {
-  font: 10px sans-serif;
-  text-anchor: middle;
-}
-
-.arc path {
-  stroke: #fff;
-}
-
-#admin-top-cities{
-	margin-left : 400px;
-}
-
-.chart{
-	margin-left : 400px;
-}
-.chart rect {
-  fill: steelblue;
-}
-
-.chart text {
-  fill: white;
-  font: 10px sans-serif;
-  text-anchor: end;
+.admin-bar-chart-inner{
+  margin-top: 20%;
+  margin-bottom: 20%;
 }
