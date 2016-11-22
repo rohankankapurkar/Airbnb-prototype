@@ -37,5 +37,5 @@ airbnbApp.controller('controllerBecomeHostDates',function($scope,$state,$log,$ht
 
     $state.go('home.becomeHost');
 
-    }
+    
 })
