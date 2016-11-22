@@ -65,7 +65,7 @@ exports.validateAddress = function(msg, callback){
 
 exports.becomeHost = function(msg, callback){
 
-	var res = {};
+	var res = {statuscode : 0, message : ""};
 	mongo.connect(function(){
 
 		var coll = mongo.collection('users');
@@ -78,11 +78,11 @@ exports.becomeHost = function(msg, callback){
 				res['statuscode'] = 1;
 				res['message'] = "Unexpected error occurred while adding property";
 			}
-			if(result){
+			if(user){
 				// user exists in db
 				// delete user name from request and add host_id as we are inserting this document in property collection.
 				delete msg['username'];
-				msg['host_id'] = result['id'];
+				msg['host_id'] = user['id'];
 
 				//insert property in the property collection
 				prop.insertOne(msg, function(err, propResult){
@@ -104,6 +104,7 @@ exports.becomeHost = function(msg, callback){
 								// Now ishost=true mean user became host and awaiting for approval. 
 								// approved=false, means admin will approve it and approved will become true for SURE :D.
 								if(!err){
+									res['statuscode'] = 0;
 									res['message'] = "Your request has been submitted for approval.";
 								}else{
 									res['statuscode'] = 1;
@@ -114,6 +115,8 @@ exports.becomeHost = function(msg, callback){
 					}
 				});
 			}
+			console.log(res);
+			callback(null,res);
 		});
 	});
 }

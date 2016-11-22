@@ -40,6 +40,7 @@ var usersession = require('./routes/misc/misc.session'); //contains functions re
 var analytics = require("./routes/misc/misc.analytics"); //contains functions related to logging of client activities
 var register = require("./routes/user/user.register"); //contains function related to sign up of an user
 var profile = require("./routes/user/user.profile"); //contains function related user profile
+var host = require("./routes/host/host.property"); //contains all function related to adding and deleting of properties
  
    
 var mongoSessionConnectURL = "mongodb://localhost:27017/sessions";
@@ -111,6 +112,7 @@ app.post('/user/signin',function(req, res, next)
 app.post('/user/logout',usersession.sessionDestroy);
 app.post('/user/update_profile',profile.update_profile);
 app.get('/user/update_profile',profile.show_profile);
+app.post('/host/addproperty',host.addproperty); //equivalent to /host/addadvertisement - in api doc
 
 
 mongo.connect(mongoSessionConnectURL, function(){  
