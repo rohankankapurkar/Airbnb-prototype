@@ -11,6 +11,18 @@ airbnbApp.controller('controllerBecomeHost',function($scope,$state,$log,$http){
         $state.go('home.becomeHostStep1');
     };
 
+    $scope.becomeHostBeds = function() {
+        $state.go('home.becomeHostBeds');
+    };
+
+    $scope.becomeHostBath = function() {
+        $state.go('home.becomeHostBath');
+    };
+
+    $scope.becomeHostLocation = function() {
+        $state.go('home.becomeHostLocation');
+    };
+
     $scope.startHosting2 = function () {
         $state.go('home.becomeHostStep2');
     };
