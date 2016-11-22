@@ -26,14 +26,16 @@
                                                         <span>Base price</span>
                                                     </label>
                                                     <div>
+                                                        <form name="myPrice">
                                                         <div class="increment-btn no-padding">
                                                             <div class="increment-btn btn-group no-padding">
 
                                                                 <span>$</span>
-                                                                <input class="text-gray btn increment-btn__label increment-jumbo" type="number"/>
+                                                                <input class="text-gray btn increment-btn__label increment-jumbo" name="price" ng-model="price" type="number" required/>
                                                                 <span>per night</span>
                                                             </div>
                                                         </div>
+                                                            </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -76,11 +78,11 @@
 																	</h5>
                                                                 </span>
                                                         </a>
-                                                        <a class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary"  ng-click="becomeHostDates()">
+                                                        <button class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary" type="submit"  ng-click="becomeHostDates()">
                                                             <div class="btn-progress-next__text">
                                                                 <span>Next</span>
                                                             </div>
-                                                        </a>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>

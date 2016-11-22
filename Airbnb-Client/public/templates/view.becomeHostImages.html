@@ -1,4 +1,7 @@
+
+
 <div class="flash-container"></div>
+
 <main id="site-content" role="main">
 <div id="lys-redesign-div">
         <style data-aphrodite></style>
@@ -12,7 +15,26 @@
                                     <div class="panel--no-border panel-title">
                                         <h3 class="no-margin-padding">Show travelers what your space looks like</h3>
                                     </div>
-                                    <div class="row extend-margin-h photo-card__content space-4">
+                                     <div id="image_preview"></div>
+                                     <div style="visibility: hidden" id="mainDiv2">
+
+                                         <br>
+                                         <div class="col-sm-12">
+                                             <input class="input-file" type="file" id="hostImage2" name="hostImage2" ng-model="hostImage2"
+                                                    accept="image/jpg, image/jpeg, image/png, image/gif"
+                                                    multiple />
+                                             <label class="col label--no-margin-padding" for="hostImage2">
+                                         <div class="col col-center">
+                                             <div class="btn btn-primary btn-jumbo">
+                                                 <i class="icon icon-upload"></i><span>	</span>
+                                                 <span>Upload More</span>
+                                             </div>
+                                         </div>
+                                                 </label>
+                                             </div>
+
+                                     </div>
+                                     <div class="row extend-margin-h photo-card__content space-4">
 
                                  <div class="row no-margin-h">
                                    <div class="col-sm-12 space-4">
@@ -25,18 +47,14 @@
                                                         <br>
                                                         <div id="hostImageblob" ng-model="hostImageblob"></div>
 
-                                  <div class="panel-body photos__empty-frame photos__empty-drag-highlight va-container va-container-h va-container-v">
+                                  <div class="panel-body photos__empty-frame photos__empty-drag-highlight va-container va-container-h va-container-v" id="mainDiv">
                                                     <div class="va-middle text-center text-gray img__upload-photos-ghosts">
                                                         <div class="col col-center">
                                                             <div class="btn btn-primary btn-jumbo">
                                                                 <i class="icon icon-upload"></i><span>	</span>
                                                                 <span>Upload Photos</span>
                                                             </div>
-                                                            <div class="row space-top-2">
-                                                                <div class="h4 text-normal">
-																		<span>or drag them in</span>
-                                                                </div>
-                                                            </div>
+
                                                         </div>
                                                     </div>
                                                 </div></label>
@@ -85,23 +103,31 @@
         </div>
 
     </div>
+    <script>
 
+    $('#hostImage').change( function(event)
+    {
+        var total_file=document.getElementById("hostImage").files.length;
+        for(var i=0;i<total_file;i++)
+        {
+            var tmppath = URL.createObjectURL(event.target.files[i]);
 
-<script>
-
-    $('#hostImage').change( function(event) {
-        var tmppath = URL.createObjectURL(event.target.files[0]);
-        $("#image1").fadeIn("fast").attr('src',URL.createObjectURL(event.target.files[0]));
-
-        $("#hostImageblob").html("<strong>["+tmppath+"]</strong>");
-        var x = document.getElementById("hostImage").multiple;
-        alert(x);
+            $('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files[i])+"' height='200' width='200'>");
+            document.getElementById('mainDiv').style.visibility="hidden";
+            document.getElementById('mainDiv2').style.visibility="visible";
+        }
     });
+    $('#hostImage2').change( function(event)
+    {
+        var total_file=document.getElementById("hostImage2").files.length;
+        for(var i=0;i<total_file;i++)
+        {
+            var tmppath = URL.createObjectURL(event.target.files[i]);
 
+            $('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files[i])+"' height='200' width='200'>");
 
-
-
-
+        }
+    });
 
 </script>
 </main>
