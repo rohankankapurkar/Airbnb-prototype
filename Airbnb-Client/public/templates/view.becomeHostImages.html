@@ -104,17 +104,18 @@
 
     </div>
     <script>
-
+var images=[];
     $('#hostImage').change( function(event)
     {
         var total_file=document.getElementById("hostImage").files.length;
         for(var i=0;i<total_file;i++)
         {
             var tmppath = URL.createObjectURL(event.target.files[i]);
-
+            images.push(tmppath);
             $('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files[i])+"' height='200' width='200'>");
             document.getElementById('mainDiv').style.visibility="hidden";
             document.getElementById('mainDiv2').style.visibility="visible";
+           
         }
     });
     $('#hostImage2').change( function(event)
@@ -123,6 +124,7 @@
         for(var i=0;i<total_file;i++)
         {
             var tmppath = URL.createObjectURL(event.target.files[i]);
+            images.push(tmppath);
 
             $('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files[i])+"' height='200' width='200'>");
 
