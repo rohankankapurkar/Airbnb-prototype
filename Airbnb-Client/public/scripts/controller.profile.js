@@ -28,6 +28,8 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http){
 			$scope.user_native_currency= data.user_native_currency;
 			$scope.user_preferred_locale=data.user_preferred_locale;
 			$scope.user_creditcard = data.credit_card;
+			$scope.profile_pic = data.profile_pic;
+			
 			
 		}
 		else
@@ -48,6 +50,10 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http){
 	{
 		
 		console.log("Inside update profile " + $scope.user_first_name);
+		console.log("bc profile pic");
+		
+		  $scope.profile_pic = $("#profile_pic").val();
+		  console.log( $scope.profile_pic);
 		{
 			$http({
 				method : "POST",
@@ -63,7 +69,8 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http){
 					"user_native_currency" :$scope.user_native_currency,
 					"user_city" : $scope.city,
 					"user_about":$scope.about,
-					"credit_card" : $scope.user_creditcard
+					"credit_card" : $scope.user_creditcard,
+					"profile_pic" :$scope.profile_pic
 				}
 			}).success(function(data){
 				if (data.statuscode == 0)
@@ -90,17 +97,11 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http){
 
 
 
-    uploadcare.openDialog(null, {
-    publicKey: "6f4f819d5c5ac7eb24ae",
-    imagesOnly: true,
-    crop: "300x200"
-    });
+   document.one.uploadcare.openDialog(null, {
+   publicKey: "6f4f819d5c5ac7eb24ae",    imagesOnly: true,
+   crop: "300x200"
+  });
 
 
 
-document.getElementById("profile_pic").onchange = function() {myFunction()};
 
-function myFunction() {
-    var x = document.getElementById("profile_pic");
-   console.log(x);
-}

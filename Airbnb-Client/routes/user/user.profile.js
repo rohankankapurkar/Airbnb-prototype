@@ -24,6 +24,8 @@ exports.update_profile = function(req, res){
 	var user_native_currency=req.param("user_native_currency")
 	var user_city=req.param("user_city")
 	var user_about = req.param("user_about")
+	var profile_pic = req.param("profile_pic");
+	console.log("yyay nanga nnach profile pic here bc"+profile_pic);
 	
 	var msg_payload = {
 		firstname : user_first_name,
@@ -36,7 +38,8 @@ exports.update_profile = function(req, res){
 		user_native_currency : user_native_currency,
 		user_city : user_city,
 		user_about : user_about,
-		credit_card:user_creditcard
+		credit_card:user_creditcard,
+		profile_pic:profile_pic
 	}
 	
 	console.log("printing teh msg payload"+msg_payload);

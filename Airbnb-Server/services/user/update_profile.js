@@ -48,7 +48,7 @@ exports.update_Profile = function(msg, callback){
                 console.log("printing the mess"+msg.username);
 //printing the complete JSON man{"firstname":"bapu","lastname":"chandan","user_sex":"Female","username":"slash@gmail.com","user_phone":"1111","user_preferred_locale":"ca","user_native_currency":"BRL","user_city":"dan","user_about":"san"}
 
-                coll.updateOne({username:msg.username},{$set : {firstname:msg.firstname, lastname:msg.lastname,sex:msg.user_sex,username:msg.username,phone:msg.user_phone,user_preferred_locale:msg.user_preferred_locale,user_native_currency:msg.user_native_currency,city:msg.user_city,about:msg.user_about,credit_card:msg.credit_card}},{upsert:true}, function(err, user){
+                coll.updateOne({username:msg.username},{$set : {firstname:msg.firstname, lastname:msg.lastname,sex:msg.user_sex,username:msg.username,phone:msg.user_phone,user_preferred_locale:msg.user_preferred_locale,user_native_currency:msg.user_native_currency,city:msg.user_city,about:msg.user_about,credit_card:msg.credit_card,profile_pic:msg.profile_pic}},{upsert:true}, function(err, user){
                     if(user){
                         // return status = 0 on successfull registration
                         console.log("updated the user successfully");

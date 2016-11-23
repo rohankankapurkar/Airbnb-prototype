@@ -11,11 +11,19 @@
     UPLOADCARE_LOCALE = 'en';
 </script>
 
-<!--
-  <div class="panel-header">
-    
-  </div>
--->
+<style>
+.image-preview-single {
+  padding: 10px 0;
+}
+.image-preview-single > img {
+  width: 128px;
+  height: 96px;
+  vertical-align: middle;
+  visibility: hidden;
+  display: inline-block;
+}
+</style>
+
     
 <div class="panel space-4 ">
 
@@ -23,11 +31,20 @@
       
   
 <!--      <img src="https://ucarecdn.com/8d97a055-e490-41f6-8ff7-deae143116d6/faak.jpg">-->
-
- <input type=img  role="uploadcare-uploader" data-public-key="6f4f819d5c5ac7eb24ae" data-images-only  name = "image" class = "profile" ng-model = "profile_pic" id =  "profile_pic"/>
-      
-      
-      
+<div class = "row">
+    
+    <div class = "col-md-2">
+        
+      <input type="hidden"  role="uploadcare-uploader" data-public-key="6f4f819d5c5ac7eb24ae"  ng-model = "profile_pic" id = "profile_pic" autoFillSync class = "profile_pic" name = "profile_pic"/></br>
+    </br></br><img src={{profile_pic}} width="222" height="222">  
+       <button type="submit" class="btn btn-primary btn-large" ng-click=update_Profile()>
+  Update profile picture
+</button>
+<!--      -->
+   
+<!--      -->
+      </div>
+      <div class = "col-md-10">
       
         <div class="row row-condensed space-3">
             <label class="text-right col-sm-3" for="user_first_name">
@@ -262,7 +279,14 @@
       
       
       
-    </div>      
+    </div>   
+
+
+
+
+</div>
+
+
 </div>
 
 
