@@ -95,3 +95,12 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http){
     imagesOnly: true,
     crop: "300x200"
     });
+
+
+
+document.getElementById("profile_pic").onchange = function() {myFunction()};
+
+function myFunction() {
+    var x = document.getElementById("profile_pic");
+   console.log(x);
+}

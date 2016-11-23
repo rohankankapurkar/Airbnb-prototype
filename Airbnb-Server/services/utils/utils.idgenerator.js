@@ -1,6 +1,6 @@
 var process = require('process');
 var MODE = process.env.MODE;
-var autoIncrement = require('mongodb-autoincrement');
+//var autoIncrement = require('mongodb-autoincrement');
 
 //Identify the mode and then import the required libraries
 if(MODE == "CONNECTION_POOL"){
