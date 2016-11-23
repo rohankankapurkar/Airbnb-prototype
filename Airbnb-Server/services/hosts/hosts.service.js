@@ -81,6 +81,7 @@ exports.becomeHost = function(msg, callback){
 			if(user){
 				// user exists in db
 				// delete user name from request and add host_id as we are inserting this document in property collection.
+				var hostUsername = msg['username'];
 				delete msg['username'];
 				msg['host_id'] = user['id'];
 
@@ -102,8 +103,7 @@ exports.becomeHost = function(msg, callback){
 							callback(null,res);
 
 						}else{ // approved does not exists in document, means user is becoming host for first time. so add 'approved = false' key in document.
-
-							coll.updateOne({username:msg.username},{$set:{ishost:true, approved:false}}, function(err, result){
+							coll.updateOne({username:hostUsername},{$set:{ishost:true, approved:false}}, function(err, result){
 								// Now ishost=true mean user became host and awaiting for approval. 
 								// approved=false, means admin will approve it and approved will become true for SURE :D.
 								if(!err){

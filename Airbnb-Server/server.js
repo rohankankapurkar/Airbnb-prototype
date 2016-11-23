@@ -14,6 +14,7 @@ var signupService = require('./services/signup');
 var hostService = require('./services/hosts/hosts.service');
 var updateProfile = require('./services/user/update_profile');
 var miscService = require('./services/misc/misc.commons');
+var adminService = require('./services/admin/admin.service');
 
 var cnn = amqp.createConnection({host:'127.0.0.1'});
 
@@ -53,6 +54,13 @@ cnn.on('ready', function(){
 			});
 		});
 	});
+
+
+//////////////////////////////////////////////////////////////////
+//
+//						HOST STUFF HERE
+//
+/////////////////////////////////////////////////////////////////
 
 
 	// Service to check if the user is host or not
@@ -106,6 +114,13 @@ cnn.on('ready', function(){
 	});
 
 
+//////////////////////////////////////////////////////////////////
+//
+//						MISC STUFF HERE
+//
+//////////////////////////////////////////////////////////////////
+
+
 	// Service to  check the credentials of given user, i.e. admin or host or both
 	cnn.queue('checkCredentials_queue', function(q){
 		q.subscribe(function(message, headers, deliveryInfo, m){
@@ -123,7 +138,14 @@ cnn.on('ready', function(){
 	});
 
 
-// Service to show the user profile
+//////////////////////////////////////////////////////////////////
+//
+//						USER STUFF HERE
+//
+//////////////////////////////////////////////////////////////////
+
+
+	// Service to show the user profile
 	cnn.queue('profile_show_queue', function(q){
 		q.subscribe(function(message, headers, deliveryInfo, m){
 			util.log(util.format( deliveryInfo.routingKey, message));
@@ -140,14 +162,53 @@ cnn.on('ready', function(){
 	});
 
 
-
-
 	// Service to update the user profile
 	cnn.queue('profile_update_queue', function(q){
 		q.subscribe(function(message, headers, deliveryInfo, m){
 			util.log(util.format( deliveryInfo.routingKey, message));
 			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
 			updateProfile.update_Profile(message, function(err,res){
+				//return index sent
+				cnn.publish(m.replyTo, res, {
+					contentType:'application/json',
+					contentEncoding:'utf-8',
+					correlationId:m.correlationId
+				});
+			});
+		});
+	});
+
+
+//////////////////////////////////////////////////////////////////
+//
+//						ADMIN STUFF HERE
+//
+//////////////////////////////////////////////////////////////////
+
+	
+// Service to get all host's pending requests
+	cnn.queue('getPendingRequests_queue', function(q){
+		q.subscribe(function(message, headers, deliveryInfo, m){
+			util.log(util.format( deliveryInfo.routingKey, message));
+			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+			adminService.getPendingRequests(message, function(err,res){
+				//return index sent
+				cnn.publish(m.replyTo, res, {
+					contentType:'application/json',
+					contentEncoding:'utf-8',
+					correlationId:m.correlationId
+				});
+			});
+		});
+	});
+
+
+// Service to approve host's requests
+	cnn.queue('approveRequest_queue', function(q){
+		q.subscribe(function(message, headers, deliveryInfo, m){
+			util.log(util.format( deliveryInfo.routingKey, message));
+			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+			adminService.approveRequest(message, function(err,res){
 				//return index sent
 				cnn.publish(m.replyTo, res, {
 					contentType:'application/json',
