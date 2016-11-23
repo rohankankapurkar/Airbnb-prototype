@@ -23,7 +23,8 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 				controller : 'controllerBecomeHost',
 				params : {
 					firstStep : null,
-					secondstep : null
+					secondstep : null,
+					laststep : false,
 				}
 			})
 		.state('home.becomeHostStep1',

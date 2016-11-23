@@ -49,6 +49,7 @@ airbnbApp.controller('controllerBecomeHostDates',function($scope,$state,$log,$ht
                 if(data.statuscode == 0) 
                 {
                     $scope.successMessage = data.message;
+                    $state.go('home.becomeHost',{laststep : true});
                 }
                 else 
                 {
