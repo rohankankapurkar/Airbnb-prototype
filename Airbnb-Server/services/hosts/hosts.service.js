@@ -2,6 +2,7 @@ var process = require('process');
 var MODE = process.env.MODE;
 var addressValidator = require('address-validator');
 var _ = require('underscore');
+var idGenerator = require('../utils/utils.idgenerator');
 
 //Identify the mode and then import the required libraries
 if(MODE == "CONNECTION_POOL"){
@@ -79,48 +80,53 @@ exports.becomeHost = function(msg, callback){
 				res['message'] = "Unexpected error occurred while adding property";
 			}
 			if(user){
-				// user exists in db
-				// delete user name from request and add host_id as we are inserting this document in property collection.
-				var hostUsername = msg['username'];
-				delete msg['username'];
-				msg['host_id'] = user['id'];
 
-				//insert property in the property collection
-				prop.insertOne(msg, function(err, propResult){
-					if(!err){
+				idGenerator.generateID(function(counter){
+					// user exists in db
+					// delete user name from request and add host_id as we are inserting this document in property collection.
+					var hostUsername = msg['username'];
+					delete msg['username'];
+					msg['host_id'] = user['id'];
+					msg['id'] = counter;
 
-						// Now property has been added. Check is host has approval
-						if(user.hasOwnProperty('approved')){
-							res['statuscode'] = 0;
+					//insert property in the property collection
 
-							// host has been approved already, then send him final message of acknoweldgement 
-							if(user['approved'] == true){
-								res['message'] = "Your proprty has been listed. Congratulations!!!";
-							}else{   // host is not approved yet, approved=false means host already requested, so ask hime to be patient.
-								res['message'] = "Your request to become host is in process. Be patient."
-							}
+					prop.insertOne(msg, function(err, propResult){
+						if(!err){
 
-							callback(null,res);
+							// Now property has been added. Check is host has approval
+							if(user.hasOwnProperty('approved')){
+								res['statuscode'] = 0;
 
-						}else{ // approved does not exists in document, means user is becoming host for first time. so add 'approved = false' key in document.
-							coll.updateOne({username:hostUsername},{$set:{ishost:true, approved:false}}, function(err, result){
-								// Now ishost=true mean user became host and awaiting for approval. 
-								// approved=false, means admin will approve it and approved will become true for SURE :D.
-								if(!err){
-									res['statuscode'] = 0;
-									res['message'] = "Your request has been submitted for approval.";
-								}else{
-									res['statuscode'] = 1;
-									res['message'] = "Unexpected error occurred while sending your request for approval";
+								// host has been approved already, then send him final message of acknoweldgement 
+								if(user['approved'] == true){
+									res['message'] = "Your proprty has been listed. Congratulations!!!";
+								}else{   // host is not approved yet, approved=false means host already requested, so ask hime to be patient.
+									res['message'] = "Your request to become host is in process. Be patient."
 								}
-								callback(null, res);
-							});
+
+								callback(null,res);
+
+							}else{ // approved does not exists in document, means user is becoming host for first time. so add 'approved = false' key in document.
+								coll.updateOne({username:hostUsername},{$set:{ishost:true, approved:false}}, function(err, result){
+									// Now ishost=true mean user became host and awaiting for approval. 
+									// approved=false, means admin will approve it and approved will become true for SURE :D.
+									if(!err){
+										res['statuscode'] = 0;
+										res['message'] = "Your request has been submitted for approval.";
+									}else{
+										res['statuscode'] = 1;
+										res['message'] = "Unexpected error occurred while sending your request for approval";
+									}
+									callback(null, res);
+								});
+							}
+						}else{
+							res['statuscode'] = 1;
+							res['message'] = "Unexpected error occurred while performing database operation";
+							callback(null, res);
 						}
-					}else{
-						res['statuscode'] = 1;
-						res['message'] = "Unexpected error occurred while performing database operation";
-						callback(null, res);
-					}
+					});
 				});
 			}
 		});

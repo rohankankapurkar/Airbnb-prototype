@@ -16,6 +16,8 @@
     "express": "3.2.6",
     "express-session": "^1.14.2",
     "mongodb": "^2.2.11",
+    "mongodb-autoincrement": "^1.0.1",
+    "mongoose": "^4.6.8",
     "passport-local": "^1.0.0",
     "process": "^0.11.9",
     "serve-favicon": "^2.3.2",

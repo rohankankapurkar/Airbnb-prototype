@@ -1,7 +1,6 @@
 var process = require('process');
 var MODE = process.env.MODE;
-var addressValidator = require('address-validator');
-var _ = require('underscore');
+
 
 //Identify the mode and then import the required libraries
 if(MODE == "CONNECTION_POOL"){

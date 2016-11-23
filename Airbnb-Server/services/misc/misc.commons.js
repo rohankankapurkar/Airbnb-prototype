@@ -30,3 +30,4 @@ exports.checkCredentials = function(msg, callback){
 		});
 	});
 }
+

@@ -12,7 +12,7 @@ exports.connect = function(callback){
 		console.log("Connected to : "+ MongoUrl);
 		db = _db;      
 		connected = true;            
-		callback(db);     
+		callback();     
 	}); 
 };
 
