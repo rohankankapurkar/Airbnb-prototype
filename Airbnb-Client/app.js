@@ -42,6 +42,7 @@ var register = require("./routes/user/user.register"); //contains function relat
 var profile = require("./routes/user/user.profile"); //contains function related user profile
 var host = require("./routes/host/host.property"); //contains all function related to adding and deleting of properties
 var validator = require("./routes/misc/validator"); //contains all functions related to validation
+var admin = require("./routes/admin/admin.approvals"); //contains all functions related to admin approvals
  
    
 var mongoSessionConnectURL = "mongodb://localhost:27017/sessions";
@@ -115,6 +116,7 @@ app.post('/user/update_profile',profile.update_profile);
 app.get('/user/update_profile',profile.show_profile);
 app.post('/host/addproperty',host.addproperty); //equivalent to /host/addadvertisement - in api doc
 app.post('/host/validateaddress',validator.validateaddress);
+app.get('/admin/getadminapprovals',admin.getadminapprovals);
 
 
 mongo.connect(mongoSessionConnectURL, function(){  

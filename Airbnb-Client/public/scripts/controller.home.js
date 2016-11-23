@@ -32,27 +32,29 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
 		method : "POST",
 		url : '/getusersession'
 	}).success(function(data) {
+		console.log(data);
 		if(data.statuscode == 0) 
 		{
 			if(data.credentials.isadmin == true)
 			{
+				
 				$scope.admin = true;
     			$scope.signedin = false;
 				$scope.default = false;
 				$scope.signedinhost = false;
-				$state.go('home.admin');
+				//$state.go('home.admin');
 			}
 			else
 			{
 				if(data.credentials.ishost == true)
-				{
+				{	
 					$scope.signedin = false;
-					$scope.signedhost = false;
+					$scope.signedhost = true;
 					$scope.admin = false;
-					$scope.default = true;
+					$scope.default = false;
 				}
 				else
-				{
+				{	
 					$scope.signedhost = false;
 					$scope.signedin = true;
 					$scope.default = false;		
@@ -61,7 +63,7 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
 			}
 		}
 		else 
-		{
+		{console.log("Hello");
 			$scope.signedin = false;
 			$scope.signedhost = false;
 			$scope.admin = false;

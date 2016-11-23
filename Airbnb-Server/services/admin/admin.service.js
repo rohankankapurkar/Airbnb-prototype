@@ -21,11 +21,11 @@ exports.getPendingRequests = function(msg, callback){
 
 		// approved=false, means waiting for approval from admin
 		coll.find({approved:false}).toArray(function(err, result){
-			console.log
 			if(err){
 				res['statuscode'] = 1;
 				res['message'] = "Unexpected error occurredd while getting the pending requests";
 			}else{
+				console.log('Hey  hey : ' + result);
 				res['statuscode'] = 0;
 				res['data'] = result;
 			}

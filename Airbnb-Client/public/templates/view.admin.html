@@ -1,126 +1,33 @@
-<!-- 
-<div id="admin-top-cities">
-  <svg id="top-cities" width="500" height="500"></svg>  
-  <script>
-  var svg = d3.select("#top-cities"),
-      margin = {top: 20, right: 20, bottom: 30, left: 40},
-      width = +svg.attr("width") - margin.left - margin.right,
-      height = +svg.attr("height") - margin.top - margin.bottom;
-
-  var x = d3.scaleBand().rangeRound([0, width]).padding(0.1),
-      y = d3.scaleLinear().rangeRound([height, 0]);
-
-  var g = svg.append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-  d3.tsv("/logs/data.tsv", function(d) {
-      d.frequency = +d.frequency;
-      return d;
-  }, function(error, data) {
-      if (error) throw error;
-
-      x.domain(data.map(function(d) { return d.letter; }));
-      y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
-
-      g.append("g")
-          .attr("class", "axis axis--x")
-          .attr("transform", "translate(0," + height + ")")
-          .call(d3.axisBottom(x));
-
-      g.append("g")
-          .attr("class", "axis axis--y")
-          .call(d3.axisLeft(y).ticks(10, "%"))
-        .append("text")
-          .attr("transform", "rotate(-90)")
-          .attr("y", 6)
-          .attr("dy", "0.71em")
-          .attr("text-anchor", "end")
-          .text("Frequency");
-
-      g.selectAll(".bar")
-        .data(data)
-        .enter().append("rect")
-          .attr("class", "bar")
-          .attr("x", function(d) { return x(d.letter); })
-          .attr("y", function(d) { return y(d.frequency); })
-          .attr("width", x.bandwidth())
-          .attr("height", function(d) { return height - y(d.frequency); });
-  });
-</script>
-</div> 
-  <div id="tophosts">
-    <svg class="chart"></svg>
-
-    <script>
-      var datacity = [4, 8, 15, 16, 23, 42];
-      var barwidth = 420,
-          barHeight = 20;
-
-      var xrange = d3.scaleLinear()
-        .domain([0, d3.max(datacity)])
-        .range([0, barwidth]);
-
-      var chart = d3.select(".chart")
-        .attr("width", barwidth)
-        .attr("height", barHeight * datacity.length);
-
-      var bar = chart.selectAll("g")
-        .data(datacity)
-        .enter().append("g")
-        .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
-
-      bar.append("rect")
-        .attr("width", xrange)
-        .attr("height", barHeight - 1);
-
-      bar.append("text")
-        .attr("x", function(dt) { return x(dt) - 3; })
-        .attr("y", barHeight / 2)
-        .attr("dy", ".35em")
-        .text(function(dt) { return dt; });
-  </script>
-</div> -->
-
-
-
 <div>
-
   <div>
-    
     <div class="col-md-6 admin-bar-chart">
       <div class="col-md-6 col-md-offset-3 admin-bar-chart-inner">
         <canvas id="admin-bar-chart" width="400" height="400"></canvas>
-        <p> Top 10 properties
-        </div>
+        <p> Top 10 properties</p>
       </div>
     </div>
-
-    <div class="col-md-6 admin-pie-chart">
-      <div class="col-md-6 col-md-offset-3 admin-pie-chart-inner">
-        <canvas id="admin-pie-chart" width="400" height="400"></canvas>
-        <p> Top 10 Cities with highest revenue 
-        </div>  
-      </div>
-      
+  </div>
+  <div class="col-md-6 admin-pie-chart">
+    <div class="col-md-6 col-md-offset-3 admin-pie-chart-inner">
+      <canvas id="admin-pie-chart" width="400" height="400"></canvas>
+      <p> Top 10 Cities with highest revenue </p>
+    </div>  
+  </div>
+</div>
+<div>
+  <div class="col-md-6 admin-bar-chart">
+    <div class="col-md-6 col-md-offset-3 admin-bar-chart-inner">
+      <canvas id="admin-bar-chart-1" width="400" height="400"></canvas>
+      <p> Top 10 properties
     </div>
+  </div>
+  <div class="col-md-6 admin-pie-chart">
+    <div class="col-md-6 col-md-offset-3 admin-pie-chart-inner">
+      <canvas id="admin-pie-chart-1" width="400" height="400"></canvas>
+      <p> Top 10 Cities with highest revenue
+    </div>
+  </div>
+</div>
 
-    <div>
-      
-      <div class="col-md-6 admin-bar-chart">
-        <div class="col-md-6 col-md-offset-3 admin-bar-chart-inner">
-          <canvas id="admin-bar-chart-1" width="400" height="400"></canvas>
-          <p> Top 10 properties
-          </div>
-        </div>
 
-        <div class="col-md-6 admin-pie-chart">
-          <div class="col-md-6 col-md-offset-3 admin-pie-chart-inner">
-            <canvas id="admin-pie-chart-1" width="400" height="400"></canvas>
-            <p> Top 10 Cities with highest revenue
-            </div>
-          </div>
-          
-        </div>
-
-      </div>
 

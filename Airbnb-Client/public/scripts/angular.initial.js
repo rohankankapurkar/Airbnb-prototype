@@ -122,6 +122,13 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 				templateUrl : './templates/view.admin.html',
 				controller : 'controllerAdmin'
 			})
+		.state('home.pendingApprovals',
+			{
+				url:'admin/hostapprovals',
+				templateUrl : './templates/view.admin.approvals.html',
+				controller : 'controllerAdminApproval',
+			})
+
 })
 
 

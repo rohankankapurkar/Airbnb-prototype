@@ -22,7 +22,7 @@
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<!--This is a the default header of a not signed in user-->
 					<ul class="nav navbar-nav navbar-right" ng-show="default"> 
-						<li><a ui-sref="home.becomeHost">Become a Host</a></li>
+						<!--<li><a ui-sref="home.becomeHost">Become a Host</a></li> -->
 						<li><a href="#contact">Help</a></li>
 						<li><a data-toggle="modal" data-target="#myModalNorm">Sign up</a></li>
 						<li><a data-toggle="modal" data-target="#myModalSignIn">Login</a></li>
@@ -46,8 +46,8 @@
 					<!--This is the header for an Admin-->
 					<ul class="nav navbar-nav navbar-right" ng-show="admin"> 
 						<li><a ui-sref="home.admin">Dashboard</a></li>
-						<li><a ui-sref="home">Pending Approvals</a></li>
-						<li><a ui-sref="home">Logout</a></li>
+						<li><a ui-sref="home.pendingApprovals">Pending Approvals</a></li>
+						<li><a ng-click="logout()">Logout</a></li>
 					</ul>	
 				</div>
 			</div>
