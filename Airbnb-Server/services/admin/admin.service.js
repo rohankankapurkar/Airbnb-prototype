@@ -20,7 +20,8 @@ exports.getPendingRequests = function(msg, callback){
 		coll = mongo.collection('users');
 
 		// approved=false, means waiting for approval from admin
-		coll.find({approved:false}, function(err, result){
+		coll.find({approved:false}).toArray(function(err, result){
+			console.log
 			if(err){
 				res['statuscode'] = 1;
 				res['message'] = "Unexpected error occurredd while getting the pending requests";
