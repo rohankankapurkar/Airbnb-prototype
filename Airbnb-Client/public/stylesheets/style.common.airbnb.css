@@ -6013,6 +6013,11 @@ input.segmented-control__input {
     margin-top: 48px
 }
 
+.space-top-10 {
+    margin-top: 60px
+}
+
+
 @media ( max-width : 743px) {
     .space-sm-0 {
         margin-bottom: 0px

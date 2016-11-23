@@ -262,7 +262,7 @@
 									</select>
 								</div>
 							</div>
-							<div class="row">
+							<div>
 								<div class="space-top-2 col-sm-12">
 									<label for="address-form-field-street">
 										<span>Street Address</span>
@@ -293,10 +293,18 @@
 									</label>
 									<input class="input input-block input-jumbo lys-address-form__input lys-invalid" id="address-form-field-zipcode" name="zipcode" type="text" autocomplete="off" placeholder="e.g. 94103" ng-model="zip">
 								</div>
+								<div class="space-top-10 col-sm-12 col-md-6">
+									<a class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary" ng-click="validateAddress()">
+										<div class="btn-progress-next__text">
+											<span>Validate</span>
+										</div></a>
+								</div>
 							</div>
 						</form>
 					</div>
+
 				</div>
+
 				<div class="main-panel__actions-wrapper">
 					<div class="centered-content clearfix">
 						<div class="bg-white main-panel-outer-half clearfix shadowed">
@@ -313,13 +321,10 @@
 													</h5>
 												</span>
 											</a>
-											<a class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary" ng-click="validateAddress()">
-												<div class="btn-progress-next__text">
-													<span>Validate</span>
-												</div></a>
+
 											<a class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary" ng-click="becomeHost()">
 												<div class="btn-progress-next__text">
-													<span>Confirm</span>
+													<span>Next</span>
 												</div></a>
 										</div>
 									</div>
