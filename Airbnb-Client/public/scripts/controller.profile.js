@@ -86,3 +86,12 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http){
 	}
 
 })
+
+
+
+
+    uploadcare.openDialog(null, {
+    publicKey: "6f4f819d5c5ac7eb24ae",
+    imagesOnly: true,
+    crop: "300x200"
+    });
