@@ -8,9 +8,8 @@ airbnbApp.controller('controllerBecomeHostDesc',function($scope,$state,$log,$htt
     $scope.becomeHost = function(){
 
         $scope.secondstep.description = $scope.description;
-        $scope.secondstep.title = $scope.title
-        console.log($scope.secondstep);
-        $state.go('home.becomeHost',{secondstep : $scope.secondstep })
+        $scope.secondstep.title = $scope.title;
+        $state.go('home.becomeHost',{secondstep : $scope.secondstep });
     }
 
 

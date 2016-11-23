@@ -8,6 +8,9 @@
 					<div class="panel--no-border panel-title">
 						<h3 class="no-margin-padding">Where’s your place located?</h3>
 					</div>
+					<div class="text-danger">{{invAddress}}</div>
+					<div class="text-success">{{matchedAddMessage}}</div>
+					<div class="text-primary">{{guessedAddMessage}}</div>
 					<div>
 						<form>
 							<div>
@@ -310,9 +313,13 @@
 													</h5>
 												</span>
 											</a>
+											<a class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary" ng-click="validateAddress()">
+												<div class="btn-progress-next__text">
+													<span>Validate</span>
+												</div></a>
 											<a class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary" ng-click="becomeHost()">
 												<div class="btn-progress-next__text">
-													<span>Next</span>
+													<span>Confirm</span>
 												</div></a>
 										</div>
 									</div>

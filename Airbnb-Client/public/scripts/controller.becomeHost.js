@@ -47,15 +47,4 @@ airbnbApp.controller('controllerBecomeHost',function($scope,$state,$log,$http,$s
         $state.go('home.becomeHostStep3',{secondstep : $scope.secondstep});
     };
 
-/*
-    $scope.becomeHostDesc = function () {
-        $state.go('home.becomeHostDesc');
-    };
-
-
-    $scope.becomeHostDates = function () {
-        $state.go('home.becomeHostDates');
-    };*/
-
-
 })

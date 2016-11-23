@@ -5,7 +5,6 @@ airbnbApp.controller('controllerBecomeHostStep3',function($scope,$state,$log,$ht
     $scope.price = "";
     $scope.currency = "";
     $scope.bidding = "";
-    console.log($scope.secondstep);
     
     $scope.becomeHost = function(){
         $state.go('home.becomeHost')
