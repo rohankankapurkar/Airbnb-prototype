@@ -12,14 +12,17 @@
 				<!--This is the header for profile update-->
 				<ul class="nav navbar-nav navbar-left" ng-show="signedin"> 
                     <li> <a ui-sref=".dashboard">Dashboard</a></li>
-
+                    <!-- <li> <a ui-sref=".listing">Your Listing</a></li> --><!-- Not to be shown if the user is not a host or hasn't submitted properties for approval -->
+                    <li> <a ui-sref=".trips">Your Trips</a></li>
+                    <li> <a ui-sref=".profileUpdate">Profile</a></li>
+                </ul>
+                <!--This is the header for Host user-->	
+				<ul class="nav navbar-nav navbar-left" ng-show="signedhost"> 
+                    <li> <a ui-sref=".dashboard">Dashboard</a></li>
                     <li> <a ui-sref=".listing">Your Listing</a></li>
                     <li> <a ui-sref=".trips">Your Trips</a></li>
-<!--                    <li><a href="#profile">Profile</a></li>-->
                     <li> <a ui-sref=".profileUpdate">Profile</a></li>
-                  
-                </ul>	
-				
+                </ul>
 </div>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
