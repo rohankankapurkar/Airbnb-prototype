@@ -1,17 +1,20 @@
 airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateParams){
 
+
+  $scope.city = $state.params.city;
+
   /*
    |-----------------------------------------------------------
    | get properties in the given city
    |-----------------------------------------------------------
   */
 
-  console.log($stateParams.city);
+  
   $http({
     method : "POST",
     url : '/properties',
     data : {
-      city: $stateParams.city,
+      city: $scope.city,
       page: 1
     }
   }).success(function(data) {
@@ -33,6 +36,9 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
       console.log("Internal Server error occurred");
   });
 
+
+
+
   $scope.pageChanged = function(page){
     console.log("-------------pageChanged-----------");
     console.log("page number "+page);
@@ -40,7 +46,7 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
       method : "POST",
       url : '/properties',
       data : {
-        city: $stateParams.city,
+        city: $scope.city,
         page: page
       }
     }).success(function(data) {

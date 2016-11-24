@@ -43,7 +43,7 @@ var profile = require("./routes/user/user.profile"); //contains function related
 var host = require("./routes/host/host.property"); //contains all function related to adding and deleting of properties
 var validator = require("./routes/misc/validator"); //contains all functions related to validation
 var admin = require("./routes/admin/admin.approvals"); //contains all functions related to admin approvals
-var getproperties = require("./routes/user/user.properties"); //contains function related get city properties
+var property = require("./routes/properties/properties.getproperties"); //contains function related get city properties
 
 
 var mongoSessionConnectURL = "mongodb://localhost:27017/sessions";
@@ -85,7 +85,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 
-app.post('/properties', getproperties.get_properties);
+app.post('/properties', property.getproperties);
 
 app.post('/getusersession',usersession.getSession);
 app.post('/analytics', analytics.logdata);

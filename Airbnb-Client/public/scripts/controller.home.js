@@ -32,7 +32,7 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
 		method : "POST",
 		url : '/getusersession'
 	}).success(function(data) {
-		console.log(data);
+		
 		if(data.statuscode == 0) 
 		{
 			if(data.credentials.isadmin == true)
@@ -63,7 +63,7 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
 			}
 		}
 		else 
-		{console.log("Hello");
+		{
 			$scope.signedin = false;
 			$scope.signedhost = false;
 			$scope.admin = false;
@@ -273,6 +273,16 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
     	});
   	};
 
+  	//Function for making the transition to  
+	/*
+   |-----------------------------------------------------------
+   | Transition to Properties
+   |-----------------------------------------------------------
+  */
+  $scope.transitToProperties = function(city){
+  	console.log("In transition to cities")
+  	$state.go('home.properties',{city : city})
+  }
 
 
 })

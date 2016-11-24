@@ -128,22 +128,25 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 				templateUrl : './templates/view.admin.approvals.html',
 				controller : 'controllerAdminApproval',
 			})
-			/*
-			 |-----------------------------------------------------------
-			 | Get properties
-			 |-----------------------------------------------------------
-			*/
-			.state('home.properties',
-				{
-					url:'properties/:city',
-					templateUrl : './templates/view.properties.html',
-					controller : 'controllerProperties'
-				})
-			.state('home.property',
-				{
-					url:'property/:propertyId',
-					templateUrl : './templates/view.property.html',
-					controller : 'controllerProperties'
-				})
+		/*
+		|-----------------------------------------------------------
+		| Get properties
+		|-----------------------------------------------------------
+		*/
+		.state('home.properties',
+			{
+				url:'properties',
+				templateUrl : './templates/view.properties.html',
+				controller : 'controllerProperties',
+				params : {
+					city : null
+				}
+			})
+		.state('home.property',
+			{
+				url:'property/:propertyId',
+				templateUrl : './templates/view.property.html',
+				controller : 'controllerProperties'
+			})
 
 })
