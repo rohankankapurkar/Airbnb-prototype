@@ -15,7 +15,7 @@ var hostService = require('./services/hosts/hosts.service');
 var updateProfile = require('./services/user/update_profile');
 var miscService = require('./services/misc/misc.commons');
 var adminService = require('./services/admin/admin.service');
-var getproperties = require('./services/user/user.properties');
+var getProperties = require('./services/user/user.properties');
 
 var cnn = amqp.createConnection({host:'127.0.0.1'});
 
@@ -180,11 +180,11 @@ cnn.on('ready', function(){
 	});
 
 	// Service to update the user profile
-	cnn.queue('getproperties_queue', function(q){
+	cnn.queue('getProperties_queue', function(q){
 		q.subscribe(function(message, headers, deliveryInfo, m){
 			util.log(util.format( deliveryInfo.routingKey, message));
 			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
-			getproperties.get_properties(message, function(err,res){
+			getProperties.getProperties(message, function(err,res){
 				//return index sent
 				cnn.publish(m.replyTo, res, {
 					contentType:'application/json',
@@ -194,10 +194,6 @@ cnn.on('ready', function(){
 			});
 		});
 	});
-
-
-
-
 
 
 //////////////////////////////////////////////////////////////////
