@@ -8,8 +8,8 @@ var express = require('express')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
-  
-	
+
+
 
 // favicon to display favicon icon in tab
   favicon = require('serve-favicon');
@@ -19,20 +19,20 @@ var express = require('express')
  */
 passport = require('passport');
 require('./routes/user/user.signin')(passport);
-   
+
 /**
  * Session dependencies
  */
 session = require('express-session')
 
-   
+
 /**
  * Utilities dependencies should be added after this
  */
 mongo = require("./routes/utils/util.mongo");
 
 
-   
+
 /**
  * All route dependencies
  */
@@ -43,8 +43,9 @@ var profile = require("./routes/user/user.profile"); //contains function related
 var host = require("./routes/host/host.property"); //contains all function related to adding and deleting of properties
 var validator = require("./routes/misc/validator"); //contains all functions related to validation
 var admin = require("./routes/admin/admin.approvals"); //contains all functions related to admin approvals
- 
-   
+var getproperties = require("./routes/user/user.properties"); //contains function related get city properties
+
+
 var mongoSessionConnectURL = "mongodb://localhost:27017/sessions";
 var mongoStore = require("connect-mongo")(session);
 
@@ -57,9 +58,9 @@ app.use(session({
 	secret: 'airbnb_client_session',
 	resave : false,
 	saveUninitialized : false,
-	duration: 30 * 60 * 1000,    
+	duration: 30 * 60 * 1000,
 	activeDuration: 5 * 60 * 1000,
-	store: new mongoStore({  
+	store: new mongoStore({
 		url: mongoSessionConnectURL})
 	})
 );
@@ -84,20 +85,22 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 
+app.post('/properties', getproperties.get_properties);
+
 app.post('/getusersession',usersession.getSession);
 app.post('/analytics', analytics.logdata);
 app.post('/user/register', register.signup);
-app.post('/user/signin',function(req, res, next) 
+app.post('/user/signin',function(req, res, next)
 		{
-			passport.authenticate('signin', function(err, user) 
+			passport.authenticate('signin', function(err, user)
 			{
 				console.log("after auth")
 				if(err)
-				{		
-					res.send({"statuscode" : 1, "username":null});  
-				} 
+				{
+					res.send({"statuscode" : 1, "username":null});
+				}
 				else if(user == false)
-				{	
+				{
 					res.send({"statuscode" : 1, "username":null});
 				}
 				else
@@ -119,11 +122,9 @@ app.post('/host/validateaddress',validator.validateaddress);
 app.get('/admin/getadminapprovals',admin.getadminapprovals);
 
 
-mongo.connect(mongoSessionConnectURL, function(){  
-	console.log('Connected to mongo at: ' + mongoSessionConnectURL); 
-	http.createServer(app).listen(app.get('port'), function(){  
-		console.log('Express server listening on port ' + app.get('port'));  
-	});  
+mongo.connect(mongoSessionConnectURL, function(){
+	console.log('Connected to mongo at: ' + mongoSessionConnectURL);
+	http.createServer(app).listen(app.get('port'), function(){
+		console.log('Express server listening on port ' + app.get('port'));
+	});
 });
-
-

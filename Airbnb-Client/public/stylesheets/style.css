@@ -7,3 +7,274 @@ body {
 a {
   color: #00B7FF;
 }
+
+
+.homepage-thumbnails-h2{
+   position:absolute;
+   top: 200px;
+   float: left;
+   text-align: center;
+   color:white;
+   width: 100%;
+}
+
+.property-thumbnails{
+   position:absolute;
+   bottom: 13px;
+   float: left;
+   color:white;
+   width: 100%;
+   left: 10px;
+   padding: 1px;
+   font-size: 30px;
+}
+
+.property-seperation {
+  padding:40px;
+  padding-left:20%;
+}
+
+.property-symbols {
+  text-align: center;
+}
+
+.font-airbnb {
+  font-weight: 700 !important;
+  color: #484848 !important;
+  font-family: Circular !important;
+}
+
+.font-airbnb-about-listing{
+  color: #484848 !important;
+  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 19px;
+  word-wrap: break-word !important;
+}
+
+.font-airbnb-faded {
+  font-weight: 200 !important;
+  color: #484848 !important;
+  font-family: Circular !important;
+}
+
+.gal-item{
+	overflow: hidden;
+	padding: 3px;
+}
+.gal-item .box{
+	height: 350px;
+	overflow: hidden;
+}
+.box img{
+	height: 100%;
+	width: 100%;
+	object-fit:cover;
+	-o-object-fit:cover;
+}
+
+/* Footer Style */
+i.red{
+    color:#BC0213;
+}
+.gal-container{
+    padding-top :75px;
+    padding-bottom:75px;
+}
+footer{
+    font-family: 'Quicksand', sans-serif;
+}
+footer a,footer a:hover{
+    color: #88C425;
+}
+
+
+/*-----------*/
+
+.galleryItem {
+	color: #797478;
+	font: 10px/1.5 Verdana, Helvetica, sans-serif;
+	float: left;
+}
+
+.galleryItem h3 {
+	text-transform: uppercase;
+}
+
+.galleryItem img {
+	max-width: 100%;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+
+.airbnb-font{
+  font-family: Circular,'Helvetica Neue',Helvetica,Arial,sans-serif
+}
+
+/* MEDIA QUERIES*/
+@media only screen and (max-width : 940px),
+only screen and (max-device-width : 940px){
+	.galleryItem {width: 21%;}
+}
+
+@media only screen and (max-width : 720px),
+only screen and (max-device-width : 720px){
+	.galleryItem {width: 29.33333%;}
+}
+
+@media only screen and (max-width : 530px),
+only screen and (max-device-width : 530px){
+	.galleryItem {width: 46%;}
+}
+
+@media only screen and (max-width : 320px),
+only screen and (max-device-width : 320px){
+	.galleryItem {width: 96%;}
+	.galleryItem img {width: 96%;}
+	.galleryItem h3 {font-size: 18px;}
+	.galleryItem p, {font-size: 18px;}
+}
+
+ul.pagination li a {
+  margin: 0 4px;
+}
+
+
+.properties-heart {
+  top: 12px;
+  text-align: right;
+  right: 10px;
+  padding: 1px;
+  font-size: 30px;
+}
+
+
+.properties-room-type {
+  padding : 10px;
+  margin-left : 10px;
+  margin-right : 10px;
+  width: 180px;
+  height: 37px;
+}
+
+.footer-table {
+    display: table;
+    width: 100%;
+}
+
+
+
+/*footer css*/
+.list-inline {
+    margin-left: -5px;
+    margin-right: -5px;
+    display: table-cell;
+}
+
+.right-list {
+    text-align: right;
+    padding-right: 20%;
+    padding-bottom: 3%;
+}
+
+.list-unstyled, .list-layout, .subnav-list, .sidenav-list {
+    padding-left: 0;
+    list-style: none;
+}
+
+.list-inline div {
+    padding: 0 5px;
+    display: inline-block;
+}
+
+.belo-icon {
+    vertical-align: middle;
+    display: inline;
+}
+.icon-size-2 {
+    font-size: 2.4em;
+}
+.icon {
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+}
+
+.text-gray, .icon-gray {
+    color: #767676;
+}
+.text-muted {
+    vertical-align: middle;
+}
+
+.text-muted {
+    color: #767676;
+}
+
+.list-border{
+  margin-top: 0px;
+  padding-bottom: 3%;
+  padding-left: 15%;
+}
+
+icon-list li {
+    display: inline;
+}
+
+
+/*booking window*/
+
+.book-it{
+  margin-top: -40px;
+  position: relative;
+  width: 315px;
+  display:block;
+}
+
+.book-it__container.fixed {
+  /*position: fixed;*/
+  top: 40px;
+}
+
+.box-border {
+  background-color: black;
+  opacity: 0.9;
+  color: white;
+  size: 15px;
+  width: 100%;
+}
+
+.wishlist-wrapper {
+  padding: 10px;
+}
+.wish-list-button {
+  display:block;
+  border-color: black;
+  box-sizing: border-box;
+  /*border-style: solid;
+  border-color: black;
+  border: 2px;*/
+}
+
+.modal-dialog {
+  width: 100%;
+  height: 100%;
+}
+
+.share-btn-modal {
+  margin-right: 8px;
+}
+
+.share-btn-border {
+  border-left: 1px solid #aaa;
+  display: inline-block;
+  vertical-align: middle;
+  height: 30px;
+  margin: 0 20px 0 12px;
+}
+.share-btn-button {
+  float:right;
+  text-align:right;
+
+}

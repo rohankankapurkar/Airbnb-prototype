@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Airbnb</title>
-    
+
     <!-- bootstrap stylesheet -->
   	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   	<!-- bootstrap theme css -->
@@ -23,9 +23,9 @@
   	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <!--D3 -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
-    
-    
-    
+
+
+
   	<script src="/scripts/angular.initial.js"></script>
   	<script src="/scripts/controller.home.js"></script>
     <script src="/scripts/controller.becomeHost.js"></script>
@@ -39,6 +39,7 @@
     <script src="/scripts/controller.becomehost.desc.js"></script>
     <script src="/scripts/controller.becomehost.step3.js"></script>
     <script src="/scripts/controller.becomehost.dates.js"></script>
+    <script src="/scripts/controller.properties.js"></script>
 
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/style.homepage.css' />
@@ -63,14 +64,14 @@
             pagetime = (endtime - starttime)/1000;
             starttime = endtime;
             endtime = "";
-              
+
             $( window.location ).trigger(
                 "change",
                 {
                     currentHref: strLocation,
-                    previousHref: strPrevLocation                      
+                    previousHref: strPrevLocation
                 });
-                    
+
                 $.post("/analytics/pagetime",
                 {
                   page : strPrevLocation,
@@ -84,13 +85,13 @@
      </script>
 
 
-    
+
   </head>
   <body ng-app="airbnbApp" class="mainBody">
-	
+
 	<!-- Main Container -->
 	<div id="main" >
-	
+
 	<div ui-view></div>
 	</div>
 
