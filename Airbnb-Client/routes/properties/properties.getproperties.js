@@ -8,8 +8,9 @@ exports.getproperties = function(req, res) {
 	{
 		if(req.session.username)
 		{
+			console.log("In session");
 			var msg_payload = {username : req.session.username, city: req.body.city, page : req.body.page};
-  			mq_client.make_request('getproperties_queue',msg_payload, function(err,result){
+  			mq_client.make_request('getProperties_queue',msg_payload, function(err,result){
       			console.log("------------getproperties response-----------");
       			console.log(result);
   				res.send(result);
@@ -18,7 +19,7 @@ exports.getproperties = function(req, res) {
 		else
 		{
 			var msg_payload = {username : "", city: req.body.city, page : req.body.page};
-  			mq_client.make_request('getproperties_queue',msg_payload, function(err,result){
+  			mq_client.make_request('getProperties_queue',msg_payload, function(err,result){
       			console.log("------------getproperties response-----------");
       			console.log(result);
   				res.send(result);

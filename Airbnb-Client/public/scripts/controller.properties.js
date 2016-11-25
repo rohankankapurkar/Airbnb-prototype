@@ -21,8 +21,8 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
     console.log("------------controllerProperties success----------");
     if(data.statuscode == 0)
     {
-      $scope.properties = data.properties;
-      console.log(data.properties);
+      $scope.properties = data.data;
+      console.log($scope.properties);
     }
     else
     {
