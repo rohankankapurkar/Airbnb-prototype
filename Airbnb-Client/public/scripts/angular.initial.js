@@ -100,19 +100,19 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 			})
 		.state('home.profile.listing',
 			{
-				url:'update_profile',
+				url:'/update_listing',
 				templateUrl : './templates/view.listing.html',
 				controller : 'controllerProfile'
 			})
 		.state('home.profile.trips',
 			{
-				url:'update_profile',
+				url:'/trips',
 				templateUrl : './templates/view.trips.html',
 				controller : 'controllerProfile'
 			})
 		.state('home.profile.dashboard',
 			{
-				url:'update_profile',
+				url:'/dashboard',
 				templateUrl : './templates/view.dashboard.html',
 				controller : 'controllerProfile'
 			})
