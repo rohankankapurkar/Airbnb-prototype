@@ -24,7 +24,7 @@ exports.getProperties = function(msg, callback){
 
         coll.aggregate([
                 {$lookup : {from :'users', localField : 'host_id', foreignField : 'id', as:'hostdata'}}
-                ,{$match : {'city':msg.city}}
+                ,{$match : {'city':msg.city,'hostdata.approved':true , 'hostdata.username':{$ne:msg.username}}}
                 ,{$skip:skipBefore}
                 ,{$limit:perPage}],
                 function(err, result){
