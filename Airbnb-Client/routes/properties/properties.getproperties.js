@@ -14,7 +14,7 @@ exports.getproperties = function(req, res) {
       			console.log("------------getproperties response-----------");
       			console.log(result);
   				res.send(result);
-  			});			
+  			});
 		}
 		else
 		{
@@ -23,7 +23,7 @@ exports.getproperties = function(req, res) {
       			console.log("------------getproperties response-----------");
       			console.log(result);
   				res.send(result);
-  			});	
+  			});
 		}
 	}
 	catch(error)

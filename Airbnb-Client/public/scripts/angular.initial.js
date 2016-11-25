@@ -146,7 +146,10 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 			{
 				url:'property/:propertyId',
 				templateUrl : './templates/view.property.html',
-				controller : 'controllerProperties'
+				controller : 'controllerProperties',
+				params : {
+					selectedProperty : null
+				}
 			})
 
 })

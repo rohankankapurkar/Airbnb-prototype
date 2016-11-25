@@ -2,14 +2,15 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
 
 
   $scope.city = $state.params.city;
+  $scope.noPropertiesFound = false;
+  $scope.selectedProperty = $state.params.selectedProperty;
+  
 
   /*
    |-----------------------------------------------------------
    | get properties in the given city
    |-----------------------------------------------------------
   */
-
-  
   $http({
     method : "POST",
     url : '/properties',
@@ -18,7 +19,6 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
       page: 1
     }
   }).success(function(data) {
-    console.log("------------controllerProperties success----------");
     if(data.statuscode == 0)
     {
       $scope.properties = data.data;
@@ -26,11 +26,7 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
     }
     else
     {
-      alert("Error occured in fetching cities.")
-      window.setTimeout(function()
-			{
-				$state.reload;
-			}, 3000);
+      $scope.noPropertiesFound = true;
     }
   }).error(function(error) {
       console.log("Internal Server error occurred");
@@ -40,8 +36,6 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
 
 
   $scope.pageChanged = function(page){
-    console.log("-------------pageChanged-----------");
-    console.log("page number "+page);
     $http({
       method : "POST",
       url : '/properties',
@@ -50,19 +44,13 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
         page: page
       }
     }).success(function(data) {
-      console.log("------------pageChanged success----------");
       if(data.statuscode == 0)
       {
-        $scope.properties = data.properties;
-        console.log(data.cities);
+        $scope.properties = data.data;
       }
       else
       {
-        alert("Error occured in fetching properties.")
-        window.setTimeout(function()
-  			{
-  				$state.reload;
-  			}, 3000);
+        $scope.noPropertiesFound = true;
       }
     }).error(function(error) {
         console.log("Internal Server error occurred");
@@ -74,5 +62,15 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
   //   console.log("------------------get range---------------");
   //   return new Array(n);
   // }
+
+  $scope.transitionToProperty = function(propertyId){
+    $scope.selectedProperty = [];
+    for(var i=0; i<$scope.properties.length; i++) {
+      if($scope.properties[i]._id == propertyId)
+        $scope.selectedProperty = $scope.properties[i];
+    }
+    console.log($scope.selectedProperty);
+    $state.go('home.property', {selectedProperty: $scope.selectedProperty});
+  }
 
 });

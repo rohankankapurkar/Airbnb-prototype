@@ -24,14 +24,16 @@ exports.getProperties = function(msg, callback){
 
         coll.aggregate([
                 {$lookup : {from :'users', localField : 'host_id', foreignField : 'id', as:'hostdata'}}
-                ,{$match : {'city':msg.city,'hostdata.approved':true , 'hostdata.username':{$ne:msg.username}}}
+                ,{$match : {'city':msg.city}}
                 ,{$skip:skipBefore}
-                ,{$limit:perPage}], 
+                ,{$limit:perPage}],
                 function(err, result){
                     if(err){
                         res['statuscode'] = 1;
                         res['message'] = "Unexpected error occurred while retrieving the properties";
                     }else{
+                        console.log("--------server side proeprties fetched---------");
+                        console.log(result);
                         res['statuscode'] = 0;
                         res['data'] = result;
                     }

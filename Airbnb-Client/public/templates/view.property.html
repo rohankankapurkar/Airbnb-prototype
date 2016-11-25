@@ -54,7 +54,7 @@
                   <div class="col-md-6" style="padding-top: 10%; padding-right: 43%;">
                     <div class="share-btn-button">
                       <span> $68 per night </span>
-                      <button type="button" class="btn btn-primary">Check Availability
+                      <button type="button" class="btn btn-primary" id="checkAvailability">Check Availability
                       </button>
                     </div>
                   </div>
@@ -96,9 +96,9 @@
     								<div class="property-seperation">
     									<div class="space-5 col-md-10">
       										<h2 class="landing__title-title">
-      											<span class="font-airbnb"><b>Open Sale ! 3min walk from Mita Station!</b></span>
+      											<span class="font-airbnb"><b>{{selectedProperty.title}}</b></span>
       										</h2>
-                          <span class="font-airbnb-faded">Tokyo Japan</span>
+                          <span class="font-airbnb-faded">{{selectedProperty.city}}</span>
     									</div>
                       <div class="col-md-2" style="float:right; text-align:right;">
                         <img src="images/property1.jpg" class="img-circle" width="70px" height="70px">
@@ -112,22 +112,22 @@
                                 <div class="col-sm-3">
                                   <i class="icon icon-entire-place icon-size-2" aria-hidden="true"></i>
                                   <br>
-                                  <span>Entire home/apt</span>
+                                  <span>{{selectedProperty.guestaccess}}</span>
                                 </div>
                                 <div class="col-sm-3">
                                   <i class="icon icon-group icon-size-2" aria-hidden="true"></i>
                                   <br>
-                                  <span>2 Guests</span>
+                                  <span>{{selectedProperty.noofguests}} Guests</span>
                                 </div>
                                 <div class="col-sm-3">
                                   <i class="icon icon-rooms icon-size-2" aria-hidden="true"></i>
                                   <br>
-                                  <span>0 Bedrooms</span>
+                                  <span>{{selectedProperty.totbedsavailable}} Bedrooms</span>
                                 </div>
                                 <div class="col-sm-3">
                                   <i class="icon icon-double-bed icon-size-2" aria-hidden="true"></i>
                                   <br>
-                                  <span>1 Bed</span>
+                                  <span>{{selectedProperty.bedsforuse}} Bed</span>
                                 </div>
                               </div>
                             </div>
@@ -146,17 +146,7 @@
                                     <span style="font-size: 28px;">About this listing</span>
                                   </div>
   																<div class="landing__step-content-subtitle">
-                                    <span class="font-airbnb-about-listing">Central Tokyo, Mita Minato-ku.</span>
-                                    <br/>
-                                    <span class="font-airbnb-about-listing">Great location around Tokyo Tower.</span>
-                                    <br/>
-                                    <span class="font-airbnb-about-listing">JR and Metro Sta. within walk distance.</span>
-                                    <br/>
-                                    <span class="font-airbnb-about-listing">Super luxurious, cozy room accommodates up to 2ppl</span>
-                                    <br/>
-                                    <span class="font-airbnb-about-listing">One double bed.</span>
-                                    <br/>
-                                    <span class="font-airbnb-about-listing">Fully equipped including Free Wi-Fi, TV, Kitchen etc</span>
+                                    <span class="font-airbnb-about-listing">{{selectedProperty.description}}</span>
                                     <br/>
                                   </div>
   																<span>
@@ -210,7 +200,7 @@
                                                   <span>
                                                   </span>
                                                   <span class="text_1lobov3-o_O-size_regular_1n7tijc-o_O-inline_10f0ge3">
-                                                    <span>2</span>
+                                                    <span>{{selectedProperty.noofguests}}</span>
                                                   </span>
                                                 </div>
                                               </div>
@@ -222,7 +212,7 @@
                                                   <span>
                                                   </span>
                                                   <span>
-                                                    <span>1</span>
+                                                    <span>{{selectedProperty.bathsforuse}}</span>
                                                   </span>
                                                 </div>
                                               </div>
@@ -233,7 +223,7 @@
                                                   </span>
                                                   <span> </span>
                                                   <span>
-                                                    <span>0</span>
+                                                    <span>{{selectedProperty.roomsinproperety}}</span>
                                                   </span>
                                                 </div>
                                               </div>
@@ -244,7 +234,7 @@
                                                   </span>
                                                   <span> </span>
                                                   <span>
-                                                    <span>1</span>
+                                                    <span>{{selectedProperty.bedsforuse}}</span>
                                                   </span>
                                                 </div>
                                               </div>
@@ -281,7 +271,7 @@
                                                     </span>
                                                     <span> </span>
                                                     <span>
-                                                      <span>Apartment</span>
+                                                      <span>{{selectedProperty.propertytype}}</span>
                                                     </span>
                                                   </a>
                                                 </div>
@@ -293,7 +283,7 @@
                                                   </span>
                                                   <span> </span>
                                                   <span>
-                                                    <span>Entire home/apt</span>
+                                                    <span>{{selectedProperty.guestaccess}}</span>
                                                   </span>
                                                 </div>
                                               </div>
@@ -481,16 +471,7 @@
                                       <div class="landing__step-content-subtitle">
                                         <span><i class="icon icon-size-2 bedroom-config-icon icon-double-bed"></i></span>
                                         <br/>
-                                        <span class="font-airbnb-about-listing">Common spaces</span>
-                                        <br/>
-                                        <span class="font-airbnb-about-listing">1 double bed</span>
-                                        <br/>
-                                        <br/>
-                                        <span class="font-airbnb-about-listing">The space</span>
-                                        <br/>
-                                        <span class="font-airbnb-about-listing">Central Tokyo, Mita Minato-ku.Great location around Tokyo Tower.JR and Metro Sta. within walk distance.Super luxurious, cozy room accommodates up to 2ppl
-                                          One double bed.
-                                          Fully equipped including Free Wi-Fi, TV, Kitchen etc</span>
+                                        <span class="font-airbnb-about-listing">{{selectedProperty.description}}</span>
                                         <br/>
                                       </div>
                                     </div>
@@ -702,11 +683,11 @@
                                 <div class="row row-condensed">
                                   <div class="col-md-6">
                                     <label class="font-airbnb-faded">Check In</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" placeholder="Check in" id="checkInProperty">
                                   </div>
                                   <div class="col-md-6">
                                     <label class="font-airbnb-faded">Check Out</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" placeholder="Check out" id="checkOutProperty">
                                   </div>
                                 </div>
 
@@ -877,3 +858,15 @@
     </div>
     </div>
     </div>
+
+    <script src="stylesheets/bootstrap-datepicker.js"></script>
+    <link rel='stylesheet' href='/stylesheets/datepicker.css'/>
+
+    <script>
+      $("#checkInProperty").datepicker();
+      $("#checkOutProperty").datepicker();
+      $('#checkAvailability').click(function(){
+        $('#modalViewPhotos').modal('hide');
+        $('#checkInProperty').focus();
+      });
+    </script>
