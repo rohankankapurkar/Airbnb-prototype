@@ -119,6 +119,7 @@ app.post('/user/update_profile',profile.update_profile);
 app.get('/user/update_profile',profile.show_profile);
 app.post('/host/addproperty',host.addproperty); //equivalent to /host/addadvertisement - in api doc
 app.post('/host/getmyproperties', host.getmyproperties);  //To get all host's listed properties for viewing/editing
+app.post('/host/getavailabledates', host.getavailabledates)
 app.post('/host/validateaddress',validator.validateaddress);
 app.get('/admin/getadminapprovals',admin.getadminapprovals);
 app.post('/admin/approve',admin.approveHostRequest);

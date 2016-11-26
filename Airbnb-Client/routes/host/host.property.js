@@ -1,7 +1,6 @@
 var dateFormat = require('dateformat');
 var mq_client = require('../../rpc/client');
 
-
 /*
 *Called by - app.post('/host/addproperty',host.addproperty); //equivalent to /host/addadvertisement - in api doc
 *Controller - controller.becomehost.dates.js
@@ -65,3 +64,19 @@ console.log("host update listing");
 		res.send({statuscode:1,message:"Internal Server Error Occurred. Please try again"});
 	}
 }
+
+exports.getavailabledates = function(req, res){
+
+		console.log(req.param('prop_id'));	
+		var msg_payload = {prop_id: "000-00-0011"};
+
+		mq_client.make_request('getAvailableDates_queue', msg_payload, function(err, result){
+			if(err){
+				res.send({statuscode:1, message : "Error occurred while getting avaiable dates"});
+			}else{
+				res.send({statuscode:0, result:result});
+			}
+
+		});
+
+	}

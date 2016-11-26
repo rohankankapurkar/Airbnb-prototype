@@ -1,114 +1,82 @@
-/**
- * http://usejsdoc.org/
- */
- var mysql = require('mysql');
-
- var connectionQueue = [];
- var MAX_CONN = 500;
- var requestQueue = [];
- var CONNECTION_POOLING = false;
-
- for(var i = 0; i < MAX_CONN; i++){
- 	var q = {
- 		id : i, 
- 		connection : mysql.createConnection({  
- 			host     : 'localhost',
-								user     : 'root', //your root user. Change if any other user.
-								password : 'root', //your password for the above user.
-								database : 'airbnb', //db name.
-								port  : 3306 })
- 	}
- 	connectionQueue.push(q);
- }
+var mysql = require('mysql');
+var sleep = require('sleep');
+var noConn = 100;
+var conn;
+var connStack = [];
+var connQueue = [];
 
 
- var getPoolConnection = function(callback){
- 	if(connectionQueue.length > 0){
- 		var connection = connectionQueue.pop();
 
- 		callback(connection, null);
- 	}
- 	else if(connectionQueue.length <= 0){
-
- 		requestQueue.push(callback);
- 	}
- }
-
-
- setInterval(function(){
- 	if(requestQueue.length > 0){
- 		if(connectionQueue.length > 0){
- 			var connection = connectionQueue.pop();
- 			var callback = requestQueue.shift();
-
- 			callback(connection, null);
- 		}
- 	}
- },10);
-
-
- function releasePoolConnection(connection){
-
- 	connectionQueue.push(connection);
- }
-
-
- var getConnection = function(){
- 	var connection = mysql.createConnection({  
- 		host     : 'localhost',
- 		user     : 'root', 
- 		password : 'root', 
- 		database : 'ebay',
- 		port  : 3306 
- 	});
-
- 	return connection;
- };
-
-
- function executeQuery(callback,sqlQuery){  
- 	if(!CONNECTION_POOLING){
-		/*console.log("\nSQL Query::"+sqlQuery);  
-		
-		var connection=getConnection();  
-		
-		connection.query(sqlQuery, function(err, rows, fields) {
-			if(err)
-			{   
-				console.log("ERROR: " + err.message);  
-			} 
-			else 
-			{ 
-				// return err or result 
-				console.log("DB Results:"+rows);
-				callback(err, rows); 
-			}
+var createMyPool = function(noConn){
+	var conn;
+	console.log("Creating connections");
+	for(var counter = 0; counter < noConn; counter++){
+		console.log("Creating connections");
+		conn = mysql.createConnection({
+			host : 'localhost',
+			user : 'root',
+			password : 'root123',
+			database : 'StartTest'
 		});
-		
-		console.log("\nConnection closed..");
-		connection.end();*/
-		/////////////////////////////////////////////////var getPoolConnection	
-		
-		//console.log("\nSQL Query::"+sqlQuery); 
+	connStack.push(conn);
 	}
-	else
-	{
-		getPoolConnection(function (PoolConnection, err){
-			PoolConnection.connection.query(sqlQuery, function(err, rows, fields) {
-				if(err){   
-					console.log("ERROR: " + err.message);  
-				} 
-				else { 
-					callback(err, rows); 	
-					
-					setTimeout(function (){
-						releasePoolConnection(PoolConnection);
-					},2000);
-				}
-			});//getPoolConnection			
-		});//PoolConnection.connection.query
+}
+
+var getConnection = function(callback){
+	console.log("I came here in get connection")
+	if(connStack.length > 0){
+		console.log("Length of stack in get connection method : "+ connStack.length)
+		connection = connStack.pop();
+		//sleep.sleep(10);
+		console.log("Length of stack in get connection method 1: "+ connStack.length)
+		callback(null, connection);
+	}
+	else{
+		console.log('--------------------------------------------');
+		console.log("Length of queue in get connection method 3: "+ connQueue.length)
+		connQueue.push(callback);
+		console.log("Length of queue in get connection method 4: "+ connQueue.length)
 	}
 };
 
 
-exports.executeQuery = executeQuery;
+
+setInterval(function(){
+	console.log('Checking')
+	if(connStack.length > 0){
+		if(connQueue.length > 0){
+			console.log('removing from the queue');
+			callback = connQueue.shift();
+			connection = connStack.pop();
+			callback(null, connection);
+		}
+	}
+}, 50000)
+
+
+
+createMyPool(noConn)
+
+
+exports.executeQuery = function(userQuery, params, callback) {
+	console.log("Called me");
+	getConnection(function(err, connection) {
+		connection.query(userQuery, params, function(err, result) {
+			console.log("Am I here");
+			if (err) {
+				console.log("Error occurred while executing the query");
+				throw (err);
+			}
+			if (result) {
+				console.log("Length of stack in code : "+ connStack.length)
+				//sleep.sleep(2);
+				connection.releaseConnection;
+				connStack.push(connection);
+				console.log("Length of stack in code : "+ connStack.length)
+				//connection.release()
+				callback(result);
+			}
+		});
+	});
+}
+
