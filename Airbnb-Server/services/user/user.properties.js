@@ -26,8 +26,7 @@ exports.getProperties = function(msg, callback){
                 {$lookup : {from :'users', localField : 'host_id', foreignField : 'id', as:'hostdata'}}
                 ,{$match : {'city':msg.city,'hostdata.approved':true , 'hostdata.username':{$ne:msg.username}}}
                 ,{$skip:skipBefore}
-                ,{$limit:perPage}],
-                function(err, result){
+                ,{$limit:perPage}]).toArray(function(err, result){
                     if(err){
                         res['statuscode'] = 1;
                         res['message'] = "Unexpected error occurred while retrieving the properties";
