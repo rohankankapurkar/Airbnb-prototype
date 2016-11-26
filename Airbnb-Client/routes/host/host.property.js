@@ -80,3 +80,25 @@ exports.getavailabledates = function(req, res){
 		});
 
 	}
+
+exports.approveuserrequest = function(req, res){
+
+	console.log(req.param('prop_id'));	
+	var msg_payload = {propiid: req.param('propid'),
+					userid : req.param('userid'),
+					fromdate : req.param('fromdate'),
+					tilldate : req.param('tilldate')
+		};
+
+	mq_client.make_request('approveUserRequest_queue', msg_payload, function(err, result){
+		if(err){
+			res.send({statuscode:1, message : "Error occurred while getting avaiable dates"});
+		}else{
+			res.send({statuscode:0, result:result});
+		}
+
+	});
+
+}
+
+}

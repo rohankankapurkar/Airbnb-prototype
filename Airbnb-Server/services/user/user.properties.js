@@ -1,11 +1,14 @@
 var process = require('process');
 var MODE = process.env.MODE;
+var moment = require('moment');
 
 //Identify the mode and then import the required libraries
 if(MODE == "CONNECTION_POOL"){
     var mongo = require('../utils/utils.mongo');
+    var mysql = require('../utils/utils.mysql');
 }else{
     var mongo = require('../utils/utils.mongo');
+    var mysql = require('../utils/utils.mysql');
 }
 
 exports.getProperties = function(msg, callback){
@@ -40,3 +43,44 @@ exports.getProperties = function(msg, callback){
                 });
         });
 }
+
+// This will add request for booking into the book_propertiese table in mysql by checking the date constraints.
+exports.bookProperty = function(msg, callback){
+
+    var res = {"statuscode":0, "message":""};
+    var bookDateFrom = moment(msg.fromdate).format('YYYY-MM-DD');
+    var bookDateTo = moment(msg.todate).format('YYYY-MM-DD');
+
+
+    var userId = msg.userid;
+    var propId = msg.propid;
+    var paramsPropSelector = {"prop_id":propId};
+
+    mysql.executeQuery("SELECT * FROM AVAILABLE_DATES WHERE ?", paramsPropSelector, function(result){
+        if(result){
+            var counter = 0;
+            for(counter = 0; counter < result.length; counter++){
+                
+                console.log("book date :" + result[counter]['from_date'])
+                var from_date_db = moment(result[counter]['from_date']).format('YYYY-MM-DD');
+                var to_date_db =  moment(result[counter]['till_date']).format('YYYY-MM-DD');
+                
+                if(bookDateFrom >= from_date_db && bookDateTo <= to_date_db){
+
+                    // Make entry into the booked_properties so that host can review the user's request and approve them.
+                    var booking_params = {'prop_id' : propId, 'user_id':userId, 'from_date':bookDateFrom, 'till_date':bookDateTo, 'accepted':false}
+                    mysql.executeQuery("INSERT INTO BOOKED_PROPERTIES SET ? ", booking_params, function(booking_result){
+                        console.log('Inserted new booking into the table');
+                        res['statuscode'] = 0; 
+                        res['message'] = "Your request has been sent to host";
+                        callback(null, res);
+                    });
+                }
+            }
+        }else{
+            res['statuscode'] = 1;
+            res['message'] = "Error ocurred while placing your request";
+        }
+    });
+}
+

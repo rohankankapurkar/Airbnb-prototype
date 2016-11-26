@@ -40,6 +40,7 @@ var usersession = require('./routes/misc/misc.session'); //contains functions re
 var analytics = require("./routes/misc/misc.analytics"); //contains functions related to logging of client activities
 var register = require("./routes/user/user.register"); //contains function related to sign up of an user
 var profile = require("./routes/user/user.profile"); //contains function related user profile
+var bookproperty = require("./routes/user/user.bookproperty")
 var host = require("./routes/host/host.property"); //contains all function related to adding and deleting of properties
 var validator = require("./routes/misc/validator"); //contains all functions related to validation
 var admin = require("./routes/admin/admin.approvals"); //contains all functions related to admin approvals
@@ -117,10 +118,12 @@ app.post('/user/signin',function(req, res, next)
 app.post('/user/logout',usersession.sessionDestroy);
 app.post('/user/update_profile',profile.update_profile);
 app.get('/user/update_profile',profile.show_profile);
+app.post('/user/bookproperty', bookproperty.bookproperty);
 app.post('/host/addproperty',host.addproperty); //equivalent to /host/addadvertisement - in api doc
 app.post('/host/getmyproperties', host.getmyproperties);  //To get all host's listed properties for viewing/editing
 app.post('/host/getavailabledates', host.getavailabledates)
 app.post('/host/validateaddress',validator.validateaddress);
+app.post('/host/approveuserrequest', host.approveuserrequest)
 app.get('/admin/getadminapprovals',admin.getadminapprovals);
 app.post('/admin/approve',admin.approveHostRequest);
 

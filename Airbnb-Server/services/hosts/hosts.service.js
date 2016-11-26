@@ -96,7 +96,13 @@ exports.becomeHost = function(msg, callback){
 
 					prop.insertOne(msg, function(err, propResult){
 						if(!err){
-							var params = {'prop_id': counter, 'from_date': msg['from'], 'till_date': msg['till']};
+
+							var fromDate = moment(msg['from']).format("YYYY-MM-DD");
+							var tillDate = moment(msg['till']).format("YYYY-MM-DD");
+
+							console.log("Hey there it is message : " + fromDate + tillDate);
+
+							var params = {'prop_id': counter, 'from_date': fromDate, 'till_date': tillDate};
 							mysql.executeQuery("INSERT INTO AVAILABLE_DATES SET ?", params, function(result){
 								if(result){
 									console.log('Updated avaiable dates successfully');
@@ -187,7 +193,7 @@ exports.getMyProerties = function(msg, callback){
 exports.getAvailableDates = function(msg, callback){
 
 	res = {"statuscode":0, "message":""};
-	console.log( "Ola ola" + msg.prop_id)
+
 	var params = {'prop_id':msg.prop_id};
 
 	mysql.executeQuery("SELECT * FROM AVAILABLE_DATES where ?", params, function(result){
@@ -207,5 +213,51 @@ exports.getAvailableDates = function(msg, callback){
 			res['data'] = dates;
 		}
 		callback(null, res);
+	});
+}
+
+
+
+exports.approveUserRequest = function(msg, callback){
+
+	var res = {"statuscode" : 0, "message":""};
+
+	var disapproveParams = {"prop_id":msg.propid};
+	var approveParams = {"user_id":msg.userid, "prop_id":msg.propid, "from_date":msg.fromdate,"till_date":msg.tilldate};
+	var availableDatesParams = {'prop_id':msg.propid};
+
+	//First disapprove all the requests for particular property
+	mysql.executeQuery("UPDATE BOOKED_PROPERTIES SET approved = 2 WHERE ?", disapproveParams, function(disapproveResult){
+
+		// now approve the request of selected user. user id passed from client.
+
+		mysql.executeQuery("UPDATE BOOKED_PROPERTIES SET approved = 1 WHERE ? " , approveParams, function(approveResult){
+
+			// Now property has been approved for user, lets update the avaiable dates.
+
+			mysql.executeQuery("SELECT * FROM AVAILABLE_DATES WHERE prop_id = " + msg.propid + " AND from_date < "+ msg.fromdate + " AND till_date > " + msg.tilldate +" ", 
+				{}, function(availableDatesResult){
+
+				var idToDelete = availableDatesResult[0]['id'];
+				var fromDate_1 = availableDatesResult[0]['from_date'];
+				var tillDate_1 = moment(msg.from_date).subtract(1, 'days');
+				var prop1 = {"prop_id": msg.propid, "from_date":fromDate_1, "till_date":tillDate_1};
+
+				var fromDate_2 = moment(msg.tilldate).add(1, 'days');
+				var tillDate_2 = availableDatesResult[0]['till_date'];
+				var prop2 = {"prop_id": msg.propid, "from_date":fromDate_2, "till_date":tillDate_2};
+
+				// Delete an existing available dates as it has been booked
+				mysql.executeQuery("DELETE FROM AVAILABLE_DATES WHERE id = "+ idToDelete+"", {}, function(result1){
+					// nothing to do here with callback
+				});
+				mysql.executeQuery("INSERT INTO AVAILABLE_DATES SET ? ", prop1, function(result2){
+					// nothing to do here with callback
+				});
+				mysql.executeQuery("INSERT INTO AVAILABLE_DATES SET ? ", prop2, function(result3){
+					// nothing to do here with callback
+				});
+			});
+		});
 	});
 }
