@@ -72,7 +72,7 @@ exports.show_profile = function(req, res){
 		username:req.session.username
 	}
 	
-	console.log("printing teh msg payload"+msg_payload);
+	//console.log("printing teh msg payload"+msg_payload);
 
 	mq_client.make_request('profile_show_queue',msg_payload, function(err,result){
 		console.log("sending data to profile_update_queue");
@@ -83,7 +83,7 @@ exports.show_profile = function(req, res){
 		else 
 		{		
 		console.log("successfully got the info for the user the user.");
-		console.log("printing the user name here baby"+result.username+ JSON.stringify(result));
+		//console.log("printing the user name here baby"+result.username+ JSON.stringify(result));
 		result.statuscode= 0 ;
 		res.send(result)
 		}  

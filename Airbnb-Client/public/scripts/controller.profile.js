@@ -92,31 +92,29 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http){
 		
 	}
 
-})
-
-
-
-//this is for showing the listing for the host
-
-$http({
-		method : "GET",
-		url : '/user/update_listing',
-//		data : {
-//			
-//			"username" : $scope.user_email,
-//		
-//		}
-	}).success(function(data){
-		if (data.statuscode == 0)
+	$http({
+		method : "POST",
+		url : '/host/getmyproperties',
+		data : {}
+	}).success(function(property){
+		if (property.statuscode == 0)
 		{
-			console.log("got the show_prfile data"+data.username);
+			//console.log("got the host property data"+property.result.data);
+			
+
+		   //console.log("sappaliga"+property.data[0].street);
+		  //console.log("printing the received JSON obj" +JSON.stringify(property.result.data));
+			
+			
+			$scope.properties = property.result.data;
+			
 		
 			
 			
 		}
 		else
 		{
-			if(data.message != null)
+			if(property.message != null)
 			{
 				$scope.invEmail = "";
 				$scope.invEmail = data.message;
@@ -125,6 +123,16 @@ $http({
 	}).error(function(error) {
 		console.log("error");
 	});
+
+
+	
+	
+	
+})
+
+
+
+//this is for showing the listing for the host
 
 
 

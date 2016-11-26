@@ -38,7 +38,7 @@ exports.addproperty = function(req,res){
 
 
 exports.getmyproperties = function(req, res){
-
+console.log("host update listing");
 	try{
 		var username = req.session.username
 		if(username != null){
@@ -49,12 +49,16 @@ exports.getmyproperties = function(req, res){
 				if(err){
 					res.send({statuscode:1, message : "Error occurred while getting the properties"});
 				}else{
-					res.send(result);
+					console.log("inside the getmyproperties");
+					console.log(JSON.stringify(result));
+
+					res.send({statuscode:0, result:result});
 				}
 
 			});
 		}else{
 			res.send({statuscode:1, message:"Usernot logged in"});
+			console.log("faild inside upate listing");
 		}
 	}catch(error){
 		console.log(error);

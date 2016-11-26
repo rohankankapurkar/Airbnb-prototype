@@ -10,23 +10,24 @@
 
 
 
-<div class = "row" >
+<div class = "row" ng-repeat = "data in properties" >
     <div class = "col-md-6">
         
         
-        
-<!--
-         <div class="row row-condensed space-3">
-                      <img src={{data.image}}>
+        <img src= {{data.images[0]}}></img>
+    {{data.images[0]}}
+
+         <div class="row row-condensed space-3" ng-repeat = "i in data.images">
+                      <img src={{i}}></img>
              </div>
--->
+
     
             <div class="row row-condensed space-3">
                         <label class="text-right col-sm-3" for="street">
                         Guest Access
                         </label>
                         <div class="col-sm-8">
-                        <input id="guestaccess" name="guestaccess" size="30" type="text" value={{data.guestaccess}} ng-model="guestaccess" />
+                        <input id="guestaccess" name="guestaccess" size="30" type="text" value=data.guestaccess ng-model="data.guestaccess" />
                         </div>
              </div>
 
@@ -36,7 +37,7 @@
                         Number of Rooms 
                         </label>
                         <div class="col-sm-8">
-                        <input id="street" name="roomsinproperety" size="30" type="text" value={{data.roomsinproperety}} ng-model="roomsinproperety" />
+                        <input id="street" name="roomsinproperety" size="30" type="text" value={{data.roomsinproperety}} ng-model="data.roomsinproperety" />
                         </div>
             </div>
 
@@ -46,7 +47,7 @@
                         Beds available
                         </label>
                         <div class="col-sm-8">
-                        <input id="totbedsavailable" name="totbedsavailable" size="30" type="text" value={{data.totbedsavailable}} ng-model="totbedsavailable" />
+                        <input id="totbedsavailable" name="totbedsavailable" size="30" type="text" value={{data.totbedsavailable}} ng-model="data.totbedsavailable" />
                         </div>
             </div>
 
@@ -57,7 +58,7 @@
                         Guests
                         </label>
                         <div class="col-sm-8">
-                        <input id="noofguests" name="noofguests" size="30" type="text" value={{data.noofguests}} ng-model="noofguests" />
+                        <input id="noofguests" name="noofguests" size="30" type="text" value={{data.noofguests}} ng-model="data.noofguests" />
                         </div>
             </div>
 
@@ -67,7 +68,7 @@
                         Beds for use
                         </label>
                         <div class="col-sm-8">
-                        <input id="bedsforuse" name="bedsforuse" size="30" type="text" value={{data.bedsforuse}} ng-model="bedsforuse" />
+                        <input id="bedsforuse" name="bedsforuse" size="30" type="text" value={{data.bedsforuse}} ng-model="data.bedsforuse" />
                         </div>
             </div>
     
@@ -77,7 +78,7 @@
                         Bathrooms for use
                         </label>
                         <div class="col-sm-8">
-                        <input id="bathsforuse" name="bathsforuse" size="30" type="text" value={{data.bathsforuse}} ng-model="bathsforuse" />
+                        <input id="bathsforuse" name="bathsforuse" size="30" type="text" value={{data.bathsforuse}} ng-model="data.bathsforuse" />
                         </div>
             </div>
 
@@ -87,7 +88,7 @@
                         Address Street
                         </label>
                         <div class="col-sm-8">
-                        <input id="street" name="street" size="30" type="text" value={{data.street}} ng-model="street" />
+                        <input id="street" name="street" size="30" type="text" value={{data.street}} ng-model="data.street" />
                         </div>
             </div>
 
@@ -97,7 +98,7 @@
                         Apt #
                         </label>
                         <div class="col-sm-8">
-                        <input id="apt" name="apt" size="30" type="text" value={{data.apt}} ng-model="apt" />
+                        <input id="apt" name="apt" size="30" type="text" value={{data.apt}} ng-model="data.apt" />
                         </div>
             </div>
 
@@ -107,7 +108,7 @@
                         City
                         </label>
                         <div class="col-sm-8">
-                        <input id="city" name="city" size="30" type="text" value={{data.city}} ng-model="city" />
+                        <input id="city" name="city" size="30" type="text" value={{data.city}} ng-model="data.city" />
                         </div>
             </div>
 
@@ -117,7 +118,7 @@
                         State
                         </label>
                         <div class="col-sm-8">
-                        <input id="state" name="noofguests" size="30" type="text" value={{data.state}} ng-model="state" />
+                        <input id="state" name="noofguests" size="30" type="text" value={{data.state}} ng-model="data.state" />
                         </div>
             </div>
      
@@ -150,7 +151,7 @@
                         Zip
                         </label>
                         <div class="col-sm-8">
-                        <input id="zip" name="zip" size="30" type="text" value={{data.zip}} ng-model="zip" />
+                        <input id="zip" name="zip" size="30" type="text" value={{data.zip}} ng-model="data.zip" />
                         </div>
             </div>
 
@@ -161,7 +162,7 @@
                         Country
                         </label>
                         <div class="col-sm-8">
-                        <input id="country" name="country" size="30" type="text" value={{data.country}} ng-model="country" />
+                        <input id="country" name="country" size="30" type="text" value={{data.country}} ng-model="data.country" />
                         </div>
             </div>
 
@@ -171,7 +172,7 @@
                         Description
                         </label>
                         <div class="col-sm-8">
-                        <input id="description" name="description" size="30" type="text" value={{data.description}} ng-model="description" />
+                        <input id="description" name="description" size="30" type="text" value={{data.description}} ng-model="data.description" />
                         </div>
             </div>
 
@@ -181,7 +182,7 @@
                         Title
                         </label>
                         <div class="col-sm-8">
-                        <input id="title" name="title" size="30" type="text" value={{data.title}} ng-model="title" />
+                        <input id="title" name="title" size="30" type="text" value={{data.title}} ng-model="data.title" />
                         </div>
             </div>
 
@@ -191,7 +192,7 @@
                         Price
                         </label>
                         <div class="col-sm-8">
-                        <input id="price" name="price" size="30" type="text" value={{data.price}} ng-model="price" />
+                        <input id="price" name="price" size="30" type="text" value={{data.price}} ng-model="data.price" />
                         </div>
             </div>
 
@@ -200,7 +201,7 @@
                         Currency
                         </label>
                         <div class="col-sm-8">
-                        <input id="currency" name="currency" size="30" type="text" value={{data.currency}} ng-model="currency" />
+                        <input id="currency" name="currency" size="30" type="text" value={{data.currency}} ng-model="data.currency" />
                         </div>
             </div>
 
@@ -210,7 +211,7 @@
                         Bidding available ?
                         </label>
                         <div class="col-sm-8">
-                        <input id="biddingavailable" name="biddingavailable" size="30" type="text" value={{data.biddingavailable}} ng-model="biddingavailable" />
+                        <input id="biddingavailable" name="biddingavailable" size="30" type="text" value={{data.biddingavailable}} ng-model="data.biddingavailable" />
                         </div>
             </div>
 
@@ -219,7 +220,7 @@
                         From
                         </label>
                         <div class="col-sm-8">
-                        <input id="from" name="from" size="30" type="text" value={{data.from}} ng-model="from" />
+                        <input id="from" name="from" size="30" type="text" value={{data.from}} ng-model="data.from" />
                         </div>
             </div>
 
@@ -230,7 +231,7 @@
                         Till
                         </label>
                         <div class="col-sm-8">
-                        <input id="till" name="from" size="30" type="text" value={{data.till}} ng-model="till" />
+                        <input id="till" name="from" size="30" type="text" value={{data.till}} ng-model="data.till" />
                         </div>
             </div>
 
@@ -240,7 +241,7 @@
                         Host_id
                         </label>
                         <div class="col-sm-8">
-                        <input id="host_id" name="host_id" size="30" type="text" value={{data.host_id}} ng-model="till" readonly/>
+                        <input id="host_id" name="host_id" size="30" type="text" value={{data.host_id}} ng-model="data.till" readonly/>
                         </div>
             </div>
 
@@ -249,7 +250,7 @@
                         ID
                         </label>
                         <div class="col-sm-8">
-                        <input id="id" name="id" size="30" type="text" value={{data.id}} ng-model="id" readonly/>
+                        <input id="id" name="id" size="30" type="text" value={{data.id}} ng-model="data.id" readonly/>
                         </div>
             </div>
     </div>
