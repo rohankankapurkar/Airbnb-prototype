@@ -11,23 +11,23 @@
 								Dates
 							</div>
 							<div class="form-group" style="padding : 10px ; position: relative">
-								<input type="text" class="form-control" id="hmpgwhere" name="hmpgwhere" ng-model="hmpgwhere" placeholder="Check in">
+								<input type="date" class="form-control" id="startDateFilter" name="startDateFilter" ng-model="startDateFilter" placeholder="Check in">
 							</div>
 							<div class="form-group " style="padding : 10px ; position: relative">
-								<input type="text" class="form-control" id="hmpgguests" name="hmpgguests" ng-model="hmpgguests" placeholder="Check out" style="margin-left: -5px;">
+								<input type="date" class="form-control" id="endDateFilter" name="endDateFilter" ng-model="endDateFilter" placeholder="Check out" style="margin-left: -5px;">
 							</div>
 							<div class="form-group" style="padding : 10px;width: 210px">
-								<select class="form-control" style="width: 100%">
-									<option selected>1 guest</option>
-									<option>2 guest</option>
-									<option>3 guest</option>
-									<option>4 guest</option>
-									<option>5 guest</option>
-									<option>6 guest</option>
-									<option>7 guest</option>
-									<option>8 guest</option>
-									<option>9 guest</option>
-									<option>10 guest</option>
+								<select class="form-control" style="width: 100%" ng-model="guestsFilter" placeholder="Guests">
+									<option value="1" selected>1 guest</option>
+									<option value="2">2 guest</option>
+									<option value="3">3 guest</option>
+									<option value="4">4 guest</option>
+									<option value="5">5 guest</option>
+									<option value="6">6 guest</option>
+									<option value="7">7 guest</option>
+									<option value="8">8 guest</option>
+									<option value="9">9 guest</option>
+									<option value="10">10 guest</option>
 								</select>
 							</div>
 						</form>
@@ -46,7 +46,7 @@
 									<span class="airbnb-font" style="font-size: 13px">Entire Home</span>
 								</div>
 								<div class="col-md-2" style="padding-right: 0px; margin-right: 0px">
-									<input type="checkbox" style="float:right; border-style:solid; border-width:1px; width:18px; height:18px; margin-right: -2px; margin-top: -2px;" ng-model="entRoom" >
+									<input type="checkbox" style="float:right; border-style:solid; border-width:1px; width:18px; height:18px; margin-right: -2px; margin-top: -2px;" ng-model="entRoom">
 								</div>
 							</div>
 							<div class="form-group panel panel-dark properties-room-type">
@@ -97,7 +97,7 @@
 
 				<section>
 					<div>
-						<div class="col-md-6 col-sm-6 co-xs-12 gal-item" ng-repeat="property in properties|filter:propertyPriceRangeFilter|filter:propertyTypeFilter">
+						<div class="col-md-6 col-sm-6 co-xs-12 gal-item" ng-repeat="property in properties|filter:propertyGuestsFilter|filter:propertyDateRangeFilter|filter:propertyPriceRangeFilter|filter:propertyTypeFilter">
 							<a ng-click= transitionToProperty(property._id)>
 								<!-- <div id="carousel-example-generic" ng-repeat="property in properties" class="carousel slide" data-ride="carousel"> -->
 								<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -205,3 +205,10 @@
 </div>
 </div>
 </div>
+
+<!-- <script src="stylesheets/bootstrap-datepicker.js"></script>
+<link rel='stylesheet' href='/stylesheets/datepicker.css'/>
+<script>
+	$("#startDateFilter").datepicker();
+	$("#endDateFilter").datepicker();
+</script> -->

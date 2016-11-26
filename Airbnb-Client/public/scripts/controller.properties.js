@@ -8,8 +8,8 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
   $scope.property_min_price = 0;
   $scope.property_max_price = 0;
 
-  $scope.start_date = "";
-  $scope.end_date = "";
+  $scope.startDateFilter = "";
+  $scope.endDateFilter = "";
 
   $scope.typeOfProperty = "";
 
@@ -17,19 +17,35 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
   $scope.shRoom = true;
   $scope.entRoom = true;
 
+  $scope.guestsFilter = 1;
+
   
   $scope.propertyPriceRangeFilter = function(property) {
     return (parseInt(property['price']) >= $scope.property_min_price && parseInt(property['price']) <= $scope.property_max_price);
   };
   
   $scope.propertyDateRangeFilter = function(property){
+    var startDate = new Date(property['from']);
+    var endDate = new Date(property['till']);
+    
+    var checkin = "";
+    var checkout = "";
+    
+    if($scope.startDateFilter != "")
+      checkin = new Date($scope.startDateFilter);
+     
+    if($scope.endDateFilter != "")
+      checkout = new Date($scope.endDateFilter);
 
+    if(checkin == "" || checkout == "" )
+      return true;
+    else if(startDate <= checkin && endDate >= checkout)
+      return true;
+    else
+      return false;
   }
 
   $scope.propertyTypeFilter = function(property){
-/*    if($scope.typeOfProperty == "")
-      return property;
-    return (property['guestaccess'] == $scope.typeOfProperty);*/
     if(property['guestaccess'] == "entire_room" && $scope.entRoom == true)
       return property;
     if(property['guestaccess'] == "private_room" && $scope.prvRoom == true)
@@ -38,7 +54,13 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
       return property; 
   }
 
+  $scope.propertyGuestsFilter = function(property){
 
+    if(property['noofguests'] < $scope.guestsFilter)
+      return false;
+    else 
+      return true;
+  }
 
 /*$scope.customMapFilter = function()
 {
