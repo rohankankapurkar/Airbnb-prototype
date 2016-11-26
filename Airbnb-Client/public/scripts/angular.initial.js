@@ -115,7 +115,12 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 				url:'/dashboard',
 				templateUrl : './templates/view.dashboard.html',
 				controller : 'controllerProfile'
-			})			
+			})
+				/*
+		|-----------------------------------------------------------
+		| Admin States
+		|-----------------------------------------------------------
+		*/			
 		.state('home.admin',
 			{
 				url:'admin',
