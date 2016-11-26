@@ -108,7 +108,7 @@ exports.becomeHost = function(msg, callback){
 								callback(null,res);
 
 							}else{ // approved does not exists in document, means user is becoming host for first time. so add 'approved = false' key in document.
-								coll.updateOne({username:hostUsername},{$set:{ishost:true, approved:false}}, function(err, result){
+							coll.updateOne({username:hostUsername},{$set:{ishost:true, approved:false}}, function(err, result){
 									// Now ishost=true mean user became host and awaiting for approval. 
 									// approved=false, means admin will approve it and approved will become true for SURE :D.
 									if(!err){
@@ -120,16 +120,54 @@ exports.becomeHost = function(msg, callback){
 									}
 									callback(null, res);
 								});
-							}
-						}else{
-							res['statuscode'] = 1;
-							res['message'] = "Unexpected error occurred while performing database operation";
-							callback(null, res);
 						}
-					});
+					}else{
+						res['statuscode'] = 1;
+						res['message'] = "Unexpected error occurred while performing database operation";
+						callback(null, res);
+					}
+				});
+			});
+		}
+	});
+});
+}
+
+
+// Get all properties of host for view/editing purpose.
+exports.getMyProerties = function(msg, callback){
+
+	var res = {"statuscode" : 0, message : ""}
+	mongo.connect(function(){
+
+		var coll = mongo.collection('users');
+		var props  =mongo.collection('properties');
+
+		// Get the user id using username from suers collection;
+		coll.findOne({username : msg.username}, function(err, result){
+
+			if(err){
+				console.log('Error occurred while getting the user id from users collection');
+				res['statuscode'] = 1;
+				res['message'] = "Unexpected error occurred on the server.";
+				callback(null, res);
+			}else{
+
+				// get all properties form properties collection using host_id
+				props.find({host_id:result.id}).toArray(function(err, resultProperties){
+					if(err){
+						console.log("Error occurred while getting the properties");
+						res['statuscode'] = 1;
+						res['message'] = "Unexpected Error occurred on server while getting the peroperties";
+					}else{
+
+						res['statuscode'] = 0;
+						res['data'] = resultProperties;
+					}
+					callback(null, res);
 				});
 			}
 		});
-	});
+	});	
 }
 

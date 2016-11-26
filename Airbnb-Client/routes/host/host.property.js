@@ -34,3 +34,30 @@ exports.addproperty = function(req,res){
 		res.send({statuscode : 1, message : "Internal Server Error Occurred. Please try again"})
 	}
 }
+
+
+
+exports.getmyproperties = function(req, res){
+
+	try{
+		var username = req.session.username
+		if(username != null){
+
+			var msg_payload = {'username':username};
+
+			mq_client.make_request('getMyProperties_queue', msg_payload, function(err, result){
+				if(err){
+					res.send({statuscode:1, message : "Error occurred while getting the properties"});
+				}else{
+					res.send(result);
+				}
+
+			});
+		}else{
+			res.send({statuscode:1, message:"Usernot logged in"});
+		}
+	}catch(error){
+		console.log(error);
+		res.send({statuscode:1,message:"Internal Server Error Occurred. Please try again"});
+	}
+}
