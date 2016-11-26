@@ -121,6 +121,7 @@ app.post('/host/addproperty',host.addproperty); //equivalent to /host/addadverti
 app.post('/host/getmyproperties', host.getmyproperties);  //To get all host's listed properties for viewing/editing
 app.post('/host/validateaddress',validator.validateaddress);
 app.get('/admin/getadminapprovals',admin.getadminapprovals);
+app.get('/user/update_listing',host.getmyproperties);//this is get all the listing of the host 
 
 
 mongo.connect(mongoSessionConnectURL, function(){

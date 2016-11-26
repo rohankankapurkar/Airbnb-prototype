@@ -96,6 +96,56 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http){
 
 
 
+//this is for showing the listing for the host
+
+$http({
+		method : "GET",
+		url : '/user/update_listing',
+//		data : {
+//			
+//			"username" : $scope.user_email,
+//		
+//		}
+	}).success(function(data){
+		if (data.statuscode == 0)
+		{
+			console.log("got the show_prfile data"+data.username);
+		
+			
+			
+		}
+		else
+		{
+			if(data.message != null)
+			{
+				$scope.invEmail = "";
+				$scope.invEmail = data.message;
+			}
+		}
+	}).error(function(error) {
+		console.log("error");
+	});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
