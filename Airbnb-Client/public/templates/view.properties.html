@@ -46,7 +46,7 @@
 									<span class="airbnb-font" style="font-size: 13px">Entire Home</span>
 								</div>
 								<div class="col-md-2" style="padding-right: 0px; margin-right: 0px">
-									<input type="checkbox" style="float:right; border-style:solid; border-width:1px; width:18px; height:18px; margin-right: -2px; margin-top: -2px;">
+									<input type="checkbox" style="float:right; border-style:solid; border-width:1px; width:18px; height:18px; margin-right: -2px; margin-top: -2px;" ng-model="entRoom" >
 								</div>
 							</div>
 							<div class="form-group panel panel-dark properties-room-type">
@@ -57,7 +57,7 @@
 									<span class="airbnb-font" style="font-size: 13px">Private Home</span>
 								</div>
 								<div class="col-md-2" style="padding-right: 0px; margin-right: 0px">
-									<input type="checkbox" style="float:right; border-style:solid; border-width:1px; width:18px; height:18px; margin-right: -2px; margin-top: -2px;">
+									<input type="checkbox" style="float:right; border-style:solid; border-width:1px; width:18px; height:18px; margin-right: -2px; margin-top: -2px;" ng-model="prvRoom">
 								</div>
 							</div>
 							<div class="form-group panel panel-dark properties-room-type">
@@ -68,7 +68,7 @@
 									<span class="airbnb-font" style="font-size: 13px">Shared Home</span>
 								</div>
 								<div class="col-md-2" style="padding-right: 0px; margin-right: 0px">
-									<input type="checkbox" style="float:right; border-style:solid; border-width:1px; width:18px; height:18px; margin-right: -2px; margin-top: -2px;">
+									<input type="checkbox" style="float:right; border-style:solid; border-width:1px; width:18px; height:18px; margin-right: -2px; margin-top: -2px;" ng-model="shRoom" >
 								</div>
 							</div>
 						</form>
@@ -80,9 +80,8 @@
 							Price range
 						</div>
 						<div class="col-sm-8">
-
-
-
+							<!-- <input type="range"  min="0" max="100" /> -->
+							<slider floor="0" ceiling="50" ng-model-low="property_min_price" ng-model-high="property_max_price"></slider>
 						</div>
 						<!-- </form> -->
 					</div>
@@ -98,7 +97,7 @@
 
 				<section>
 					<div>
-						<div class="col-md-6 col-sm-6 co-xs-12 gal-item" ng-repeat="property in properties">
+						<div class="col-md-6 col-sm-6 co-xs-12 gal-item" ng-repeat="property in properties|filter:propertyPriceRangeFilter|filter:propertyTypeFilter">
 							<a ng-click= transitionToProperty(property._id)>
 								<!-- <div id="carousel-example-generic" ng-repeat="property in properties" class="carousel slide" data-ride="carousel"> -->
 								<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">

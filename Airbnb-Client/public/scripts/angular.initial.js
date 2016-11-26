@@ -2,7 +2,7 @@
  * http://usejsdoc.org/
  */
 
-var airbnbApp = angular.module('airbnbApp',['ui.router']);
+var airbnbApp = angular.module('airbnbApp',['ui.router','uiSlider']);
 //handles client side routing
 airbnbApp.config(function($stateProvider, $urlRouterProvider){
 

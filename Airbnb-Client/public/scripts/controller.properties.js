@@ -4,8 +4,57 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
   $scope.city = $state.params.city;
   $scope.noPropertiesFound = false;
   $scope.selectedProperty = $state.params.selectedProperty;
-  
 
+  $scope.property_min_price = 0;
+  $scope.property_max_price = 0;
+
+  $scope.start_date = "";
+  $scope.end_date = "";
+
+  $scope.typeOfProperty = "";
+
+  $scope.prvRoom = true;
+  $scope.shRoom = true;
+  $scope.entRoom = true;
+
+  
+  $scope.propertyPriceRangeFilter = function(property) {
+    return (parseInt(property['price']) >= $scope.property_min_price && parseInt(property['price']) <= $scope.property_max_price);
+  };
+  
+  $scope.propertyDateRangeFilter = function(property){
+
+  }
+
+  $scope.propertyTypeFilter = function(property){
+/*    if($scope.typeOfProperty == "")
+      return property;
+    return (property['guestaccess'] == $scope.typeOfProperty);*/
+    if(property['guestaccess'] == "entire_room" && $scope.entRoom == true)
+      return property;
+    if(property['guestaccess'] == "private_room" && $scope.prvRoom == true)
+      return property;
+    if(property['guestaccess'] == "shared_room" && $scope.shRoom == true)
+      return property; 
+  }
+
+
+
+/*$scope.customMapFilter = function()
+{
+
+  /*if() conditions for date range
+    {
+       if()//condition for apartment type
+       {
+          if() //condition for price range
+          {
+            return property;
+          }
+       }
+    } 
+
+}*/
   /*
    |-----------------------------------------------------------
    | get properties in the given city
@@ -22,6 +71,8 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
     if(data.statuscode == 0)
     {
       $scope.properties = data.data;
+      $scope.property_max_price = Math.max.apply(Math,$scope.properties.map(function(property){return property.price;}));
+      $scope.property_min_price = Math.min.apply(Math,$scope.properties.map(function(property){return property.price;}));
       console.log($scope.properties);
     }
     else
@@ -47,6 +98,9 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
       if(data.statuscode == 0)
       {
         $scope.properties = data.data;
+        $scope.property_max_price = Math.max.apply(Math,$scope.properties.map(function(property){return property.price;}));
+        $scope.property_min_price = Math.min.apply(Math,$scope.properties.map(function(property){return property.price;}));
+        console.log($scope.properties); 
       }
       else
       {
