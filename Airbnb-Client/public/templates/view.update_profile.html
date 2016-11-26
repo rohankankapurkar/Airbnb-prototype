@@ -25,16 +25,16 @@
 }
 </style>
 
-    
+
 <div class="panel  ">
 
   <div class="panel-body">
-      
-  
+
+
 <!--      <img src="https://ucarecdn.com/8d97a055-e490-41f6-8ff7-deae143116d6/faak.jpg">-->
 <div class = "row">
     <div class="page-container-responsive space-top-4 ">
-  
+
     <div class="col-md-4">
       <div class="panel space-4">
         <div class="media media-photo-block
@@ -54,32 +54,32 @@
             </li>
           </ul>
         </div>
-        
+
             <button class="btn btn-primary btn-large btn-block"> <input type="hidden"  role="uploadcare-uploader" data-public-key="6f4f819d5c5ac7eb24ae"  ng-model = "profile_pic" id = "profile_pic" autoFillSync class = " btn btn-block" name = "profile_pic" /></button>
-          <button type="submit" class="btn btn-primary btn-large btn-block" ng-click=update_Profile()>
+          <button type="submit" class="btn btn-primary btn-large btn-block" ng-click=update_Profile() id="update_profile-picture">
    Update profile picture
  </button>
         </div>
         </div>
-        
- 
+
+
       <div class = "col-md-8">
-      
+
         <div class="row row-condensed space-3">
             <label class="text-right col-sm-3" for="user_first_name">
-            First Name 
+            First Name
             </label>
             <div class="col-sm-8">
             <input id="user_first_name" name="user_first_name" size="30" type="text" value={{data.firstname}} ng-model="user_first_name" />
             </div>
         </div>
 
-      
-      
-      
+
+
+
         <div class="row row-condensed space-4">
             <label class="text-right col-sm-3" for="user_last_name">
-            Last Name 
+            Last Name
             </label>
             <div class="col-sm-8">
             <input id="user_last_name" name="user_last_name" size="30" type="text" value={{data.lastname}} ng-model="user_last_name" />
@@ -104,17 +104,17 @@
             </div>
       </div>
 
-      
+
 <!--      start of birthday-->
-      
-      
-      
+
+
+
           <div class="row row-condensed space-4">
         <label class="text-right col-sm-3" for="user_birthdate">
           Birth Date <i class="glyphicon glyphicon-lock" data-behavior="tooltip" title="Private"></i>
         </label>
         <div class="col-sm-8">
-          
+
     <div class="select" >
                   <input id="user_birthdate" name="user_birthday" ng-model="user_birthday" type = "date" >
                 </input>
@@ -126,10 +126,10 @@
             </div>
           <div class="text-muted space-top-1">The magical day you were dropped from the sky by a stork. We use this data for analysis and never share it with other users.</div>
         </div>
-              
+
     </div>
-      
-      
+
+
       <!--              end of date here-->
 
 
@@ -151,10 +151,10 @@
                 <input id="user_email" name="user_phone" size="30" type="text" ng-model="phone" value={{data.phone}} />
             </div>
     </div>
-      
+
        <div class="row row-condensed space-4">
             <label class="text-right col-sm-3" for="user_email">
-                Credit cart 
+                Credit cart
             </label>
             <div class="col-sm-8">
                 <input id="user_email" name="user_email" size="30" value = {{data.credit_card}} type="text" ng-model="user_creditcard" />
@@ -166,10 +166,10 @@
 
     <div class="row row-condensed space-4">c
             <label class="text-right col-sm-3" for="user_profile_info_preferred_language">
-            Preferred Language 
+            Preferred Language
             </label>
             <div class="col-sm-8">
-          
+
     <div class="select">
         <select id="user_preferred_locale" name="user_preferred_locale" ng-model= "user_preferred_locale" value= {{data.user_preferred_locale}}>
             <option value="id">Bahasa Indonesia</option>
@@ -205,15 +205,15 @@
         </div>
       </div>
 
-          
-      
-      
+
+
+
       <div class="row row-condensed space-4">
         <label class="text-right col-sm-3" for="user_profile_info_preferred_currency">
-          Preferred Currency 
+          Preferred Currency
         </label>
         <div class="col-sm-8">
-          
+
         <div class="select">
         <select id="user_native_currency" name="user_native_currency" ng-model = "user_native_currency" value = {{data.user_native_currency}}>
             <option value="AED">AED</option>
@@ -266,39 +266,39 @@
         </div>
       </div>
 
-      
-      
-      
-      
-      
+
+
+
+
+
     <div class="row row-condensed space-4">
         <label class="text-right col-sm-3" for="user_profile_info_current_city">
-          Where You Live 
+          Where You Live
         </label>
         <div class="col-sm-8">
       <input id="user_city" name="user_city" placeholder="e.g. Paris, France / Brooklyn, NY / Chicago, IL" size="30" type="text" value={{data.city}} ng-model = "city" />
 
-          
+
         </div>
       </div>
 
           <div class="row row-condensed space-4">
         <label class="text-right col-sm-3" for="user_profile_info_about">
-          Describe Yourself 
+          Describe Yourself
         </label>
         <div class="col-sm-8">
-          
+
       <textarea cols="40" id="user_about" name="user_about" value={{data.about}} ng-model= "about" rows="5"></textarea>
-         
-      
-    
+
+
+
 </br>
 
       </div>
-      
-      
-      
-    </div>   
+
+
+
+    </div>
 
 
 
@@ -328,7 +328,5 @@ Business Travel  </div>
   Save
 </button>
         </div>
-      
+
     </div>
-
-

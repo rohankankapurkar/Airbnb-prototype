@@ -8,20 +8,20 @@
 
 
 
-<div class="collapse nav navbar-collapse navbar-inverse  panel   avatar-tooltip--new" id="myNavbar">				
+<div class="collapse nav navbar-collapse navbar-inverse  panel   avatar-tooltip--new" id="myNavbar">
 				<!--This is the header for profile update-->
-				<ul class="nav navbar-nav navbar-left" ng-show="signedin"> 
+				<ul class="nav navbar-nav navbar-left" ng-show="signedin">
                     <li> <a ui-sref=".dashboard">Dashboard</a></li>
                     <!-- <li> <a ui-sref=".listing">Your Listing</a></li> --><!-- Not to be shown if the user is not a host or hasn't submitted properties for approval -->
                     <li> <a ui-sref=".trips">Your Trips</a></li>
                     <li> <a ui-sref=".profileUpdate">Profile</a></li>
                 </ul>
-                <!--This is the header for Host user-->	
-				<ul class="nav navbar-nav navbar-left" ng-show="signedhost"> 
-                    <li> <a ui-sref=".dashboard">Dashboard</a></li>
-                    <li> <a ui-sref=".listing">Your Listing</a></li>
-                    <li> <a ui-sref=".trips">Your Trips</a></li>
-                    <li> <a ui-sref=".profileUpdate">Profile</a></li>
+                <!--This is the header for Host user-->
+				<ul class="nav navbar-nav navbar-left" ng-show="signedhost">
+                    <li> <a ui-sref=".dashboard" id="profile-dashboard">Dashboard</a></li>
+                    <li> <a ui-sref=".listing" id="profile-listing">Your Listing</a></li>
+                    <li> <a ui-sref=".trips" id="profile-trips">Your Trips</a></li>
+                    <li> <a ui-sref=".profileUpdate" id="profile-profile">Profile</a></li>
                 </ul>
 </div>
 
@@ -29,7 +29,7 @@
 
 
 <div id="main" >
-	
+
 	<div ui-view></div>
 	</div>
 
