@@ -1,0 +1,25 @@
+<div class="pending-admin-apprs-main row" style="width : 60%; margin : auto">
+	<table class="table">
+		<thead>
+			<tr>
+				<th class="col-md-2">User</th>
+				<th class="col-md-2">Username</th>
+				<th class="col-md-2">First Name</th>
+				<th class="col-md-2">Last Name</th>
+				<th class="col-md-2">Address</th>
+				<th class="col-md-2">Approve</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="host in pendingHosts">
+				<td class="col-md-2">Photo</td>
+				<td class="col-md-2">{{host.username}}</td>
+				<td class="col-md-2">{{host.firstname}}</td>
+				<td class="col-md-2">{{host.lastname}}</td>
+				<td class="col-md-2">{{host.address != null? host.address : "Not available"}}</td>
+				<td class="col-md-2"><button class="btn btn-primary" ng-click="approveRequest(host.username)">Approve</button></td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>

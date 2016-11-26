@@ -151,10 +151,16 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 			{
 				url:'property/:propertyId',
 				templateUrl : './templates/view.property.html',
-				controller : 'controllerProperties',
+				controller : 'controllerProperty',
 				params : {
 					selectedProperty : null
 				}
+			})
+		.state('home.finalPayment',
+			{
+				url:'checkout',
+				templateUrl : './templates/view.checkout.html',
+				controller : 'controllerCheckout'
 			})
 
 })

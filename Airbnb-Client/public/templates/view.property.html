@@ -1,489 +1,409 @@
-<!--adding for carousal	-->
-    
-
-
-
-    <div ng-controller="controllerProperties">
-        
-    <div id="carousel-propertyPage" class="carousel slide"  data-ride="carousel" style="height: 600px; max-height: 600px;" >
-        <div class="carousel-inner"  id="carousel-properties" role="listbox" style="width: 100%; height: 100%;">
-          <a data-toggle="modal" data-target="#modalViewPhotos">
-            <div class="item active">
-                <img src="../images/property1.jpg" alt="" width="100%"  height= "40px">
-            </div>
-            <div class="item">
-                <img src="../images/property2.jpg" alt="" width="100%" class="img-responsive">
-            </div>
-            <div class="item">
-              <img src="../images/property3.jpg" width="100%" height= "40px" alt="">
-            </div>
-            <div class="item">
-                <img src="../images/property2.jpg" width="100%" height= "40px" alt="">
-            </div>
-            <div class="property-thumbnails">
-              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalViewPhotos">View Photos</button>
-            </div>
-          </a>
+  <!--adding for carousal	-->
+<div>
+  <div id="carousel-propertyPage" class="carousel slide"  data-ride="carousel" style="height: 600px; max-height: 600px;" >
+    <div class="carousel-inner"  id="carousel-properties" role="listbox" style="width: 100%; height: 100%;">
+      <a data-toggle="modal" data-target="#modalViewPhotos">
+        <div class="item active">
+          <img src="../images/property1.jpg" alt="" width="100%"  height= "40px">
         </div>
-        <a class="left carousel-control" data-target="#carousel-propertyPage" role="button" data-slide="prev">
-          <span class="icon-prev" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" data-target="#carousel-propertyPage" role="button" data-slide="next">
-          <span class="icon-next" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-    </div><!-- /.carousel -->
-
-
-        <!-- model for sign up -->
-		<!--   this is for showing models for signup     -->
-		<div class="modal fade" id="modalViewPhotos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background-color: black; opacity: 0.9 !important;">
-    		<div class="modal-dialog">
-        		<div class="modal-content" style="background-color: black; opacity: 1 !important;">
-                <div style="margin-left: 30%; margin-bottom: 6%; padding-bottom: 6%;">
-                  <div class="col-md-6" style="padding-top: 10%; color: white;">
-                      <div style="margin-bottom: 4px;">
-                        <span class="share-btn-modal">Share:</span>
-                        <i class="icon icon-envelope social-icon-size share-btn-modal"></i>
-                        <i class="social-icon-size icon icon-facebook-messenger share-btn-modal"></i>
-                        <i class="icon icon-facebook social-icon-size share-btn-modal"></i>
-                        <i class="icon icon-code social-icon-size share-btn-modal"></i>
-                        <i class="icon icon-pinterest social-icon-size share-btn-modal"></i>
-                        <div class="share-btn-border"></div>
-                      </div>
-                      
-                  </div>
-                  <div class="col-md-6" style="padding-top: 10%; padding-right: 43%;">
-                    <div class="share-btn-button">
-                      <span> Price is : {{selectedProperty.price}} </span>
-                      <button type="button" class="btn btn-primary" id="checkAvailability">Check Availability
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style=" margin-top: 5%;">
-                  <div class="carousel-inner" id="carousel-properties" role="listbox"  style="margin-left: 30%; width: 40%; height: 40%">
-                    <div class="item active">
-                        <img src="images/property1.jpg" alt="First slide">
-                    </div>
-                    <div class="item">
-                      <img src="images/property2.jpg" alt="Second slide">
-                    </div>
-                    <div class="item">
-                      <img src="images/property3.jpg" alt="Third slide">
-                    </div>
-                  </div>
-                  <a class="left carousel-control" data-target="#carousel-example-generic" role="button" data-slide="prev">
-                    <span class="icon-prev" aria-hidden="true" style="font-size: 90px"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="right carousel-control" data-target="#carousel-example-generic" role="button" data-slide="next">
-                    <span class="icon-next" aria-hidden="true" style="font-size: 90px"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </div>
-        		</div>
-    		</div>
-		</div>
-
-    	
-    		
-        <div class="bg-white row row-condensed" style="padding-right: 0px; margin-right:0px;">
-       
-                                
-                                
-<!--                                left side starts here-->
-            <div class="col-md-7 landing__left-col"  style="padding-right: 0px; margin-right:0px;">
-    								<div class="property-seperation">
-    									<div class="space-5 col-md-10">
-      										<h2 class="landing__title-title">
-      											<span class="font-airbnb"><b>{{selectedProperty.title}}</b></span>
-      										</h2>
-                          <span class="font-airbnb-faded">{{selectedProperty.city}}</span>
-    									</div>
-                      <div class="col-md-2" style="float:right; text-align:right;">
-                        <img src="images/property1.jpg" class="img-circle" width="70px" height="70px">
-                      </div>
-                      <div>
-                        <div class="landing-step-collection">
-                          <div class="row row-condensed lys-vertical-align-middle-container">
-                            <div class="col-sm-12" style="text-align:center;">
-                              <hr>
-                              <div>
-                                <div class="col-sm-3">
-                                  <i class="icon icon-entire-place icon-size-2" aria-hidden="true"></i>
-                                  <br>
-                                  <span>{{selectedProperty.guestaccess}}</span>
-                                </div>
-                                <div class="col-sm-3">
-                                  <i class="icon icon-group icon-size-2" aria-hidden="true"></i>
-                                  <br>
-                                  <span>{{selectedProperty.noofguests}} Guests</span>
-                                </div>
-                                <div class="col-sm-3">
-                                  <i class="icon icon-rooms icon-size-2" aria-hidden="true"></i>
-                                  <br>
-                                  <span>{{selectedProperty.totbedsavailable}} Bedrooms</span>
-                                </div>
-                                <div class="col-sm-3">
-                                  <i class="icon icon-double-bed icon-size-2" aria-hidden="true"></i>
-                                  <br>
-                                  <span>{{selectedProperty.bedsforuse}} Bed</span>
-                                </div>
-                              </div>
-                            </div>
-
-                          </div>
-                        </div>
-                        <hr>
-                      </div>
-    									<div>
-    										<div class="landing-step-collection">
-    											<div class="row row-condensed lys-vertical-align-middle-container">
-  													<div class="va-container va-container-v va-container-h">
-  														<div class="va-middle">
-  															<div class="landing__step-content" style="transition-delay: 0ms;">
-  																<div class="h3 landing__subtitle-width">
-                                    <span style="font-size: 28px;">About this listing</span>
-                                  </div>
-  																<div class="landing__step-content-subtitle">
-                                    <span class="font-airbnb-about-listing">{{selectedProperty.description}}</span>
-                                    <br/>
-                                  </div>
-  																<span>
-                                    <span class="space-top-2" style="transition-delay: 0ms; display: inline-block;">
-                                      <div>
-                                        <a style="font-size:18px;">
-                                          Contact Host
-                                        </a>
-  																    </div>
-                                  </span>
-                                </span>
-  															</div>
-  														</div>
-  													</div>
-    												<div class="col-sm-2 lys-vertical-align-middle">
-    													<span></span>
-    												</div>
-    											</div>
-    										</div>
-    										<hr>
-    									</div>
-
-                      <!-- start of all the luxury list -->
-    									<div>
-    										<div class="landing-step-collection">
-    											<div class="row row-condensed lys-vertical-align-middle-container">
-    													<div class="va-container va-container-v va-container-h">
-    														<div class="va-middle">
-    															<div class="landing__step-content">
-    																<div style="margin-top:24px;margin-bottom:-8px;">
-
-
-                                      <div class="row">
-
-                                        <div class="col-md-3 font-airbnb-about-listing">
-                                          <div style="margin-bottom:24px;">
-                                            <p class="text_1lobov3-o_O-size_regular_1n7tijc">
-                                              <span>The space</span>
-                                            </p>
-                                          </div>
-                                        </div>
-
-                                        <div class="col-md-9 font-airbnb-faded" style="font-size: 18px">
-                                          <div class="row">
-                                            <div class="col-md-6">
-                                              <div style="margin-bottom:16px;">
-                                                <div>
-                                                  <span class="text_1lobov3-o_O-size_regular_1n7tijc-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3">
-                                                    <span>Accommodates:</span>
-                                                  </span>
-                                                  <span>
-                                                  </span>
-                                                  <span class="text_1lobov3-o_O-size_regular_1n7tijc-o_O-inline_10f0ge3">
-                                                    <span>{{selectedProperty.noofguests}}</span>
-                                                  </span>
-                                                </div>
-                                              </div>
-                                              <div style="margin-bottom:16px;">
-                                                <div>
-                                                  <span>
-                                                    <span>Bathrooms:</span>
-                                                  </span>
-                                                  <span>
-                                                  </span>
-                                                  <span>
-                                                    <span>{{selectedProperty.bathsforuse}}</span>
-                                                  </span>
-                                                </div>
-                                              </div>
-                                              <div style="margin-bottom:16px;">
-                                                <div>
-                                                  <span>
-                                                    <span>Bedrooms:</span>
-                                                  </span>
-                                                  <span> </span>
-                                                  <span>
-                                                    <span>{{selectedProperty.roomsinproperety}}</span>
-                                                  </span>
-                                                </div>
-                                              </div>
-                                              <div style="margin-bottom:16px;">
-                                                <div>
-                                                  <span>
-                                                    <span>Beds:</span>
-                                                  </span>
-                                                  <span> </span>
-                                                  <span>
-                                                    <span>{{selectedProperty.bedsforuse}}</span>
-                                                  </span>
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                              <div style="margin-bottom:16px;">
-                                                <div>
-                                                  <span>
-                                                    <span>Check In:</span>
-                                                  </span>
-                                                  <span> </span>
-                                                  <span>
-                                                    <span>Anytime after 4PM</span>
-                                                  </span>
-                                                </div>
-                                              </div>
-                                              <div style="margin-bottom:16px;">
-                                                <div>
-                                                  <span>
-                                                    <span>Check Out:</span>
-                                                  </span>
-                                                  <span>
-                                                  </span>
-                                                  <span>
-                                                    <span>11AM</span>
-                                                  </span>
-                                                </div>
-                                              </div>
-                                              <div style="margin-bottom:16px;">
-                                                <div>
-                                                  <a href="/s/Minato~ku--Japan" class="link-reset">
-                                                    <span>
-                                                      <span>Property type:</span>
-                                                    </span>
-                                                    <span> </span>
-                                                    <span>
-                                                      <span>{{selectedProperty.propertytype}}</span>
-                                                    </span>
-                                                  </a>
-                                                </div>
-                                              </div>
-                                              <div style="margin-bottom:16px;">
-                                                <div>
-                                                  <span>
-                                                    <span>Room type:</span>
-                                                  </span>
-                                                  <span> </span>
-                                                  <span>
-                                                    <span>{{selectedProperty.guestaccess}}</span>
-                                                  </span>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                          <div class="row">
-                                            <div class="col-md-6">
-                                              <div style="margin-bottom:16px;">
-                                                <p>
-                                                  <a href="#house-rules">
-                                                    <span style="font-size: 18px;">House Rules</span>
-                                                  </a>
-                                                </p>
-                                              </div>
-                                            </div>
-                                          </div>
-                                          <hr/>
-                                        </div>
-                                      </div><!--  end of row -->
-
-                        
--->
-
-
-                              
-
-
-
-                                <!-- start of fourth row -->
-                                <div class="row">
-
-                                  <div class="col-md-3 font-airbnb-about-listing">
-                                    <div style="margin-bottom:24px;">
-                                      <p class="text_1lobov3-o_O-size_regular_1n7tijc">
-                                        <span>Description</span>
-                                      </p>
-                                    </div>
-                                  </div>
-
-                                  <div class="col-md-9 font-airbnb-faded" style="font-size: 18px">
-                                    <div>
-                                      <div>
-                                        <span style="font-size: 18px;"><b>Sleeping arrangements</b></span>
-                                      </div>
-                                      <div class="landing__step-content-subtitle">
-                                        <span><i class="icon icon-size-2 bedroom-config-icon icon-double-bed"></i></span>
-                                        <br/>
-                                        <span class="font-airbnb-about-listing">{{selectedProperty.description}}</span>
-                                        <br/>
-                                      </div>
-                                    </div>
-                                  <div class="row">
-                                    <div class="col-md-6">
-                                      <div style="margin-bottom:16px;">
-                                        <p>
-                                          <a href="#house-rules">
-                                            <span style="font-size: 18px;">+ More</span>
-                                          </a>
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <hr/>
-                                </div>
-                              </div><!--  end of fourth row -->
-
-   
-
-                        
-
-                        <div>
-
-                        <div>
-                          
-
-
-
-                          <div>
-                            <h1> map section </h1>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                          </div>
-
-
-                                  </div>
-                                 </div><!-- landing step content -->
-    														</div>
-    													</div>
-    												<div class="col-sm-2 lys-vertical-align-middle">
-    													<span></span>
-    												</div>
-    											</div>
-    										</div>
-    									</div>
-
-    									<span></span>
-    								</div>
-    							</div>
-    
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-<!--                                bc-->
-             
-                </div>
-                    </div>
-    
-            <div class="col-md-5 landing_right-col" style="padding-right: 0px; margin-right:0px;">
-                  <!-- booking window -->
-<!--                  <div class="book-it">-->
-                <div class = "col-md-11">
-                    <div class="book-it__container fixed">
-
-                      <!-- first box -->
-                      <div class="box-border">
-                        <div class="row" style="padding:10px;">
-                          <div class="col-sm-8">
-                            <span> Price : {{selectedProperty.price}} </span>
-                          </div>
-                          <div class="col-sm-4">
-                            <span style="float:right"> per night </span>
-                          </div>
-                        </div>
-                      </div>
-                        
-                        
-<!--                        adding the form here for booking-->
-                        <form method="POST">
-                        <div class="panel">
-                          <div class="panel-body panel-light">
-                            <!-- check in check out guest number row -->
-                            <div class="row row-condensed" style="margin-bottom:20px;">
-                              <div class="col-md-11">
-                                <div class="row ">
-                                  <div class="col-md-6">
-                                    <label class="font-airbnb-faded">Check In</label>
-                                    <!-- <input type="text" class="form-control" placeholder="Check in" id="checkInProperty"> -->
-                                    <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <label class="font-airbnb-faded">Check Out</label>
-                                    <!-- <input type="text" class="form-control" placeholder="Check out" id="checkOutProperty"> -->
-                                    <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
-                                  </div>
-                                </div>
-
-                              </div>
-                              <div class="col-md-1">
-                                <label class="font-airbnb-faded">Guests</label>
-                                <select id="guestNumber" class="form-control">
-                                  <option selected>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div style="display:block; width: 100%;">
-                              <button type="button" class="btn btn-primary" style="width: 100%">Book</button>
-                              <div style="font-size: 10px; padding-left:25%; padding-top: 5%;">
-                            
-                              </div>
-                              <hr/>
-                            </div>
-                            
-                          </div>
-                        </div>
-                      </form>
-
-              
-                       
-                      </div>
-                    </div>
-                  </div>
-                    
-                    
+        <div class="item">
+          <img src="../images/property2.jpg" alt="" width="100%" class="img-responsive">
         </div>
-       
-
-    
+        <div class="item">
+          <img src="../images/property3.jpg" width="100%" height= "40px" alt="">
+        </div>
+        <div class="item">
+          <img src="../images/property2.jpg" width="100%" height= "40px" alt="">
+        </div>
+        <div class="property-thumbnails">
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalViewPhotos">View Photos</button>
+        </div>
+      </a>
     </div>
-   
+    <a class="left carousel-control" data-target="#carousel-propertyPage" role="button" data-slide="prev">
+      <span class="icon-prev" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" data-target="#carousel-propertyPage" role="button" data-slide="next">
+      <span class="icon-next" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  <div><!-- /.carousel -->
 
-    <script src="stylesheets/bootstrap-datepicker.js"></script>
-    <link rel='stylesheet' href='/stylesheets/datepicker.css'/>
+  <!-- model for sign up -->
+  <!--   this is for showing models for signup     -->
+  <div class="modal fade" id="modalViewPhotos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background-color: black; opacity: 0.9 !important;">
+  	<div class="modal-dialog">
+   		<div class="modal-content" style="background-color: black; opacity: 1 !important;">
+        <div style="margin-left: 30%; margin-bottom: 6%; padding-bottom: 6%;">
+          <div class="col-md-6" style="padding-top: 10%; color: white;">
+            <div style="margin-bottom: 4px;">
+              <span class="share-btn-modal">Share:</span>
+                <i class="icon icon-envelope social-icon-size share-btn-modal"></i>
+                  <i class="social-icon-size icon icon-facebook-messenger share-btn-modal"></i>
+                    <i class="icon icon-facebook social-icon-size share-btn-modal"></i>
+                      <i class="icon icon-code social-icon-size share-btn-modal"></i>
+                        <i class="icon icon-pinterest social-icon-size share-btn-modal"></i>
+                          <div class="share-btn-border"></div>
+            </div>    
+          </div>
+            <div class="col-md-6" style="padding-top: 10%; padding-right: 43%;">
+              <div class="share-btn-button media media-photo-block">
+                <span> Price is : {{selectedProperty.price}} </span>
+                  <button type="button" class="btn btn-primary" id="checkAvailability">Check Availability
+                  </button>
+              </div>
+            </div>
+        </div>
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style=" margin-top: 5%;">
+          <div class="carousel-inner" id="carousel-properties" role="listbox"  style="margin-left: 30%; width: 40%; height: 40%">
+            <div class="item active">
+              <img src="images/property1.jpg" alt="First slide">
+            </div>
+            <div class="item">
+              <img src="images/property2.jpg" alt="Second slide">
+            </div>
+            <div class="item">
+              <img src="images/property3.jpg" alt="Third slide">
+            </div>
+          </div>
+            <a class="left carousel-control" data-target="#carousel-example-generic" role="button" data-slide="prev">
+              <span class="icon-prev" aria-hidden="true" style="font-size: 90px"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" data-target="#carousel-example-generic" role="button" data-slide="next">
+              <span class="icon-next" aria-hidden="true" style="font-size: 90px"></span>
+              <span class="sr-only">Next</span>
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script>
-      $("#checkInProperty").datepicker();
-      $("#checkOutProperty").datepicker();
-      $('#checkAvailability').click(function(){
-        $('#modalViewPhotos').modal('hide');
-        $('#checkInProperty').focus();
-      });
-    </script>
+  <div class="bg-white row row-condensed" style="padding-right: 0px; margin-right:0px;">
+                                         
+  <!--left side starts here-->
+  <div class="col-md-7 landing__left-col"  style="padding-right: 0px; margin-right:0px;">
+    <div class="property-seperation">
+      <div class="space-5 col-md-10">
+        <h2 class="landing__title-title">
+        	<span class="font-airbnb"><b>{{selectedProperty.title}}</b></span>
+        </h2>
+        <span class="font-airbnb-faded">{{selectedProperty.city}}</span>
+      </div>
+      <div class="col-md-2" style="float:right; text-align:right;">
+        <img src="images/property1.jpg" class="img-circle" width="70px" height="70px">
+      </div>
+      <div>
+        <div class="landing-step-collection">
+          <div class="row row-condensed lys-vertical-align-middle-container">
+            <div class="col-sm-12" style="text-align:center;">
+              <hr>
+              <div>
+                <div class="col-sm-3">
+                  <i class="icon icon-entire-place icon-size-2" aria-hidden="true"></i>
+                    <br>
+                    <span>{{selectedProperty.guestaccess=="private_room"?"Private Room":selectedProperty.guestaccess== "shared_room" ? "Shared Room":selectedProperty.guestaccess=="entire_room"?"Entire Room":"NA" }}</span>
+                </div>
+                <div class="col-sm-3">
+                  <i class="icon icon-group icon-size-2" aria-hidden="true"></i>
+                  <br>
+                  <span>{{selectedProperty.noofguests}} Guests</span>
+                </div>
+                <div class="col-sm-3">
+                  <i class="icon icon-rooms icon-size-2" aria-hidden="true"></i>
+                  <br>
+                  <span>{{selectedProperty.totbedsavailable}} Bedrooms</span>
+                </div>
+                <div class="col-sm-3">
+                  <i class="icon icon-double-bed icon-size-2" aria-hidden="true"></i>
+                  <br>
+                  <span>{{selectedProperty.bedsforuse}} Bed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div>
+      	<div class="landing-step-collection">
+      		<div class="row row-condensed lys-vertical-align-middle-container">
+    				<div class="va-container va-container-v va-container-h">
+    				  <div class="va-middle">
+    						<div class="landing__step-content" style="transition-delay: 0ms;">
+    							<div class="h3 landing__subtitle-width">
+                    <span style="font-size: 28px;">About this listing</span>
+                  </div>
+    							<div class="landing__step-content-subtitle">
+                    <span class="font-airbnb-about-listing">{{selectedProperty.description}}</span>
+                    <br/>
+                  </div>
+    							<span>
+                    <span class="space-top-2" style="transition-delay: 0ms; display: inline-block;">
+                      <div>
+                        <a style="font-size:18px;">Contact Host</a>
+    									</div>
+                    </span>
+                  </span>
+    					  </div>
+    		      </div>
+    		    </div>
+      		<div class="col-sm-2 lys-vertical-align-middle">
+      			<span></span>
+      		</div>
+      	</div>
+      </div>
+      <hr>
+    </div>
+    <!-- start of all the luxury list -->
+    <div>
+      <div class="landing-step-collection">
+      	<div class="row row-condensed lys-vertical-align-middle-container">
+      		<div class="va-container va-container-v va-container-h">
+      			<div class="va-middle">
+      				<div class="landing__step-content">
+      					<div style="margin-top:24px;margin-bottom:-8px;">
+                  <div class="row">
+                    <div class="col-md-3 font-airbnb-about-listing">
+                      <div style="margin-bottom:24px;">
+                        <p class="text_1lobov3-o_O-size_regular_1n7tijc">
+                          <span>The space</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-md-9 font-airbnb-faded" style="font-size: 18px">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div style="margin-bottom:16px;">
+                            <div>
+                              <span class="text_1lobov3-o_O-size_regular_1n7tijc-o_O-weight_light_1jo1qff-o_O-inline_10f0ge3">
+                                <span>Accommodates:</span>
+                              </span>
+                              <span>
+                                </span>
+                                  <span class="text_1lobov3-o_O-size_regular_1n7tijc-o_O-inline_10f0ge3">
+                                    <span>{{selectedProperty.noofguests}}</span>
+                                  </span>
+                            </div>
+                          </div>
+                          <div style="margin-bottom:16px;">
+                            <div>
+                              <span>
+                                <span>Bathrooms:</span>
+                              </span>
+                              <span>
+                              </span>
+                              <span>
+                                <span>{{selectedProperty.bathsforuse}}</span>
+                              </span>
+                            </div>
+                          </div>
+                          <div style="margin-bottom:16px;">
+                            <div>
+                              <span>
+                                <span>Bedrooms:</span>
+                              </span>
+                              <span> </span>
+                                <span>
+                                  <span>{{selectedProperty.roomsinproperety==5?"1-5":selectedProperty.roomsinproperety==25?"6-25":selectedProperty.roomsinproperety==50?25-50:selectedProperty.roomsinproperety==55?"50+":"NA"}}</span>
+                                </span>
+                            </div>
+                          </div>
+                          <div style="margin-bottom:16px;">
+                            <div>
+                              <span>
+                                <span>Beds:</span>
+                              </span>
+                              <span> </span>
+                              <span>
+                                <span>{{selectedProperty.bedsforuse}}</span>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div style="margin-bottom:16px;">
+                            <div>
+                              <span>
+                                <span>Check In:</span>
+                              </span>
+                              <span> </span>
+                              <span>
+                                <span>Anytime after 4PM</span>
+                              </span>
+                            </div>
+                          </div>
+                          <div style="margin-bottom:16px;">
+                            <div>
+                              <span>
+                                <span>Check Out:</span>
+                              </span>
+                              <span>
+                              </span>
+                              <span>
+                                <span>11AM</span>
+                              </span>
+                            </div>
+                          </div>
+                          <div style="margin-bottom:16px;">
+                            <div>
+                              <a href="/s/Minato~ku--Japan" class="link-reset">
+                                <span>
+                                  <span>Property type:</span>
+                                </span>
+                                <span> </span>
+                                <span>
+                                  <span>{{selectedProperty.propertytype==2?"House":Apartment}}</span>
+                                </span>
+                              </a>
+                            </div>
+                          </div>
+                          <div style="margin-bottom:16px;">
+                            <div>
+                              <span>
+                                <span>Room type:</span>
+                              </span>
+                              <span> </span>
+                              <span>
+                                <span>{{selectedProperty.guestaccess=="private_room"?"Private Room":selectedProperty.guestaccess== "shared_room" ? "Shared Room":selectedProperty.guestaccess=="entire_room"?"Entire Room":"NA" }}</span>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <hr/>
+                    </div>
+                  </div><!--  end of row -->
+
+                  <!-- start of fourth row -->
+                  <div class="row">
+                    <div class="col-md-3 font-airbnb-about-listing">
+                      <div style="margin-bottom:24px;">
+                        <p class="text_1lobov3-o_O-size_regular_1n7tijc">
+                          <span>Description</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-md-9 font-airbnb-faded" style="font-size: 18px">
+                      <div>
+                        <div>
+                          <span style="font-size: 18px;"><b>Sleeping arrangements</b></span>
+                        </div>
+                        <div class="landing__step-content-subtitle">
+                          <span><i class="icon icon-size-2 bedroom-config-icon icon-double-bed"></i></span>
+                          <br/>
+                          <span class="font-airbnb-about-listing">{{selectedProperty.bedsforuse}}Beds</span>
+                          <br/>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div style="margin-bottom:16px;">
+                            <p>
+                              <a href="#house-rules">
+                                <span style="font-size: 18px;">+ More</span>
+                              </a>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr/>
+                    </div>
+                  </div><!--  end of fourth row -->
+                  <div>
+                    <div>
+                      <div>
+                        <h1> map section </h1>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                      </div>
+                    </div>
+                  </div><!-- landing step content -->
+      					</div>
+      				</div>
+      				<div class="col-sm-2 lys-vertical-align-middle">
+      					<span></span>
+      				</div>
+      			</div>
+      		</div>
+      	</div>
+      	<span></span>
+      </div>
+    </div>                                  
+  </div>
+</div>
+<div class="col-md-5 landing_right-col" style="padding-right: 0px; margin-right:0px;">
+<!-- booking window -->
+<!-- <div class="book-it">-->
+  <div class = "col-md-11">
+    <div class="book-it__container fixed">
+    <!-- first box -->
+      <div class="box-border">
+        <div class="row" style="padding:10px;">
+          <div class="col-sm-8">
+            <span> Price : {{selectedProperty.price}} </span>
+          </div>
+          <div class="col-sm-4">
+            <span style="float:right"> per night </span>
+          </div>
+        </div>
+      </div>
+<!--                        adding the form here for booking-->
+      <form method="POST">
+        <div class="panel">
+          <div class="panel-body panel-light">
+            <!-- check in check out guest number row -->
+            <div class="row row-condensed" style="margin-bottom:20px;">
+              <div class="col-md-11">
+                <div class="row ">
+                  <div class="col-md-6">
+                    <label class="font-airbnb-faded">Check In</label>
+                    <!-- <input type="text" class="form-control" placeholder="Check in" id="checkInProperty"> -->
+                    <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="font-airbnb-faded">Check Out</label>
+                      <!-- <input type="text" class="form-control" placeholder="Check out" id="checkOutProperty"> -->
+                    <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1">
+                <label class="font-airbnb-faded">Guests</label>
+                  <select id="guestNumber" class="form-control">
+                    <option selected>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                  </select>
+              </div>
+            </div>
+            <div style="display:block; width: 100%;">
+              <button type="button" class="btn btn-primary" ng-click="checkAvailability()" style="width: 100%">Book</button>
+                <div style="font-size: 10px; padding-left:25%; padding-top: 5%;"></div>
+                <hr/>
+            </div>  
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>      
+</div>
+  
+<script src="stylesheets/bootstrap-datepicker.js"></script>
+<link rel='stylesheet' href='/stylesheets/datepicker.css'/>
+<script>
+  $("#checkInProperty").datepicker();
+  $("#checkOutProperty").datepicker();
+  $('#checkAvailability').click(function(){
+    $('#modalViewPhotos').modal('hide');
+    $('#checkInProperty').focus();
+  });
+</script>

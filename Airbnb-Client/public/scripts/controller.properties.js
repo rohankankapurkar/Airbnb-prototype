@@ -134,10 +134,7 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
 
   }
 
-  // $scope.getRange = function(n){
-  //   console.log("------------------get range---------------");
-  //   return new Array(n);
-  // }
+
 
   $scope.transitionToProperty = function(propertyId){
     $scope.selectedProperty = [];
@@ -145,7 +142,7 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
       if($scope.properties[i]._id == propertyId)
         $scope.selectedProperty = $scope.properties[i];
     }
-    console.log($scope.selectedProperty);
+    
     $state.go('home.property', {selectedProperty: $scope.selectedProperty});
   }
 
