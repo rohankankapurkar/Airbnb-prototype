@@ -239,8 +239,9 @@ Already have an account ?		            	<a data-toggle="modal" data-dismiss="mod
 						<label class="home-main-search-tag">Where</lable>
 					</div>
 					<div>
-						<input type="text" class="col-sm-3" id="home-main-dest" placeholder="Destination" ng-model="Destination">
+						<input type="text" class="col-sm-3" id="home-main-dest" placeholder="Destination" ng-model="Destination" ng-autocomplete="resultCities" details="cityDetails" options="cityOptions">
 					</div>
+					<div> {{resultCities}} </div>
 				</div>
 				<div class="home-main-search-flds col-sm-4" id="home-when-search">
 
@@ -265,7 +266,7 @@ Already have an account ?		            	<a data-toggle="modal" data-dismiss="mod
                     </div>
 
 					<div class="home-main-search-btn" style="float : left ;">
-						<button id="home-main-srch-btn" class="btn btn-large btn-primary" ng-click="transitToProperties(Destination)">Search</button>
+						<button id="home-main-srch-btn" class="btn btn-large btn-primary" ng-click="transitToProperties(resultCities)">Search</button>
 					</div>
                 </div>
 

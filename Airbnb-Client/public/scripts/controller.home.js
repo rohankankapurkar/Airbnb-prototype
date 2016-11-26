@@ -23,6 +23,11 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
 	$scope.signedhost = false;
 	$scope.admin = false;
 
+	//city search module
+	$scope.resultCities = '';
+  $scope.cityOptions = null;
+  $scope.cityDetails = '';
+
 	/*
 	 |-----------------------------------------------------------
 	 | Check for user session
@@ -32,12 +37,12 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
 		method : "POST",
 		url : '/getusersession'
 	}).success(function(data) {
-		
-		if(data.statuscode == 0) 
+
+		if(data.statuscode == 0)
 		{
 			if(data.credentials.isadmin == true)
 			{
-				
+
 				$scope.admin = true;
     			$scope.signedin = false;
 				$scope.default = false;
@@ -47,22 +52,22 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
 			else
 			{
 				if(data.credentials.ishost == true)
-				{	
+				{
 					$scope.signedin = false;
 					$scope.signedhost = true;
 					$scope.admin = false;
 					$scope.default = false;
 				}
 				else
-				{	
+				{
 					$scope.signedhost = false;
 					$scope.signedin = true;
-					$scope.default = false;		
-					$scope.admin = false;			
+					$scope.default = false;
+					$scope.admin = false;
 				}
 			}
 		}
-		else 
+		else
 		{
 			$scope.signedin = false;
 			$scope.signedhost = false;
@@ -135,7 +140,7 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
 	//Function for clearing up the invalid input messages showed after sign up
 	/*
 	   |-----------------------------------------------------------
-	   | Clear Invalid Input Messages 
+	   | Clear Invalid Input Messages
 	   |-----------------------------------------------------------
 	  */
 	$scope.clearInvSignUpMessages = function(){
@@ -146,11 +151,11 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
 		$scope.invBday = "";
 		$scope.regsuccess = "";
 	}
-	
+
 	//Function applies validations to the input values submitted by the user upon sign up
 	/*
 	   |-----------------------------------------------------------
-	   | Apply Validations 
+	   | Apply Validations
 	   |-----------------------------------------------------------
 	  */
 	$scope.applyValidations = function(){
@@ -175,7 +180,7 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
 			validationsFlag = true;
 		}
 		else if(fnameValidation != null && lnameValidation != null)
-		{	
+		{
 			$scope.invLname = "First Name & Last Name Invalid";
 			validationsFlag = true;
 		}
@@ -196,13 +201,13 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
 		return validationsFlag;
 	}
 
-	//Function for sign in 
+	//Function for sign in
 	/*
    |-----------------------------------------------------------
    | User signin
    |-----------------------------------------------------------
   */
-  $scope.signin = function() 
+  $scope.signin = function()
   {
 	    $http({
       		method : "POST",
@@ -211,18 +216,18 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
         		"username": $scope.email,
         		"password": $scope.password
       		}
-    	}).success(function(data) 
+    	}).success(function(data)
     	{
     	  	if(data.statuscode == 0)
     		{
-    			window.location = "/";				
+    			window.location = "/";
     		}
     		else
     		{
-    			$scope.invLogin = "Invalid Username or Password";	
+    			$scope.invLogin = "Invalid Username or Password";
     		}
-    	
-    	}).error(function(error) 
+
+    	}).error(function(error)
     	{
 			alert("Internal sever error occured");
 			window.setTimeout(function()
@@ -234,35 +239,35 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
   	};
 
 
-  	//Function for sign in 
+  	//Function for sign in
 	/*
    |-----------------------------------------------------------
    | User Logout
    |-----------------------------------------------------------
   */
-  $scope.logout = function() 
+  $scope.logout = function()
   {
 	    $http({
       		method : "POST",
       		url : '/user/logout'
-    	}).success(function(data) 
+    	}).success(function(data)
     	{
     	  	if(data.statuscode == 0)
     		{
     			$scope.signedin = false;
 				$scope.signedhost = false;
-				$scope.default = true;		
-				window.location = '/';		
+				$scope.default = true;
+				window.location = '/';
     		}
     		else
     		{
     			$scope.signedin = false;
 				$scope.signedhost = false;
-				$scope.default = true;		
-				window.location = '/';    			
+				$scope.default = true;
+				window.location = '/';
     		}
-    	
-    	}).error(function(error) 
+
+    	}).error(function(error)
     	{
 			alert("Internal sever error occured");
 			window.setTimeout(function()
@@ -273,15 +278,19 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
     	});
   	};
 
-  	//Function for making the transition to  
+  	//Function for making the transition to
 	/*
    |-----------------------------------------------------------
    | Transition to Properties
    |-----------------------------------------------------------
   */
   $scope.transitToProperties = function(city){
-  	console.log("In transition to cities")
-  	$state.go('home.properties',{city : city})
+  	console.log("In transition to cities");
+		if(city.indexOf(',') > -1)
+			var getCityName = city.substring(0, city.indexOf(','));
+		else
+			var getCityName = city;
+  	$state.go('home.properties',{city : getCityName})
   }
 
 

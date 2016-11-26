@@ -2,7 +2,7 @@
  * http://usejsdoc.org/
  */
 
-var airbnbApp = angular.module('airbnbApp',['ui.router','uiSlider','ngMaterial', 'ngMessages', 'material.svgAssetsCache']);
+var airbnbApp = angular.module('airbnbApp',['ui.router','uiSlider','ngMaterial', 'ngMessages', 'material.svgAssetsCache', 'ngAutocomplete']);
 //handles client side routing
 airbnbApp.config(function($stateProvider, $urlRouterProvider){
 
@@ -120,7 +120,7 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 		|-----------------------------------------------------------
 		| Admin States
 		|-----------------------------------------------------------
-		*/			
+		*/
 		.state('home.admin',
 			{
 				url:'admin',
