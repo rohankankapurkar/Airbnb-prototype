@@ -51,13 +51,11 @@
 					</ul>
 					<!--This is the header for an Admin-->
 					<div class="nav navbar-nav navbar-left" role="search" ng-show="admin">
-						<form action="/s" class="search-form">
+						<form ng-submit="getHosts()" class="search-form">
 							<div class="search-bar">
-								<i class="header-icon icon-search-alt-gray search-icon"></i> <input
-									type="search" placeholder="Search Hosts" autocomplete="off"
-									name="location" data-date-placeholder="mm/dd/yyyy"
-									class="location" /> <input type="hidden" name="source"
-															   value="hdr" />
+								<i class="header-icon icon-search-alt-gray search-icon"></i>
+								<input type="text" placeholder="Search Hosts" autocomplete="on" ng-model="area" name="area" class="location" />
+								<input type="submit" style="visibility: hidden;" />
 							</div>
 						</form>
 					</div>
