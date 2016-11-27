@@ -293,5 +293,25 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
   	$state.go('home.properties',{city : getCityName})
   }
 
+	$scope.getHosts = function()
+	{
+		$http({
+			method : "POST",
+			url : '/admin/searchHosts',
+			data :{
+				area : $scope.area,
+			}
+		}).success(function(data)
+		{
+			$scope.Hosts = data.data;
+			$state.go('home.getHosts',{Hosts : $scope.Hosts});
+			console.log("Success");
+
+		})
+			.error(function(data){
+				console.log("Error")
+			})
+
+	}
 
 })

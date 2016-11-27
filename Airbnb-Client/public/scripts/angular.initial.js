@@ -133,6 +133,15 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 				templateUrl : './templates/view.admin.approvals.html',
 				controller : 'controllerAdminApproval',
 			})
+		.state('home.getHosts',
+			{
+				url:'admin/getHosts',
+				templateUrl : './templates/view.admin.getHosts.html',
+				controller : 'controllerHome',
+				params : {
+					Hosts : null
+				}
+			})
 		/*
 		|-----------------------------------------------------------
 		| Get properties

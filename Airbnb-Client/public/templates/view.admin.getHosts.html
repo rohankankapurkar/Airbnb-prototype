@@ -1,0 +1,19 @@
+<div class="pending-admin-apprs-main row" style="width : 60%; margin : auto">
+    <p>HOSTS IN THIS AREA:</p>
+    <table class="table">
+        <thead>
+        <tr>
+
+            <th class="col-md-2">Host Name</th>
+             <th class="col-md-2">Details</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="host in Hosts">
+            <td class="col-md-2">{{host.firstname}}&nbsp;&nbsp;&nbsp;{{host.lastname}}</td>
+            <td class="col-md-2"><button class="btn btn-primary" ng-click="viewDetails(host.id)">View Details</button></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
