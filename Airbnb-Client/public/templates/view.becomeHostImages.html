@@ -1,5 +1,5 @@
 <script src="https://ucarecdn.com/widget/2.10.1/uploadcare/uploadcare.full.min.js" charset="utf-8"></script>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
 <script>
     UPLOADCARE_PUBLIC_KEY = '2c62456a3dcc92792dbb';
     UPLOADCARE_LOCALE = 'en';
@@ -117,7 +117,7 @@
                                                   </h5>
                                               </span>
                                           </a>
-                                                   <a class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary"  ng-click="becomeHostDesc()" id="step2-BecomeHostImages">
+                                                   <a class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary"  ng-click="becomeHostDesc()">
                                                        <div class="btn-progress-next__text">
 																<span>Next</span>
                                                         </div>
@@ -140,33 +140,4 @@
         </div>
 
     </div>
-    <script>
-    var images=[];
-    $('#hostImage').change( function(event)
-    {
-        var total_file=document.getElementById("hostImage").files.length;
-        for(var i=0;i<total_file;i++)
-        {
-            var tmppath = URL.createObjectURL(event.target.files[i]);
-            images.push(tmppath);
-            $('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files[i])+"' height='200' width='200'>&nbsp;&nbsp;&nbsp;");
-            document.getElementById('mainDiv').style.visibility="hidden";
-            document.getElementById('mainDiv2').style.visibility="visible";
-
-        }
-    });
-    $('#hostImage2').change( function(event)
-    {
-        var total_file=document.getElementById("hostImage2").files.length;
-        for(var i=0;i<total_file;i++)
-        {
-            var tmppath = URL.createObjectURL(event.target.files[i]);
-            images.push(tmppath);
-
-            $('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files[i])+"' height='200' width='200'>&nbsp;&nbsp;&nbsp;");
-
-        }
-    });
-
-</script>
 </main>
