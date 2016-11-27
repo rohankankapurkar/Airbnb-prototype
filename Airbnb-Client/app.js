@@ -44,6 +44,7 @@ var bookproperty = require("./routes/user/user.bookproperty")
 var host = require("./routes/host/host.property"); //contains all function related to adding and deleting of properties
 var validator = require("./routes/misc/validator"); //contains all functions related to validation
 var admin = require("./routes/admin/admin.approvals"); //contains all functions related to admin approvals
+var adminSearch = require("./routes/admin/admin.search"); //contains all functions related to admin searching hosts
 var property = require("./routes/properties/properties.getproperties"); //contains function related get city properties
 
 
@@ -129,7 +130,7 @@ app.post('/host/getpendingpropertyrequests', host.getpendingpropertyrequests);
 app.post('/host/getuserpropdata', host.getuserpropdata);
 app.get('/admin/getadminapprovals',admin.getadminapprovals);
 app.post('/admin/approve',admin.approveHostRequest);
-
+app.post('/admin/searchHosts',adminSearch.searchHosts);
 
 mongo.connect(mongoSessionConnectURL, function(){
 	console.log('Connected to mongo at: ' + mongoSessionConnectURL);
