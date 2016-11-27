@@ -59,3 +59,47 @@ exports.approveRequest = function(msg, callback){
 		});
 	});
 }
+
+
+
+// This function searches the host's based on area.
+exports.searchHosts = function(msg, callback){
+
+	var res = {};
+	var ids =[];
+
+
+	mongo.connect(function(){
+
+		var hosts = mongo.collection('users');
+		var props  =mongo.collection('properties');
+
+
+		props.find({city:msg.area}).toArray(function(err, result){
+
+			if(err){
+				console.log('Error occurred while getting the properties collection');
+				res['statuscode'] = 1;
+				res['message'] = "Unexpected error occurred on the server.";
+				callback(null, res);
+			}else{
+
+				// get all hosts from users collection using host_id from properties results
+				for (var i = 0; i < result.length; i++) {
+					ids.push(result[i].host_id);
+				}
+				hosts.find({id:{$in:ids}}).toArray(function(err, resultHosts){
+					if(err){
+						console.log("Error occurred while getting the Hosts");
+						res['statuscode'] = 1;
+						res['message'] = "Unexpected Error occurred on server while getting the hosts";
+					}else{
+						res['statuscode'] = 0;
+						res['data'] = resultHosts;
+					}
+					callback(null, res);
+				});
+			}
+		});
+	});
+}
