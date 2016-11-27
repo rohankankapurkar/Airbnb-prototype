@@ -20,6 +20,13 @@ airbnbApp.controller('controllerBecomeHostStep3',function($scope,$state,$log,$ht
         {
             $scope.secondstep.biddingavailable = $scope.bidding;
             $scope.secondstep.currentBid = $scope.price;
+            $scope.secondstep.currentBidder = "";
+            $scope.secondstep.bidFlag = "yes";
+            $scope.secondstep.propertysold = "no";
+            var bidRawStartDate = new Date();
+            var bidRawEndDate = bidRawStartDate;
+            $scope.secondstep.bidStartDate = bidRawStartDate;
+            $scope.secondstep.bidEndDate = bidRawEndDate;
         }
         $state.go('home.becomeHostDates', {pricestep : $scope.secondstep});
     };

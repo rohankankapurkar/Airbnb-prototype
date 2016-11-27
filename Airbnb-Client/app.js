@@ -47,6 +47,8 @@ var admin = require("./routes/admin/admin.approvals"); //contains all functions 
 var adminSearch = require("./routes/admin/admin.search"); //contains all functions related to admin searching hosts
 var property = require("./routes/properties/properties.getproperties"); //contains function related get city properties
 var userGetTrips = require("./routes/user/user.getTrips"); //contains function related get city properties
+var bidding = require("./routes/bidding/bidding.bidfunctions"); //has bidding functions
+
 
 
 var mongoSessionConnectURL = "mongodb://localhost:27017/sessions";
@@ -133,6 +135,7 @@ app.post('/host/disapproverequest', host.disapproverequest);
 app.get('/admin/getadminapprovals',admin.getadminapprovals);
 app.post('/admin/approve',admin.approveHostRequest);
 app.post('/admin/searchHosts',adminSearch.searchHosts);
+app.post('/bid',bidding.placebid);
 
 //trips section
 app.post('/getUserTrips', userGetTrips.getTrips);

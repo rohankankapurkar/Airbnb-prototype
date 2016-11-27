@@ -402,12 +402,12 @@
                   <div class="col-md-6">
                     <label class="font-airbnb-faded">Check In</label>
                     <!-- <input type="text" class="form-control" placeholder="Check in" id="checkInProperty"> -->
-                    <md-datepicker id="fromdate" ng-model="bidfromdate" md-placeholder="Enter date" disabled=""></md-datepicker>
+                    <md-datepicker id="bidfromdate" ng-model="bidfromdate" md-placeholder="Enter date" disabled=""></md-datepicker>
                   </div>
                   <div class="col-md-6">
                     <label class="font-airbnb-faded">Check Out</label>
                       <!-- <input type="text" class="form-control" placeholder="Check out" id="checkOutProperty"> -->
-                    <md-datepicker id="tilldate" ng-model="bidtilldate" md-placeholder="Enter date" disabled=""></md-datepicker>
+                    <md-datepicker id="bidtilldate" ng-model="bidtilldate" md-placeholder="Enter date" disabled=""></md-datepicker>
                   </div>
                 </div>
               </div>
@@ -415,7 +415,7 @@
             <div style="display:block; width: 100%;">
               <!-- <h4>{{selectedProperty.currentBid}}</h4> -->
               <h4>Current Bid : ${{selectedProperty.currentBid}}</h4>
-              <input type="text" placeholder="Enter your bid" class="form-control" style="padding-bottom: 10px">
+              <input type="text" placeholder="Enter your bid" ng-model="bidamount" class="form-control" style="padding-bottom: 10px">
               <button type="button" id="prop-bid-button" class="btn btn-primary" ng-click="placeYourBid()" style="width: 100%; margin-top: 10px" id="propertyPage-book">Place Bid</button>
                 <div style="font-size: 10px; padding-left:25%; padding-top: 5%;"></div>
                 <hr/>
