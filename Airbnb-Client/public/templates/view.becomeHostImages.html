@@ -1,4 +1,41 @@
+<script src="https://ucarecdn.com/widget/2.10.1/uploadcare/uploadcare.full.min.js" charset="utf-8"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+    UPLOADCARE_PUBLIC_KEY = '2c62456a3dcc92792dbb';
+    UPLOADCARE_LOCALE = 'en';
+    UPLOADCARE_LIVE = false;
+</script>
+<script>
+    var images=[];
+    $("#propImage").on("click", function() {
 
+        uploadcare.openDialog(null, {
+            imagesOnly: true
+        }).done(function(file) {
+            file.done(function(fileInfo) {
+                images.push(fileInfo.cdnUrl);
+                $('#image_preview').append("<img src='"+fileInfo.cdnUrl+"' height='200' width='200' >&nbsp;&nbsp;&nbsp;");
+                document.getElementById('mainDiv').style.visibility="hidden";
+                document.getElementById('mainDiv2').style.visibility="visible";
+
+            });
+        });
+    });
+    $("#propImage1").on("click", function() {
+
+        uploadcare.openDialog(null, {
+            imagesOnly: true
+        }).done(function(file) {
+            file.done(function(fileInfo) {
+                images.push(fileInfo.cdnUrl);
+                $('#image_preview').append("<img src='"+fileInfo.cdnUrl+"' height='200' width='200' >&nbsp;&nbsp;&nbsp;");
+
+
+            });
+        });
+    });
+
+</script>
 
 <div class="flash-container"></div>
 
@@ -20,10 +57,10 @@
 
                                          <br>
                                          <div class="col-sm-12">
-                                             <input class="input-file" type="file" id="hostImage2" name="hostImage2" ng-model="hostImage2"
+                                             <button class="input-file" type="hidden" id="propImage1" name="propImage1" ng-model="propImage1"
                                                     accept="image/jpg, image/jpeg, image/png, image/gif"
                                                     multiple />
-                                             <label class="col label--no-margin-padding" for="hostImage2">
+                                             <label class="col label--no-margin-padding" for="propImage1">
                                          <div class="col col-center">
                                              <div class="btn btn-primary btn-jumbo">
                                                  <i class="icon icon-upload"></i><span>	</span>
@@ -39,10 +76,10 @@
                                  <div class="row no-margin-h">
                                    <div class="col-sm-12 space-4">
                                        <div>
-                                             <input class="input-file" type="file" id="hostImage" name="hostImage" ng-model="hostImage"
+                                             <button class="input-file" type="hidden" id="propImage" name="propImage" ng-model="propImage"
                                                            accept="image/jpg, image/jpeg, image/png, image/gif"
                                                            multiple />
-                                                    <label class="col label--no-margin-padding" for="hostImage">
+                                                    <label class="col label--no-margin-padding" for="propImage">
                                                         <img src="" id="image1" width="200" style="display:none;" />
                                                         <br>
                                                         <div id="hostImageblob" ng-model="hostImageblob"></div>
