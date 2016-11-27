@@ -1,19 +1,29 @@
 airbnbApp.controller('controllerProperty',function($scope,$http,$state,$stateParams){
 
-	$scope.checkinDate = "";
-	$scope.checkoutDate = "";
 
-/*	if (typeof(Storage) !== "undefined") {
+
+	if (typeof(Storage) !== "undefined") {
     	if($state.params.selectedProperty != null && $state.params.selectedProperty != "" && $state.params.selectedProperty != undefined )
     	{
-      		localStorage.setItem('selectedProperty',$state.params.selectedProperty);
+      		localStorage.setItem('selectedProperty',JSON.stringify($state.params.selectedProperty));
     	}
-  	}*/ 
+  	} 
 
-	//$scope.selectedProperty = localStorage.getItem('selectedProperty');
-	$scope.selectedProperty = $state.params.selectedProperty;
-	$scope.username = "";
+	$scope.selectedProperty = JSON.parse(localStorage.getItem('selectedProperty'));
+
+	$scope.checkinDate = "";
+	$scope.checkoutDate = "";
+	
+	$scope.minDate = $scope.selectedProperty.from;
+	$scope.maxDate = $scope.selectedProperty.till;
+
 	console.log($scope.selectedProperty);
+	console.log($scope.minDate+" "+$scope.maxDate);
+
+	$scope.username = "";
+
+	$scope.isBiddingAvailable = "";
+	
 		
 
 	$scope.checkUserSession = function(){

@@ -365,12 +365,12 @@
                   <div class="col-md-6">
                     <label class="font-airbnb-faded">Check In</label>
                     <!-- <input type="text" class="form-control" placeholder="Check in" id="checkInProperty"> -->
-                    <md-datepicker id="fromdate" ng-model="fromdate" md-placeholder="Enter date"></md-datepicker>
+                    <md-datepicker id="fromdate" ng-model="fromdate" md-placeholder="Enter date" ></md-datepicker>
                   </div>
                   <div class="col-md-6">
                     <label class="font-airbnb-faded">Check Out</label>
                       <!-- <input type="text" class="form-control" placeholder="Check out" id="checkOutProperty"> -->
-                    <md-datepicker id="tilldate" ng-model="tilldate" md-placeholder="Enter date"></md-datepicker>
+                    <md-datepicker id="tilldate" ng-model="tilldate" md-placeholder="Enter date" ></md-datepicker>
                   </div>
                 </div>
               </div>
@@ -391,6 +391,44 @@
           </div>
         </div>
       </form>
+
+      <form method="POST" ng-show="isBiddingAvailable">
+        <div class="panel">
+          <div class="panel-body panel-light">
+            <!-- check in check out guest number row -->
+            <div class="row row-condensed" style="margin-bottom:20px;">
+              <div class="col-md-11">
+                <div class="row ">
+                  <div class="col-md-6">
+                    <label class="font-airbnb-faded">Check In</label>
+                    <!-- <input type="text" class="form-control" placeholder="Check in" id="checkInProperty"> -->
+                    <md-datepicker id="fromdate" ng-model="fromdate" md-placeholder="Enter date" ></md-datepicker>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="font-airbnb-faded">Check Out</label>
+                      <!-- <input type="text" class="form-control" placeholder="Check out" id="checkOutProperty"> -->
+                    <md-datepicker id="tilldate" ng-model="tilldate" md-placeholder="Enter date" ></md-datepicker>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1">
+                <label class="font-airbnb-faded">Guests</label>
+                  <select id="guestNumber" class="form-control">
+                    <option selected>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                  </select>
+              </div>
+            </div>
+            <div style="display:block; width: 100%;">
+              <button type="button" class="btn btn-primary" ng-click="checkAvailability()" style="width: 100%" id="propertyPage-book">Book</button>
+                <div style="font-size: 10px; padding-left:25%; padding-top: 5%;"></div>
+                <hr/>
+            </div>
+          </div>
+        </div>
+      </form>
+
     </div>
   </div>
 </div>
