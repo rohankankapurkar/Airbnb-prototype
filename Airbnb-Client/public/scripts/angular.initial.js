@@ -108,19 +108,19 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 			{
 				url:'/trips',
 				templateUrl : './templates/view.trips.html',
-				controller : 'controllerProfile'
+				controller : 'controllerYourTrips'
 			})
 		.state('home.profile.trips.upcomingTrips',
 		  {
 		    url:'/trips/upcomingTrips',
 		    templateUrl : './templates/view.trips.upcoming.html',
-		    controller : 'controllerProfile'
+		    controller : 'controllerYourTrips'
 		  })
 		.state('home.profile.trips.compeletedTrips',
 		  {
 		    url:'/trips/completedTrips',
 		    templateUrl : './templates/view.trips.completed.html',
-		    controller : 'controllerProfile'
+		    controller : 'controllerYourTrips'
 		  })
 		.state('home.profile.dashboard',
 		  {
@@ -132,7 +132,7 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 		  {
 		    url:'/approvals',
 		    templateUrl : './templates/view.approvals.html',
-		    controller : 'controllerProfile'
+		    controller : 'controllerApprovals'
 		  })
 				/*
 		|-----------------------------------------------------------
