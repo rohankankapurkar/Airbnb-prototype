@@ -71,6 +71,7 @@ exports.bookProperty = function(msg, callback){
 
                     // Make entry into the booked_properties so that host can review the user's request and approve them.
                     var booking_params = {'prop_id' : propId, 'user_id':userId, 'from_date':bookDateFrom, 'till_date':bookDateTo, 'accepted':false, 'host_id':hostId};
+
                     mysql.executeQuery("INSERT INTO BOOKED_PROPERTIES SET ? ", booking_params, function(booking_result){
                         console.log('Inserted new booking into the table');
                         res['statuscode'] = 0; 

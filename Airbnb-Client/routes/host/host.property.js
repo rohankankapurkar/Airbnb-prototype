@@ -83,13 +83,12 @@ exports.getavailabledates = function(req, res){
 
 exports.approveuserrequest = function(req, res){
 
-	console.log(req.param('prop_id'));	
 	var msg_payload = {propid: req.param('propid'),
 					userid : req.param('userid'),
 					fromdate : req.param('fromdate'),
 					tilldate : req.param('tilldate')
 		};
- 
+
 	mq_client.make_request('approveUserRequest_queue', msg_payload, function(err, result){
 		if(err){
 			res.send({statuscode:1, message : "Error occurred while getting avaiable dates"});
@@ -109,7 +108,7 @@ exports.getpropertyavailable = function(req, res){
 					tilldate : req.param('tilldate')
 		};
  
-	mq_client.make_request('checkPropertyAvailable_queue_queue', msg_payload, function(err, result){
+	mq_client.make_request('checkPropertyAvailable_queue', msg_payload, function(err, result){
 		if(err){
 			res.send({statuscode:1, message : "Error occurred while getting avaiable dates"});
 		}else{

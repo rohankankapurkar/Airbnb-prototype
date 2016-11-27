@@ -225,18 +225,20 @@ exports.checkPropertyAvailable = function(msg, callback){
 	var propid = msg.propid;
 	var fromdate = msg.fromdate;
 	var tilldate = msg.tilldate;
+	var userid = msg.userid;
 
 	var params = {"prop_id" : propid};
 	res['data'] = {"avaiable" : false};
 
-	mysql.executeQuery("SELECT * FROM AVAILABLE_DATES WHERE ? ", params, function(result){
 
+	mysql.executeQuery("SELECT * FROM AVAILABLE_DATES WHERE ? ", params, function(result){
+		console.log(result);
 		if(result){
 			var counter = 0;
 			for(counter = 0; counter < result.length; counter++){
 
-				var fromdate_db = result[counter]['from_date'];
-				var tilldate_db = result[counter]['till_date'];
+				var fromdate_db = moment(result[counter]['from_date']).format('YYYY-MM-DD');
+				var tilldate_db = moment(result[counter]['till_date']).format('YYYY-MM-DD');
 
 				if(fromdate >= fromdate_db && tilldate <= tilldate_db){
 					res['data'] = {"avaiable" : true};
@@ -253,15 +255,16 @@ exports.checkPropertyAvailable = function(msg, callback){
 exports.approveUserRequest = function(msg, callback){
 
 	var res = {"statuscode" : 0, "message":""};
-
+	console.log('Congrats');
 	var user_id = msg.userid;
 	var prop_id =  msg.propid;
 	var from_date = msg.fromdate;
 	var till_date = msg.tilldate;
 
+	console.log(from_date + "------" + till_date + user_id + prop_id);
 	// This will get the user which is to be approved:
-	var params1 = {"user_id" : user_id, "prop_id" : prop_id, "approved" : 0}
-	mysql.executeQuery("SELECT * FROM BOOKED_PROPERTIES WHERE ?", params1, function(result1){
+	var params1 = [{"user_id" : user_id},{ "prop_id" : prop_id}, {"approved" : 0}]
+	mysql.executeQuery("SELECT * FROM BOOKED_PROPERTIES WHERE ? ", params1, function(result1){
 
 		if(result1){
 			
@@ -270,17 +273,19 @@ exports.approveUserRequest = function(msg, callback){
 			mysql.executeQuery("UPDATE BOOKED_PROPERTIES SET approved = 1 WHERE ? ", params2, function(result2){
 
 				//This call database to update avaiable dates 
-				mysql.executeQuery("SELECT * FROM AVAILABLE_DATES WHERE prop_id = " + prop_id + " AND from_date < "+ from_date + " AND till_date > " + till_date +" ", 
-					{}, function(availableDatesResult){
-
+				console.log(from_date +" - - "+ till_date);
+				var params = [{"prop_id" : prop_id}, {"from_date":from_date}, {"till_date":till_date}]
+				mysql.executeQuery("SELECT * FROM AVAILABLE_DATES WHERE ?", params, function(availableDatesResult){
+					
 					var idToDelete = availableDatesResult[0]['id'];
-					var fromDate_1 = availableDatesResult[0]['from_date'];
-					var tillDate_1 = moment(msg.from_date).subtract(1, 'days');
-					var prop1 = {"prop_id": msg.propid, "from_date":fromDate_1, "till_date":tillDate_1};
+					
+					var fromDate_1 = moment(availableDatesResult[0]['from_date']).format('YYYY-MM-DD');
+					var tillDate_1 = moment(from_date).subtract(1, 'days').format('YYYY-MM-DD');
+					var prop1 = {"prop_id": msg.propid, "from_date":fromDate_1, "till_date":tillDate_1, "id":0}; // id is auto increment, so does not matter the value.
 
-					var fromDate_2 = moment(msg.tilldate).add(1, 'days');
-					var tillDate_2 = availableDatesResult[0]['till_date'];
-					var prop2 = {"prop_id": msg.propid, "from_date":fromDate_2, "till_date":tillDate_2};
+					var fromDate_2 = moment(till_date).add(1, 'days').format('YYYY-MM-DD');
+					var tillDate_2 = moment(availableDatesResult[0]['till_date']).format('YYYY-MM-DD');
+					var prop2 = {"prop_id": msg.propid, "from_date":fromDate_2, "till_date":tillDate_2, "id":0};
 
 					// Delete an existing available dates as it has been booked
 					mysql.executeQuery("DELETE FROM AVAILABLE_DATES WHERE id = "+ idToDelete+"", {}, function(innerResult1){
@@ -295,16 +300,16 @@ exports.approveUserRequest = function(msg, callback){
 					});
 
 				//This call to database to update disapprove conflicting requests
-				params3 = {"prop_id" : prop_id, "approved" : 0};
+				params3 = [{"prop_id" : prop_id}, {"approved" : 0}];
 				mysql.executeQuery("SELECT * FROM BOOKED_PROPERTIES WHERE ?", params3, function(result3){
-
+					console.log( "-------======== " + result3);
 					if(result3){
 						var counter = 0;
 						for(counter  =0; counter < result3.length; counter++){
 
 							var id = result3[counter]["id"];
-							var fromDateTemp = result3[counter]["from_date"];
-							var tillDateTemp = result3[counter]["till_dtae"];
+							var fromDateTemp = moment(result3[counter]["from_date"]).format('YYYY-MM-DD');
+							var tillDateTemp = moment(result3[counter]["till_dtae"]).format('YYYY-MM-DD');
 
 							if( (fromDateTemp > from_date && fromDateTemp < till_date ) || (tillDateTemp > from_date && tillDateTemp < till_date) ){
 								params4 = {"id" : id};
@@ -326,25 +331,14 @@ exports.getPendingPropertyRequests = function(msg, callback){
 	var res = {"statuscode":0, "message":""}
 	var host_id = msg.host_id;
 
+	var params = {"host_id":host_id};
+	console.log(params);
+	mysql.executeQuery("SELECT * FROM BOOKED_PROPERTIES WHERE ?", params, function(result){
 
-		mongo.connect(function(){
+			res['data'] = result;
+			callback(null, res);	
+	});
 
-			var coll = mongo.collection('properties');
-
-			coll.find({'host_id':host_id}).toArray(function(err, allProps){
-
-				var counter = 0;
-				var allPropId = [];
-				for(counter = 0; counter < allProps.length; counter++){
-					allPropId.push(allProps[counter]['id']);
-				}
-				mysql.executeQuery("SELECT * FROM BOOKED_PROPERTIES WHERE approved = 0 AND prop_id in ?", allPropId, function(result2){
-					
-					res['data'] = result2;
-					callback(null, res);
-				});
-			});
-		});
 }
 
 
