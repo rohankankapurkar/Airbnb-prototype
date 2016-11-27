@@ -135,8 +135,8 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 			}
 		}).success(function(data) {
 			//Algo for checking if the dates selected by the user are valid or not
-			if($scope.validSession == true)
-			{
+			//if($scope.validSession == true)
+			//{
 				if(data.statuscode == 0) 
 				{	
 					var dateForMessage = "";
@@ -184,12 +184,12 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 				{
 					console.log("No available Dates")
 				}
-			}
-			else
-			{
-				alert("Please Log In!");
-			}
-			
+		//	}
+//			else
+//			{
+//				alert("Please Log In!");
+//			}
+//			
 		}).error(function(error) {
 				console.log("No available Dates");
 		});
