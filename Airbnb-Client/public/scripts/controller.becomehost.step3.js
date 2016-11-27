@@ -14,7 +14,13 @@ airbnbApp.controller('controllerBecomeHostStep3',function($scope,$state,$log,$ht
     $scope.becomeHostDates = function () {
         $scope.secondstep.price = $scope.price;
         $scope.secondstep.currency = $scope.currency;
-        $scope.secondstep.biddingavailable = $scope.bidding;
+        if($scope.bidding == "")
+            $scope.secondstep.biddingavailable = $scope.bidding;
+        else if($scope.bidding == true)
+        {
+            $scope.secondstep.biddingavailable = $scope.bidding;
+            $scope.secondstep.currentBid = $scope.price;
+        }
         $state.go('home.becomeHostDates', {pricestep : $scope.secondstep});
     };
 
