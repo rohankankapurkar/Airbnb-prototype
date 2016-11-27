@@ -372,5 +372,68 @@ cnn.on('ready', function(){
 		});
 	});
 
+//Service to post review for a property
+	cnn.queue('savePropertyReview_queue', function(q){
+		q.subscribe(function(message, headers, deliveryInfo, m){
+			util.log(util.format( deliveryInfo.routingKey, message));
+			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+			hostService.saveReview(message, function(err,res){
+				//return index sent
+				cnn.publish(m.replyTo, res, {
+					contentType:'application/json',
+					contentEncoding:'utf-8',
+					correlationId:m.correlationId
+				});
+			});
+		});
+	});
 
+//Service to get reviews for a property
+	cnn.queue('getPropertyReview_queue', function(q){
+			q.subscribe(function(message, headers, deliveryInfo, m){
+				util.log(util.format( deliveryInfo.routingKey, message));
+				util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+				hostService.getReview(message, function(err,res){
+					//return index sent
+					cnn.publish(m.replyTo, res, {
+						contentType:'application/json',
+						contentEncoding:'utf-8',
+						correlationId:m.correlationId
+					});
+				});
+			});
+		});
+
+//Service to post review for a user
+	cnn.queue('saveUserReview_queue', function(q){
+			q.subscribe(function(message, headers, deliveryInfo, m){
+				util.log(util.format( deliveryInfo.routingKey, message));
+				util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+				getProperties.saveReview(message, function(err,res){
+					//return index sent
+					cnn.publish(m.replyTo, res, {
+						contentType:'application/json',
+						contentEncoding:'utf-8',
+						correlationId:m.correlationId
+					});
+				});
+			});
+		});
+
+//Service to get reviews for a user
+	cnn.queue('getUserReview_queue', function(q){
+			q.subscribe(function(message, headers, deliveryInfo, m){
+				util.log(util.format( deliveryInfo.routingKey, message));
+				util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+				hostService.getReview(message, function(err,res){
+					//return index sent
+					cnn.publish(m.replyTo, res, {
+						contentType:'application/json',
+						contentEncoding:'utf-8',
+						correlationId:m.correlationId
+					});
+				});
+			});
+		});
+	
 });

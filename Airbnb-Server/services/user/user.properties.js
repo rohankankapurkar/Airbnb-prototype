@@ -85,3 +85,83 @@ exports.bookProperty = function(msg, callback){
     });
 }
 
+exports.saveReview = function(msg, callback) {
+    var res = {};
+    mongo.connect(function () {
+        var users = mongo.collection('users');
+        console.log("The user name is" + msg.username);
+
+        users.findOne({username: msg.hostUsername}, function (err, user) {
+            if (user) {
+                res.message = "Found the user";
+                console.log("printing the mess" + msg.username);
+//printing the complete JSON man{"firstname":"bapu","lastname":"chandan","user_sex":"Female","username":"slash@gmail.com","user_phone":"1111","user_preferred_locale":"ca","user_native_currency":"BRL","user_city":"dan","user_about":"san"}
+
+                users.findOne({username: msg.username}, function (err, user) {
+                    if (user) {
+                        var reviewArray;
+                        if (user.review) {
+                            reviewArray = properties.review;
+                        } else {
+                            reviewArray = [];
+                        }
+                        var review = {
+                            rating: msg.rating,
+                            reviewPost: msg.reviewPost,
+                            from: msg.username
+                        };
+                        reviewArray.push(review);
+                        users.updateOne({username: msg.username}, {$set: {review: reviewArray}}, {upsert: true}, function (err, user) {
+                            if (user) {
+                                // return status = 0 on successfull registration
+                                console.log("posted the review successfully");
+                                res.statuscode = 0;
+                                callback(null, res);
+
+                            } else {
+                                // return 1 if any error occurs
+                                res.statuscode = 1;
+                                res.message = "Error occurred while posting the user's review";
+                                callback(null, res);
+
+                            }
+                        });
+                    } else {
+                        res.message = "No users found. Error";
+                        callback(null, res);
+                    }
+                });
+            } else {
+
+                res.message = "No host user found. Error";
+                callback(null, res);
+
+            }
+        });
+    });
+}
+
+exports.getReviews = function(msg, callback) {
+    var res = {};
+    mongo.connect(function () {
+        var users = mongo.collection('users');
+        console.log("The user name is" + msg.username);
+        user.findOne({username: msg.username}, function (err, user) {
+            if (user) {
+                var reviewArray;
+                if (user.review) {
+                    res.statuscode = 0;
+                    res.review = user.review;
+                    callback(null, res);
+                } else {
+                    res.statuscode = 1;
+                    res.message = "No reviews found for this property";
+                    callback(null, res);
+                }
+            } else {
+                res.message = "No users found. Error";
+                callback(null, res);
+            }
+        });
+    });
+}
