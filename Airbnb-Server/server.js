@@ -17,6 +17,8 @@ var miscService = require('./services/misc/misc.commons');
 var adminService = require('./services/admin/admin.service');
 var getProperties = require('./services/user/user.properties');
 var userGetTrips = require('./services/user/user.getTrips');
+var bidding = require('./services/bidding/service.bidding')
+
 
 var cnn = amqp.createConnection({host:'127.0.0.1'});
 
@@ -476,6 +478,41 @@ cnn.on('ready', function(){
 				util.log(util.format( deliveryInfo.routingKey, message));
 				util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
 				hostService.getReview(message, function(err,res){
+					//return index sent
+					cnn.publish(m.replyTo, res, {
+						contentType:'application/json',
+						contentEncoding:'utf-8',
+						correlationId:m.correlationId
+					});
+				});
+			});
+		});
+
+	//////////////////////////////////////////////////////////////////
+	//
+	//						BIDDING
+	//
+	//////////////////////////////////////////////////////////////////
+		cnn.queue('updateBidLog_queue', function(q){
+			q.subscribe(function(message, headers, deliveryInfo, m){
+				util.log(util.format( deliveryInfo.routingKey, message));
+				util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+				bidding.updateBidLog(message, function(err,res){
+					//return index sent
+					cnn.publish(m.replyTo, res, {
+						contentType:'application/json',
+						contentEncoding:'utf-8',
+						correlationId:m.correlationId
+					});
+				});
+			});
+		});
+
+		cnn.queue('updatePropertyBids_queue', function(q){
+			q.subscribe(function(message, headers, deliveryInfo, m){
+				util.log(util.format( deliveryInfo.routingKey, message));
+				util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+				bidding.updatePropertyCollection(message, function(err,res){
 					//return index sent
 					cnn.publish(m.replyTo, res, {
 						contentType:'application/json',

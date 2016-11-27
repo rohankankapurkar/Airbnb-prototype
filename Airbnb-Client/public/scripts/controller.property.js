@@ -13,18 +13,16 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 	$scope.checkoutDate = "";
 	$scope.bidfromdate = "";
 	$scope.bidtilldate ="";
+	$scope.fromdate = "";
+	$scope.tilldate = "";
+	$scope.bidamount = "";
 	
 
 	$scope.minDate = $scope.selectedProperty.from;
 	$scope.maxDate = $scope.selectedProperty.till;
 
 
-	console.log($scope.selectedProperty);
-	console.log($scope.minDate+" "+$scope.maxDate);
-
-
 	$scope.username = "";
-	$scope.userid = "";
 
 	if($scope.selectedProperty.biddingavailable == "")
 	{
@@ -41,8 +39,6 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 	}
 	
 		
-
-//	$scope.checkUserSession = function(){
 		$http({
 			method : "POST",
 			url : '/getusersession'
@@ -51,8 +47,6 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 			if(data.statuscode == 0) 
 			{
 				$scope.username = data.username;
-				$scope.userid = data.credentials.id;
-
 				if(data.credentials.isadmin == true)
 				{
 					return false;
@@ -76,7 +70,7 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 		}).error(function(error) {
 			return false;
 		});
-//	}
+	
 
    $scope.addDays = function(date, days){
    		var newDate = date;
@@ -95,41 +89,10 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
    }
 
 
-	$scope.checkAvailability = function(){
-
-		$http({
-			method : "POST",
-			url : '/getusersession'
-		}).success(function(data) {
-		
-			if(data.statuscode == 0) 
-			{
-				$scope.username = data.username;
-				if(data.credentials.isadmin == true)
-				{
-					$scope.validSession = false;
-				}
-				else
-				{
-					$scope.validSession = true;
-				}
-			}
-			else 
-			{
-				$scope.validSession = false;
-			}
-		}).error(function(error) {
-			$scope.validSession = false
-		});	
-	}
-
-
-
 	$scope.getAvailableDates = function(){
-		var checkin = new Date($scope.fromdate);
-		var checkout = new Date($scope.tilldate);
-		var dateArray = $scope.getDates(checkin,checkout);
-
+		
+		var dateArray = $scope.getDates($scope.fromdate,$scope.tilldate);
+			
 		$http({
 			method : "POST",
 			url : '/host/getavailabledates',
@@ -137,9 +100,6 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 				prop_id : $scope.selectedProperty.id
 			}
 		}).success(function(data) {
-			//Algo for checking if the dates selected by the user are valid or not
-			//if($scope.validSession == true)
-			//{
 				if(data.statuscode == 0) 
 				{	
 					var dateForMessage = "";
@@ -175,32 +135,42 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 					}
 					if(flag != false)
 					{
+						
 						$state.go('home.finalPayment',{
-							fromdate : checkin, 
-							tilldate : checkout, 
+							fromdate : $scope.fromdate, 
+							tilldate : $scope.tilldate, 
 							numberOfDays : counter,
 							property : $scope.selectedProperty,
-							username : $scope.username,
-							userid: $scope.userid});
+							username : $scope.username});
 						}
 					}	
 				else 
 				{
 					console.log("No available Dates")
 				}
-		//	}
-//			else
-//			{
-//				alert("Please Log In!");
-//			}
-//			
 		}).error(function(error) {
 				console.log("No available Dates");
 		});
 	}
 
 
-	
+	$scope.placeYourBid = function(){
+		$http({
+			method : "POST",
+			url : '/bid',
+			data :{
+				propertyid : $scope.selectedProperty.id,
+				title : $scope.selectedProperty.title,
+				bidamount : $scope.bidamount,
+				bidder : $scope.username
+			}
+
+		}).success({
+
+		}).error({
+
+		});
+	}
 
 
 

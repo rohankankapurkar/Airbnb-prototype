@@ -1,6 +1,24 @@
 var dateFormat = require('dateformat');
 var mq_client = require('../../rpc/client');
 
+
+function getBidEndTime(bidStartTime)
+{
+	var currTime;
+	var date = new Date(bidStartTime);
+	date.setDate(date.getDate() + 4);
+	currTime = dateFormat(date,"yyyy-mm-dd HH:MM:ss");
+	console.log(currTime);
+	return currTime;
+}
+
+function getCurrentTime()
+{
+	var currTime;
+	var date = new Date();
+	currTime = dateFormat(date,"yyyy-mm-dd HH:MM:ss");
+	return currTime;
+}
 /*
 *Called by - app.post('/host/addproperty',host.addproperty); //equivalent to /host/addadvertisement - in api doc
 *Controller - controller.becomehost.dates.js
@@ -10,8 +28,18 @@ exports.addproperty = function(req,res){
 	try{
 		if(req.session.username)
 		{
-			var msg_payload = req.param('propertydetails');
+			var propertydetails = req.param('propertydetails');
+			console.log("BC")
+			console.log(propertydetails);
+			if(propertydetails.biddingavailable == true)
+			{
+				propertydetails.bidEndDate = getBidEndTime(propertydetails.bidStartDate);
+				console.log("Bid End Time"+propertydetails.binEndDate);
+			}
+			var msg_payload = propertydetails;
 			msg_payload.username = req.session.username;
+
+
 			mq_client.make_request('becomeHost_queue',msg_payload, function(err,result){
 				if(err){
 					
