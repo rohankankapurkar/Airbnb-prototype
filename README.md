@@ -40,7 +40,7 @@ AirBnb:
 
 Execute the following SQL scripts to cretae the table. Also update the utils.mysql.pool and utils.mysql.js scripts to use the database that you have on your system. Currently it is StartTest for test purpose only.
 ```
-CREATE TABLE BOOKED_PROPERTIES(prop_id VARCHAR(12), user_id VARCHAR(12), host_id VARCHAR(12), from_date DATE, till_date DATE, approved TINYINT, id int PRIMARY KEY AUTO_INCREMENT);
+CREATE TABLE BOOKED_PROPERTIES(prop_id VARCHAR(12), user_id VARCHAR(12), host_id VARCHAR(12), from_date DATE, till_date DATE, approved TINYINT, id int PRIMARY KEY AUTO_INCREMENT, price int, city VARCHAR(24));
 
 CREATE TABLE AVAILABLE_DATES(prop_id VARCHAR(12), from_date DATE, till_date DATE, id INT PRIMARY KEY AUTO_INCREMENT);```
 
