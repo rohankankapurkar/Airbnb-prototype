@@ -31,7 +31,9 @@ airbnbApp.controller('controllerCheckout',function($scope,$http,$state,$statePar
 					propid : $scope.property.id,
 					fromdate : $scope.fromdate,
 					todate: $scope.tilldate,
-					userid: $scope.username
+					userid: $scope.username,
+					host_id:$scope.property.hostdata[0].host_id
+					//hostdata:$scope.property.hostdata[0]
 				}
 			}).success(function(data) {
 				console.log("Success");
