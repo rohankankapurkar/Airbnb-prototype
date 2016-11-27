@@ -16,6 +16,7 @@ var updateProfile = require('./services/user/update_profile');
 var miscService = require('./services/misc/misc.commons');
 var adminService = require('./services/admin/admin.service');
 var getProperties = require('./services/user/user.properties');
+var userGetTrips = require('./services/user/user.getTrips');
 
 var cnn = amqp.createConnection({host:'127.0.0.1'});
 
