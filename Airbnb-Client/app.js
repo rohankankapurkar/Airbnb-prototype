@@ -136,6 +136,9 @@ app.get('/admin/getadminapprovals',admin.getadminapprovals);
 app.post('/admin/approve',admin.approveHostRequest);
 app.post('/admin/searchHosts',adminSearch.searchHosts);
 app.post('/bid',bidding.placebid);
+app.post('/admin/top_properties', adminSearch.gettopprops);
+app.post('/admin/top_hosts', adminSearch.gettophosts);
+app.post('/admin/top_cities', adminSearch.gettopcities);
 
 //trips section
 app.post('/getUserTrips', userGetTrips.getTrips);

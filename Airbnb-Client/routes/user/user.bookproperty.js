@@ -14,7 +14,9 @@ exports.bookproperty = function(req, res){
 					   fromdate : req.body['fromdate'],
 					   todate: req.body['todate'],
 					   userid: req.body['userid'],
-					   hostid: req.body['hostid']	
+					   hostid: req.body['hostid'],
+					   price: req.body['price'],
+					   city: req.body['city']	
 			}
 	
 	mq_client.make_request('bookProperty_queue',msg_payload, function(err,result){

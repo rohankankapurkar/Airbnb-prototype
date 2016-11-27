@@ -5,8 +5,10 @@ var MODE = process.env.MODE;
 //Identify the mode and then import the required libraries
 if(MODE == "CONNECTION_POOL"){
 	var mongo = require('../utils/utils.mongo');
+	var mysql = require('../utils/utils.mysql');
 }else{
 	var mongo = require('../utils/utils.mongo');
+	var mysql = require('../utuls/utils.mysql')
 }
 
 
@@ -103,3 +105,40 @@ exports.searchHosts = function(msg, callback){
 		});
 	});
 }
+
+
+exports.getTopProps = function(msg, callback){
+	console.log('I am here');
+	var res = {"statuscode" : 0, "message":""};
+
+	mysql.executeQuery("SELECT prop_id, SUM(price) AS total FROM BOOKED_PROPERTIES GROUP BY prop_id ORDER BY total DESC LIMIT 10",{}, function(result){
+		console.log(result);
+		res['data'] = result;
+		callback(null, res);
+	});
+}
+
+
+exports.getTopHosts = function(msg, callback){
+	console.log('I am here');
+	var res = {"statuscode" : 0, "message":""};
+
+	mysql.executeQuery("SELECT host_id, SUM(price) AS total FROM BOOKED_PROPERTIES GROUP BY host_id ORDER BY total DESC LIMIT 10",{}, function(result){
+		console.log(result);
+		res['data'] = result;
+		callback(null, res);
+	});
+}
+
+
+exports.getTopCities = function(msg, callback){
+	console.log('I am here');
+	var res = {"statuscode" : 0, "message":""};
+
+	mysql.executeQuery("SELECT city, SUM(price) AS total FROM BOOKED_PROPERTIES GROUP BY city ORDER BY total DESC LIMIT 10",{}, function(result){
+		console.log(result);
+		res['data'] = result;
+		callback(null, res);
+	});
+}
+
