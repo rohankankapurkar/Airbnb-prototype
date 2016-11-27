@@ -13,7 +13,8 @@ exports.bookproperty = function(req, res){
 	var msg_payload = {propid:req.body['propid'],
 					   fromdate : req.body['fromdate'],
 					   todate: req.body['todate'],
-					   userid:req.body['userid']	
+					   userid: req.body['userid'],
+					   hostid: req.body['hostid']	
 			}
 	
 	mq_client.make_request('bookProperty_queue',msg_payload, function(err,result){

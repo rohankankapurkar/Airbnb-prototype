@@ -175,7 +175,8 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 					tilldate : null,
 					numberOfDays : null,
 					property : null,
-					username : null
+					username : null,
+					userid : null
 				}
 			})
 

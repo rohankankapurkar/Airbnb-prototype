@@ -101,7 +101,6 @@ exports.approveuserrequest = function(req, res){
 }
 
 
-<<<<<<< Updated upstream
 exports.getpropertyavailable = function(req, res){
 
 	var msg_payload = {propid: req.param('propid'),
@@ -146,7 +145,3 @@ exports.getuserpropdata = function(req, res){
 		}
 	});
 }
-=======
-
->>>>>>> Stashed changes
-

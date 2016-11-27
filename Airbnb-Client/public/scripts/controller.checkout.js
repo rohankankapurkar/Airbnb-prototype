@@ -5,6 +5,7 @@ airbnbApp.controller('controllerCheckout',function($scope,$http,$state,$statePar
 	$scope.fromdate = $state.params.fromdate;
 	$scope.tilldate = $state.params.tilldate;
 	$scope.username = $state.params.username;
+	$scope.userid = $state.params.userid
 
 	console.log($scope.numberOfDays);
 	console.log($scope.property+ "habibi");
@@ -18,7 +19,9 @@ airbnbApp.controller('controllerCheckout',function($scope,$http,$state,$statePar
 
 
 
-
+	console.log("ola ola");
+	console.log($scope.property);
+	console.log($scope.userid)
 
 	//This function should be called after all validations.
 	//Either call all the validaion functions from this function or call this from the validation funcitons in if-else
@@ -31,8 +34,8 @@ airbnbApp.controller('controllerCheckout',function($scope,$http,$state,$statePar
 					propid : $scope.property.id,
 					fromdate : $scope.fromdate,
 					todate: $scope.tilldate,
-					userid: $scope.username,
-					host_id:$scope.property.hostdata[0].host_id
+					userid: $scope.userid,
+					hostid: $scope.property.hostdata[0].id
 					//hostdata:$scope.property.hostdata[0]
 				}
 			}).success(function(data) {

@@ -326,6 +326,7 @@ exports.getPendingPropertyRequests = function(msg, callback){
 	var res = {"statuscode":0, "message":""}
 	var host_id = msg.host_id;
 
+
 		mongo.connect(function(){
 
 			var coll = mongo.collection('properties');

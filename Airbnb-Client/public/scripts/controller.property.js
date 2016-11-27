@@ -24,6 +24,7 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 
 
 	$scope.username = "";
+	$scope.userid = "";
 
 	if($scope.selectedProperty.biddingavailable == "")
 	{
@@ -41,7 +42,7 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 	
 		
 
-	$scope.checkUserSession = function(){
+//	$scope.checkUserSession = function(){
 		$http({
 			method : "POST",
 			url : '/getusersession'
@@ -50,6 +51,8 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 			if(data.statuscode == 0) 
 			{
 				$scope.username = data.username;
+				$scope.userid = data.credentials.id;
+
 				if(data.credentials.isadmin == true)
 				{
 					return false;
@@ -73,7 +76,7 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 		}).error(function(error) {
 			return false;
 		});
-	}
+//	}
 
    $scope.addDays = function(date, days){
    		var newDate = date;
@@ -177,7 +180,8 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 							tilldate : checkout, 
 							numberOfDays : counter,
 							property : $scope.selectedProperty,
-							username : $scope.username});
+							username : $scope.username,
+							userid: $scope.userid});
 						}
 					}	
 				else 
