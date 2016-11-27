@@ -388,3 +388,13 @@ margin-left : 5px;
     border: 0px;
     border-bottom: 1px solid #ccc;
 }
+
+.search-bar{
+    padding-top: 10px !important;
+
+}
+
+.navbar-left
+{
+    width: 600px !important;
+}

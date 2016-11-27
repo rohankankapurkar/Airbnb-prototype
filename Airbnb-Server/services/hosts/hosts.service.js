@@ -261,3 +261,88 @@ exports.approveUserRequest = function(msg, callback){
 		});
 	});
 }
+
+exports.saveReview = function(msg, callback) {
+	var res = {};
+	mongo.connect(function () {
+		var users = mongo.collection('users');
+		var property = mongo.collection('properties');
+		console.log("The user name is" + msg.username);
+		console.log("The property is " + msg.propertyId);
+
+		users.findOne({username: msg.username}, function (err, user) {
+			if (user) {
+				res.message = "Found the user";
+				console.log("printing the mess" + msg.username);
+//printing the complete JSON man{"firstname":"bapu","lastname":"chandan","user_sex":"Female","username":"slash@gmail.com","user_phone":"1111","user_preferred_locale":"ca","user_native_currency":"BRL","user_city":"dan","user_about":"san"}
+
+				property.findOne({id: msg.propertyId}, function (err, properties) {
+					if (properties) {
+						var reviewArray;
+						if (properties.review) {
+							reviewArray = properties.review;
+						} else {
+							reviewArray = [];
+						}
+						var review = {
+							rating: msg.rating,
+							reviewPost: msg.reviewPost,
+							from: msg.username
+						};
+						reviewArray.push(review);
+						property.updateOne({id: msg.propertyId}, {$set: {review: reviewArray}}, {upsert: true}, function (err, user) {
+							if (user) {
+								// return status = 0 on successfull registration
+								console.log("posted the review successfully");
+								res.statuscode = 0;
+								callback(null, res);
+
+							} else {
+								// return 1 if any error occurs
+								res.statuscode = 1;
+								res.message = "Error occurred while posting the property's review";
+								callback(null, res);
+
+							}
+						});
+					} else {
+						res.message = "No properties found. Error";
+						callback(null, res);
+					}
+				});
+			} else {
+
+				res.message = "No user found. Error";
+				callback(null, res);
+
+			}
+		});
+	});
+}
+
+exports.getReviews = function(msg, callback) {
+	var res = {};
+	mongo.connect(function () {
+		var users = mongo.collection('users');
+		var property = mongo.collection('properties');
+		console.log("The user name is" + msg.username);
+		console.log("The property is " + msg.propertyId);
+		property.findOne({id: msg.propertyId}, function (err, properties) {
+			if (properties) {
+				var reviewArray;
+				if (properties.review) {
+					res.statuscode = 0;
+					res.review = properties.review;
+					callback(null, res);
+				} else {
+					res.statuscode = 1;
+					res.message = "No reviews found for this property";
+					callback(null, res);
+				}
+			} else {
+				res.message = "No properties found. Error";
+				callback(null, res);
+			}
+		});
+	});
+}

@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-var sleep = require('sleep');
+//var sleep = require('sleep');
 var noConn = 100;
 var conn;
 var connStack = [];
