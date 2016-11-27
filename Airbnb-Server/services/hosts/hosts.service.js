@@ -348,7 +348,7 @@ exports.getPendingPropertyRequests = function(msg, callback){
 	var res = {"statuscode":0, "message":""}
 	var host_id = msg.host_id;
 
-	var params = {"host_id":host_id};
+	var params = [{"host_id":host_id}, {"approved":0}];
 	console.log(params);
 	mysql.executeQuery("SELECT * FROM BOOKED_PROPERTIES WHERE ?", params, function(result){
 

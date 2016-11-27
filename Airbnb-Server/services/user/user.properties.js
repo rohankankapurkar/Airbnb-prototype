@@ -55,6 +55,9 @@ exports.bookProperty = function(msg, callback){
     var userId = msg.userid;
     var propId = msg.propid;
     var hostId = msg.hostid;
+    var price =msg.price;
+    var city=msg.city; 
+
     var paramsPropSelector = {"prop_id":propId};
     console.log("Hey there " + userId);
     console.log("Hey there " + hostId);
@@ -70,7 +73,7 @@ exports.bookProperty = function(msg, callback){
                 if(bookDateFrom >= from_date_db && bookDateTo <= to_date_db){
 
                     // Make entry into the booked_properties so that host can review the user's request and approve them.
-                    var booking_params = {'prop_id' : propId, 'user_id':userId, 'from_date':bookDateFrom, 'till_date':bookDateTo, 'accepted':false, 'host_id':hostId};
+                    var booking_params = {'prop_id' : propId, 'user_id':userId, 'from_date':bookDateFrom, 'till_date':bookDateTo, 'approved':false, 'host_id':hostId, "price":price, "city":city};
 
                     mysql.executeQuery("INSERT INTO BOOKED_PROPERTIES SET ? ", booking_params, function(booking_result){
                         console.log('Inserted new booking into the table');

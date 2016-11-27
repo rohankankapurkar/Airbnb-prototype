@@ -95,7 +95,6 @@ exports.approveuserrequest = function(req, res){
 		}else{
 			res.send({statuscode:0, result:result});
 		}
-
 	});
 }
 
