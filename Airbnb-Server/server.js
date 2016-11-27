@@ -265,6 +265,39 @@ cnn.on('ready', function(){
 	});
 
 
+	// call to get all the trips
+	cnn.queue('getTrips_queue', function(q){
+	  q.subscribe(function(message, headers, deliveryInfo, m){
+	    util.log(util.format( deliveryInfo.routingKey, message));
+	    util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+	    userGetTrips.getTrips(message, function(err,res){
+	      //return index sent
+	      cnn.publish(m.replyTo, res, {
+	        contentType:'application/json',
+	        contentEncoding:'utf-8',
+	        correlationId:m.correlationId
+	      });
+	    });
+	  });
+	});
+
+	// get all properties details from user trips
+	cnn.queue('getPropertiesForUserTrips_queue', function(q){
+	  q.subscribe(function(message, headers, deliveryInfo, m){
+	    util.log(util.format( deliveryInfo.routingKey, message));
+	    util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+	    userGetTrips.getPropertiesForUserTrips(message, function(err,res){
+	      //return index sent
+	      cnn.publish(m.replyTo, res, {
+	        contentType:'application/json',
+	        contentEncoding:'utf-8',
+	        correlationId:m.correlationId
+	      });
+	    });
+	  });
+	});
+
+
 	// Service to update the user profile
 	cnn.queue('profile_update_queue', function(q){
 		q.subscribe(function(message, headers, deliveryInfo, m){
@@ -298,7 +331,7 @@ cnn.on('ready', function(){
 	});
 
 
-	
+
 	// Service to book the property
 	cnn.queue('bookProperty_queue', function(q){
 		q.subscribe(function(message, headers, deliveryInfo, m){
@@ -435,5 +468,5 @@ cnn.on('ready', function(){
 				});
 			});
 		});
-	
+
 });

@@ -1,0 +1,56 @@
+<div class="container" style="padding-left: 13%; padding-right: 13%">
+  <div class="panel">
+    <div class="panel-body panel-light">
+      <h1 ng-if= noPropertiesFoundMsg> You dont have any upcoming trips yet. </h1>
+      <!-- for ng repeat -->
+      <div ng-if= !noPropertiesFoundMsg ng-repeat="upcomingTrip in upcomingTrips">
+        <div class="col-md-6 col-sm-6 co-xs-12 gal-item">
+        <a ng-click= transitionToProperty(property._id) id="property-display">
+
+            <div id="tripsProperty" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner" id="carousel-properties" role="listbox">
+                <div class="item active">
+                  <img src="/images/paris.jpg" alt="First slide">
+                </div>
+                <div class="item">
+                  <img src="/images/paris.jpg" alt="Second slide">
+                </div>
+                <div class="item">
+                  <img src="/images/paris.jpg" alt="Third slide">
+                </div>
+                <span class="glyphicon glyphicon-heart homepage-thumbnails-h2 properties-heart"></span>
+              </div>
+              <a class="left carousel-control" data-target="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="icon-prev" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control" data-target="#tripsProperty" role="button" data-slide="next">
+                <span class="icon-next" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+            <br/>
+            <span style="margin-left:4%"></span><br/>
+            <span style="font-size:12px; font-color:#888888; margin-left:4%">Entire home/apt · 9 guests 48 reviews</span>
+          </a>
+        </div>
+
+        <div class="col-md-6 col-dm-6 col-xs-12">
+          <!-- trip title -->
+          <div class="space-5">
+            <h2 class="landing__title-title">
+            	<span class="font-airbnb"><b>Your trip title here{{upcomingTrip.title}}</b></span>
+            </h2>
+            <span class="font-airbnb-faded">House in the middle of the sea.{{upcomingTrip.when}}</span>
+            <br/>
+            <span class="font-airbnb-faded">{{upcomingTrip.till}}</span>
+            <br/>
+            <span class="font-airbnb-faded">{{upcomingTrip.price}}</span>
+            <br/>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

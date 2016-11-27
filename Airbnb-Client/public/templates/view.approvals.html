@@ -1,0 +1,49 @@
+
+<div class="panel  ">
+
+  <div class="panel-body">
+
+
+<!--      <img src="https://ucarecdn.com/8d97a055-e490-41f6-8ff7-deae143116d6/faak.jpg">-->
+  <div class = "container" style="padding-left: 20%; padding-right: 20%">
+      <div class=" space-top-4 ">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Property title</th>
+                <th>Client</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Approve Request</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                  <td title="'Property title'">
+                      {{pendingApproval.propertyTitle}}</td>
+                  <td >
+                      {{pendingApproval.client}}</td>
+                  <td>
+                      {{pendingApproval.fromdate}}</td>
+                  <td>
+                      {{pendingApproval.tilldate}}</td>
+                  <td>
+                    <button ng-show= !checkAvailabilityStatus ng-click="checkPropertyAvailability(pendingApproval._id)">
+                      Check Availability
+                    </button>
+                    <span ng-if= notAvailableMsg> Sorry, the rooms not available for the dates. </span>
+                    <button ng-show= checkAvailabilityStatus ng-click="ApproveBooking(pendingApproval._id)">
+                      Approve
+                    </button>
+                    <button ng-show= userrequestapproved>
+                      Generate Bill
+                    </button>
+                  </td>
+              </tr>
+            </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>

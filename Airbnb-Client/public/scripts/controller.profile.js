@@ -1,16 +1,16 @@
 
 airbnbApp.controller('controllerProfile',function($scope,$log,$http){
-	
-	
-	
-	
+
+
+
+
 	$http({
 		method : "GET",
 		url : '/user/update_profile',
 //		data : {
-//			
+//
 //			"username" : $scope.user_email,
-//		
+//
 //		}
 	}).success(function(data){
 		if (data.statuscode == 0)
@@ -29,8 +29,8 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http){
 			$scope.user_preferred_locale=data.user_preferred_locale;
 			$scope.user_creditcard = data.credit_card;
 			$scope.profile_pic = data.profile_pic;
-			
-			
+
+
 		}
 		else
 		{
@@ -43,15 +43,15 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http){
 	}).error(function(error) {
 		console.log("error");
 	});
-	
-	
-	
+
+
+
 	$scope.update_Profile = function()
 	{
-		
+
 		console.log("Inside update profile " + $scope.user_first_name);
 		console.log("bc profile pic");
-		
+
 		  $scope.profile_pic = $("#profile_pic").val();
 		  console.log( $scope.profile_pic);
 		{
@@ -89,7 +89,7 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http){
 				console.log("error");
 			});
 		}
-		
+
 	}
 
 	$http({
@@ -100,17 +100,17 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http){
 		if (property.statuscode == 0)
 		{
 			//console.log("got the host property data"+property.result.data);
-			
+
 
 		   //console.log("sappaliga"+property.data[0].street);
 		  //console.log("printing the received JSON obj" +JSON.stringify(property.result.data));
-			
-			
+
+
 			$scope.properties = property.result.data;
-			
-		
-			
-			
+
+
+
+
 		}
 		else
 		{
@@ -125,37 +125,197 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http){
 	});
 
 
-	
-	
-	
+	/*
+	 |-----------------------------------------------------------
+	 | Host approval
+	 |-----------------------------------------------------------
+	*/
+	$scope.notAvailableMsg = false;
+	$scope.userrequestapproved = false;
+	$scope.checkAvailabilityStatus = false;
+
+	$http({
+	  method : "POST",
+	  url : '/getusersession',
+	  data : {}
+	}).success(function(user){
+	  console.log("user session");
+	  if (user.statuscode == 0)
+	  {
+	    console.log(user);
+	    $http({
+	      method : "POST",
+	      url : '/host/getpendingpropertyrequests',
+	      data : {
+	        hostid: user.credentials.id
+	      }
+	    }).success(function(property){
+	      console.log("------------getpendingpropertyrequests--------------");
+	      console.log(property.pendingApprovals);
+	      if (property.statuscode == 0)
+	      {
+	        $scope.pendingApprovals = property.pendingApprovals;
+	      }
+	      else
+	      {
+
+	      }
+	    }).error(function(error) {
+	      console.log("error");
+	    });
+
+	  }
+	  else
+	  {
+
+	  }
+	}).error(function(error) {
+	  console.log("error");
+	});
+
+
+
+	$scope.checkPropertyAvailability = function(propertyId){
+	  $http({
+	    method : "POST",
+	    url : '/host/getpropertyavailable',
+	    data : {
+	      propid: propertyId,
+	      userid: user
+	      // formdate: ,
+	      // tilldate:
+	    }
+	  }).success(function(property){
+	    if (property.statuscode == 0)
+	    {
+	      if(property.data.available == true)
+	        $scope.checkAvailabilityStatus = true;
+	      else
+	        $scope.checkAvailabilityStatus = false;
+	    }
+	    else
+	    {
+	      $scope.notAvailableMsg = true;
+	    }
+	  }).error(function(error) {
+	    console.log("error");
+	  });
+	}
+
+	$scope.ApproveBooking = function(propertyId){
+	  $http({
+	    method : "POST",
+	    url : '/host/approveuserrequest',
+	    data : {
+	      propid: propertyId
+	    }
+	  }).success(function(property){
+	    if (property.statuscode == 0)
+	    {
+	      $scope.userrequestapproved = true;
+	    }
+	    else
+	    {
+	      // $scope.notAvailableMsg = true;
+	    }
+	  }).error(function(error) {
+	    console.log("error");
+	  });
+	}
+
+
+	/*
+	 |-----------------------------------------------------------
+	 | User trips section
+	 |-----------------------------------------------------------
+	*/
+	$scope.noPropertiesFoundMsg = false;
+
+	$http({
+	  method : "POST",
+	  url : '/getusersession',
+	  data : {}
+	}).success(function(user){
+
+	  if (user.statuscode == 0)
+	  {
+	      console.log("before get trips");
+	      console.log(user.credentials.id);
+	      $http({
+	        method : "POST",
+	        url : '/getUserTrips',
+	        data: {
+	          userId: user.credentials.id
+	        }
+	      }).success(function(userTrips){
+	        console.log("-----------------getUserTrips----------");
+	        console.log(userTrips);
+	          if (userTrips.statuscode == 0)
+	          {
+	              console.log("-----------------userTrips.statuscode = 0----------");
+	              // if(userTrips.data.length > 0) {
+
+	                  $http({
+	                    method : "POST",
+	                    url : '/getPropertiesForUserTrips',
+	                    data: {
+	                      properties: userTrips.data
+	                    }
+	                  }).success(function(tripProperties){
+
+	                        console.log("-----------------getPropertiesForUserTrips----------");
+	                        console.log(tripProperties);
+	                        var allUserTrips = tripProperties.data,
+	                            upcomingTrips = [],
+	                            completedTrips = [];
+
+	                        //upcoming bookings
+	                        var todaysDate = Date.now();
+	                        for(var i=0; i<allUserTrips.length; i++)
+	                        {
+	                          if(allUserTrips[i].till_date < todaysDate)
+	                            upcomingTrips.push(allUserTrips[i]);
+	                          else
+	                            completedTrips.push(allUserTrips[i]);
+	                        }
+	                        console.log(upcomingTrips);
+	                        console.log(completedTrips);
+	                        //update scope values
+	                        $scope.upcomingTrips = upcomingTrips;
+	                        $scope.completedTrips = completedTrips;
+
+
+	                  }).error(function(error) {
+	                    console.log("error");
+	                  });
+
+
+	            // }else {
+	            // 	$scope.noPropertiesFoundMsg = true;
+	            // }
+
+	          }
+	          else
+	          {
+	            console.log("--------------userTrips.statuscode = 1----------");
+	          }
+
+	      }).error(function(error) {
+	        console.log("error");
+	      });
+
+	  }
+	  else
+	  {
+
+	  }
+	}).error(function(error) {
+	  console.log("error");
+	});
+
+
 })
 
 
 
 //this is for showing the listing for the host
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,3 +1,27 @@
-<link rel='stylesheet' href='/stylesheets/style.homepage.css' />
+!-- including css picker -->
+<link rel='stylesheet' href='stylesheets/homepage.css' />
+<link href="https://a2.muscache.com/airbnb/static/packages/common_o2.1-95d643eef69139392786405865038db8.css" media="all" rel="stylesheet" type="text/css" />
+<link href="https://a1.muscache.com/airbnb/static/packages/common-e2aa11d9210d88c08eb62a0e67b5f554.css" media="all" rel="stylesheet" type="text/css" />
+<link href="https://a1.muscache.com/airbnb/static/packages/address_widget-4f18ee66a37930ce1c93c8f33690c7b0.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="https://a2.muscache.com/airbnb/static/packages/phonenumbers-67b13441cd68e5c9161e38a0dab88b54.css" media="screen" rel="stylesheet" type="text/css" /><link href="https://a2.muscache.com/airbnb/static/business_travel/quick_enroll-9fe44fac8aa94516d93764b9b4e57633.css" media="screen" rel="stylesheet" type="text/css" /><link href="https://a1.muscache.com/airbnb/static/packages/edit_profile-ac1fc053a07a8229d28854f4afdc24e6.css" media="screen" rel="stylesheet" type="text/css" />
 
-<p>trips</p>
+
+
+
+<div class="nav navbar-collapse navbar  panel   avatar-tooltip--new" id="myNavbar" style="padding-left: 20%; padding-right: 20%">
+  <!--This is the header for Host user-->
+  <ul class="nav navbar-nav" ng-show="signedhost">
+      <li> <a ui-sref=".upcomingTrips" id="profile-dashboard">Upcoming Trips</a></li>
+      <li> <a ui-sref=".compeletedTrips" id="profile-listing">Completed trips</a></li>
+  </ul>
+</div>
+
+<body id="tripsPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+
+<div id="mainTrips" >
+
+  <div ui-view></div>
+  </div>
+
+</body>

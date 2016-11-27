@@ -46,6 +46,7 @@ var validator = require("./routes/misc/validator"); //contains all functions rel
 var admin = require("./routes/admin/admin.approvals"); //contains all functions related to admin approvals
 var adminSearch = require("./routes/admin/admin.search"); //contains all functions related to admin searching hosts
 var property = require("./routes/properties/properties.getproperties"); //contains function related get city properties
+var userGetTrips = require("./routes/user/user.getTrips"); //contains function related get city properties
 
 
 var mongoSessionConnectURL = "mongodb://localhost:27017/sessions";
@@ -131,6 +132,10 @@ app.post('/host/getuserpropdata', host.getuserpropdata);
 app.get('/admin/getadminapprovals',admin.getadminapprovals);
 app.post('/admin/approve',admin.approveHostRequest);
 app.post('/admin/searchHosts',adminSearch.searchHosts);
+
+//trips section
+app.post('/getUserTrips', userGetTrips.getTrips);
+app.post('/getPropertiesForUserTrips', userGetTrips.getPropertiesForUserTrips);
 
 mongo.connect(mongoSessionConnectURL, function(){
 	console.log('Connected to mongo at: ' + mongoSessionConnectURL);

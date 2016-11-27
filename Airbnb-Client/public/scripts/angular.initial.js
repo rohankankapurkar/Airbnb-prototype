@@ -110,12 +110,30 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 				templateUrl : './templates/view.trips.html',
 				controller : 'controllerProfile'
 			})
+		.state('home.profile.trips.upcomingTrips',
+		  {
+		    url:'/trips/upcomingTrips',
+		    templateUrl : './templates/view.trips.upcoming.html',
+		    controller : 'controllerProfile'
+		  })
+		.state('home.profile.trips.compeletedTrips',
+		  {
+		    url:'/trips/completedTrips',
+		    templateUrl : './templates/view.trips.completed.html',
+		    controller : 'controllerProfile'
+		  })
 		.state('home.profile.dashboard',
-			{
-				url:'/dashboard',
-				templateUrl : './templates/view.dashboard.html',
-				controller : 'controllerProfile'
-			})
+		  {
+		    url:'/dashboard',
+		    templateUrl : './templates/view.dashboard.html',
+		    controller : 'controllerProfile'
+		  })
+		.state('home.profile.approvals',
+		  {
+		    url:'/approvals',
+		    templateUrl : './templates/view.approvals.html',
+		    controller : 'controllerProfile'
+		  })
 				/*
 		|-----------------------------------------------------------
 		| Admin States
