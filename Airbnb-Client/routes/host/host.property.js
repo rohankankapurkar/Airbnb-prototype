@@ -84,12 +84,12 @@ exports.getavailabledates = function(req, res){
 exports.approveuserrequest = function(req, res){
 
 	console.log(req.param('prop_id'));	
-	var msg_payload = {propiid: req.param('propid'),
+	var msg_payload = {propid: req.param('propid'),
 					userid : req.param('userid'),
 					fromdate : req.param('fromdate'),
 					tilldate : req.param('tilldate')
 		};
-
+ 
 	mq_client.make_request('approveUserRequest_queue', msg_payload, function(err, result){
 		if(err){
 			res.send({statuscode:1, message : "Error occurred while getting avaiable dates"});
@@ -101,4 +101,48 @@ exports.approveuserrequest = function(req, res){
 }
 
 
+exports.getpropertyavailable = function(req, res){
+
+	var msg_payload = {propid: req.param('propid'),
+					userid : req.param('userid'),
+					fromdate : req.param('fromdate'),
+					tilldate : req.param('tilldate')
+		};
+ 
+	mq_client.make_request('checkPropertyAvailable_queue_queue', msg_payload, function(err, result){
+		if(err){
+			res.send({statuscode:1, message : "Error occurred while getting avaiable dates"});
+		}else{
+			res.send({statuscode:0, result:result});
+		}
+	});
 }
+
+
+exports.getpendingpropertyrequests = function(req, res){
+
+	var msg_payload = {host_id: req.param('hostid')};
+ 
+	mq_client.make_request('getPendingPropertyRequests_queue', msg_payload, function(err, result){
+		if(err){
+			res.send({statuscode:1, message : "Error occurred while getting avaiable dates"});
+		}else{
+			res.send({statuscode:0, result:result});
+		}
+	});
+}
+
+
+exports.getuserpropdata = function(req, res){
+
+	var msg_payload = {user_id: req.param('hostid'), prop_id:req.param('propid')};
+ 
+	mq_client.make_request('getUserPropData_queue', msg_payload, function(err, result){
+		if(err){
+			res.send({statuscode:1, message : "Error occurred while getting avaiable dates"});
+		}else{
+			res.send({statuscode:0, result:result});
+		}
+	});
+}
+

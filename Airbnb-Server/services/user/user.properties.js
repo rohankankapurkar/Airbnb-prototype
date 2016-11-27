@@ -80,6 +80,7 @@ exports.bookProperty = function(msg, callback){
         }else{
             res['statuscode'] = 1;
             res['message'] = "Error ocurred while placing your request";
+            callback(null, res);
         }
     });
 }

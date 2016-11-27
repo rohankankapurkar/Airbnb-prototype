@@ -122,8 +122,14 @@ app.post('/user/bookproperty', bookproperty.bookproperty);
 app.post('/host/addproperty',host.addproperty); //equivalent to /host/addadvertisement - in api doc
 app.post('/host/getmyproperties', host.getmyproperties);  //To get all host's listed properties for viewing/editing
 app.post('/host/getavailabledates', host.getavailabledates);
+<<<<<<< Updated upstream
+=======
+app.post('/host/getpropertyavailable', host.getpropertyavailable);
+>>>>>>> Stashed changes
 app.post('/host/validateaddress',validator.validateaddress);
-app.post('/host/approveuserrequest', host.approveuserrequest)
+app.post('/host/approveuserrequest', host.approveuserrequest);
+app.post('/host/getpendingpropertyrequests', host.getpendingpropertyrequests);
+app.post('/host/getuserpropdata', host.getuserpropdata);
 app.get('/admin/getadminapprovals',admin.getadminapprovals);
 app.post('/admin/approve',admin.approveHostRequest);
 

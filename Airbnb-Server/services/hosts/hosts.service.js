@@ -218,49 +218,174 @@ exports.getAvailableDates = function(msg, callback){
 
 
 
+exports.checkPropertyAvailable = function(msg, callback){
+
+	var res = {"statuscode" : 0, "message":""};
+
+	var propid = msg.propid;
+	var fromdate = msg.fromdate;
+	var tilldate = msg.tilldate;
+
+	var params = {"prop_id" : propid};
+	res['data'] = {"avaiable" : false};
+
+	mysql.executeQuery("SELECT * FROM AVAILABLE_DATES WHERE ? ", params, function(result){
+
+		if(result){
+			var counter = 0;
+			for(counter = 0; counter < result.length; counter++){
+
+				var fromdate_db = result[counter]['from_date'];
+				var tilldate_db = result[counter]['till_date'];
+
+				if(fromdate >= fromdate_db && tilldate <= tilldate_db){
+					res['data'] = {"avaiable" : true};
+					break;
+				}
+
+			}
+		}
+		callback(null, res)
+	});
+}
+
+
 exports.approveUserRequest = function(msg, callback){
 
 	var res = {"statuscode" : 0, "message":""};
 
-	var disapproveParams = {"prop_id":msg.propid};
-	var approveParams = {"user_id":msg.userid, "prop_id":msg.propid, "from_date":msg.fromdate,"till_date":msg.tilldate};
-	var availableDatesParams = {'prop_id':msg.propid};
+	var user_id = msg.userid;
+	var prop_id =  msg.propid;
+	var from_date = msg.fromdate;
+	var till_date = msg.tilldate;
 
-	//First disapprove all the requests for particular property
-	mysql.executeQuery("UPDATE BOOKED_PROPERTIES SET approved = 2 WHERE ?", disapproveParams, function(disapproveResult){
+	// This will get the user which is to be approved:
+	var params1 = {"user_id" : user_id, "prop_id" : prop_id, "approved" : 0}
+	mysql.executeQuery("SELECT * FROM BOOKED_PROPERTIES WHERE ?", params1, function(result1){
 
-		// now approve the request of selected user. user id passed from client.
+		if(result1){
+			
+			// Here the status as approved. that 1s
+			var params2 = {"id":result1[0]["id"]};
+			mysql.executeQuery("UPDATE BOOKED_PROPERTIES SET approved = 1 WHERE ? ", params2, function(result2){
 
-		mysql.executeQuery("UPDATE BOOKED_PROPERTIES SET approved = 1 WHERE ? " , approveParams, function(approveResult){
+				//This call database to update avaiable dates 
+				mysql.executeQuery("SELECT * FROM AVAILABLE_DATES WHERE prop_id = " + prop_id + " AND from_date < "+ from_date + " AND till_date > " + till_date +" ", 
+					{}, function(availableDatesResult){
 
-			// Now property has been approved for user, lets update the avaiable dates.
+					var idToDelete = availableDatesResult[0]['id'];
+					var fromDate_1 = availableDatesResult[0]['from_date'];
+					var tillDate_1 = moment(msg.from_date).subtract(1, 'days');
+					var prop1 = {"prop_id": msg.propid, "from_date":fromDate_1, "till_date":tillDate_1};
 
-			mysql.executeQuery("SELECT * FROM AVAILABLE_DATES WHERE prop_id = " + msg.propid + " AND from_date < "+ msg.fromdate + " AND till_date > " + msg.tilldate +" ", 
-				{}, function(availableDatesResult){
+					var fromDate_2 = moment(msg.tilldate).add(1, 'days');
+					var tillDate_2 = availableDatesResult[0]['till_date'];
+					var prop2 = {"prop_id": msg.propid, "from_date":fromDate_2, "till_date":tillDate_2};
 
-				var idToDelete = availableDatesResult[0]['id'];
-				var fromDate_1 = availableDatesResult[0]['from_date'];
-				var tillDate_1 = moment(msg.from_date).subtract(1, 'days');
-				var prop1 = {"prop_id": msg.propid, "from_date":fromDate_1, "till_date":tillDate_1};
+					// Delete an existing available dates as it has been booked
+					mysql.executeQuery("DELETE FROM AVAILABLE_DATES WHERE id = "+ idToDelete+"", {}, function(innerResult1){
+						// nothing to do here with callback
+						});
+					mysql.executeQuery("INSERT INTO AVAILABLE_DATES SET ? ", prop1, function(innerResult2){
+						// nothing to do here with callback
+						});
+					mysql.executeQuery("INSERT INTO AVAILABLE_DATES SET ? ", prop2, function(innerResult3){
+						// nothing to do here with callback
+						});
+					});
 
-				var fromDate_2 = moment(msg.tilldate).add(1, 'days');
-				var tillDate_2 = availableDatesResult[0]['till_date'];
-				var prop2 = {"prop_id": msg.propid, "from_date":fromDate_2, "till_date":tillDate_2};
+				//This call to database to update disapprove conflicting requests
+				params3 = {"prop_id" : prop_id, "approved" : 0};
+				mysql.executeQuery("SELECT * FROM BOOKED_PROPERTIES WHERE ?", params3, function(result3){
 
-				// Delete an existing available dates as it has been booked
-				mysql.executeQuery("DELETE FROM AVAILABLE_DATES WHERE id = "+ idToDelete+"", {}, function(result1){
-					// nothing to do here with callback
+					if(result3){
+						var counter = 0;
+						for(counter  =0; counter < result3.length; counter++){
+
+							var id = result3[counter]["id"];
+							var fromDateTemp = result3[counter]["from_date"];
+							var tillDateTemp = result3[counter]["till_dtae"];
+
+							if( (fromDateTemp > from_date && fromDateTemp < till_date ) || (tillDateTemp > from_date && tillDateTemp < till_date) ){
+								params4 = {"id" : id};
+								mysql.executeQuery("UPDATE BOOKED_PROPERTIES SET approved = 2 where ?", params4, function(result4){})
+							}
+						}		
+					}
 				});
-				mysql.executeQuery("INSERT INTO AVAILABLE_DATES SET ? ", prop1, function(result2){
-					// nothing to do here with callback
-				});
-				mysql.executeQuery("INSERT INTO AVAILABLE_DATES SET ? ", prop2, function(result3){
-					// nothing to do here with callback
+			});
+		callback(null, res);
+		}
+	});
+}
+
+
+// Here this will return prop id and user_id which are waiting for approvals.
+exports.getPendingPropertyRequests = function(msg, callback){
+
+	var res = {"statuscode":0, "message":""}
+	var host_id = msg.host_id;
+
+		mongo.connect(function(){
+
+			var coll = mongo.collection('properties');
+
+			coll.find({'host_id':host_id}).toArray(function(err, allProps){
+
+				var counter = 0;
+				var allPropId = [];
+				for(counter = 0; counter < allProps.length; counter++){
+					allPropId.push(allProps[counter]['id']);
+				}
+				mysql.executeQuery("SELECT * FROM BOOKED_PROPERTIES WHERE approved = 0 AND prop_id in ?", allPropId, function(result2){
+					
+					res['data'] = result2;
+					callback(null, res);
 				});
 			});
 		});
+}
+
+
+// This will return user and property data from mongo.
+exports.getUserPropData = function(msg, callback){
+
+	var res = {"statuscode" : 0, "message":""};
+	var user_id = msg.userid;
+	var prop_id = msg.propid;
+
+	mongo.connect(function(){
+
+		var coll = mongo.collection('users');
+		var props = mongo.collection('properties');
+
+		coll.find({'id':user_id}, function(err, result){
+
+			if(!err){
+
+				props.find({'id':propid}, function(err1, result1){
+
+					if(!err1){
+						result['propertydata'] = result1;
+						res['data'] = result;
+						callback(null, res);
+					}
+					else{
+						res['statuscode'] = 1;
+						res['message'] = "Unexpected error occurred while getting the user and property details"
+						callback(null, res);		
+
+					}
+				});
+			}else{
+				res['statuscode'] = 1;
+				res['message'] = "Unexpected error occurred while getting the user and property detials"
+				callback(null, res);
+			}
+		});
 	});
 }
+
 
 exports.saveReview = function(msg, callback) {
 	var res = {};

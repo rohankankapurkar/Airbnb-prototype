@@ -149,12 +149,63 @@ cnn.on('ready', function(){
 	});
 
 
+	// Service to check if the property is available before approving
+	cnn.queue('checkPropertyAvailable_queue', function(q){
+		q.subscribe(function(message, headers, deliveryInfo, m){
+			util.log(util.format( deliveryInfo.routingKey, message));
+			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+			hostService.checkPropertyAvailable(message, function(err,res){
+				//return index sent
+				cnn.publish(m.replyTo, res, {
+					contentType:'application/json',
+					contentEncoding:'utf-8',
+					correlationId:m.correlationId
+				});
+			});
+		});
+	});
+
+
 	// Service to approve user's booking request
 	cnn.queue('approveUserRequest_queue', function(q){
 		q.subscribe(function(message, headers, deliveryInfo, m){
 			util.log(util.format( deliveryInfo.routingKey, message));
 			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
 			hostService.approveUserRequest(message, function(err,res){
+				//return index sent
+				cnn.publish(m.replyTo, res, {
+					contentType:'application/json',
+					contentEncoding:'utf-8',
+					correlationId:m.correlationId
+				});
+			});
+		});
+	});
+
+
+	// Service to get pending property requests
+	cnn.queue('getPendingPropertyRequests_queue', function(q){
+		q.subscribe(function(message, headers, deliveryInfo, m){
+			util.log(util.format( deliveryInfo.routingKey, message));
+			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+			hostService.getPendingPropertyRequests(message, function(err,res){
+				//return index sent
+				cnn.publish(m.replyTo, res, {
+					contentType:'application/json',
+					contentEncoding:'utf-8',
+					correlationId:m.correlationId
+				});
+			});
+		});
+	});
+
+
+	// Service to get user's and property detaills data from mongo
+	cnn.queue('getUserPropData_queue', function(q){
+		q.subscribe(function(message, headers, deliveryInfo, m){
+			util.log(util.format( deliveryInfo.routingKey, message));
+			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+			hostService.getUserPropData(message, function(err,res){
 				//return index sent
 				cnn.publish(m.replyTo, res, {
 					contentType:'application/json',

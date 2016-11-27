@@ -1,4 +1,4 @@
-airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateParams){
+airbnbApp.controller('controllerProperties',function($scope,$http,$log,$state,$stateParams){
 
   if (typeof(Storage) !== "undefined") {
     if($state.params.city != null && $state.params.city != "" && $state.params.city != undefined )
@@ -33,6 +33,7 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
     return (parseInt(property['price']) >= $scope.property_min_price && parseInt(property['price']) <= $scope.property_max_price);
   };
   
+<<<<<<< Updated upstream
   $scope.propertyDateRangeFilter = function(property){
     var startDate = new Date(property['from']);
     var endDate = new Date(property['till']);
@@ -84,6 +85,29 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
           }
        }
     } 
+=======
+  var cityToPlot = [];
+  $scope.markers = [];
+
+  // Code to center the map on the selected city;
+
+  var mapOptions = {
+    zoom: 4,
+    center: new google.maps.LatLng(25,80),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  }
+
+  $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+  var geoCoder = new google.maps.Geocoder();
+  var infoWindow = new google.maps.InfoWindow();
+
+  geoCoder.geocode({'address': $scope.city}, function(results, status) {
+    if (status === 'OK') {
+      $scope.map.setCenter(results[0].geometry.location);}
+  }); 
+
+>>>>>>> Stashed changes
 
 }*/
   /*
@@ -91,6 +115,7 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
    | get properties in the given city
    |-----------------------------------------------------------
   */
+
   $http({
     method : "POST",
     url : '/properties',
@@ -102,9 +127,13 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
     if(data.statuscode == 0)
     {
       $scope.properties = data.data;
+<<<<<<< Updated upstream
       $scope.property_max_price = Math.max.apply(Math,$scope.properties.map(function(property){return property.price;}));
       $scope.property_min_price = Math.min.apply(Math,$scope.properties.map(function(property){return property.price;}));
       console.log($scope.properties);
+=======
+      getCities($scope.properties);
+>>>>>>> Stashed changes
     }
     else
     {
@@ -116,6 +145,53 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
 
 
 
+var createMarker = function (info){
+
+console.log('here while marking the cities' + info.price);
+var marker = new google.maps.Marker({
+      map: $scope.map,
+      position: new google.maps.LatLng(info.lat, info.lng),
+      title: "$" + info.price.toString()
+    });
+  marker.content = '';
+  google.maps.event.addListener(marker, 'click', function(){
+          infoWindow.setContent('<h2>' + marker.title + '</h2>' + 
+          marker.content);
+          infoWindow.open($scope.map, marker);
+      });
+    $scope.markers.push(marker);
+}  
+    
+$scope.openInfoWindow = function(e, selectedMarker){
+        e.preventDefault();
+        google.maps.event.trigger(selectedMarker, 'idle');
+}
+
+var getCities = function(allProperties){
+
+  var count = 0;
+  
+  for(count = 0; count < allProperties.length; count++){
+    var city = {};
+    var property = allProperties[count];
+    var address = property['street'] + ", "+property['city'] + ", "+property['state'] +", "+ property['country'];
+    console.log(address + property['price']);
+
+    $http.get('http://maps.google.com/maps/api/geocode/json?address='+address+'&sensor=false').success(function(mapData) {
+      angular.extend($scope, mapData);
+      city = mapData.results[0].geometry.location;
+      city['price'] = property.price;
+      city['city'] = property;
+      createMarker(city);
+      count++;
+    }); 
+  }
+
+}
+
+
+
+// ////////////////////////////////////////////////////////////
 
   $scope.pageChanged = function(page){
     $http({
