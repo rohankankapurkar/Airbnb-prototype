@@ -7,10 +7,15 @@ airbnbApp.controller('controllerCheckout',function($scope,$http,$state,$statePar
 	$scope.username = $state.params.username;
 
 	console.log($scope.numberOfDays);
-	console.log($scope.property);
+	console.log($scope.property+ "habibi");
 	console.log($scope.fromdate);
 	console.log($scope.tilldate);
 	console.log($scope.username);
+	console.log(JSON.stringify($scope.property));
+	console.log("Printing the profile picture" + JSON.stringify($scope.property.hostdata[0].profile_pic));
+	console.log("Printing the hostdata" + JSON.stringify($scope.property.hostdata[0]));
+	console.log("Printing the shit" + JSON.stringify($scope.property.street));
+
 
 
 
