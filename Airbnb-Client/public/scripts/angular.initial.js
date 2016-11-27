@@ -160,7 +160,14 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 			{
 				url:'checkout',
 				templateUrl : './templates/view.checkout.html',
-				controller : 'controllerCheckout'
+				controller : 'controllerCheckout',
+				params : {
+					fromdate : null,
+					tilldate : null,
+					numberOfDays : null,
+					property : null,
+					username : null
+				}
 			})
 
 })

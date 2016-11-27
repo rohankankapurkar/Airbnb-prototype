@@ -67,8 +67,8 @@ console.log("host update listing");
 
 exports.getavailabledates = function(req, res){
 
-		console.log(req.param('prop_id'));	
-		var msg_payload = {prop_id: "000-00-0011"};
+		/*console.log(req.param('prop_id'));*/	
+		var msg_payload = {prop_id: req.param('prop_id')};
 
 		mq_client.make_request('getAvailableDates_queue', msg_payload, function(err, result){
 			if(err){
@@ -99,6 +99,6 @@ exports.approveuserrequest = function(req, res){
 
 	});
 
-}
+
 
 }

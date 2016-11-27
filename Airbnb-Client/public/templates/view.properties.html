@@ -97,8 +97,10 @@
 
 				<section>
 					<div>
-						<div class="col-md-6 col-sm-6 co-xs-12 gal-item" ng-repeat="property in properties|filter:propertyGuestsFilter|filter:propertyDateRangeFilter|filter:propertyPriceRangeFilter|filter:propertyTypeFilter">
-							<a ng-click= transitionToProperty(property._id) id="property-display">
+
+						<div class="col-md-6 col-sm-6 co-xs-12 gal-item" ng-repeat="property in properties|filter:propertyGuestsFilter |filter:propertyGuestsFilter|filter:propertyDateRangeFilter|filter:propertyPriceRangeFilter|filter:propertyTypeFilter">
+						<a ng-click= transitionToProperty(property._id) id="property-display">
+
 								<!-- <div id="carousel-example-generic" ng-repeat="property in properties" class="carousel slide" data-ride="carousel"> -->
 								<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 									<div class="carousel-inner" id="carousel-properties" role="listbox">

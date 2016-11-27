@@ -103,7 +103,7 @@
                 <div class="col-sm-3">
                   <i class="icon icon-entire-place icon-size-2" aria-hidden="true"></i>
                     <br>
-                    <span>{{selectedProperty.guestaccess=="private_room"?"Private Room":selectedProperty.guestaccess== "shared_room" ? "Shared Room":selectedProperty.guestaccess=="entire_room"?"Entire Room":"NA" }}</span>
+                    <span>{{selectedProperty.guestaccess=="private_room"?"Private Room":selectedProperty.guestaccess== "shared_room" ? "Shared Room":selectedProperty.guestaccess=="entire_home"?"Entire Home":"NA" }}</span>
                 </div>
                 <div class="col-sm-3">
                   <i class="icon icon-group icon-size-2" aria-hidden="true"></i>
@@ -266,7 +266,7 @@
                               </span>
                               <span> </span>
                               <span>
-                                <span>{{selectedProperty.guestaccess=="private_room"?"Private Room":selectedProperty.guestaccess== "shared_room" ? "Shared Room":selectedProperty.guestaccess=="entire_room"?"Entire Room":"NA" }}</span>
+                                <span>{{selectedProperty.guestaccess=="private_room"?"Private Room":selectedProperty.guestaccess== "shared_room" ? "Shared Room":selectedProperty.guestaccess=="entire_home"?"Entire Home":"NA" }}</span>
                               </span>
                             </div>
                           </div>
@@ -365,12 +365,12 @@
                   <div class="col-md-6">
                     <label class="font-airbnb-faded">Check In</label>
                     <!-- <input type="text" class="form-control" placeholder="Check in" id="checkInProperty"> -->
-                    <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+                    <md-datepicker id="fromdate" ng-model="fromdate" md-placeholder="Enter date"></md-datepicker>
                   </div>
                   <div class="col-md-6">
                     <label class="font-airbnb-faded">Check Out</label>
                       <!-- <input type="text" class="form-control" placeholder="Check out" id="checkOutProperty"> -->
-                    <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+                    <md-datepicker id="tilldate" ng-model="tilldate" md-placeholder="Enter date"></md-datepicker>
                   </div>
                 </div>
               </div>

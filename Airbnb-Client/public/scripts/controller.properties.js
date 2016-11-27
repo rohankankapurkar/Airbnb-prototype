@@ -1,7 +1,16 @@
 airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateParams){
 
+  if (typeof(Storage) !== "undefined") {
+    if($state.params.city != null && $state.params.city != "" && $state.params.city != undefined )
+    {
+      console.log($state.params.city);
+      localStorage.setItem('city',$state.params.city)
+    }
+  } 
 
-  $scope.city = $state.params.city;
+
+  
+  $scope.city = localStorage.getItem('city');
   $scope.noPropertiesFound = false;
   $scope.selectedProperty = $state.params.selectedProperty;
 
@@ -46,7 +55,7 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
   }
 
   $scope.propertyTypeFilter = function(property){
-    if(property['guestaccess'] == "entire_room" && $scope.entRoom == true)
+    if(property['guestaccess'] == "entire_home" && $scope.entRoom == true)
       return property;
     if(property['guestaccess'] == "private_room" && $scope.prvRoom == true)
       return property;
