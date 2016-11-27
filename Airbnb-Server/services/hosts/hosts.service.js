@@ -318,12 +318,29 @@ exports.approveUserRequest = function(msg, callback){
 						}		
 					}
 				});
+				res["message"] = "Property has been approved";
+				callback(null,res);
 			});
-		callback(null, res);
+		}else{
+			res['message'] = ""
+			callback(null, res);
 		}
 	});
 }
 
+
+exports.disapproveRequest = function(msg, callback){
+
+	var res = {"statuscode":0, "message":""};
+
+	var params = [{'user_id':msg.userid}, {'prop_id':msg.propid}, {'from_date':msg.fromdate}, {'till_date':msg.tilldate}];
+	console.log(params['from_date']);
+	mysql.executeQuery("UPDATE BOOKED_PROPERTIES SET approved = 2 WHERE ?", params, function(result){
+
+		res["message"] = "Disapproved"
+		callback(null, res);
+	});
+}
 
 // Here this will return prop id and user_id which are waiting for approvals.
 exports.getPendingPropertyRequests = function(msg, callback){

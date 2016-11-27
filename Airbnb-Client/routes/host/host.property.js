@@ -144,3 +144,28 @@ exports.getuserpropdata = function(req, res){
 		}
 	});
 }
+
+
+exports.disapproverequest = function(req, res){
+	var msg_payload = {propid: req.param('propid'),
+					userid : req.param('userid'),
+					fromdate : req.param('fromdate'),
+					tilldate : req.param('tilldate')
+		};
+
+	var msg_payload = {propid: "000-00-0006",
+					userid : "000-00-0004",
+					fromdate : "2017-02-09",
+					tilldate : "2017-02-10"
+		};
+
+
+	mq_client.make_request('disapproveRequest_queue', msg_payload, function(err, result){
+		if(err){
+			res.send({statuscode:1, message : "Error occurred while getting avaiable dates"});
+		}else{
+			res.send({statuscode:0, result:result});		
+		}
+	});
+}
+

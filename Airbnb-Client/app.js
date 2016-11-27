@@ -129,6 +129,7 @@ app.post('/host/validateaddress',validator.validateaddress);
 app.post('/host/approveuserrequest', host.approveuserrequest);
 app.post('/host/getpendingpropertyrequests', host.getpendingpropertyrequests);
 app.post('/host/getuserpropdata', host.getuserpropdata);
+app.post('/host/disapproverequest', host.disapproverequest);
 app.get('/admin/getadminapprovals',admin.getadminapprovals);
 app.post('/admin/approve',admin.approveHostRequest);
 app.post('/admin/searchHosts',adminSearch.searchHosts);

@@ -23,6 +23,7 @@ airbnbApp.controller('controllerCheckout',function($scope,$http,$state,$statePar
 	console.log($scope.property);
 	console.log($scope.userid)
 
+	var price = parseInt($scope.numberOfDays * parseInt($scope.property.price));
 	//This function should be called after all validations.
 	//Either call all the validaion functions from this function or call this from the validation funcitons in if-else
 	//But should be called at the end
@@ -35,7 +36,8 @@ airbnbApp.controller('controllerCheckout',function($scope,$http,$state,$statePar
 					fromdate : $scope.fromdate,
 					todate: $scope.tilldate,
 					userid: $scope.userid,
-					hostid: $scope.property.hostdata[0].id
+					hostid: $scope.property.hostdata[0].id,
+					price : price
 					//hostdata:$scope.property.hostdata[0]
 				}
 			}).success(function(data) {

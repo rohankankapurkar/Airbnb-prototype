@@ -184,6 +184,22 @@ cnn.on('ready', function(){
 	});
 
 
+	// Service to disapprove user's booking request
+	cnn.queue('disapproveRequest_queue', function(q){
+		q.subscribe(function(message, headers, deliveryInfo, m){
+			util.log(util.format( deliveryInfo.routingKey, message));
+			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+			hostService.disapproveRequest(message, function(err,res){
+				//return index sent
+				cnn.publish(m.replyTo, res, {
+					contentType:'application/json',
+					contentEncoding:'utf-8',
+					correlationId:m.correlationId
+				});
+			});
+		});
+	});
+
 	// Service to get pending property requests
 	cnn.queue('getPendingPropertyRequests_queue', function(q){
 		q.subscribe(function(message, headers, deliveryInfo, m){
