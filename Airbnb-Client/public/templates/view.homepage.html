@@ -407,10 +407,14 @@ Already have an account ?		            	<a data-toggle="modal" data-dismiss="mod
                 //show_signin();
 
     		});
+            
+            $("#signin").on("click", function () {
+    			 remove_signup();
+    		});
 
 
             $("#register").on("click", function () {
-    			 //remove_signup();
+    			 remove_signup();
 //                write here the logic for removing register screen and showing login screen
                 //show_signin();
 
