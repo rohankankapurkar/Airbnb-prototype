@@ -453,11 +453,12 @@
 
             <p class="quote">{{ prop.reviewPost }} </p>
 
-            <div class="rating" >
-              <p class="quote">{{ prop.rating }} </p>
 
-              <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-            </div>
+
+            <span class="stars">
+          <span ng-style="{ 'width': getStars({{ prop.rating }}) }"></span>
+      </span>
+
           </blockquote>
           <div class="sprite arrow-speech-bubble"></div>
         </div>
