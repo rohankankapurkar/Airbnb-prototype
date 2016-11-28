@@ -106,7 +106,7 @@ airbnbApp.controller('controllerApprovals',function($scope,$state,$log,$http,$st
         data : {
           propid: propertyId,
           userid: userId,
-          formdate: from,
+          fromdate: from,
           tilldate: till
         }
       }).success(function(property){
@@ -145,7 +145,7 @@ airbnbApp.controller('controllerApprovals',function($scope,$state,$log,$http,$st
         data : {
           propid: propertyId,
           userid: userId,
-          formdate: from,
+          fromdate: from,
           tilldate: till
         }
       }).success(function(approveBooking){
