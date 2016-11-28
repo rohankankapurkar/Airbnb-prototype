@@ -99,7 +99,7 @@ airbnbApp.controller('controllerApprovals',function($scope,$state,$log,$http,$st
 
 
 
-    $scope.checkPropertyAvailability = function(propertyId, userId, from, till){
+    $scope.checkPropertyAvailability = function(propertyId, userId, from, till, index){
       $http({
         method : "POST",
         url : '/host/getpropertyavailable',
@@ -112,18 +112,25 @@ airbnbApp.controller('controllerApprovals',function($scope,$state,$log,$http,$st
       }).success(function(property){
         console.log("------------checkPropertyAvailability--------------");
         console.log(property);
+        console.log(index);
         console.log(property.result.data.avaiable);
+
         if (property.statuscode == 0)
         {
-          if(property.result.data.avaiable == true)
-            $scope.checkAvailabilityStatus = true;
-          else
-            $scope.checkAvailabilityStatus = true;
+          if(property.result.data.avaiable == true) {
+            $scope.allPendingApprovals[index].checkAvailabilityStatus = true;
+            $scope.allPendingApprovals[index].approveBooking = true;
+          }
+          else {
+            $scope.allPendingApprovals[index].checkAvailabilityStatus = true;
+          }
         }
         else
         {
           $scope.notAvailableMsg = true;
         }
+        console.log($scope.allPendingApprovals);
+
       }).error(function(error) {
         console.log("error");
       });
@@ -146,7 +153,8 @@ airbnbApp.controller('controllerApprovals',function($scope,$state,$log,$http,$st
         console.log(approveBooking);
         if (approveBooking.statuscode == 0)
         {
-            $scope.userrequestapproved = true;
+            $scope.allPendingApprovals[index].approveBooking = false;
+            $scope.allPendingApprovals[index].generateBill = true;
         }
         else
         {
