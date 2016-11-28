@@ -47,3 +47,36 @@ exports.getPropertiesForUserTrips = function(req, res) {
 	});
 
 };
+
+
+exports.getUserAndProperty = function(req, res) {
+
+	console.log("-------------------user getUserAndProperty routes-------------");
+	var msg_payload = {properties: req.body.pendingApprovalsData};
+  console.log(msg_payload);
+
+	if(msg_payload.properties)
+			mq_client.make_request('getUserAndProperty_queue', msg_payload, function(err,result){
+		    if(err)
+		      return console.log("Error in getting properties for trips "+err);
+		    console.log("-----------response getUserAndProperty_queue----------");
+				console.log(result);
+				if(result.statuscode == 0)
+		    {
+		      res.send(result);
+				}
+				else
+				{
+					res.send({
+		        statuscode: 1
+		      });
+				}
+			});
+	else {
+			res.send({
+				statuscode: 1
+			});
+	}
+
+
+};

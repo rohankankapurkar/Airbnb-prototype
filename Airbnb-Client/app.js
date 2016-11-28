@@ -148,6 +148,7 @@ app.post('/analytics/clicks',analytics.logClickData);
 //trips section
 app.post('/getUserTrips', userGetTrips.getTrips);
 app.post('/getPropertiesForUserTrips', userGetTrips.getPropertiesForUserTrips);
+app.post('/getUserAndProperty', userGetTrips.getUserAndProperty);
 
 mongo.connect(mongoSessionConnectURL, function(){
 	console.log('Connected to mongo at: ' + mongoSessionConnectURL);

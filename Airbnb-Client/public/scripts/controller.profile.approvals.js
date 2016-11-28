@@ -43,10 +43,36 @@ airbnbApp.controller('controllerApprovals',function($scope,$state,$log,$http,$st
                       data : {
                         pendingApprovalsData: property.result.data
                       }
-                    }).success(function(updatedProperties){
-                      console.log("------------getUserAndProperty success---------");
+                    }).success(function(data){
 
-                      $scope.updatedProperties = updatedProperties;
+
+                        console.log("------------getUserAndProperty success---------");
+                        console.log(data.result);
+
+                        var pendingApprovals = property.result.data,
+                            pendingApprovalsToMerge = data.result,
+                            updatedPendingApprovalsClient = {};
+
+
+                        //mergin properties and user data to ids
+                        for(var i=0; i<pendingApprovals.length; i++) {
+                            for(var j=0; j<pendingApprovalsToMerge.updatedProperties.length; j++) {
+                                if(pendingApprovals[i].prop_id == pendingApprovalsToMerge.updatedProperties[j].id) {
+                                    pendingApprovals[i].propertyDetails = pendingApprovalsToMerge.updatedProperties[j];
+                                    pendingApprovals[i].from_date = moment(pendingApprovals[i].from_date).format("YYYY-MM-DD");
+                                    pendingApprovals[i].till_date = moment(pendingApprovals[i].till_date).format("YYYY-MM-DD");
+                                }
+                            }
+                            for(var j=0; j<pendingApprovalsToMerge.updatedUser.length; j++) {
+                                if(pendingApprovals[i].user_id == pendingApprovalsToMerge.updatedUser[j].id) {
+                                    pendingApprovals[i].userDetails = pendingApprovalsToMerge.updatedUser[j];
+                                }
+                            }
+                        }
+
+                        console.log(pendingApprovals);
+
+                        $scope.allPendingApprovals = pendingApprovals;
 
                     }).error(function(error){
                       console.log("error in getpendingpropertyrequests");
@@ -57,9 +83,6 @@ airbnbApp.controller('controllerApprovals',function($scope,$state,$log,$http,$st
               {
 
               }
-
-
-
 
         }).error(function(error) {
           console.log("error");
@@ -76,23 +99,26 @@ airbnbApp.controller('controllerApprovals',function($scope,$state,$log,$http,$st
 
 
 
-    $scope.checkPropertyAvailability = function(propertyId){
+    $scope.checkPropertyAvailability = function(propertyId, userId, from, till){
       $http({
         method : "POST",
         url : '/host/getpropertyavailable',
         data : {
           propid: propertyId,
-          userid: user
-          // formdate: ,
-          // tilldate:
+          userid: userId,
+          formdate: from,
+          tilldate: till
         }
       }).success(function(property){
+        console.log("------------checkPropertyAvailability--------------");
+        console.log(property);
+        console.log(property.result.data.avaiable);
         if (property.statuscode == 0)
         {
-          if(property.data.available == true)
+          if(property.result.data.avaiable == true)
             $scope.checkAvailabilityStatus = true;
           else
-            $scope.checkAvailabilityStatus = false;
+            $scope.checkAvailabilityStatus = true;
         }
         else
         {
@@ -103,17 +129,24 @@ airbnbApp.controller('controllerApprovals',function($scope,$state,$log,$http,$st
       });
     }
 
-    $scope.ApproveBooking = function(propertyId){
+    $scope.ApproveBooking = function(propertyId, userId, from, till){
+      console.log("------------ApproveBooking--------------");
+      console.log(propertyId);
       $http({
         method : "POST",
         url : '/host/approveuserrequest',
         data : {
-          propid: propertyId
+          propid: propertyId,
+          userid: userId,
+          formdate: from,
+          tilldate: till
         }
-      }).success(function(property){
-        if (property.statuscode == 0)
+      }).success(function(approveBooking){
+        console.log("------------ApproveBooking--------------");
+        console.log(approveBooking);
+        if (approveBooking.statuscode == 0)
         {
-          $scope.userrequestapproved = true;
+            $scope.userrequestapproved = true;
         }
         else
         {

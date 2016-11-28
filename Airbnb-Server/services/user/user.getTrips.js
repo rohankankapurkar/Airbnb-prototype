@@ -63,4 +63,55 @@ exports.getPropertiesForUserTrips = function(msg, callback){
       callback(null, null);
     }
 
-}
+};
+
+exports.getUserAndProperty = function(msg, callback){
+	console.log("------------getUserAndProperty server---------------");
+	console.log(msg);
+	var res = {statuscode : 0, message : ""},
+			properties = msg.properties,
+			prop_ids = [],
+			user_ids = [],
+			updatedPendingApprovals = {};
+
+	//seperate user properties and user_id
+	for(var i=0; i<properties.length; i++) {
+		prop_ids.push(properties[i].prop_id);
+		user_ids.push(properties[i].user_id);
+	}
+	console.log(prop_ids);
+	console.log(user_ids);
+
+	mongo.connect(function(){
+		var collProp = mongo.collection('properties');
+				collUser = mongo.collection('users');
+
+		collProp.find({id: {$in: prop_ids}}).toArray(function(err, updatedProperties){
+				if(err)
+					console.log(err);
+				console.log("--------------getUserAndProperty properties es---------------");
+				console.log(updatedProperties);
+
+
+						collUser.find({id: {$in: user_ids}}).toArray(function(err, updatedUser){
+								if(err)
+									console.log(err);
+								console.log("--------------getUser es---------------");
+								console.log(updatedUser);
+
+								updatedPendingApprovals = {
+									updatedProperties: updatedProperties,
+									updatedUser: updatedUser
+								};
+								res['result'] = updatedPendingApprovals;
+
+								callback(null, res);
+						});
+
+
+		});
+
+
+	})
+
+};

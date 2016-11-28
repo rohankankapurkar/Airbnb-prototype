@@ -1,11 +1,11 @@
 
-<div class="panel  ">
+<div class="panel  " ng-controller="controllerApprovals">
 
   <div class="panel-body">
 
 
 <!--      <img src="https://ucarecdn.com/8d97a055-e490-41f6-8ff7-deae143116d6/faak.jpg">-->
-  <div class = "container" style="padding-left: 20%; padding-right: 20%">
+  <div class = "container" style="padding-left: 5%; padding-right: 15%">
       <div class=" space-top-4 ">
         <table class="table table-striped">
             <thead>
@@ -18,24 +18,24 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr ng-repeat="pendingApproval in allPendingApprovals">
                   <td title="'Property title'">
-                      {{pendingApproval.propertyTitle}}</td>
+                      {{pendingApproval.propertyDetails.title}}</td>
                   <td >
-                      {{pendingApproval.client}}</td>
+                      {{pendingApproval.userDetails.username}}</td>
                   <td>
-                      {{pendingApproval.fromdate}}</td>
+                      {{pendingApproval.from_date}}</td>
                   <td>
-                      {{pendingApproval.tilldate}}</td>
+                      {{pendingApproval.till_date}}</td>
                   <td>
-                    <button ng-show= !checkAvailabilityStatus ng-click="checkPropertyAvailability(pendingApproval._id)">
+                    <button class="btn btn-primary" id="checkAvailabilityStatus" ng-show= !checkAvailabilityStatus ng-click="checkPropertyAvailability(pendingApproval.prop_id, pendingApproval.user_id, pendingApproval.from_date, pendingApproval.till_date)">
                       Check Availability
                     </button>
                     <span ng-if= notAvailableMsg> Sorry, the rooms not available for the dates. </span>
-                    <button ng-show= checkAvailabilityStatus ng-click="ApproveBooking(pendingApproval._id)">
+                    <button class="btn btn-primary" id="approveBooking" ng-show= checkAvailabilityStatus ng-click="ApproveBooking(pendingApproval.prop_id, pendingApproval.user_id, pendingApproval.from_date, pendingApproval.till_date)">
                       Approve
                     </button>
-                    <button ng-show= userrequestapproved>
+                    <button class="btn btn-primary" id="generateBill" ng-show= userrequestapproved>
                       Generate Bill
                     </button>
                   </td>
