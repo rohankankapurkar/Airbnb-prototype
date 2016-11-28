@@ -32,7 +32,7 @@
                       Check Availability
                     </button>
                     <span ng-if= notAvailableMsg> Sorry, the rooms not available for the dates. </span>
-                    <button class="btn btn-primary" id="approveBooking" ng-show= pendingApproval.approveBooking ng-click="ApproveBooking(pendingApproval.prop_id, pendingApproval.user_id, pendingApproval.from_date, pendingApproval.till_date)">
+                    <button class="btn btn-primary" id="approveBooking" ng-show= pendingApproval.approveBooking ng-click="ApproveBooking(pendingApproval.prop_id, pendingApproval.user_id, pendingApproval.from_date, pendingApproval.till_date, $index)">
                       Approve
                     </button>
                     <button class="btn btn-primary" id="generateBill" ng-show= pendingApproval.generateBill>

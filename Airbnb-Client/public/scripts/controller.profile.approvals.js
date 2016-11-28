@@ -136,7 +136,7 @@ airbnbApp.controller('controllerApprovals',function($scope,$state,$log,$http,$st
       });
     }
 
-    $scope.ApproveBooking = function(propertyId, userId, from, till){
+    $scope.ApproveBooking = function(propertyId, userId, from, till, index){
       console.log("------------ApproveBooking--------------");
       console.log(propertyId);
       $http({
