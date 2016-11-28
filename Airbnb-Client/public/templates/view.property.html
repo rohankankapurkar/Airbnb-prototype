@@ -439,6 +439,31 @@
       </form>
 
     </div>
+
+    <h2 style="padding-left: 20px">{{selectedProperty.review.length}}&nbsp;&nbsp;Reviews</h2>
+    <div ng-repeat="prop in selectedProperty.review" style="padding-left: 25px;">
+      <!-- Testimonial -->
+      <div class="testimonial">
+        <!-- Author Photo -->
+        <div class="author-photo">
+          <p class="quote"><strong>{{ prop.from }}</strong> </p>
+        </div>
+        <div class="testimonial-bubble">
+          <blockquote>
+
+            <p class="quote">{{ prop.reviewPost }} </p>
+
+            <div class="rating" >
+              <p class="quote">{{ prop.rating }} </p>
+
+              <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+            </div>
+          </blockquote>
+          <div class="sprite arrow-speech-bubble"></div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
 </div>
