@@ -93,7 +93,7 @@ app.get('/users', user.list);
 app.post('/properties', property.getproperties);
 
 app.post('/getusersession',usersession.getSession);
-app.post('/analytics', analytics.logdata);
+/*app.post('/analytics', analytics.logdata);*/
 app.post('/user/register', register.signup);
 app.post('/user/signin',function(req, res, next)
 		{
@@ -136,9 +136,14 @@ app.get('/admin/getadminapprovals',admin.getadminapprovals);
 app.post('/admin/approve',admin.approveHostRequest);
 app.post('/admin/searchHosts',adminSearch.searchHosts);
 app.post('/bid',bidding.placebid);
+
 app.post('/admin/top_properties', adminSearch.gettopprops);
 app.post('/admin/top_hosts', adminSearch.gettophosts);
 app.post('/admin/top_cities', adminSearch.gettopcities);
+
+//analytics -- here
+app.post('/analytics/clicks',analytics.logClickData);
+
 
 //trips section
 app.post('/getUserTrips', userGetTrips.getTrips);

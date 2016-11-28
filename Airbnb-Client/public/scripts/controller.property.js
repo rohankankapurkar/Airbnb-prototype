@@ -24,6 +24,7 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 
 	$scope.username = "";
 	$scope.userid = "";
+	
 
 	if($scope.selectedProperty.biddingavailable == "")
 	{
@@ -168,10 +169,10 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 				bidder : $scope.username
 			}
 
-		}).success({
-
-		}).error({
-
+		}).success(function(data){
+			console.log("success");
+		}).error(function(error){
+			console.log("error")
 		});
 	}
 
