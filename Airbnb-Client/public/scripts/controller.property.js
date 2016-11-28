@@ -37,70 +37,68 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 		$scope.noBidding = false;
 		$scope.bidfromdate = new Date($scope.selectedProperty.from);
 		$scope.bidtilldate = new Date($scope.selectedProperty.till);
-		console.log($scope.bidfromdate+" "+$scope.bidtilldate)
 	}
 	
-		
-		$http({
-			method : "POST",
-			url : '/getusersession'
-		}).success(function(data) {
-		
-			if(data.statuscode == 0) 
+	$http({
+		method : "POST",
+		url : '/getusersession'
+	}).success(function(data) {
+		if(data.statuscode == 0) 
+		{
+			$scope.username = data.username;
+			$scope.userid = data.credentials.id;
+			if(data.credentials.isadmin == true)
 			{
-				$scope.username = data.username;
-				$scope.userid = data.credentials.id;
-				if(data.credentials.isadmin == true)
-				{
-					return false;
+				return false;
+			}
+			else
+			{
+				if(data.credentials.ishost == true)
+				{	
+					return true;
 				}
 				else
-				{
-					if(data.credentials.ishost == true)
-					{	
-						return true;
-					}
-					else
-					{	
-						return true;
-					}
+				{	
+					return true;
 				}
 			}
-			else 
-			{
-				return false
-			}
-		}).error(function(error) {
-			return false;
-		});
+		}
+		else 
+		{
+			return false
+		}
+	}).error(function(error) {
+		return false;
+	});
 	
 
-   $scope.addDays = function(date, days){
+   $scope.addDays = function(date, days)
+   {
    		var newDate = date;
    		newDate.setDate(newDate.getDate()+days)
    		return newDate;
    }
 
-   $scope.getDates = function(checkin, checkout){
-   	var dateArray = [];
-   	var currentDate = checkin;
-   	while(currentDate <= checkout){
-   		dateArray.push(new Date(currentDate));
-   		currentDate = $scope.addDays(currentDate,1);
-   		console.log($scope.fromdate);
-   	}
-   	return dateArray;
+   $scope.getDates = function(checkin, checkout)
+   {
+   		var dateArray = [];
+   		var currentDate = checkin;
+   		while(currentDate <= checkout)
+   		{
+   			dateArray.push(new Date(currentDate));
+   			currentDate = $scope.addDays(currentDate,1);
+   			console.log($scope.fromdate);
+   		}
+   		return dateArray;
    }
 
 
-	$scope.getAvailableDates = function(){
-		
-
+	$scope.getAvailableDates = function()
+	{
 		var dateArray = $scope.getDates($scope.fromdate,$scope.tilldate);
 		var firstDate = dateArray[0];
 		var lastDate = dateArray[dateArray.length-1];
 
-		
 		$http({
 			method : "POST",
 			url : '/host/getavailabledates',
@@ -185,11 +183,11 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 	$scope.selectedProperty.apt+",+" +
 	$scope.selectedProperty.city+",+" +
 	$scope.selectedProperty.state	
-console.log("printing address here "+address);
+
 
  var map = 'https://maps.googleapis.com/maps/api/geocode/json?address= '+ address+' &key=AIzaSyD0bGUrKgw3YOQ2vHn_P16GazpXlnon2h4';
  $scope.display= "https://www.google.com/maps/embed/v1/search?key=AIzaSyD0bGUrKgw3YOQ2vHn_P16GazpXlnon2h4&q='+address+'";
- //console.log("printing the map url here"+map)
+ 
 
 	
 	$http({
@@ -197,7 +195,6 @@ console.log("printing address here "+address);
 		url : map
 
 	}).success(function(data) {
-		console.log("Success while for google maps who yaa");
 		console.log(data.results[0].geometry.location.lat);
 		console.log("map"+data.results[0].geometry.location.lng);
 		console.log("map"+data.status);

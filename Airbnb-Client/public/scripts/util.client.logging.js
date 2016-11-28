@@ -2,7 +2,7 @@ $(document).ready(function()
 	{
 	    $(":button, a").click(function()
 	    {
-    		var viewURL = $(location).attr("pathname");
+    		var viewURL = window.location.href;
 			var clickid = this.id;
 			console.log(clickid);
 			var currentdate = new Date();

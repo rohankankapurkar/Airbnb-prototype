@@ -140,7 +140,29 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
         $scope.selectedProperty = $scope.properties[i];
     }
     
+    $scope.logPropertyClick($scope.selectedProperty.title);
     $state.go('home.property', {selectedProperty: $scope.selectedProperty});
   }
+
+
+
+  $scope.logPropertyClick = function(title){
+    
+    $http({
+      method : 'POST',
+      url : 'property/clicks',
+      data : {
+        property : title,
+      }
+
+    }).success(function(data){
+      
+
+    }).error(function(error){
+
+    })
+  
+  }
+
 
 });
