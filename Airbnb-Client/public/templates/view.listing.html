@@ -123,6 +123,8 @@
                         </div>
             </div>
 
+      </div>
+      <div class = "col-md-6">
 
             <div class="row row-condensed space-3">
                         <label class="text-right col-sm-3" for="state">
@@ -132,25 +134,7 @@
                         <input id="state" name="noofguests" size="30" type="text" value={{data.state}} ng-model="data.state" />
                         </div>
             </div>
-
-        <div class="row row-condensed space-4">
-
-            <div class="col-sm-8">
-           <button type="submit" class="btn btn-primary btn-large" ng-click="update_Listing()" id="updateListing">Update Listing</button>
-            </div>
-        </div>
-
-
-
-
-
-
-
-
-
-    </div>
-        <div class = "col-md-6">
-
+            
             <div class="row row-condensed space-3">
                         <label class="text-right col-sm-3" for="zip">
                         Zip
@@ -258,7 +242,8 @@
                         <input id="id" name="id" size="30" type="text" value={{data.id}} ng-model="data.id" readonly/>
                         </div>
             </div> -->
-    </div>
-
-
+      </div>
+      <div class="col-md-4"></div>
+      <button type="submit" class="btn btn-primary btn-large col-md-4" ng-click="update_Listing()" id="updateListing">Update Listing</button>
+      <div class="col-md-4"></div>
 </div>
