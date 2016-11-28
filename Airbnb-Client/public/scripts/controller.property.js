@@ -175,6 +175,35 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 			console.log("error")
 		});
 	}
+	
+	
+	var address = 	$scope.selectedProperty.street+",+"+
+	$scope.selectedProperty.apt+",+" +
+	$scope.selectedProperty.city+",+" +
+	$scope.selectedProperty.state	
+console.log("printing address here "+address);
+
+ var map = 'https://maps.googleapis.com/maps/api/geocode/json?address= '+ address+' &key=AIzaSyD0bGUrKgw3YOQ2vHn_P16GazpXlnon2h4';
+ $scope.display= "https://www.google.com/maps/embed/v1/search?key=AIzaSyD0bGUrKgw3YOQ2vHn_P16GazpXlnon2h4&q='+address+'";
+ //console.log("printing the map url here"+map)
+
+	
+	$http({
+		method : "GET",
+		url : map
+
+	}).success(function(data) {
+		console.log("Success while for google maps who yaa");
+		console.log(data.results[0].geometry.location.lat);
+		console.log("map"+data.results[0].geometry.location.lng);
+		console.log("map"+data.status);
+		
+		$scope.lat = data.results[0].geometry.location.lat;
+		$scope.lng = data.results[0].geometry.location.lng;
+	}).error(function(data){
+		console.log("Error in google maps ");
+	})
+
 
 
 
