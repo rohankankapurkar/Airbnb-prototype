@@ -47,13 +47,13 @@
                           <div class="share-btn-border"></div>
             </div>
           </div>
-            <div class="col-md-6" style="padding-top: 10%; padding-right: 43%;">
-              <div class="share-btn-button media media-photo-block">
-                <span> Price is : {{selectedProperty.price}} </span>
-                  <button type="button" class="btn btn-primary" id="checkAvailability">Check Availability
-                  </button>
-              </div>
+          <div class="col-md-6" style="padding-top: 10%; padding-right: 43%;">
+            <div class="share-btn-button media media-photo-block">
+              <span> Price is : {{selectedProperty.price}} </span>
+                <button type="button" class="btn btn-primary" id="checkAvailability">Check Availability
+                </button>
             </div>
+          </div>
         </div>
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style=" margin-top: 5%;">
           <div class="carousel-inner" id="carousel-properties" role="listbox"  style="margin-left: 30%; width: 40%; height: 40%">
@@ -127,7 +127,7 @@
         <hr>
       </div>
       <div>
-      	<div class="landing-step-collection">
+      <div class="landing-step-collection">
       		<div class="row row-condensed lys-vertical-align-middle-container">
     				<div class="va-container va-container-v va-container-h">
     				  <div class="va-middle">
@@ -149,10 +149,10 @@
     					  </div>
     		      </div>
     		    </div>
-      		<div class="col-sm-2 lys-vertical-align-middle">
-      			<span></span>
-      		</div>
-      	</div>
+      		  <div class="col-sm-2 lys-vertical-align-middle">
+      			 <span></span>
+      		  </div>
+      	   </div>
       </div>
       <hr>
     </div>
@@ -439,8 +439,36 @@
       </form>
 
     </div>
+
+    <h2 style="padding-left: 20px">{{selectedProperty.review.length}}&nbsp;&nbsp;Reviews</h2>
+    <div ng-repeat="prop in selectedProperty.review" style="padding-left: 25px;">
+      <!-- Testimonial -->
+      <div class="testimonial">
+        <!-- Author Photo -->
+        <div class="author-photo">
+          <p class="quote"><strong>{{ prop.from }}</strong> </p>
+        </div>
+        <div class="testimonial-bubble">
+          <blockquote>
+
+            <p class="quote">{{ prop.reviewPost }} </p>
+
+
+
+            <span class="stars">
+          <span ng-style="{ 'width': getStars({{ prop.rating }}) }"></span>
+      </span>
+
+          </blockquote>
+          <div class="sprite arrow-speech-bubble"></div>
+        </div>
+      </div>
+
+    </div>
   </div>
+
 </div>
+<script src="/scripts/util.client.logging.js"></script>
 </div>
 </div>
 

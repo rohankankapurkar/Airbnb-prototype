@@ -27,6 +27,8 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
   $scope.entRoom = true;
 
   $scope.guestsFilter = 1;
+  $scope.property_max_price = 200;
+  $scope.property_min_price = 0;
 
   
   $scope.propertyPriceRangeFilter = function(property) {
@@ -71,21 +73,7 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
       return true;
   }
 
-/*$scope.customMapFilter = function()
-{
 
-  /*if() conditions for date range
-    {
-       if()//condition for apartment type
-       {
-          if() //condition for price range
-          {
-            return property;
-          }
-       }
-    } 
-
-}*/
   /*
    |-----------------------------------------------------------
    | get properties in the given city
@@ -102,8 +90,8 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
     if(data.statuscode == 0)
     {
       $scope.properties = data.data;
-      $scope.property_max_price = Math.max.apply(Math,$scope.properties.map(function(property){return property.price;}));
-      $scope.property_min_price = Math.min.apply(Math,$scope.properties.map(function(property){return property.price;}));
+      //$scope.property_max_price = Math.max.apply(Math,$scope.properties.map(function(property){return property.price;}));
+      //$scope.property_min_price = Math.min.apply(Math,$scope.properties.map(function(property){return property.price;}));
       console.log($scope.properties);
     }
     else
@@ -129,8 +117,8 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
       if(data.statuscode == 0)
       {
         $scope.properties = data.data;
-        $scope.property_max_price = Math.max.apply(Math,$scope.properties.map(function(property){return property.price;}));
-        $scope.property_min_price = Math.min.apply(Math,$scope.properties.map(function(property){return property.price;}));
+        //$scope.property_max_price = Math.max.apply(Math,$scope.properties.map(function(property){return property.price;}));
+        //$scope.property_min_price = Math.min.apply(Math,$scope.properties.map(function(property){return property.price;}));
         console.log($scope.properties); 
       }
       else

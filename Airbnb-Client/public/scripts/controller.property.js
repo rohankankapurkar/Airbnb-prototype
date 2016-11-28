@@ -87,6 +87,7 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
    	while(currentDate <= checkout){
    		dateArray.push(new Date(currentDate));
    		currentDate = $scope.addDays(currentDate,1);
+   		console.log($scope.fromdate);
    	}
    	return dateArray;
    }
@@ -94,8 +95,12 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 
 	$scope.getAvailableDates = function(){
 		
+
 		var dateArray = $scope.getDates($scope.fromdate,$scope.tilldate);
-			
+		var firstDate = dateArray[0];
+		var lastDate = dateArray[dateArray.length-1];
+
+		
 		$http({
 			method : "POST",
 			url : '/host/getavailabledates',
@@ -138,10 +143,9 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 					}
 					if(flag != false)
 					{
-						
 						$state.go('home.finalPayment',{
-							fromdate : $scope.fromdate, 
-							tilldate : $scope.tilldate, 
+							fromdate : firstDate, 
+							tilldate : lastDate, 
 							numberOfDays : counter,
 							property : $scope.selectedProperty,
 							userid: $scope.userid,
@@ -205,7 +209,13 @@ console.log("printing address here "+address);
 	})
 
 
-
+	$scope.getStars = function(rating) {
+		// Get the value
+		var val = parseFloat(rating);
+		// Turn value into number/100
+		var size = val/5*100;
+		return size + '%';
+	}
 
 
 })

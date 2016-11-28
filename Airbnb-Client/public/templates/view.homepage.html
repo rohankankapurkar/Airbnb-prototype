@@ -3,6 +3,7 @@
 
 <!--adding navbar here        -->
 <div id="header">
+
 	<nav class="navbar navbar-light bg-faded" data-offcanvass="yes">
 		<a id="home-nav-img" ui-sref="home"><img  class="pull-left" src="images/logo.png" alt="" width="5%" height="5%"  /></a>
 		<nav class="navbar navbar-light bg-faded">
@@ -71,60 +72,58 @@
 	<!-- model for sign up -->
 	<!--   this is for showing models for signup     -->
 	<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-					<div class="modal-content">
-							<!-- Modal Header -->
-							<div class="modal-header">
-									<button id="hmpgsignupclose" type="button" class="close" data-dismiss="modal">
-												<span aria-hidden="true">&times;</span>
-												<span class="sr-only">Close</span>
-									</button>
-									<h4 class="modal-title" id="myModalLabel">Sign up</h4>
-							</div>
-								<!-- Modal Body -->
-							<div class="modal-body" >
-									<form role="form">
-										<div class="text-success">{{regsuccess}}</div>
-											<div class="form-group inner-addon right-addon">
-														<i class="glyphicon glyphicon-user"></i>
-													<input  type="text" class="form-control" id="regfname" name="regfname" placeholder="First Name" ng-model="regfname">
-													<div class="text-danger">{{invFname}}</div>
-											</div>
-											<div class="form-group inner-addon right-addon">
-														<i class="glyphicon glyphicon-user"></i>
-														<input ng-model="reglname" type="text" class="form-control" id="reglname" name="reglname" placeholder="Last Name"/>
-														<div class="text-danger">{{invLname}}</div>
-											</div>
-												<div class="form-group inner-addon right-addon">
-														<i class="glyphicon glyphicon-envelope"></i>
-														<input ng-model="regemail" type="email" class="form-control" id="regemail" name="regemail" placeholder="Enter email"/>
-														<div class="text-danger">{{invEmail}}</div>
-											</div>
-												<div class="form-group inner-addon right-addon">
-														<i class="glyphicon glyphicon-lock"></i>
-														<input ng-model="regpassword" type="password" class="form-control" id="regpassword" name="regpassword" placeholder="Password"/>
-														<div class="text-danger">{{invPaswd}}</div>
-											</div>
-												<div class="form-group inner-addon right-addon">
-														<i class="glyphicon glyphicon-glass"></i>
-														<input ng-model="regbday" type="date" class="form-control" id="regbday" name="regbday" ng-model="regbday" />
-														<div class="text-danger">{{invBday}}</div>
-											</div>
-											<button id="register" name="register" type="submit" class="btn btn-block signup-login-form__btn-xl btn-primary btn-danger" ng-click="signup()">Signup</button>
-									</form>
-							</div>
-									<div class="modal-footer">
-Already have an account ?		            	<a data-toggle="modal" data-dismiss="model" data-target="#myModalSignIn">
-									<button type="button" class="btn btn-primary" id="signin">Sign in</button>
-								</a>
+		<div class="modal-dialog">
+			<div class="modal-content">
+			<!-- Modal Header -->
+				<div class="modal-header">
+					<button id="hmpgsignupclose" type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span>
+						<span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Sign up</h4>
+				</div>
+				<!-- Modal Body -->
+				<div class="modal-body" >
+					<form role="form">
+						<div class="text-success">{{regsuccess}}</div>
+						<div class="form-group inner-addon right-addon">
+							<i class="glyphicon glyphicon-user"></i>
+							<input  type="text" class="form-control" id="regfname" name="regfname" placeholder="First Name" ng-model="regfname">
+							<div class="text-danger">{{invFname}}</div>
 						</div>
-					</div>
+						<div class="form-group inner-addon right-addon">
+							<i class="glyphicon glyphicon-user"></i>
+							<input ng-model="reglname" type="text" class="form-control" id="reglname" name="reglname" placeholder="Last Name"/>
+							<div class="text-danger">{{invLname}}</div>
+						</div>
+						<div class="form-group inner-addon right-addon">
+							<i class="glyphicon glyphicon-envelope"></i>
+							<input ng-model="regemail" type="email" class="form-control" id="regemail" name="regemail" placeholder="Enter email"/>
+							<div class="text-danger">{{invEmail}}</div>
+						</div>
+						<div class="form-group inner-addon right-addon">
+							<i class="glyphicon glyphicon-lock"></i>
+							<input ng-model="regpassword" type="password" class="form-control" id="regpassword" name="regpassword" placeholder="Password"/>
+							<div class="text-danger">{{invPaswd}}</div>
+						</div>
+						<div class="form-group inner-addon right-addon">
+							<i class="glyphicon glyphicon-glass"></i>
+							<input ng-model="regbday" type="date" class="form-control" id="regbday" name="regbday" ng-model="regbday" />
+							<div class="text-danger">{{invBday}}</div>
+						</div>
+						<button id="register" name="register" type="submit" class="btn btn-block signup-login-form__btn-xl btn-primary btn-danger" ng-click="signup()">Signup</button>
+					</form>
+				</div>
+				<div class="modal-footer">
+					Already have an account ?<a data-toggle="modal" data-dismiss="model" data-target="#myModalSignIn">
+						<button type="button" class="btn btn-primary" id="signin">Sign in</button>
+					</a>
+				</div>
 			</div>
+		</div>
 	</div>
 
-
-
-		<!-- model for sign in -->
+	<!-- model for sign in -->
 	<!--   this is for showing models for signin     -->
 	<div class="modal fade" id="myModalSignIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -169,81 +168,56 @@ Already have an account ?		            	<a data-toggle="modal" data-dismiss="mod
 </div>
 <!-- main UI VIEW -->
 <div ui-view>
+	
 	<div id="middle" ng-controller="controllerHome">
 	<!--adding for carousal	-->
     	<div id="myCarousel" class="carousel slide">
-      		<div class="carousel-inner">
-        		<div class="item active">
-          			<img src="../images/home1.png" alt="" width="100%" height= "40px" class="img-responsive">
-            		<div class="carousel-caption">
-                		<p class="lead">Homes, experiences, and places — all in one app.</p>
-              			<a class="btn btn-large btn-primary" data-toggle="modal" data-target="#myModalNorm" id="signup">Sign up today</a>
-            		</div>
-	        	</div>
-        		<div class="item">
-          			<img src="../images/home2.png" alt="" width="100%" height= "40px" class="img-responsive">
-            		<div class="carousel-caption">
-                    	<a class="btn btn-large btn-primary" data-toggle="modal" data-target="#myModalNorm" id="signup">Sign up today</a>
-	            	</div>
-        		</div>
-        		<div class="item">
-         			<img src="../images/home3.png" width="100%" height= "40px" alt="">
-            		<div class="carousel-caption">
-              			<h1 style="font-size: large">Airbnb Places</h1>
-              			<p class="lead">Get lost in a city with insiders, like Woody.</p>
-              			<a class="btn btn-large btn-primary" href="#">See what's New</a>
-            		</div>
-       	 		</div>
-            	<div class="item">
-          			<img src="../images/home4.png" width="100%" height= "40px" alt="">
-            		<div class="carousel-caption">
-              			<h1 style="font-size: large">Welcome to the world of trips.</h1>
-              			<p class="lead">Homes, experiences, and places — all in one app.</p>
-              			<a class="btn btn-large btn-primary" href="#">Browse gallery</a>
-            		</div>
-        		</div>
-      		</div>
-      		<a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-      		<a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+    	<div class="carousel-inner">
+      		<div class="item active">
+       			<img src="../images/home1.png" alt="" width="100%" height= "40px" class="img-responsive">
+           		<div class="carousel-caption">
+              		<p class="lead">Homes, experiences, and places — all in one app.</p>
+           			<a class="btn btn-large btn-primary" data-toggle="modal" data-target="#myModalNorm" id="signup">Sign up today</a>
+            	</div>
+	        </div>
+        	<div class="item">
+          		<img src="../images/home2.png" alt="" width="100%" height= "40px" class="img-responsive">
+            	<div class="carousel-caption">
+                    <a class="btn btn-large btn-primary" data-toggle="modal" data-target="#myModalNorm" id="signup">Sign up today</a>
+	            </div>
+        	</div>
+        	<div class="item">
+         		<img src="../images/home3.png" width="100%" height= "40px" alt="">
+           		<div class="carousel-caption">
+           			<h1 style="font-size: large">Airbnb Places</h1>
+           			<p class="lead">Get lost in a city with insiders, like Woody.</p>
+           			<a class="btn btn-large btn-primary" href="#">See what's New</a>
+           		</div>
+       		</div>
+           	<div class="item">
+       			<img src="../images/home4.png" width="100%" height= "40px" alt="">
+           		<div class="carousel-caption">
+           			<h1 style="font-size: large">Welcome to the world of trips.</h1>
+           			<p class="lead">Homes, experiences, and places — all in one app.</p>
+           			<a class="btn btn-large btn-primary" href="#">Browse gallery</a>
+           		</div>
+       		</div>
+      	</div>
+      	<a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+      	<a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
     	</div><!-- /.carousel -->
     	<script type="text/javascript">
-  			$(document).ready(function() {
-    			$('.myCarousel').carousel({
-      				interval: 60
-    			})
-  			});
+  		$(document).ready(function() {
+    		$('.myCarousel').carousel({
+    			interval: 60
+    		})
+  		});
 		</script>
 		<!--end of carousal-->
-		<div class="jumbotron text-center ">
-            <h2><b><danger>Live there.</danger></b>Book unique homes and experience a city like a local.</h2>
-			<!-- <form class="form form-inline " style"outline: 2px solid #ddd;">
-				<div class="form-group" style="padding : 10px ;">
-					<p>Where</p>
-					<label class="sr-only" for="inputOne">Source</label>
-					<input type="text" class="form-control input-lg" id="hmpgwhere" name="hmpgwhere" ng-model="hmpgwhere" placeholder="City">
-				</div>
-				<div class="form-group " style="padding : 10px ;">
-					<p>Guests</p>
-					<label class="sr-only" for="inputTwo">Guests</label>
-					<input type="text" class="form-control input-lg" id="hmpgguests" name="hmpgguests" ng-model="hmpgguests" placeholder="Number of people" style="margin-left: -5px;">
-				</div>
-				<div class="form-group " style="padding : 10px ;">
-					<p>when</p>
-					<label class="sr-only" for="inputTwo">When</label>
-					<input type="text" class="form-control input-lg" id="hmpgwhen" name="hmpgwhen" ng-model="hmpgwhen" placeholder="From" style="margin-left: -5px;">
-				</div>
-				<div class="form-group " style="padding : 10px ;">
-					<p>Till</p>
-					<label class="sr-only" for="inputTwo">Till</label>
-					<input type="date" class="form-control input-lg" id="hmpgtill" id="hmpgtill" ng-model="hmpgtill" placeholder="upto" style="margin-left: -5px;">
-				</div>
-				<div class="form-group " style="padding : 10px ;">
-					<button id="hmpgsearch" type="submit" class="btn btn-large btn-primary"	 ng-click="test()">Search</button>
-				</div>
-			</form> -->
-
+		<div class="jumbotron text-center">
+        	<h2><b><danger>Live there.</danger></b>Book unique homes and experience a city like a local.</h2>
 			<div class="home-main-search row" id="home-search" content="width=device-width, initial-scale=1">
-				<div class="home-main-search-flds  col-sm-4" id="home-where-search" >
+				<div class="home-main-search-flds  col-sm-4" id="home-where-search">
 					<div class="home-main-dest-lbl">
 						<label class="home-main-search-tag">Where</lable>
 					</div>
@@ -253,7 +227,6 @@ Already have an account ?		            	<a data-toggle="modal" data-dismiss="mod
 					<div> {{resultCities}} </div>
 				</div>
 				<div class="home-main-search-flds col-sm-4" id="home-when-search">
-
 					<label class="home-main-search-tag">When</label><br>
 					<div id="home-main-srch-intag-cont">
 						<div class="home-main-search-intag" id="home-srch-when">
@@ -268,24 +241,16 @@ Already have an account ?		            	<a data-toggle="modal" data-dismiss="mod
 					<div class="home-main-guest-lbl">
 						<label class="home-main-search-tag">Guests</label>
 					</div>
-
-                <div class="guest">
-
-				    <div class= "guest_inp" style="float : left ;"><input type="text" class="col-sm-3" id="home-main-guests" placeholder="Guests">
-                    </div>
-
-					<div class="home-main-search-btn" style="float : left ;">
-						<button id="home-main-srch-btn" class="btn btn-large btn-primary" ng-click="transitToProperties(resultCities)">Search</button>
-					</div>
-                </div>
-
-
-
+                	<div class="guest">
+				    	<div class= "guest_inp" style="float : left ;"><input type="text" class="col-sm-3" id="home-main-guests" placeholder="Guests">
+                   		</div>
+						<div class="home-main-search-btn" style="float : left ;">
+							<button id="home-main-srch-btn" class="btn btn-large btn-primary" ng-click="transitToProperties(resultCities)">Search</button>
+						</div>
+                	</div>
+				</div>
 			</div>
-		</div>
-
-
-		<!-- Container (Portfolio Section) -->
+			<!-- Container (Portfolio Section) -->
 			<div class="container gal-container">
 				<div class="col-md-8 col-sm-12 co-xs-12 gal-item">
 					<div class="box">
@@ -369,16 +334,13 @@ Already have an account ?		            	<a data-toggle="modal" data-dismiss="mod
 				</div>
 			</div>
 
+			<!--adding javascript for changing the models for signin and signup-->
+			<!--including date picker -->
 
+			<script src="stylesheets/bootstrap-datepicker.js"></script>
+			<link rel='stylesheet' href='/stylesheets/datepicker.css'/>
 
-
-		<!--adding javascript for changing the models for signin and signup-->
-		<!--including date picker -->
-
-		<script src="stylesheets/bootstrap-datepicker.js"></script>
-		<link rel='stylesheet' href='/stylesheets/datepicker.css'/>
-
-		<script>
+			<script>
 			$("#datepickerTill").datepicker();
 			$("#datepickerWhen").datepicker();
 
@@ -403,63 +365,52 @@ Already have an account ?		            	<a data-toggle="modal" data-dismiss="mod
 
             $("#signup").on("click", function () {
     			 remove_signup();
-//                write here the logic for removing register screen and showing login screen
-                //show_signin();
-
     		});
             
             $("#signin").on("click", function () {
     			 remove_signup();
     		});
 
-
             $("#register").on("click", function () {
     			 remove_signup();
-//                write here the logic for removing register screen and showing login screen
-                //show_signin();
-
     		});
-		</script>
-		<script src="/scripts/util.client.logging.js"></script>
-
+			</script>
+			<script src="/scripts/util.client.logging.js"></script>
+		</div>
 	</div>
 </div>
 
-</div>
-</div>
 
 <hr/>
 	<div class="footer-table" id="footer">
-	      <ul class="list-inline icon-list list-border" itemscope="" itemtype="http://schema.org/Organization">
-	        <i class="icon icon-airbnb-alt icon-gray belo-icon icon-size-2"></i>
+	    <ul class="list-inline icon-list list-border" itemscope="" itemtype="http://schema.org/Organization">
+	    	<i class="icon icon-airbnb-alt icon-gray belo-icon icon-size-2"></i>
 	          <div class="text-muted">
 	            © Airbnb, Inc.
 	          </div>
-	      </ul>
-	      <ul class="list-inline icon-list" itemscope="" itemtype="http://schema.org/Organization">
-
+	    </ul>
+	    <ul class="list-inline icon-list" itemscope="" itemtype="http://schema.org/Organization">
 	        <link itemprop="url" href="https://www.airbnb.com">
 	        <meta itemprop="logo" content="https://a2.muscache.com/airbnb/static/logos/belo-200x200-4d851c5b28f61931bf1df28dd15e60ef.png">
-
 	        <li><a href="/terms" class="link-contrast text-gray icon-gray"  id="Terms">Terms &amp; Privacy</a></li>
-          <li><a href="/sitemaps" class="link-contrast text-gray icon-gray">Site Map</a></li>
+          	<li><a href="/sitemaps" class="link-contrast text-gray icon-gray">Site Map</a></li>
             <li>
-              <a href="https://www.facebook.com/airbnb" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
-                <span class="screen-reader-only text-gray icon-gray">Facebook</span>
-                <i class="icon footer-icon icon-facebook text-gray icon-gray"></i>
-							</a>
-						</li>
-
+              	<a href="https://www.facebook.com/airbnb" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
+                	<span class="screen-reader-only text-gray icon-gray">Facebook</span>
+                	<i class="icon footer-icon icon-facebook text-gray icon-gray"></i>
+				</a>
+			</li>
             <li>
-              <a href="https://twitter.com/airbnb" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
-                <span class="screen-reader-only text-gray icon-gray">Twitter</span>
-                <i class="icon footer-icon icon-twitter text-gray icon-gray"></i>
-							</a>            </li>
+              	<a href="https://twitter.com/airbnb" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
+                	<span class="screen-reader-only text-gray icon-gray">Twitter</span>
+                	<i class="icon footer-icon icon-twitter text-gray icon-gray"></i>
+                </a>            
+            </li>
             <li>
-              <a href="https://instagram.com/airbnb" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
-                <span class="screen-reader-only text-gray icon-gray">Instagram</span>
-                <i class="icon footer-icon icon-instagram text-gray icon-gray"></i>
-							</a>
-						</li>
+              	<a href="https://instagram.com/airbnb" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
+                	<span class="screen-reader-only text-gray icon-gray">Instagram</span>
+                	<i class="icon footer-icon icon-instagram text-gray icon-gray"></i>
+				</a>
+			</li>
 	      </ul>
 	</div>
