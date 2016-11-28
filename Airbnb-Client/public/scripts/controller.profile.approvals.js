@@ -122,7 +122,7 @@ airbnbApp.controller('controllerApprovals',function($scope,$state,$log,$http,$st
             $scope.allPendingApprovals[index].approveBooking = true;
           }
           else {
-            $scope.allPendingApprovals[index].checkAvailabilityStatus = true;
+            $scope.allPendingApprovals[index].checkAvailabilityStatus = false;
           }
         }
         else

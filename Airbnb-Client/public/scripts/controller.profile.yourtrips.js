@@ -9,7 +9,8 @@ airbnbApp.controller('controllerYourTrips',function($scope,$state,$log,$http,$st
      | User trips section
      |-----------------------------------------------------------
     */
-    $scope.noPropertiesFoundMsg = false;
+    $scope.noupcomingTripsFoundMsg = false;
+    $scope.noupcomingTripsFoundMsg = false;
 
     $http({
       method : "POST",
@@ -45,22 +46,47 @@ airbnbApp.controller('controllerYourTrips',function($scope,$state,$log,$http,$st
 
                             console.log("-----------------getPropertiesForUserTrips----------");
                             console.log(tripProperties);
+
+                            //get todays date
+                            var today = new Date(),
+                                dd = today.getDate(),
+                                mm = today.getMonth()+1,
+                                yyyy = today.getFullYear();
+
+                            if(dd<10) {
+                                dd='0'+dd
+                            }
+
+                            if(mm<10) {
+                                mm='0'+mm
+                            }
+                            today = yyyy+'/'+mm+'/'+dd;
+
                             var allUserTrips = tripProperties.data,
                                 upcomingTrips = [],
                                 completedTrips = [];
 
                             //upcoming bookings
-                            var todaysDate = Date.now();
                             for(var i=0; i<allUserTrips.length; i++)
                             {
-                              if(allUserTrips[i].till_date < todaysDate)
+                              if(moment(allUserTrips[i].till).format('YYYY-MM-DD') > today) {
+                                allUserTrips[i].from = moment(allUserTrips[i].from).format('YYYY-MM-DD');
+                                allUserTrips[i].till = moment(allUserTrips[i].till).format('YYYY-MM-DD');
                                 upcomingTrips.push(allUserTrips[i]);
-                              else
+                              }
+                              else {
+                                allUserTrips[i].from = moment(allUserTrips[i].from).format('YYYY-MM-DD');
+                                allUserTrips[i].till = moment(allUserTrips[i].till).format('YYYY-MM-DD');
                                 completedTrips.push(allUserTrips[i]);
+                              }
                             }
                             console.log(upcomingTrips);
                             console.log(completedTrips);
                             //update scope values
+                            if(upcomingTrips.length == 0)
+                              $scope.noupcomingTripsFoundMsg = true;
+                            if(completedTrips.length == 0)
+                              $scope.nocompletedTripsFoundMsg = true;
                             $scope.upcomingTrips = upcomingTrips;
                             $scope.completedTrips = completedTrips;
 
@@ -71,7 +97,8 @@ airbnbApp.controller('controllerYourTrips',function($scope,$state,$log,$http,$st
 
 
                 }else {
-                	$scope.noPropertiesFoundMsg = true;
+                	$scope.noupcomingTripsFoundMsg = true;
+                  $scope.nocompletedTripsFoundMsg = true;
                 }
 
               }

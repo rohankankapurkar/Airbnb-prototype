@@ -1,9 +1,9 @@
 <div class="container" style="padding-left: 13%; padding-right: 13%">
   <div class="panel">
     <div class="panel-body panel-light">
-      <h1 ng-if= noPropertiesFoundMsg> You dont have any completed trips yet. </h1>
+      <h1 ng-if= nocompletedTripsFoundMsg> You dont have any completed trips yet. </h1>
       <!-- for ng repeat -->
-      <div ng-if= !noPropertiesFoundMsg ng-repeat="completedTrip in completedTrips">
+      <div class="row" ng-if= !nocompletedTripsFoundMsg ng-repeat="completedTrip in completedTrips">
         <div class="col-md-6 col-sm-6 co-xs-12 gal-item">
         <a ng-click= transitionToProperty(property._id) id="property-display">
 
@@ -18,7 +18,6 @@
                 <div class="item">
                   <img src="/images/paris.jpg" alt="Third slide">
                 </div>
-                <span class="glyphicon glyphicon-heart homepage-thumbnails-h2 properties-heart"></span>
               </div>
               <a class="left carousel-control" data-target="#carousel-example-generic" role="button" data-slide="prev">
                 <span class="icon-prev" aria-hidden="true"></span>
@@ -38,15 +37,16 @@
         <div class="col-md-6 col-dm-6 col-xs-12">
           <!-- trip title -->
           <div class="space-5">
-            <h2 class="landing__title-title">
-            	<span class="font-airbnb"><b>Your trip title here{{upcomingTrip.title}}</b></span>
-            </h2>
-            <span class="font-airbnb-faded">House in the middle of the sea.{{upcomingTrip.when}}</span>
+            <h3 class="landing__title-title">
+            	<span class="font-airbnb">{{completedTrip.title}}</span>
+            </h3>
+            <span class="font-airbnb-faded"><b>Start date</b>{{completedTrip.from}}</span>
             <br/>
-            <span class="font-airbnb-faded">{{upcomingTrip.till}}</span>
+            <span class="font-airbnb-faded">{{completedTrip.till}}</span>
             <br/>
-            <span class="font-airbnb-faded">{{upcomingTrip.price}}</span>
+            <span class="font-airbnb-faded">{{completedTrip.price}}</span>
             <br/>
+            <button class="btn btn-primary">Review this trip</button>
           </div>
 
         </div>

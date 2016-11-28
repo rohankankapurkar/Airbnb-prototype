@@ -39,14 +39,21 @@ exports.getTrips = function(msg, callback){
 
 exports.getPropertiesForUserTrips = function(msg, callback){
     console.log("------------getPropertiesForUserTrips server---------------");
-    var res = {statuscode : 0, message : ""};
-    var propertyIdArray = msg.properties;
+		console.log(msg);
+    var res = {statuscode : 0, message : ""},
+				propertyIdArray = [];
 
+				//improve code here
+
+		for(var i=0; i<msg.properties.length; i++) {
+			propertyIdArray.push(msg.properties[i].prop_id);
+		}
+		console.log(propertyIdArray);
     if(propertyIdArray.length > 0) {
       mongo.connect(function(){
         var coll = mongo.collection('properties');
 
-        coll.find({_id: {$in: propertyIdArray}}, function(err, result){
+        coll.find({id: {$in: propertyIdArray}}).toArray(function(err, result){
           console.log("-----------properties result--------");
           console.log(result);
           if(result){
