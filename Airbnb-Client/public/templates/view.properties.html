@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 
 <div id="middle" ng-controller="controllerProperties">
+
 	<div class="container-fluid" style="padding: 0px; margin: 0px">
 		<span>
 			<div class="col-md-7">
@@ -79,9 +80,8 @@
 						<div class="col-sm-2" style="padding : 10px ;border: 0px">
 							Price range
 						</div>
-						<div class="col-sm-8">
-							<!-- <input type="range"  min="0" max="100" /> -->
-							<slider floor="0" ceiling="50" ng-model-low="property_min_price" ng-model-high="property_max_price"></slider>
+						<div class="col-sm-4">
+							<slider style="width : 300px" floor="0" ceiling="100" ng-model-low="property_min_price" ng-model-high="property_max_price"></slider>
 						</div>
 						<!-- </form> -->
 					</div>
@@ -176,11 +176,13 @@
 
       </div>
   </span>
+  <script src="/scripts/util.client.logging.js"></script>
+</div>
+
 </div>
 </div>
 </div>
-</div>
-<script src="/scripts/util.client.logging.js"></script>
+
 
 <!-- <script src="stylesheets/bootstrap-datepicker.js"></script>
 <link rel='stylesheet' href='/stylesheets/datepicker.css'/>
