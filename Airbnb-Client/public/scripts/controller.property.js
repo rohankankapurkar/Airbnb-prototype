@@ -24,6 +24,12 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 
 	$scope.username = "";
 	$scope.userid = "";
+
+	$scope.bidBtn = true;
+	$scope.bidError = "";
+	$scope.bidSuccess = "";
+
+	$scope.datesAvailableError = "";
 	
 
 	if($scope.selectedProperty.biddingavailable == "")
@@ -95,6 +101,8 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 
 	$scope.getAvailableDates = function()
 	{
+		$scope.invDates = "";
+		
 		var dateArray = $scope.getDates($scope.fromdate,$scope.tilldate);
 		var firstDate = dateArray[0];
 		var lastDate = dateArray[dateArray.length-1];
@@ -112,6 +120,7 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 					$scope.availableDates = data.result.data;
 					var counter = 0;
 					var flag = false;
+					console.log($scope.availableDates);
 
 					for(var i = 0; i < dateArray.length; i++)
 					{	
@@ -130,8 +139,8 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 						}
 						if(flag == false)
 						{
-							$scope.invDates = "Not Available : "+dateForMessage;
-							alert($scope.invDates);
+							$scope.invDates = "Dates you Selected are not Available";
+						
 							break;
 						}
 						else
@@ -161,21 +170,31 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 
 
 	$scope.placeYourBid = function(){
-		$http({
-			method : "POST",
-			url : '/bid',
-			data :{
-				propertyid : $scope.selectedProperty.id,
-				title : $scope.selectedProperty.title,
-				bidamount : $scope.bidamount,
-				bidder : $scope.username
-			}
 
-		}).success(function(data){
-			console.log("success");
-		}).error(function(error){
-			console.log("error")
-		});
+		if(parseFloat($scope.bidamount) < parseFloat($scope.selectedProperty.currentBid))
+		{
+			$scope.bidError = "Bid Amount should be greater than the Current Bid!"
+		}
+		else
+		{
+			$http({
+				method : "POST",
+				url : '/bid',
+				data :{
+					propertyid : $scope.selectedProperty.id,
+					title : $scope.selectedProperty.title,
+					bidamount : $scope.bidamount,
+					bidder : $scope.username
+				}
+			}).success(function(data){
+				console.log("success");
+				$scope.bidSuccess = "Bid submitted";
+				$scope.bidBtn = false;
+			}).error(function(error){
+				console.log("error")
+			});	
+		}
+
 	}
 	
 	
