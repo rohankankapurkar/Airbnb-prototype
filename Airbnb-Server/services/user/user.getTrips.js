@@ -112,6 +112,9 @@ exports.getUserAndProperty = function(msg, callback){
 			till: 1,
 			host_id: 1,
 			id: 1,
+			street :1,
+			noofguests:1,
+			guestaccess:1,
 			images: 1
 		}).toArray(function(err, updatedProperties){
 				if(err)
