@@ -1,15 +1,18 @@
 var dateFormat = require('dateformat');
 var mq_client = require('../../rpc/client');
-
+var moment = require('moment');
 
 function getBidEndTime(bidStartTime)
 {
 	var currTime;
-	var date = new Date(bidStartTime);
-	date.setDate(date.getDate() + 4);
-	currTime = dateFormat(date,"yyyy-mm-dd HH:MM:ss");
-	console.log(currTime);
-	return currTime;
+	//var date = new Date(bidStartTime);
+	//date.setDate(date.getDate() + 4);
+	//currTime = dateFormat(date,"yyyy-mm-dd HH:MM:ss");
+	//console.log(currTime);
+	var date = moment(new Date(bidStartTime)).add(4,'days').format("YYYY-MM-DD");
+	//currTime = date.add(4, 'days').format("DD");
+	console.log(date);
+	return date;
 }
 
 function getCurrentTime()
@@ -33,8 +36,8 @@ exports.addproperty = function(req,res){
 			console.log(propertydetails);
 			if(propertydetails.biddingavailable == true)
 			{
-				propertydetails.bidEndDate = getBidEndTime(propertydetails.bidStartDate);
-				console.log("Bid End Time"+propertydetails.binEndDate);
+				propertydetails.bidEndDate = moment(new Date(propertydetails.bidStartDate)).add(4,'days').format("YYYY-MM-DD");
+				console.log("Bid End Time"+propertydetails.bidEndDate);
 			}
 			var msg_payload = propertydetails;
 			msg_payload.username = req.session.username;
@@ -58,6 +61,7 @@ exports.addproperty = function(req,res){
 	}
 	catch(error)
 	{
+		console.log(error);
 		res.send({statuscode : 1, message : "Internal Server Error Occurred. Please try again"})
 	}
 }

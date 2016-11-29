@@ -9,6 +9,7 @@ if(MODE == "CONNECTION_POOL"){
 
 var dateFormat = require('dateformat');
 var cronjob = require('cron').CronJob;
+var moment = require('moment')
 
 var mongoPropertyCollection = "properties";
 
@@ -29,7 +30,7 @@ var bidJob = new cronjob('30 * * * * *', function(){
 	console.log("Cron Running");
 	mongo.connect(function(){
 		var collection = mongo.collection(mongoPropertyCollection);
-		var fields = {id : 1, title : 1,  bidEndDate : 1, currentBidder : 1, currentBid : 1 }
+		var fields = {id : 1, title : 1,  bidEndDate : 1, currentBidder : 1, currentBid : 1, host_id : 1, from : 1, till : 1}
 		var query = getOpenBids();
 		collection.find(query, fields).toArray(function(err, results){
 			if(err)
@@ -41,16 +42,18 @@ var bidJob = new cronjob('30 * * * * *', function(){
 				console.log(results);
 				var currTime = getCurrentTime();
 				var bidEndtime;
-				console.log(currTime);
 				for(var i = 0; i< results.length; i++)
 				{
 					bidEndtime = dateFormat(results[i].bidEndDate,"yyyy-mm-dd HH:MM:ss");
-					console.log(bidEndtime);
+					
 					if(bidEndtime < currTime)
 					{
-						console.log("updating");
+						var fromdate = moment(new Date(results[i].from)).format("YYYY-MM-DD");
+						var tilldate = moment(new Date(results[i].till)).format("YYYY-MM-DD");
+						var numOfDays = moment(tilldate).diff(fromdate, 'days');	
+						var totalAmount = numOfDays * results[i].currentBid;
 						updateBidFlag(results[i].id);
-						recordBidTransaction(results[i].currentBidder, results[i].id, results[i].title, results[i].currentBid);
+						recordBidTransaction(results[i].currentBidder, results[i].host_id, results[i].id, results[i].title, totalAmount, fromdate, tilldate, results[i].city);
 					}
 				}
 			}
@@ -80,52 +83,71 @@ console.log("updating 1");
 }
 
 
-function recordBidTransaction(bidder, propertyid, propertytitle, bid_amount){
-console.log("updating 2");	
-	mongo.connect(function(){
-		var collection = mongo.collection("users");
-		var counterBidTransaction = mongo.collection("counter");
-		if(bidder != "")
-		{
-			counterBidTransaction.findAndModify(
-				{_id:"id"},
-				[],
-				{$inc:{seq:1}}, 
-				{new : true},
-				function(err,doc){
-					if(err)
-					{
-						console.log("Unsuccessful Transaction");
-						response = { valid: false, id: null, message : null}
-					}	
-					else
-					{
-						collection.update({username : bidder },{ $push : { bidswon : {
-							trans_id : doc.value.seq,
-							trans_type : 3, 
-							username : bidder, 
-							propertyid: propertyid, 
-							propertytitle : propertytitle,
-							trans_amount : bid_amount,  
-							trans_time: getCurrentTime(), 
-							paid_flag : "N"}
-							}},
-							function(err, records){
-								if(err)
-								{
-									response = { valid: false, id: null, message : null}
-								}
-								else
-								{
-									response = { valid: true, id: null, message : null};	
-								}
-						});
-					}	
-				}
-			);
-		}
+function recordBidTransaction(bidder, host_id, propertyid, propertytitle, bid_amount, fromdate, tilldate, city){
 
-	});	
+	console.log("========Updating the Bid transaction of a User======");	
+	try
+	{
+		mongo.connect(function(){
+			var collection = mongo.collection("users");
+			var counterBidTransaction = mongo.collection("counter");
+			if(bidder != "")
+			{
+				counterBidTransaction.findAndModify(
+					{_id:"id"},
+					[],
+					{$inc:{seq:1}}, 
+					{new : true},
+					function(err,doc){
+						if(err)
+						{
+							console.log("======Unsuccessful Transaction=====");
+							response = { valid: false, id: null, message : null}
+						}	
+						else
+						{
+							collection.findOne({username:bidder}, function(err, user){
+								if (user) 
+								{
+									collection.update({username : bidder },{ $push : { bidswon : {
+										trans_id : doc.value.seq,
+										trans_type : 3, 
+										userid : user.id, 
+										propertyid: propertyid,
+										host_id : host_id,
+										propertytitle : propertytitle,
+										trans_amount : bid_amount,
+										fromdate : fromdate,
+										tilldate : tilldate,
+										trans_time: getCurrentTime(), 
+										paid_flag : "N"}
+									}},	function(err, records){
+										if(err)
+										{
+											response = { valid: false, id: null, message : null}
+										}
+										else
+										{	
+											response = { valid: true, id: null, message : null};	
+										}
+									});//update bidswon by the user end
+								} 
+								else 
+								{
+									console.log("user not found")
+								}
+							});//get id of user end
+						}//else end	
+					}//counter function collection end
+				);//counter collection end
+			}
+
+		});	
+	}//try block end
+	catch(error)
+	{
+		console.log("Error while updating the bids won by the user :"+error);
+	}
 }
 
 
@@ -196,3 +218,25 @@ exports.updatePropertyCollection = function(message, callback){
 	});
 }
 
+
+exports.checkout = function(message, callback){
+	
+	mongo.connect(mongoDatabaseUrl, function(connection){
+		var collection = mongo.collection("user_detail");
+		collection.update({username : message.username}, {$pull : {bidswon : { id : parseInt(message.prop_id)}}}, function(err, num, status){
+	   		if(err)
+	   		{
+	   			console.log("Error in updation")
+	   		}
+	   	});
+	});
+	
+	var query = "INSERT INTO BOOKED_PROPERTIES VALUES('"+message.prop_id+"','"
+		+message.user_id+"','"+message.host_id+"','"+message.from_date+"','"
+		+message.till_date+"','"message.approved+"','"+message.id
+		+"','"+message.price+"','"
+		+message.city+"'0';";
+	mysql.executeQuery("INSERT INTO BOOKED_PROPERTIES SET ? ", prop1, function(innerResult2){
+		// nothing to do here with callback
+	});
+}

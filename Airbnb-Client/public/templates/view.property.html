@@ -40,11 +40,11 @@
             <div style="margin-bottom: 4px;">
               <span class="share-btn-modal">Share:</span>
                 <i class="icon icon-envelope social-icon-size share-btn-modal"></i>
-                  <i class="social-icon-size icon icon-facebook-messenger share-btn-modal"></i>
-                    <i class="icon icon-facebook social-icon-size share-btn-modal"></i>
-                      <i class="icon icon-code social-icon-size share-btn-modal"></i>
-                        <i class="icon icon-pinterest social-icon-size share-btn-modal"></i>
-                          <div class="share-btn-border"></div>
+                <i class="social-icon-size icon icon-facebook-messenger share-btn-modal"></i>
+                <i class="icon icon-facebook social-icon-size share-btn-modal"></i>
+                <i class="icon icon-code social-icon-size share-btn-modal"></i>
+                <i class="icon icon-pinterest social-icon-size share-btn-modal"></i>
+                <div class="share-btn-border"></div>
             </div>
           </div>
           <div class="col-md-6" style="padding-top: 10%; padding-right: 43%;">
@@ -361,7 +361,7 @@
       <div class="box-border">
         <div class="row" style="padding:10px;">
           <div class="col-sm-8">
-            <!-- <span> Price : {{selectedProperty..price}Bid}} </span> -->
+             <span> Base Price : ${{selectedProperty.price}} </span> 
           </div>
           <div class="col-sm-4">
             <span style="float:right"> per night </span>
@@ -398,6 +398,7 @@
               </div>
             </div>
             <div style="display:block; width: 100%;">
+            <div class="text-danger">{{invDates}}</div>
               <button type="button" class="btn btn-primary" ng-click="getAvailableDates()" style="width: 100%" id="propertyPage-book">Book</button>
                 <div style="font-size: 10px; padding-left:25%; padding-top: 5%;"></div>
                 <hr/>
@@ -430,7 +431,9 @@
               <!-- <h4>{{selectedProperty.currentBid}}</h4> -->
               <h4>Current Bid : ${{selectedProperty.currentBid}}</h4>
               <input type="text" placeholder="Enter your bid" ng-model="bidamount" class="form-control" style="padding-bottom: 10px">
-              <button type="button" id="prop-bid-button" class="btn btn-primary" ng-click="placeYourBid()" style="width: 100%; margin-top: 10px" id="propertyPage-book">Place Bid</button>
+              <div class="text-success">{{bidSuccess}}</div>
+              <div class="text-danger">{{bidError}}</div>
+              <button type="button" id="prop-bid-button" class="btn btn-primary" ng-click="placeYourBid()" style="width: 100%; margin-top: 10px" id="propertyPage-book" ng-show="bidBtn">Place Bid</button>
                 <div style="font-size: 10px; padding-left:25%; padding-top: 5%;"></div>
                 <hr/>
             </div>

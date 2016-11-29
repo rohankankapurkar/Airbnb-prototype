@@ -102,7 +102,7 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 	$scope.getAvailableDates = function()
 	{
 		$scope.invDates = "";
-		
+
 		var dateArray = $scope.getDates($scope.fromdate,$scope.tilldate);
 		var firstDate = dateArray[0];
 		var lastDate = dateArray[dateArray.length-1];
@@ -170,6 +170,9 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 
 
 	$scope.placeYourBid = function(){
+		
+		$scope.bidError = "";
+		$scope.bidSuccess = "";
 
 		if(parseFloat($scope.bidamount) < parseFloat($scope.selectedProperty.currentBid))
 		{
