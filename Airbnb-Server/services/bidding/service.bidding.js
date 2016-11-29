@@ -219,24 +219,24 @@ exports.updatePropertyCollection = function(message, callback){
 }
 
 
-exports.checkout = function(message, callback){
+// exports.checkout = function(message, callback){
 	
-	mongo.connect(mongoDatabaseUrl, function(connection){
-		var collection = mongo.collection("user_detail");
-		collection.update({username : message.username}, {$pull : {bidswon : { id : parseInt(message.prop_id)}}}, function(err, num, status){
-	   		if(err)
-	   		{
-	   			console.log("Error in updation")
-	   		}
-	   	});
-	});
+// 	mongo.connect(mongoDatabaseUrl, function(connection){
+// 		var collection = mongo.collection("user_detail");
+// 		collection.update({username : message.username}, {$pull : {bidswon : { id : parseInt(message.prop_id)}}}, function(err, num, status){
+// 	   		if(err)
+// 	   		{
+// 	   			console.log("Error in updation")
+// 	   		}
+// 	   	});
+// 	});
 	
-	var query = "INSERT INTO BOOKED_PROPERTIES VALUES('"+message.prop_id+"','"
-		+message.user_id+"','"+message.host_id+"','"+message.from_date+"','"
-		+message.till_date+"','"message.approved+"','"+message.id
-		+"','"+message.price+"','"
-		+message.city+"'0';";
-	mysql.executeQuery("INSERT INTO BOOKED_PROPERTIES SET ? ", prop1, function(innerResult2){
-		// nothing to do here with callback
-	});
-}
+// 	var query = "INSERT INTO BOOKED_PROPERTIES VALUES('"+message.prop_id+"','"
+// 		+message.user_id+"','"+message.host_id+"','"+message.from_date+"','"
+// 		+message.till_date+"','"message.approved+"','"+message.id
+// 		+"','"+message.price+"','"
+// 		+message.city+"'0';";
+// 	mysql.executeQuery("INSERT INTO BOOKED_PROPERTIES SET ? ", prop1, function(innerResult2){
+// 		// nothing to do here with callback
+// 	});
+// }

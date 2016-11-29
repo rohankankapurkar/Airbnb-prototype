@@ -264,7 +264,7 @@ exports.approveUserRequest = function(msg, callback){
 	console.log(from_date + "------" + till_date + user_id + prop_id);
 	// This will get the user which is to be approved:
 	var params1 = [{"user_id" : user_id},{ "prop_id" : prop_id}, {"approved" : 0}, {"from_date":from_date},{"till_date":till_date}]
-	mysql.executeQuery("SELECT * FROM BOOKED_PROPERTIES WHERE ? ", params1, function(result1){
+	mysql.executeQuery('SELECT * FROM BOOKED_PROPERTIES WHERE user_id = "'+ user_id+'" AND prop_id = "'+prop_id+'" AND approved = 0 AND from_date = "'+from_date+'" AND till_date = "'+till_date+'"', {}, function(result1){
 
 		if(result1){
 			
