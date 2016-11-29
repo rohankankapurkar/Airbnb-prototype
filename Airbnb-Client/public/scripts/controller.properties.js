@@ -29,8 +29,10 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
   $scope.guestsFilter = 1;
   $scope.property_max_price = 200;
   $scope.property_min_price = 0;
+  $scope.markers = [];
+  var infoWindow = new google.maps.InfoWindow();
 
-  
+
   $scope.propertyPriceRangeFilter = function(property) {
     return (parseInt(property['price']) >= $scope.property_min_price && parseInt(property['price']) <= $scope.property_max_price);
   };
@@ -44,7 +46,7 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
     
     if($scope.startDateFilter != "")
       checkin = new Date($scope.startDateFilter);
-     
+
     if($scope.endDateFilter != "")
       checkout = new Date($scope.endDateFilter);
 
@@ -78,8 +80,8 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
    |-----------------------------------------------------------
    | get properties in the given city
    |-----------------------------------------------------------
-  */
-  $http({
+   */
+   $http({
     method : "POST",
     url : '/properties',
     data : {
@@ -92,17 +94,68 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
       $scope.properties = data.data;
       //$scope.property_max_price = Math.max.apply(Math,$scope.properties.map(function(property){return property.price;}));
       //$scope.property_min_price = Math.min.apply(Math,$scope.properties.map(function(property){return property.price;}));
+
+
+      // Map initialization  
+      var mapOptions = {
+        zoom: 12,
+        center: new google.maps.LatLng($scope.properties[0].lat, $scope.properties[0].lng),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
+
+      $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+      $scope.markers = [];
+
+
+      console.log("==============");
       console.log($scope.properties);
+
+
+      var info = [];
+      var counter = 0;
+      for(counter  =0; counter < $scope.properties.length; counter++){
+        createMarker($scope.properties[counter].lat, $scope.properties[counter].lng,$scope.properties[counter].street+$scope.properties[counter].city, $scope.properties[counter].price);
+      }
     }
     else
     {
       $scope.noPropertiesFound = true;
     }
   }).error(function(error) {
-      console.log("Internal Server error occurred");
+    console.log("Internal Server error occurred");
   });
 
 
+  var createMarker = function(lat, lng, address, price){
+
+
+        var marker = new google.maps.Marker({
+          map: $scope.map,
+          position: new google.maps.LatLng(lat, lng),
+          title: price.toString(),
+          icon: "http://ruralshores.com/assets/marker-icon.png"
+        });
+
+        marker.content = '<div class="infoWindowContent">'+ address +' </div>';
+        google.maps.event.addListener(marker, 'mouseover', function(){
+          infoWindow.setContent('<h2>' + marker.title + '</h2>' + 
+            marker.content);
+          infoWindow.open($scope.map, marker);
+        });
+
+        google.maps.event.addListener(marker, 'mouseout', function(){
+          infoWindow.close($scope.map, marker);
+        });
+
+        $scope.markers.push(marker);
+  }
+
+
+  $scope.openInfoWindow = function(e, selectedMarker){
+    e.preventDefault();
+    google.maps.event.trigger(selectedMarker, 'click');
+  }
 
 
   $scope.pageChanged = function(page){
@@ -126,7 +179,7 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
         $scope.noPropertiesFound = true;
       }
     }).error(function(error) {
-        console.log("Internal Server error occurred");
+      console.log("Internal Server error occurred");
     });
 
   }
@@ -147,7 +200,7 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
 
 
   $scope.logPropertyClick = function(title){
-    
+
     $http({
       method : 'POST',
       url : 'property/clicks',
@@ -156,12 +209,12 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
       }
 
     }).success(function(data){
-      
+
 
     }).error(function(error){
 
     })
-  
+
   }
 
 
