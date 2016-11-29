@@ -115,7 +115,7 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
       var info = [];
       var counter = 0;
       for(counter  =0; counter < $scope.properties.length; counter++){
-        createMarker($scope.properties[counter].lat, $scope.properties[counter].lng,$scope.properties[counter].street+$scope.properties[counter].city, $scope.properties[counter].price);
+        createMarker($scope.properties[counter].lat, $scope.properties[counter].lng,$scope.properties[counter].street+$scope.properties[counter].city, $scope.properties[counter].price,$scope.properties[counter].images[0]);
       }
     }
     else
@@ -127,20 +127,21 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
   });
 
 
-  var createMarker = function(lat, lng, address, price){
+  var createMarker = function(lat, lng, address, price,img){
 
 
         var marker = new google.maps.Marker({
           map: $scope.map,
           position: new google.maps.LatLng(lat, lng),
-          title: price.toString(),
-          icon: "http://ruralshores.com/assets/marker-icon.png"
+          title: "$" + price.toString()+ "/ night" ,
+          icon: "http://ruralshores.com/assets/marker-icon.png",
+           
         });
 
         marker.content = '<div class="infoWindowContent">'+ address +' </div>';
         google.maps.event.addListener(marker, 'mouseover', function(){
-          infoWindow.setContent('<h2>' + marker.title + '</h2>' + 
-            marker.content);
+          infoWindow.setContent('<h4>' + marker.title + '</h4>' + 
+            marker.content + '<img width = 180px length = "150px "src = "'+img+'"/>' );
           infoWindow.open($scope.map, marker);
         });
 
