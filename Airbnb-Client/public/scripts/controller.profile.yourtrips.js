@@ -62,24 +62,47 @@ airbnbApp.controller('controllerYourTrips',function($scope,$state,$log,$http,$st
                             }
                             today = yyyy+'/'+mm+'/'+dd;
 
-                            var allUserTrips = tripProperties.data,
+                            var allUserTrips = userTrips.data,
+                                tripsData = tripProperties.data,
+                                pendingApprovalTrips = [],
                                 upcomingTrips = [],
                                 completedTrips = [];
 
                             //upcoming bookings
+                            console.log("-----------before for loop--------");
+                            console.log(allUserTrips);
+                            console.log(tripsData);
                             for(var i=0; i<allUserTrips.length; i++)
-                            {
-                              if(moment(allUserTrips[i].till).format('YYYY-MM-DD') > today) {
-                                allUserTrips[i].from = moment(allUserTrips[i].from).format('YYYY-MM-DD');
-                                allUserTrips[i].till = moment(allUserTrips[i].till).format('YYYY-MM-DD');
-                                upcomingTrips.push(allUserTrips[i]);
-                              }
-                              else {
-                                allUserTrips[i].from = moment(allUserTrips[i].from).format('YYYY-MM-DD');
-                                allUserTrips[i].till = moment(allUserTrips[i].till).format('YYYY-MM-DD');
-                                completedTrips.push(allUserTrips[i]);
-                              }
+                                for(var j=0; j<tripsData.length; j++)
+                                    if(allUserTrips[i].prop_id == tripsData[j].id) {
+                                        allUserTrips[i].from_date = moment(allUserTrips[i].from_date).format('YYYY-MM-DD');
+                                        allUserTrips[i].till_date = moment(allUserTrips[i].till_date).format('YYYY-MM-DD');
+                                        allUserTrips[i].propertyDetails = tripsData[j];
+                                    }
+
+                            console.log("-----------after for loop--------");
+                            console.log(allUserTrips);
+
+
+                            for(var i=0; i<allUserTrips.length; i++) {
+
+                                if(allUserTrips[i].till_date > today && allUserTrips[i].approved == 0) {
+                                  pendingApprovalTrips.push(allUserTrips[i]);
+                                }
+                                else if(allUserTrips[i].till_date > today && allUserTrips[i].approved == 1) {
+                                  upcomingTrips.push(allUserTrips[i]);
+                                }
+                                else if(allUserTrips[i].till_date < today && allUserTrips[i].approved == 1) {
+                                  completedTrips.push(allUserTrips[i]);
+                                }
+
                             }
+
+
+
+
+                            console.log("--------all user trips");
+                            console.log(pendingApprovalTrips);
                             console.log(upcomingTrips);
                             console.log(completedTrips);
                             //update scope values
@@ -87,6 +110,8 @@ airbnbApp.controller('controllerYourTrips',function($scope,$state,$log,$http,$st
                               $scope.noupcomingTripsFoundMsg = true;
                             if(completedTrips.length == 0)
                               $scope.nocompletedTripsFoundMsg = true;
+
+                            $scope.pendingApprovalTrips = pendingApprovalTrips;
                             $scope.upcomingTrips = upcomingTrips;
                             $scope.completedTrips = completedTrips;
 

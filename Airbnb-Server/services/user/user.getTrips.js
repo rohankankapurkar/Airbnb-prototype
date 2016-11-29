@@ -61,7 +61,8 @@ exports.getPropertiesForUserTrips = function(msg, callback){
 					from: 1,
 					till: 1,
 					host_id: 1,
-					id: 1
+					id: 1,
+					images: 1
 				}).toArray(function(err, result){
           console.log("-----------properties result--------");
           console.log(result);
@@ -110,7 +111,8 @@ exports.getUserAndProperty = function(msg, callback){
 			from: 1,
 			till: 1,
 			host_id: 1,
-			id: 1
+			id: 1,
+			images: 1
 		}).toArray(function(err, updatedProperties){
 				if(err)
 					console.log(err);
@@ -159,7 +161,8 @@ exports.getPropertiesForBidding = function(msg, callback){
 				from: 1,
 				till: 1,
 				host_id: 1,
-				id: 1
+				id: 1,
+				images: 1
 			}).toArray(function(err, updatedProperties){
 					if(err)
 						console.log(err);
