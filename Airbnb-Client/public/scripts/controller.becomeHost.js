@@ -63,7 +63,7 @@ airbnbApp.controller('controllerBecomeHost',function($scope,$state,$log,$http,$s
 
 
     $scope.total =$state.params.bookings.price + 300;
-
+    $scope.nights =moment($state.params.bookings.till_date).diff(moment($state.params.bookings.from_date),'days');
 
 
 
