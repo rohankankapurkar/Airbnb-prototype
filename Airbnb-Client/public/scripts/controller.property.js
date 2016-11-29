@@ -223,6 +223,37 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 		
 		$scope.lat = data.results[0].geometry.location.lat;
 		$scope.lng = data.results[0].geometry.location.lng;
+
+
+		              var mapOptions = {
+                  zoom: 15,
+                  center: new google.maps.LatLng($scope.lat, $scope.lng),
+                  mapTypeId: google.maps.MapTypeId.ROADMAP
+              }
+
+              $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+              $scope.markers = [];
+              
+              var infoWindow = new google.maps.InfoWindow();
+              
+                  
+                  var marker = new google.maps.Marker({
+                      map: $scope.map,
+                      position: new google.maps.LatLng($scope.lat, $scope.lng),
+                      title: "$" + $scope.selectedProperty.price.toString()
+                  });
+                  marker.content = '<div class="infoWindowContent">' +  $scope.selectedProperty.street+ '<br>'+ $scope.selectedProperty.city +' </div>';
+                  
+                  google.maps.event.addListener(marker, 'mouseover', function(){
+                      infoWindow.setContent('<h2>' + marker.title + '</h2>' + 
+                        marker.content);
+                      infoWindow.open($scope.map, marker);
+                  });
+                  
+                  $scope.markers.push(marker);
+                    
+
 	}).error(function(data){
 		console.log("Error in google maps ");
 	})
@@ -235,6 +266,14 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 		var size = val/5*100;
 		return size + '%';
 	}
+
+
+
+
+	$scope.openInfoWindow = function(e, selectedMarker){
+                  e.preventDefault();
+                  google.maps.event.trigger(selectedMarker, 'click');
+              }
 
 
 })
