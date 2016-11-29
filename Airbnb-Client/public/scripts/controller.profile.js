@@ -1,5 +1,5 @@
 
-airbnbApp.controller('controllerProfile',function($scope,$log,$http){
+airbnbApp.controller('controllerProfile',function($scope,$log,$http,$state){
 
 
 
@@ -229,9 +229,9 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http){
 		console.log("error");
 	});
 
+	$scope.viewBill = function () {
+		$state.go('home.profile.viewBill');
+	};
+
 
 })
-
-
-
-//this is for showing the listing for the host
