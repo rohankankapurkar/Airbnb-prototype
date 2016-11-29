@@ -6886,11 +6886,11 @@ span.stars span {
     height:30px;
     text-align:center;
     color:#FFF;
+    background:#ccc;
     font-size:30px;
     margin-right:2px;
     line-height:30px;
     border-radius:50%;
-    background: url('https://apppresser.com/wp-content/uploads/2015/11/stars.png') 0 5px ;
     -webkit-border-radius:50%;
 }
 .rating span:hover ~ span label,
