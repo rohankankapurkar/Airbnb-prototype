@@ -96,7 +96,29 @@ airbnbApp.controller('controllerBecomeHostLocation',function($scope,$state,$log,
 
     $scope.becomeHost = function(){
         if($scope.confirmedAddress)
-            $state.go('home.becomeHost',{firstStep : $scope.step2det});
+        {
+            var confAdd = $scope.step2det.street+", "+$scope.step2det.city+", "+$scope.step2det.state+", "+$scope.step2det.zip+", "+$scope.step2det.country;
+            var map = 'https://maps.googleapis.com/maps/api/geocode/json?address= '+confAdd+' &key=AIzaSyD0bGUrKgw3YOQ2vHn_P16GazpXlnon2h4';
+                $http({
+                    method : "GET",
+                    url : map
+                }).success(function(data) {
+                    console.log(data.results[0].geometry.location.lat);
+                    console.log("map"+data.results[0].geometry.location.lng);
+                    console.log("map"+data.status);
+                    var lat = data.results[0].geometry.location.lat;
+                    var lng = data.results[0].geometry.location.lng;
+                    $scope.step2det.lat = lat;
+                    $scope.step2det.lng = lng; 
+
+                    console.log($scope.step2det);
+
+                    $state.go('home.becomeHost',{firstStep : $scope.step2det});    
+                }).error(function(data){
+                    console.log("Error in google maps ");
+                })
+                
+        }
         else
             $scope.invAddress = "Please Validate Your Address First";
     }
