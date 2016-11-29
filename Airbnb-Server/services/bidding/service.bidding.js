@@ -9,7 +9,8 @@ if(MODE == "CONNECTION_POOL"){
 
 var dateFormat = require('dateformat');
 var cronjob = require('cron').CronJob;
-var moment = require('moment')
+var moment = require('moment');
+var mysql = require('./../utils/utils.mysql.js');
 
 var mongoPropertyCollection = "properties";
 
@@ -30,7 +31,7 @@ var bidJob = new cronjob('30 * * * * *', function(){
 	console.log("Cron Running");
 	mongo.connect(function(){
 		var collection = mongo.collection(mongoPropertyCollection);
-		var fields = {id : 1, title : 1,  bidEndDate : 1, currentBidder : 1, currentBid : 1, host_id : 1, from : 1, till : 1}
+		var fields = {id : 1, title : 1,  bidEndDate : 1, currentBidder : 1, currentBid : 1, host_id : 1, from : 1, till : 1, city : 1}
 		var query = getOpenBids();
 		collection.find(query, fields).toArray(function(err, results){
 			if(err)
@@ -120,6 +121,7 @@ function recordBidTransaction(bidder, host_id, propertyid, propertytitle, bid_am
 										fromdate : fromdate,
 										tilldate : tilldate,
 										trans_time: getCurrentTime(), 
+										city : city,
 										paid_flag : "N"}
 									}},	function(err, records){
 										if(err)
@@ -219,24 +221,28 @@ exports.updatePropertyCollection = function(message, callback){
 }
 
 
-// exports.checkout = function(message, callback){
+
+exports.checkout = function(message, callback){
+
+	mongo.connect(function(){
+ 		var collection = mongo.collection("users");
+ 		collection.update({id : message.userid}, 
+ 			{$pull : {bidswon : { propertyid : message.propertyid }}}, function(err, num, status){
+ 	   		if(err)
+ 	   		{
+ 	   			console.log("Error in updation")
+ 	   		}
+ 	   	});
+ 	});
+
+	var query = "INSERT INTO BOOKED_PROPERTIES VALUES ('"+message.propertyid+"','"+message.userid+"','"+message.host_id+"','"+message.fromdate+"','"+message.tilldate+"',"+1+","+null+","+message.trans_amount+",'San Jose')"
+
 	
-// 	mongo.connect(mongoDatabaseUrl, function(connection){
-// 		var collection = mongo.collection("user_detail");
-// 		collection.update({username : message.username}, {$pull : {bidswon : { id : parseInt(message.prop_id)}}}, function(err, num, status){
-// 	   		if(err)
-// 	   		{
-// 	   			console.log("Error in updation")
-// 	   		}
-// 	   	});
-// 	});
-	
-// 	var query = "INSERT INTO BOOKED_PROPERTIES VALUES('"+message.prop_id+"','"
-// 		+message.user_id+"','"+message.host_id+"','"+message.from_date+"','"
-// 		+message.till_date+"','"message.approved+"','"+message.id
-// 		+"','"+message.price+"','"
-// 		+message.city+"'0';";
-// 	mysql.executeQuery("INSERT INTO BOOKED_PROPERTIES SET ? ", prop1, function(innerResult2){
-// 		// nothing to do here with callback
-// 	});
-// }
+	mysql.executeQuery(query, {}, function(innerResult2){
+		// nothing to do here with callback
+	});
+
+	var response = {statuscode : 0, message: null}
+	callback(null,response);
+}
+
