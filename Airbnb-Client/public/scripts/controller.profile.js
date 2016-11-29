@@ -1,5 +1,5 @@
 
-airbnbApp.controller('controllerProfile',function($scope,$log,$http){
+airbnbApp.controller('controllerProfile',function($scope,$log,$http,$state){
 
 
 
@@ -125,30 +125,6 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http){
 	});
 
 
-	$http({
-		method : "POST",
-		url : '/host/getPropertyHistory',
-		data : {}
-	}).success(function(property1){
-		if (property.statuscode == 0)
-		{
-
-			$scope.propertiesused = property1.result.data;
-		}
-		else
-		{
-			if(property1.message != null)
-			{
-				$scope.invEmail = "";
-				$scope.invEmail = data.message;
-			}
-		}
-	}).error(function(error) {
-		console.log("error");
-	});
-
-
-
 
 	$http({
 		method : "POST",
@@ -229,9 +205,11 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http){
 		console.log("error");
 	});
 
+	$scope.viewBill = function () {
+		$state.go('home.profile.viewBill');
+	};
+
 
 })
 
 
-
-//this is for showing the listing for the host

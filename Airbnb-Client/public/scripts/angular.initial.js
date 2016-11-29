@@ -140,12 +140,19 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 				templateUrl : './templates/view.history.html',
 				controller : 'controllerProfile'
 			})
+		.state('home.profile.viewBill',
+			{
+				url:'/bill',
+				templateUrl : './templates/view.getBill.html',
+				controller : 'controllerProfile'
+			})
 
-				/*
-		|-----------------------------------------------------------
-		| Admin States
-		|-----------------------------------------------------------
-		*/
+
+		/*
+|-----------------------------------------------------------
+| Admin States
+|-----------------------------------------------------------
+*/
 		.state('home.admin',
 			{
 				url:'admin',
