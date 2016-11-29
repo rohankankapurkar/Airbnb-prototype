@@ -1,0 +1,48 @@
+
+<div class="panel  " ng-controller="controllerApprovals">
+
+    <div class="panel-body">
+
+
+        <!--      <img src="https://ucarecdn.com/8d97a055-e490-41f6-8ff7-deae143116d6/faak.jpg">-->
+        <div class = "container" style="padding-left: 5%; padding-right: 15%">
+            <div class=" space-top-4 ">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Property title</th>
+                        <th>Client</th>
+                        <th>From</th>
+                        <th>To</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="pendingApproval in allPendingApprovals1">
+                        <td title="'Property title'">
+                            {{pendingApproval.propertyDetails.title}}</td>
+                        <td >
+                            {{pendingApproval.userDetails.username}}</td>
+                        <td>
+                            {{pendingApproval.from_date}}</td>
+                        <td>
+                            {{pendingApproval.till_date}}</td>
+                        <td>
+
+                            <button class="btn btn-primary" id="ViewBill">
+                                View Bill
+                            </button>
+<br/><br>
+                            <button class="btn btn-primary" id="reviewUser">
+                                Review User
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <script src="/scripts/util.client.logging.js"></script>
+</div>

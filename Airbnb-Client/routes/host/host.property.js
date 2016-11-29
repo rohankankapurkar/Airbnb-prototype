@@ -127,6 +127,7 @@ exports.approveuserrequest = function(req, res){
 		}else{
 			res.send({statuscode:0, result:result});
 		}
+
 	});
 }
 
@@ -166,7 +167,7 @@ exports.getpendingpropertyrequests = function(req, res){
 exports.getuserpropdata = function(req, res){
 
 	var msg_payload = {user_id: req.param('hostid'), prop_id:req.param('propid')};
- 
+
 	mq_client.make_request('getUserPropData_queue', msg_payload, function(err, result){
 		if(err){
 			res.send({statuscode:1, message : "Error occurred while getting avaiable dates"});
@@ -200,3 +201,16 @@ exports.disapproverequest = function(req, res){
 	});
 }
 
+exports.propertyHistory =function(req, res){
+	var msg_payload = {host_id: req.param('hostid')};
+
+			mq_client.make_request('getMyPropertiesHistory_queue', msg_payload, function(err, result)
+			{
+				if(err){
+					res.send({statuscode:1, message : "Error occurred while getting avaiable dates"});
+				}else{
+					res.send({statuscode:0, result:result});
+				}
+			});
+
+}

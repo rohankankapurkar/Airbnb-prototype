@@ -125,6 +125,111 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http){
 	});
 
 
+	$http({
+		method : "POST",
+		url : '/host/getPropertyHistory',
+		data : {}
+	}).success(function(property1){
+		if (property.statuscode == 0)
+		{
+
+			$scope.propertiesused = property1.result.data;
+		}
+		else
+		{
+			if(property1.message != null)
+			{
+				$scope.invEmail = "";
+				$scope.invEmail = data.message;
+			}
+		}
+	}).error(function(error) {
+		console.log("error");
+	});
+
+
+
+
+	$http({
+		method : "POST",
+		url : '/getusersession',
+		data : {}
+	}).success(function(user){
+		console.log("user session");
+		if (user.statuscode == 0)
+		{
+			console.log(user);
+			$http({
+				method : "POST",
+				url : '/host/getPropertyHistory',
+				data : {
+					hostid: user.credentials.id
+				}
+			}).success(function(property){
+
+
+
+				if (property.statuscode == 0)
+				{
+
+					$http({
+						method : "POST",
+						url : '/getUserAndProperty',
+						data : {
+							pendingApprovalsData: property.result.data
+						}
+					}).success(function(data){
+
+
+						var pendingApprovals = property.result.data,
+							pendingApprovalsToMerge = data.result,
+							updatedPendingApprovalsClient = {};
+
+
+						//mergin properties and user data to ids
+						for(var i=0; i<pendingApprovals.length; i++) {
+							for(var j=0; j<pendingApprovalsToMerge.updatedProperties.length; j++) {
+								if(pendingApprovals[i].prop_id == pendingApprovalsToMerge.updatedProperties[j].id) {
+									pendingApprovals[i].propertyDetails = pendingApprovalsToMerge.updatedProperties[j];
+									pendingApprovals[i].from_date = moment(pendingApprovals[i].from_date).format("YYYY-MM-DD");
+									pendingApprovals[i].till_date = moment(pendingApprovals[i].till_date).format("YYYY-MM-DD");
+								}
+							}
+							for(var j=0; j<pendingApprovalsToMerge.updatedUser.length; j++) {
+								if(pendingApprovals[i].user_id == pendingApprovalsToMerge.updatedUser[j].id) {
+									pendingApprovals[i].userDetails = pendingApprovalsToMerge.updatedUser[j];
+								}
+							}
+						}
+
+						console.log(pendingApprovals);
+
+						$scope.allPendingApprovals1 = pendingApprovals;
+
+					}).error(function(error){
+						console.log("error in getpendingpropertyrequests");
+					})
+
+				}
+				else
+				{
+
+				}
+
+			}).error(function(error) {
+				console.log("error");
+			});
+
+		}
+		else
+		{
+
+		}
+	}).error(function(error) {
+		console.log("error");
+	});
+
+
 })
 
 

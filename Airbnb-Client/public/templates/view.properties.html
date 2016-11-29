@@ -172,11 +172,25 @@
 			<div class="col-md-5">
 				<!-- <img src="images/becomeHost.JPG" alt="" width="440" height="550"  /> -->
 
-
+    		<map ng-transclude class="short-map"> </map>
 
       </div>
   </span>
   <script src="/scripts/util.client.logging.js"></script>
+	<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkqQ3wuJz7XzOn0pdY5emxJns9cQbDcY0&callback=initMap"></script> -->
+	<script>
+	 function initMap() {
+		 var uluru = {lat: -25.363, lng: 131.044};
+		 var map = new google.maps.Map(document.getElementById('map'), {
+			 zoom: 4,
+			 center: uluru
+		 });
+		 var marker = new google.maps.Marker({
+			 position: uluru,
+			 map: map
+		 });
+	 }
+ </script>
 </div>
 
 </div>
