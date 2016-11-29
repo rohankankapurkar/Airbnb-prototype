@@ -56,3 +56,44 @@ function updatePropertyCollection(propertyid, bidder, bidamount,res)
 	});
 }
 
+
+exports.checkout = function(req,res)
+{
+
+	console.log("============================");
+	console.log(req.body);
+	console.log("============================");
+
+	var msg_payload = req.body.userBids;
+
+	mq_client.make_request('bidcheckout_queue',msg_payload, function(err,result){
+		if(result.err){
+			console.log('Not able to fetch User data');
+			res.send(result);
+		}
+		else 
+		{
+			res.send(result);
+		}  
+	});
+	res.send({statuscode : 0});
+
+	/*var msg_payload = {
+		username : username,
+		product_id : product_id,
+		product_name : product_name,
+		bid_amount : bid_amount
+	}
+	
+	mq_client.make_request('bid_checkout_queue',msg_payload, function(err,result){
+		if(result.err){
+			console.log('Not able to fetch User data');
+			res.send(result);
+		}
+		else 
+		{
+			res.send(result);
+		}  
+	});*/
+}
+

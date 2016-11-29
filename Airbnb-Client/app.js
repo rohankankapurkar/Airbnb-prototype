@@ -137,7 +137,7 @@ app.get('/admin/getadminapprovals',admin.getadminapprovals);
 app.post('/admin/approve',admin.approveHostRequest);
 app.post('/admin/searchHosts',adminSearch.searchHosts);
 app.post('/bid',bidding.placebid);
-
+app.post('/trips/acceptbid', bidding.checkout);
 
 app.post('/admin/top_properties', adminSearch.gettopprops);
 app.post('/admin/top_hosts', adminSearch.gettophosts);
@@ -154,7 +154,8 @@ app.post('/getPropertiesForUserTrips', userGetTrips.getPropertiesForUserTrips);
 app.post('/getUserAndProperty', userGetTrips.getUserAndProperty);
 //bidding
 app.post('/getPropertiesForBidding', userGetTrips.getPropertiesForBidding);
-app.post('/trips/acceptBid', userGetTrips.getPropertiesForBidding);
+
+/*app.post('/trips/acceptBid', userGetTrips.getPropertiesForBidding);*/
 
 
 mongo.connect(mongoSessionConnectURL, function(){
