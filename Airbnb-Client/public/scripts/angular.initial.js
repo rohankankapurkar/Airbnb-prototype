@@ -110,6 +110,12 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 				templateUrl : './templates/view.trips.html',
 				controller : 'controllerYourTrips'
 			})
+		.state('home.profile.trips.pendingApprovalTrips',
+		  {
+		    url:'/trips/pendingApprovalTrips',
+		    templateUrl : './templates/view.trips.pendingApprovalTrips.html',
+		    controller : 'controllerYourTrips'
+		  })
 		.state('home.profile.trips.upcomingTrips',
 		  {
 		    url:'/trips/upcomingTrips',

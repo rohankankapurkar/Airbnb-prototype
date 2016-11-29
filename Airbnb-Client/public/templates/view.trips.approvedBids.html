@@ -3,7 +3,7 @@
     <div class="panel-body panel-light">
       <h1 ng-if= NoUserApprovedBidsMsg> You dont have any approved bids yet. </h1>
       <!-- for ng repeat -->
-      <div class="row" ng-if= !noupcomingTripsFoundMsg ng-repeat="userApprovedBid in userApprovedBids">
+      <div class="row" ng-if= !NoUserApprovedBidsMsg ng-repeat="userApprovedBid in userApprovedBids">
         <div class="col-md-6 col-sm-6 co-xs-12 gal-item">
         <a ng-click= transitionToProperty(property._id) id="property-display">
 

@@ -1,22 +1,22 @@
-<div class="container" style="padding-left: 13%; padding-right: 13%" ng-controller="controllerTripsBids">
+<div class="container" style="padding-left: 13%; padding-right: 13%">
   <div class="panel">
     <div class="panel-body panel-light">
-      <h1 ng-if= NoUserPendingBidsMsg> You dont have any approved bids yet. </h1>
+      <h1 ng-if= noupcomingTripsFoundMsg> You dont have any completed trips yet. </h1>
       <!-- for ng repeat -->
-      <div class="row" ng-if= !NoUserPendingBidsMsg ng-repeat="userPendingBid in userPendingBids">
+      <div class="row" ng-if= !noupcomingTripsFoundMsg ng-repeat="pendingApprovalTrip in pendingApprovalTrips">
         <div class="col-md-6 col-sm-6 co-xs-12 gal-item">
         <a ng-click= transitionToProperty(property._id) id="property-display">
 
             <div id="tripsProperty" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner" id="carousel-properties" role="listbox">
                 <div class="item active">
-                  <img src="/images/paris.jpg" alt="First slide">
+                  <img src="{{pendingApprovalTrip.propertyDetails.images[0]}}" alt="First slide">
                 </div>
                 <div class="item">
-                  <img src="/images/paris.jpg" alt="Second slide">
+                  <img src="{{pendingApprovalTrip.propertyDetails.images[0]}}" alt="Second slide">
                 </div>
                 <div class="item">
-                  <img src="/images/paris.jpg" alt="Third slide">
+                  <img src="{{pendingApprovalTrip.images[0]}}" alt="Third slide">
                 </div>
               </div>
               <a class="left carousel-control" data-target="#carousel-example-generic" role="button" data-slide="prev">
@@ -38,14 +38,15 @@
           <!-- trip title -->
           <div class="space-5">
             <h3 class="landing__title-title">
-            	<span class="font-airbnb">{{userPendingBid.propertyDetails.title}}</span>
+            	<span class="font-airbnb">{{pendingApprovalTrip.propertyDetails.title}}</span>
             </h3>
-            <span class="font-airbnb-faded"><b>Start date: </b>{{userPendingBid.from_date}}</span>
+            <span class="font-airbnb-faded"><b>Start date: </b>{{pendingApprovalTrip.from_date}}</span>
             <br/>
-            <span class="font-airbnb-faded"><b>End date: </b>{{userPendingBid.till_date}}</span>
+            <span class="font-airbnb-faded"><b>End date: </b>{{pendingApprovalTrip.till_date}}</span>
             <br/>
-            <span class="font-airbnb-faded"><b>Bidding price: </b>{{userPendingBid.bid_amount}}</span>
+            <span class="font-airbnb-faded"><b>Price paid: </b>{{pendingApprovalTrip.price}}</span>
             <br/>
+            <button class="btn btn-primary">Review this trip</button>
           </div>
 
         </div>
