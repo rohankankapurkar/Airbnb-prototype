@@ -167,7 +167,15 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 					bookings : null
 				}
 			})
-
+		.state('home.profile.reviewUser',
+			{
+				url:'/reviewUser',
+				templateUrl : './templates/view.host.reviewUser.html',
+				controller : 'controllerBecomeHost',
+				params :{
+					bookings : null
+				}
+			})
 
 		/*
 |-----------------------------------------------------------

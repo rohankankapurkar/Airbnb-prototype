@@ -1,0 +1,82 @@
+<main id="site-content" role="main" xmlns="http://www.w3.org/1999/html">
+    <div id="lys-redesign-div">
+        <style data-aphrodite></style>
+        <div data-hypernova-key="list_your_spacebundlejs">
+            <div>
+                <div class="list-your-space__progress">
+
+                    <div class="left-backdrop"></div>
+                    <div class="right-backdrop hide-sm bg-white right-backdrop--with-bg"></div>
+                    <div class="list-your-space__content">
+                        <div class="centered-content clearfix">
+                            <div class="main-panel-container no-padding-h bg-white main-panel-outer-half clearfix">
+                                <div class="main-panel main-panel-padding main-panel-progress pull-right main-panel-inner-half space-sm-8">
+                                    <div class="panel--no-border panel-title">
+                                        <h3 class="no-margin-padding">Comments</h3>
+                                    </div>
+                                    <div>
+                                        <fieldset class="lys-input__fieldset">
+                                            <textarea class="lys-summary__textarea hide-scroll" placeholder="" ng-model="description"></textarea>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="rating">
+                                    <span><input type="radio" name="rating" id="str5" value="5"><label for="str5"></label></span>
+                                    <span><input type="radio" name="rating" id="str4" value="4"><label for="str4"></label></span>
+                                    <span><input type="radio" name="rating" id="str3" value="3"><label for="str3"></label></span>
+                                    <span><input type="radio" name="rating" id="str2" value="2"><label for="str2"></label></span>
+                                    <span><input type="radio" name="rating" id="str1" value="1"><label for="str1"></label></span>
+                                </div>
+
+
+                                <div class="main-panel__actions-wrapper">
+                                    <div class="centered-content clearfix">
+                                        <div class="bg-white main-panel-outer-half clearfix shadowed">
+                                            <div class="no-margin-padding__sm main-panel-padding main-panel-progress pull-right main-panel-inner-half space-sm-8">
+                                                <div class="divider hide-sm"></div>
+                                                <div class="row no-margin-padding__sm">
+                                                    <div class="main-panel__actions col-sm-12 no-margin-padding__sm">
+                                                        <div>
+                                                            <a class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary"  ng-click="becomeHost()" id="step1-BecomeHostDescription">
+                                                                <div class="btn-progress-next__text">
+                                                                    <span>Next</span>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="waypoint-container">
+                                    <span style="font-size: 0;"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="/scripts/util.client.logging.js"></script>
+</main>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+//  Check Radio-box
+        $(".rating input:radio").attr("checked", false);
+        $('.rating input').click(function () {
+            $(".rating span").removeClass('checked');
+            $(this).parent().addClass('checked');
+        });
+
+        $('input:radio').change(
+                function(){
+                    var userRating = this.value;
+                    alert(userRating);
+                });
+    });
+</script>

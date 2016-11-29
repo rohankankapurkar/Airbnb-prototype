@@ -245,5 +245,19 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http,$state){
 		$state.go('home.profile.viewBill',{bookings : $scope.booking});
 
 	};
+	$scope.reviewUser = function (bookingId)
+	{
 
+		for(var i=0; i<$scope.allCompletedBookings.length; i++)
+		{
+			if($scope.allCompletedBookings[i].id == bookingId)
+			{
+				$scope.booking = $scope.allCompletedBookings[i];
+
+			}
+		}
+
+		$state.go('home.profile.reviewUser',{bookings : $scope.booking});
+
+	};
 })
