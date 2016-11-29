@@ -53,7 +53,16 @@ exports.getPropertiesForUserTrips = function(msg, callback){
       mongo.connect(function(){
         var coll = mongo.collection('properties');
 
-        coll.find({id: {$in: propertyIdArray}}).toArray(function(err, result){
+        coll.find({id: {$in: propertyIdArray}}, {
+					_id: 1,
+					description: 1,
+					title: 1,
+					price: 1,
+					from: 1,
+					till: 1,
+					host_id: 1,
+					id: 1
+				}).toArray(function(err, result){
           console.log("-----------properties result--------");
           console.log(result);
           if(result){
@@ -93,7 +102,16 @@ exports.getUserAndProperty = function(msg, callback){
 		var collProp = mongo.collection('properties');
 				collUser = mongo.collection('users');
 
-		collProp.find({id: {$in: prop_ids}}).toArray(function(err, updatedProperties){
+		collProp.find({id: {$in: prop_ids}}, {
+			_id: 1,
+			description: 1,
+			title: 1,
+			price: 1,
+			from: 1,
+			till: 1,
+			host_id: 1,
+			id: 1
+		}).toArray(function(err, updatedProperties){
 				if(err)
 					console.log(err);
 				console.log("--------------getUserAndProperty properties es---------------");
@@ -117,6 +135,41 @@ exports.getUserAndProperty = function(msg, callback){
 
 
 		});
+
+
+	})
+
+};
+
+
+exports.getPropertiesForBidding = function(msg, callback){
+		console.log("------------Properties For Bidding server---------------");
+		console.log(msg);
+		var res = {statuscode : 0, message : ""};
+
+
+		mongo.connect(function(){
+			var coll = mongo.collection('properties');
+
+			coll.find({id: {$in: msg.propertyIds}}, {
+				_id: 1,
+				description: 1,
+				title: 1,
+				price: 1,
+				from: 1,
+				till: 1,
+				host_id: 1,
+				id: 1
+			}).toArray(function(err, updatedProperties){
+					if(err)
+						console.log(err);
+					console.log("--------------Properties For Bidding---------------");
+					console.log(updatedProperties);
+
+					res['data'] = updatedProperties;
+					callback(null, res);
+
+			});
 
 
 	})

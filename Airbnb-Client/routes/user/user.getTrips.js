@@ -80,3 +80,35 @@ exports.getUserAndProperty = function(req, res) {
 
 
 };
+
+
+
+//get properties for bidding
+exports.getPropertiesForBidding = function(req, res) {
+
+		console.log("-------------------user getPropertiesForBidding routes-------------");
+		var msg_payload = {propertyIds: req.body.propertyIds};
+	  console.log(msg_payload);
+
+		mq_client.make_request('getPropertiesForBidding_queue', msg_payload, function(err,result){
+	    if(err)
+	      return console.log("Error in getting properties for trips "+err);
+
+	    console.log("-----------response getPropertiesForBidding_queue----------");
+			console.log(result);
+
+			if(result.statuscode == 0)
+	    {
+	      res.send(result);
+			}
+			else
+			{
+				res.send({
+	        statuscode: 1
+	      });
+			}
+
+		});
+
+
+};

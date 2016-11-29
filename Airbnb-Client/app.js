@@ -150,6 +150,10 @@ app.post('/property/clicks',analytics.logPropertyClicks);
 app.post('/getUserTrips', userGetTrips.getTrips);
 app.post('/getPropertiesForUserTrips', userGetTrips.getPropertiesForUserTrips);
 app.post('/getUserAndProperty', userGetTrips.getUserAndProperty);
+//bidding
+app.post('/getPropertiesForBidding', userGetTrips.getPropertiesForBidding);
+app.post('/trips/acceptBid', userGetTrips.getPropertiesForBidding);
+
 
 mongo.connect(mongoSessionConnectURL, function(){
 	console.log('Connected to mongo at: ' + mongoSessionConnectURL);

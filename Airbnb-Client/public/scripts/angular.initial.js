@@ -122,6 +122,18 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 		    templateUrl : './templates/view.trips.completed.html',
 		    controller : 'controllerYourTrips'
 		  })
+		.state('home.profile.trips.pendingBids',
+			{
+				url:'/trips/pendingBids',
+				templateUrl : './templates/view.trips.pendingBids.html',
+				controller : 'controllerTripsBids'
+			})
+		.state('home.profile.trips.approvedBids',
+			{
+				url:'/trips/approvedBids',
+				templateUrl : './templates/view.trips.approvedBids.html',
+				controller : 'controllerTripsBids'
+			})
 		.state('home.profile.dashboard',
 		  {
 		    url:'/dashboard',
