@@ -332,10 +332,12 @@ exports.approveUserRequest = function(msg, callback){
 exports.disapproveRequest = function(msg, callback){
 
 	var res = {"statuscode":0, "message":""};
+	var from_date = moment(msg.fromdate).format('YYYY-MM-DD');
+	var till_date = moment(msg.tilldate).format('YYYY-MM-DD');
 
 	var params = [{'user_id':msg.userid}, {'prop_id':msg.propid}, {'from_date':msg.fromdate}, {'till_date':msg.tilldate}];
 	console.log(params['from_date']);
-	mysql.executeQuery("SELECT * FROM BOOKED_PROPERTIES WHERE approved = 0 and host_id = "+ host_id+" ", {}, function(result){
+	mysql.executeQuery("UPDATE BOOKED_PROPERTIES SET approved = 2 WHERE user_id = "+msg.userid+" AND prop_id = "+msg.propid+" AND from_date= "+from_date+" AND till_date = "+till_date+"", {}, function(result){
 
 		res["message"] = "Disapproved"
 		callback(null, res);
@@ -350,7 +352,7 @@ exports.getPendingPropertyRequests = function(msg, callback){
 
 	var params = [{"host_id":host_id}, {"approved":0}];
 	console.log(params);
-	mysql.executeQuery("SELECT * FROM BOOKED_PROPERTIES WHERE ?", params, function(result){
+	mysql.executeQuery("SELECT * FROM BOOKED_PROPERTIES WHERE approved = 0 and host_id = "+ host_id+" ", {}, function(result){
 
 			res['data'] = result;
 			callback(null, res);	
