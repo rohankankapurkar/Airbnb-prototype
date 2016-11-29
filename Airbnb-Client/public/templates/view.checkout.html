@@ -12,9 +12,7 @@
 <link rel='stylesheet' href='/stylesheets/style.homepage.css' />
 
     
-<div class="alert alert-block alert-with-icon space-top-lg-4 space-top-md-4 hide-sm"
-    data-hook="referral-banner"
-    data-placement="dashboard">
+<div class="page-container-responsive">
 
 
     
@@ -62,43 +60,76 @@
 -->
 
 
-<div class="row">
+    <div class="row">
+
+
+
+
+    <div class = " col-md-7">
+        <div class="row">
+            <div class="panel-header col-md-4"> 
+                <div class="media-photo " data-reactid=".1iqowse7dvk.1.0" float = "right"><img  height="174" width="174" class="summary-card__host-profile-photo-src" src="{{property.hostdata[0].profile_pic}}"alt="Julia And Elquisson" data-reactid=".1iqowse7dvk.1.0.0" /></div>
+
+            </div>
+
+            <div class="panel-header col-md-8">Meet your host : {{property.hostdata[0].firstname}} {{property.hostdata[0].lastname}} </br> Mail ID: {{property.hostdata[0].username}} </br>{{property.hostdata[0].about}}</div>
+
+       </div>
+
+
+
+        </br>
+        </br>
+        <div class=" space-5">
+            <div class="panel-header">Photos</div>
+             <div class = "panel-header">
+    <img src="{{property.images[1]}}" height="100%" width="100%" style="{ padding : 0}" >    
+            </div>
+
+    </div>  
+
+
+
+        <div>
+        <button class= " btn btn-large btn-block btn-babu"ng-click="finalCheckout()">Confirm Booking</button>
+    </div>
+
+
+        </div>
    
-<div class = "summary-card-page-content col-md-7 col-md-pull-5"></div>   
-    {{property.hostdata[0].username}}
+
+
+
+
+
+
+
+
+
+
+<!--right half side of the page-->
+    
     
     
 
-<div class="col-md-5 col-md-push-7 space-lg-2 space-md-2 side-summary-container">
-    
-    
-    
-<!--   <h2> {{property.hostdata[0].about}}<h2>-->
+<div class="col-md-5  space-6">
     
     
 
-    
-    
-    
-<div data-hypernova-key="p4_sidebarbundlejs">
-<div class="summary-card col-center" data-reactid=".1iqowse7dvk" data-react-checksum="-866646142">
-<div class="background-cover media-photo summary-card__payments-listing-image" style="background-image: url('{{property.hostdata[0].profile_pic}}');" height = "100" data-reactid=".1iqowse7dvk.0">&nbsp;</div>
-<div class="pull-right space-3 summary-card__host-profile-photo" data-reactid=".1iqowse7dvk.1">
-<div class="media-photo media-round" data-reactid=".1iqowse7dvk.1.0"><img  height="100" width="100" class="summary-card__host-profile-photo-src" src="{{property.hostdata[0].profile_pic}}"alt="Julia And Elquisson" data-reactid=".1iqowse7dvk.1.0.0" /></div>
+<div class="panel-header" data-reactid=".1iqowse7dvk.2">
+    <div class="pull-right space-3 summary-card__host-profile-photo" data-reactid=".1iqowse7dvk.1">
 </div>
-<div class="panel" data-reactid=".1iqowse7dvk.2">
 <div class="panel-body" data-reactid=".1iqowse7dvk.2.0">
-<div class="text-muted space-2" data-reactid=".1iqowse7dvk.2.0.0"><span data-reactid=".1iqowse7dvk.2.0.0.0">Hosted by {{property.hostdata[0].firstname}} {{property.hostdata[0].lastname}} </span></div>
-<div class="sidebar-text-large" data-reactid=".1iqowse7dvk.2.0.1"> {{property.street}},{{property.apt}},{{property.city}}, {{property.state}} , {{property.zip}} </div>
-<div class="hide-sm text-muted" data-reactid=".1iqowse7dvk.2.0.2">
-<ul class="list-layout summary-card__additional-details-list" data-reactid=".1iqowse7dvk.2.0.2.0">
-<li data-reactid=".1iqowse7dvk.2.0.2.0.0"> {{property.propertytype}}</li>
-<li data-reactid=".1iqowse7dvk.2.0.2.0.1">
-<div class="star-rating-wrapper" data-reactid=".1iqowse7dvk.2.0.2.0.1.0.0">
-<div class="star-rating" data-reactid=".1iqowse7dvk.2.0.2.0.1.0.0.1">&nbsp;</div>
-<span class="h6" data-reactid=".1iqowse7dvk.2.0.2.0.1.0.0.3"><small data-reactid=".1iqowse7dvk.2.0.2.0.1.0.0.3.0"><span data-reactid=".1iqowse7dvk.2.0.2.0.1.0.0.3.0.0"><span data-reactid=".1iqowse7dvk.2.0.2.0.1.0.0.3.0.0.0">Check the below details</span></span></small></span></div>
+<div class="text-muted space-2" ><span0.0.0">Hosted by {{property.hostdata[0].firstname}} {{property.hostdata[0].lastname}} </span></div>
+<div class="sidebar-text-large" > Address : {{property.street}},{{property.apt}},{{property.city}}, {{property.state}} , {{property.zip}} </div>
+<div class="hide-sm text-muted" >
+<ul class="list-layout summary-card__additional-details-list"0.2.0">
+<li > {{property.propertytype}}</li>
+<li >
+<div class="star-rating-wrapper" >
+<div class="star-rating" </div>
+<span class="h6"><small data-reactid=".1iqowse7dvk.2.0.2.0.1.0.0.3.0"><span data-reactid=".1iqowse7dvk.2.0.2.0.1.0.0.3.0.0"><span data-reactid=".1iqowse7dvk.2.0.2.0.1.0.0.3.0.0.0">Check the below details</span></span></small></span></div>
 </li>
-<li class="hide-md" data-reactid=".1iqowse7dvk.2.0.2.0.2"><span data-reactid=".1iqowse7dvk.2.0.2.0.2.0">14 reviews</span></li>
 </ul>
 <div data-reactid=".1iqowse7dvk.2.0.2.1">{{property.description}}</div>
 </div>
@@ -146,7 +177,7 @@
 <tbody data-reactid=".1iqowse7dvk.2.3.0.0.0">
 <tr class="price-item" data-reactid=".1iqowse7dvk.2.3.0.0.0.0"><th class="price-item__header" scope="row" data-reactid=".1iqowse7dvk.2.3.0.0.0.0.0"><span data-reactid=".1iqowse7dvk.2.3.0.0.0.0.0.0">Total</span></th>
 <td class="text-right price-item__price" data-reactid=".1iqowse7dvk.2.3.0.0.0.0.1">
-<div class="" data-reactid=".1iqowse7dvk.2.3.0.0.0.0.1.0"><span data-reactid=".1iqowse7dvk.2.3.0.0.0.0.1.0.0">{{numberOfDays * property.price }}</span><sup data-reactid=".1iqowse7dvk.2.3.0.0.0.0.1.0.1">USD</sup></div>
+    <div class="" data-reactid=".1iqowse7dvk.2.3.0.0.0.0.1.0"><span data-reactid=".1iqowse7dvk.2.3.0.0.0.0.1.0.0"> : <b>{{numberOfDays * property.price }}</b></span><sup data-reactid=".1iqowse7dvk.2.3.0.0.0.0.1.0.1">USD</sup></div>
 </td>
 </tr>
 </tbody>
@@ -177,7 +208,7 @@
 </div>    
 
 
-     
+    
 
         
     
@@ -196,11 +227,3 @@
 
 
 
-<!--adding copied -->
-<<!--coped end-->
-
-
-
-<div>
-	<button class= " btn btn-danger"ng-click="finalCheckout()">Confirm Booking</button>
-</div>
