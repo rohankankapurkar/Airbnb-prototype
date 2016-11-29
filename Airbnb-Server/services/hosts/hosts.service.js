@@ -335,7 +335,7 @@ exports.disapproveRequest = function(msg, callback){
 
 	var params = [{'user_id':msg.userid}, {'prop_id':msg.propid}, {'from_date':msg.fromdate}, {'till_date':msg.tilldate}];
 	console.log(params['from_date']);
-	mysql.executeQuery("UPDATE BOOKED_PROPERTIES SET approved = 2 WHERE ?", params, function(result){
+	mysql.executeQuery("SELECT * FROM BOOKED_PROPERTIES WHERE approved = 0 and host_id = "+ host_id+" ", {}, function(result){
 
 		res["message"] = "Disapproved"
 		callback(null, res);
