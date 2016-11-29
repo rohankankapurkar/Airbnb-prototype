@@ -483,3 +483,17 @@ exports.getReviews = function(msg, callback) {
 		});
 	});
 }
+
+
+// This will return history of hosts booked properties
+exports.getPropertiesHistory = function(msg, callback){
+	var res = {"statuscode":0, "message":""}
+	var host_id = msg.host_id;
+	var params = [{"host_id":host_id}, {"approved":1}];
+	console.log(params);
+	mysql.executeQuery('SELECT * FROM BOOKED_PROPERTIES WHERE host_id = "'+host_id+'" AND approved = 1 AND till_date  < now()', {}, function(result)
+	{
+		res['data'] = result;
+		callback(null, res);
+	});
+}

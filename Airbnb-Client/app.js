@@ -132,10 +132,12 @@ app.post('/host/approveuserrequest', host.approveuserrequest);
 app.post('/host/getpendingpropertyrequests', host.getpendingpropertyrequests);
 app.post('/host/getuserpropdata', host.getuserpropdata);
 app.post('/host/disapproverequest', host.disapproverequest);
+app.post('/host/getPropertyHistory', host.propertyHistory);
 app.get('/admin/getadminapprovals',admin.getadminapprovals);
 app.post('/admin/approve',admin.approveHostRequest);
 app.post('/admin/searchHosts',adminSearch.searchHosts);
 app.post('/bid',bidding.placebid);
+
 
 app.post('/admin/top_properties', adminSearch.gettopprops);
 app.post('/admin/top_hosts', adminSearch.gettophosts);

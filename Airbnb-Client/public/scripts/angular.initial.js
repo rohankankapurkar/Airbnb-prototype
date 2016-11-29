@@ -134,6 +134,13 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 		    templateUrl : './templates/view.approvals.html',
 		    controller : 'controllerApprovals'
 		  })
+		.state('home.profile.history',
+			{
+				url:'/history',
+				templateUrl : './templates/view.history.html',
+				controller : 'controllerProfile'
+			})
+
 				/*
 		|-----------------------------------------------------------
 		| Admin States
