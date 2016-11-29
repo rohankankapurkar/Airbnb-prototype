@@ -168,7 +168,7 @@
 </div>
 <!-- main UI VIEW -->
 <div ui-view>
-	
+
 	<div id="middle" ng-controller="controllerHome">
 	<!--adding for carousal	-->
     	<div id="myCarousel" class="carousel slide">
@@ -254,81 +254,41 @@
 			<div class="container gal-container">
 				<div class="col-md-8 col-sm-12 co-xs-12 gal-item">
 					<div class="box">
+						<a ng-click="transitToProperties('Paris')" id="city-Paris">
+							<img src="./images/paris.jpg">
+							<h2 class="homepage-thumbnails-h2"> Paris </h2>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+					<div class="box">
+						<a ng-click="transitToProperties('New York')" id="city-New York">
+							<img src="./images/newyork.jpg">
+							<h2 class="homepage-thumbnails-h2"> New York </h2>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+					<div class="box" style="margin-left: -20px;">
+						<a ng-click="transitToProperties('Tokyo')" id="city-Tokyo">
+							<img src="./images/tokyo.jpg">
+							<h2 class="homepage-thumbnails-h2"> Tokyo </h2>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+					<div class="box">
 						<a ng-click="transitToProperties('San Jose')" id="city-San Jose">
-							<img src="./images/paris.png">
-							<h1 class="homepage-thumbnails-h2"> Paris </h1>
+							<img src="./images/sanjose.jpg">
+							<h2 class="homepage-thumbnails-h2"> San Jose </h2>
 						</a>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-6 co-xs-12 gal-item">
 					<div class="box">
-						<a href="/#/properties/newyork">
-							<img src="./images/paris.png">
-							<h1 class="homepage-thumbnails-h2"> New York </h1>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 co-xs-12 gal-item">
-					<div class="box">
-						<a href="/#/properties/tokyo">
-							<img src="./images/paris.png">
-							<h1 class="homepage-thumbnails-h2"> Tokyo </h1>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 co-xs-12 gal-item">
-					<div class="box">
-						<a href="/#/properties/:paris">
-							<img src="./images/paris.png">
-							<h1 class="homepage-thumbnails-h2"> Paris </h1>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 co-xs-12 gal-item">
-					<div class="box">
-						<a href="#">
-							<img src="./images/paris.png">
-							<h1 class="homepage-thumbnails-h2"> Paris </h1>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 co-xs-12 gal-item">
-					<div class="box">
-						<a href="#">
-							<img src="./images/paris.png">
-							<h1 class="homepage-thumbnails-h2"> Paris </h1>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 co-xs-12 gal-item">
-					<div class="box">
-						<a href="#">
-							<img src="./images/paris.png">
-							<h1 class="homepage-thumbnails-h2"> Paris </h1>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 co-xs-12 gal-item">
-					<div class="box">
-						<a href="#">
-							<img src="./images/paris.png">
-							<h1 class="homepage-thumbnails-h2"> Paris </h1>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 co-xs-12 gal-item">
-					<div class="box">
-						<a href="#">
-							<img src="./images/paris.png">
-							<h1 class="homepage-thumbnails-h2"> Paris </h1>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-8 col-sm-12 co-xs-12 gal-item">
-					<div class="box">
-						<a href="#">
-							<img src="./images/paris.png">
-							<h1 class="homepage-thumbnails-h2"> Paris </h1>
+						<a ng-click="transitToProperties('Los Angeles')" id="city-Los Angeles">
+							<img src="./images/losangeles.jpeg">
+							<h2 class="homepage-thumbnails-h2"> Los Angeles </h2>
 						</a>
 					</div>
 				</div>
@@ -366,7 +326,7 @@
             $("#signup").on("click", function () {
     			 remove_signup();
     		});
-            
+
             $("#signin").on("click", function () {
     			 remove_signup();
     		});
@@ -404,7 +364,7 @@
               	<a href="https://twitter.com/airbnb" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
                 	<span class="screen-reader-only text-gray icon-gray">Twitter</span>
                 	<i class="icon footer-icon icon-twitter text-gray icon-gray"></i>
-                </a>            
+                </a>
             </li>
             <li>
               	<a href="https://instagram.com/airbnb" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
