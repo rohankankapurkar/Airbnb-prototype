@@ -263,7 +263,7 @@ exports.approveUserRequest = function(msg, callback){
 
 	console.log(from_date + "------" + till_date + user_id + prop_id);
 	// This will get the user which is to be approved:
-	var params1 = [{"user_id" : user_id},{ "prop_id" : prop_id}, {"approved" : 0}]
+	var params1 = [{"user_id" : user_id},{ "prop_id" : prop_id}, {"approved" : 0}, {"from_date":from_date},{"till_date":till_date}]
 	mysql.executeQuery("SELECT * FROM BOOKED_PROPERTIES WHERE ? ", params1, function(result1){
 
 		if(result1){
@@ -274,8 +274,8 @@ exports.approveUserRequest = function(msg, callback){
 
 				//This call database to update avaiable dates 
 				console.log(from_date +" - - "+ till_date);
-				var params = [{"prop_id" : prop_id}, {"from_date":from_date}, {"till_date":till_date}]
-				mysql.executeQuery("SELECT * FROM AVAILABLE_DATES WHERE ?", params, function(availableDatesResult){
+				var params = [{"prop_id" : prop_id}, {"from_date":from_date}, {"till_date":till_date}];
+				mysql.executeQuery('SELECT * FROM AVAILABLE_DATES WHERE prop_id = "'+ prop_id +'" AND from_date < "'+from_date+'" AND till_date > "'+till_date+'" ', {}, function(availableDatesResult){
 					
 					var idToDelete = availableDatesResult[0]['id'];
 					
