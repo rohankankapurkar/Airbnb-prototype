@@ -43,7 +43,7 @@ exports.validateAddress = function(msg, callback){
 	var guessedAddress = "";
 
 	address = msg.address;
-	
+
 	addressValidator.validate(address, addressValidator.match.streetAddress, function(err, exact, inexact){
 
 		_.map(exact, function(a) {
@@ -59,7 +59,7 @@ exports.validateAddress = function(msg, callback){
 		// Example: input address: '329, Nort First street, San Jose , CA, USA'  // Notice the typo: Nort => North
 		// 			guessedAddress : '329 North 1st Street, San Jose, CA, US'   // This is required address for google map
 		var data = {"matchedAddress":matchedAddress, "guessedAddress":guessedAddress}
-		
+
 		res['statuscode'] = 0;
 		res['data'] = data;
 		callback(null, res);
@@ -114,7 +114,7 @@ exports.becomeHost = function(msg, callback){
 							if(user.hasOwnProperty('approved')){
 								res['statuscode'] = 0;
 
-								// host has been approved already, then send him final message of acknoweldgement 
+								// host has been approved already, then send him final message of acknoweldgement
 								if(user['approved'] == true){
 									res['message'] = "Your proprty has been listed. Congratulations!!!";
 								}else{   // host is not approved yet, approved=false means host already requested, so ask hime to be patient.
@@ -126,7 +126,7 @@ exports.becomeHost = function(msg, callback){
 							}else{ // approved does not exists in document, means user is becoming host for first time. so add 'approved = false' key in document.
 
 							coll.updateOne({username:hostUsername},{$set:{ishost:true, approved:false}}, function(err, result){
-									// Now ishost=true mean user became host and awaiting for approval. 
+									// Now ishost=true mean user became host and awaiting for approval.
 									// approved=false, means admin will approve it and approved will become true for SURE :D.
 									if(!err){
 										res['statuscode'] = 0;
@@ -185,7 +185,7 @@ exports.getMyProerties = function(msg, callback){
 				});
 			}
 		});
-	});	
+	});
 }
 
 
@@ -199,7 +199,7 @@ exports.getAvailableDates = function(msg, callback){
 	mysql.executeQuery("SELECT * FROM AVAILABLE_DATES where ?", params, function(result){
 		if(result){
 			var dates = [];
-			var counter = 0; 
+			var counter = 0;
 			for( counter = 0; counter < result.length; counter++){
 				var startDate = result[counter]['from_date'];
 				var EndDate = result[counter]['till_date'];
@@ -267,18 +267,18 @@ exports.approveUserRequest = function(msg, callback){
 	mysql.executeQuery('SELECT * FROM BOOKED_PROPERTIES WHERE user_id = "'+ user_id+'" AND prop_id = "'+prop_id+'" AND approved = 0 AND from_date = "'+from_date+'" AND till_date = "'+till_date+'"', {}, function(result1){
 
 		if(result1){
-			
+
 			// Here the status as approved. that 1s
 			var params2 = {"id":result1[0]["id"]};
 			mysql.executeQuery("UPDATE BOOKED_PROPERTIES SET approved = 1 WHERE ? ", params2, function(result2){
 
-				//This call database to update avaiable dates 
+				//This call database to update avaiable dates
 				console.log(from_date +" - - "+ till_date);
 				var params = [{"prop_id" : prop_id}, {"from_date":from_date}, {"till_date":till_date}];
 				mysql.executeQuery('SELECT * FROM AVAILABLE_DATES WHERE prop_id = "'+ prop_id +'" AND from_date < "'+from_date+'" AND till_date > "'+till_date+'" ', {}, function(availableDatesResult){
-					
+
 					var idToDelete = availableDatesResult[0]['id'];
-					
+
 					var fromDate_1 = moment(availableDatesResult[0]['from_date']).format('YYYY-MM-DD');
 					var tillDate_1 = moment(from_date).subtract(1, 'days').format('YYYY-MM-DD');
 					var prop1 = {"prop_id": msg.propid, "from_date":fromDate_1, "till_date":tillDate_1, "id":0}; // id is auto increment, so does not matter the value.
@@ -315,7 +315,7 @@ exports.approveUserRequest = function(msg, callback){
 								params4 = {"id" : id};
 								mysql.executeQuery("UPDATE BOOKED_PROPERTIES SET approved = 2 where ?", params4, function(result4){})
 							}
-						}		
+						}
 					}
 				});
 				res["message"] = "Property has been approved";
@@ -349,11 +349,11 @@ exports.getPendingPropertyRequests = function(msg, callback){
 	var res = {"statuscode":0, "message":""}
 	var host_id = msg.host_id;
 
-	var params = {"host_id":host_id};
+	var params = [{"host_id":host_id}, {"approved":0}];
 	console.log(params);
 	mysql.executeQuery('SELECT * FROM BOOKED_PROPERTIES WHERE approved = 0 and host_id = "'+ host_id +'" ', {}, function(result){
 			res['data'] = result;
-			callback(null, res);	
+			callback(null, res);
 	});
 
 }
@@ -385,7 +385,7 @@ exports.getUserPropData = function(msg, callback){
 					else{
 						res['statuscode'] = 1;
 						res['message'] = "Unexpected error occurred while getting the user and property details"
-						callback(null, res);		
+						callback(null, res);
 
 					}
 				});
