@@ -156,7 +156,10 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 			{
 				url:'/bill',
 				templateUrl : './templates/view.getBill.html',
-				controller : 'controllerProfile'
+				controller : 'controllerBecomeHost',
+				params :{
+					bookings : null
+				}
 			})
 
 

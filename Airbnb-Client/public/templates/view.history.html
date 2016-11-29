@@ -10,7 +10,7 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Property title</th>
+                        <th>Property Title</th>
                         <th>Client</th>
                         <th>From</th>
                         <th>To</th>
@@ -18,24 +18,28 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="pendingApproval in allPendingApprovals1">
+                    <tr ng-repeat="booking in allCompletedBookings">
                         <td title="'Property title'">
-                            {{pendingApproval.propertyDetails.title}}</td>
+                            {{booking.propertyDetails.title}}</td>
                         <td >
-                            {{pendingApproval.userDetails.username}}</td>
+                            {{booking.userDetails.firstname}}
+
+
+                        </td>
+
                         <td>
-                            {{pendingApproval.from_date}}</td>
+                            {{booking.from_date}}</td>
                         <td>
-                            {{pendingApproval.till_date}}</td>
+                            {{booking.till_date}}</td>
                         <td>
 
-                        <button class="btn btn-primary" id="ViewBill" ng-click="viewBill()">
-                            View Bill
-                        </button>
-                        <br/><br>
-                        <button class="btn btn-primary" id="reviewUser" ng-click="reviewUser()">
-                            Review User
-                        </button>
+                            <button class="btn btn-primary" id="ViewBill" ng-click="viewBill(booking.id)">
+                                View Bill
+                            </button>
+                            <button class="btn btn-primary" id="reviewUser" ng-click="reviewUser()">
+                                Review User
+                            </button>
+
                         </td>
                     </tr>
                     </tbody>

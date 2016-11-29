@@ -11,8 +11,9 @@ airbnbApp.controller('controllerBecomeHost',function($scope,$state,$log,$http,$s
     $scope.firststepdet = $state.params.firstStep;
     $scope.secondstep = $state.params.secondstep;
     $scope.laststp = $state.params.laststep;
+    $scope.booking =$state.params.bookings;
 
-  if($scope.firststepdet == null && $scope.secondstep == null && !$scope.laststp)
+    if($scope.firststepdet == null && $scope.secondstep == null && !$scope.laststp)
     {
         $scope.step1 = true;
         $scope.step1complete=false;
@@ -37,10 +38,10 @@ airbnbApp.controller('controllerBecomeHost',function($scope,$state,$log,$http,$s
         $scope.step3 = true;
     }
     else if($scope.laststp)
-  {
-      $scope.step1complete=true;
-      $scope.step2complete=true;
-  }
+    {
+        $scope.step1complete=true;
+        $scope.step2complete=true;
+    }
 
 
     $scope.startHosting1 = function () {
@@ -53,11 +54,15 @@ airbnbApp.controller('controllerBecomeHost',function($scope,$state,$log,$http,$s
 
         $state.go('home.becomeHostStep2',{firstStep : $scope.firststepdet});
     };
-    
 
-    
+
+
     $scope.startHosting3 = function () {
         $state.go('home.becomeHostStep3',{secondstep : $scope.secondstep});
     };
+
+
+
+
 
 })

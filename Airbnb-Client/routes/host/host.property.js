@@ -209,6 +209,7 @@ exports.propertyHistory =function(req, res){
 				if(err){
 					res.send({statuscode:1, message : "Error occurred while getting avaiable dates"});
 				}else{
+
 					res.send({statuscode:0, result:result});
 				}
 			});

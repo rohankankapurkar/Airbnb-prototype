@@ -1,175 +1,93 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <!-- bootstrap stylesheet -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- bootstrap theme css -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <!-- bootstrap jquery minified -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- bootstrap javascript -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- angular.js minified -->
-    <!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
-    <!-- jquery ui -->
-    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-    <!-- angular-js-library -->
-    <script src="/libraries/angular-ui-router.js"></script>
-    <!-- angular-js-library for Charts-->
-    <script src="/libraries/Chart.js"></script>
-    <!-- angular-js-library for maps-->
-    <!--     <script src="/libraries/angular-google-maps.js"></script>
-        <script src="/libraries/underscore-min.js"></script> -->
-    <script src='//maps.googleapis.com/maps/api/js?key=AIzaSyDLOdiZRCkHi93wGx-6aaNMRqe8CAuM4ik'></script>
 
-    <!--  	fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-    <!--D3 -->
-    <script src="https://d3js.org/d3.v4.min.js"></script>
+<style>
+    .invoice-box{
+        max-width:800px;
+        margin:auto;
+        padding:30px;
+        border:1px solid #eee;
+        box-shadow:0 0 10px rgba(0, 0, 0, .15);
+        font-size:16px;
+        line-height:24px;
+        font-family:'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+        color:#555;
+        background-color: rgba(169, 169, 169, 0.09);
+    }
 
-    <script src="/libraries/angular-slider.js"></script>
-    <script src="/libraries/moment.min.js"></script>
+    .invoice-box table{
+        width:100%;
+        line-height:inherit;
+        text-align:left;
+    }
 
-    <!--Angular material \m/-->
-    <link rel="stylesheet" href="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.1/angular-material.css">
-    <link rel="stylesheet" href="https://material.angularjs.org/1.1.1/docs.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
-    <script src="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.1/angular-material.js"></script>
-    <!--Angular material \m/-->
+    .invoice-box table td{
+        padding:5px;
+        vertical-align:top;
+    }
 
-    <!-- slider code import -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/X.X.X/rzslider.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/X.X.X/rzslider.min.css"></script> -->
+    .invoice-box table tr td:nth-child(2){
+        text-align:right;
+    }
 
-    <!-- city search -->
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAkqQ3wuJz7XzOn0pdY5emxJns9cQbDcY0&libraries=places"></script>
-    <script src="/scripts/module.citySearch.js"></script>
-    <!-- city search -->
+    .invoice-box table tr.top table td{
+        padding-bottom:20px;
+    }
 
+    .invoice-box table tr.top table td.title{
+        font-size:25px;
+        line-height:45px;
+        color:#333;
+    }
 
-    <script src="/scripts/angular.initial.js"></script>
-    <script src="/scripts/controller.home.js"></script>
-    <script src="/scripts/controller.becomeHost.js"></script>
-    <script src="/scripts/controller.profile.js"></script>
-    <script src="/scripts/controller.profile.approvals.js"></script>
-    <script src="/scripts/controller.profile.yourtrips.js"></script>
-    <script src="/scripts/controller.admin.js"></script>
-    <script src="/scripts/controller.admin.approvals.js"></script>
-    <script src="/scripts/controller.becomehost.step1.js"></script>
-    <script src="/scripts/controller.becomehost.beds.js"></script>
-    <script src="/scripts/controller.becomehost.location.js"></script>
-    <script src="/scripts/controller.becomehost.step2.js"></script>
-    <script src="/scripts/controller.becomehost.desc.js"></script>
-    <script src="/scripts/controller.becomehost.step3.js"></script>
-    <script src="/scripts/controller.becomehost.dates.js"></script>
-    <script src="/scripts/controller.properties.js"></script>
-    <script src="/scripts/controller.property.js"></script>
-    <script src="/scripts/controller.checkout.js"></script>
-    <script src="/scripts/util.client.logging.js"></script>
+    .invoice-box table tr.information table td{
+        padding-bottom:0px;
+    }
 
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href='/stylesheets/style.homepage.css' />
-    <link rel='stylesheet' href='/stylesheets/style.becomeHost.css' />
-    <link rel='stylesheet' href='/stylesheets/style.common.airbnb.css' />
-    <link rel='stylesheet' href='/stylesheets/style.admin.css' />
+    .invoice-box table tr.heading td{
+        background: #8d8d8d;
+        border-bottom:1px solid #ddd;
+        font-weight:bold;
+    }
 
-    <link rel='stylesheet' href='/libraries/angular-slider.css' />
-    <style>
-        .invoice-box{
-            max-width:800px;
-            margin:auto;
-            padding:30px;
-            border:1px solid #eee;
-            box-shadow:0 0 10px rgba(0, 0, 0, .15);
-            font-size:16px;
-            line-height:24px;
-            font-family:'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-            color:#555;
-            background-color: rgba(169, 169, 169, 0.09);
-        }
+    .invoice-box table tr.details td{
+        padding-bottom:20px;
+    }
 
-        .invoice-box table{
-            width:100%;
-            line-height:inherit;
-            text-align:left;
-        }
+    .invoice-box table tr.item td{
+        border-bottom:1px solid rgba(158, 158, 158, 0.37);
+        border-top:1px solid rgba(158, 158, 158, 0.37);
+        border-right: 1px solid rgba(158, 158, 158, 0.37);
+    }
 
-        .invoice-box table td{
-            padding:5px;
-            vertical-align:top;
-        }
+    .invoice-box table tr.item.last td{
+        border-bottom:none;
 
-        .invoice-box table tr td:nth-child(2){
-            text-align:right;
-        }
+    }
 
+    .invoice-box table tr.total td:nth-child(2){
+        border-top:2px solid #eee;
+        font-weight:bold;
+    }
+
+    .invoice-box p{
+        margin-top: 0px !important;
+        margin-bottom: 0.7px !important;
+    }
+
+    @media only screen and (max-width: 600px) {
         .invoice-box table tr.top table td{
-            padding-bottom:20px;
-        }
-
-        .invoice-box table tr.top table td.title{
-            font-size:25px;
-            line-height:45px;
-            color:#333;
+            width:100%;
+            display:block;
+            text-align:center;
         }
 
         .invoice-box table tr.information table td{
-            padding-bottom:40px;
+            width:100%;
+            display:block;
+            text-align:center;
         }
+    }
+</style>
 
-        .invoice-box table tr.heading td{
-            background: #8d8d8d;
-            border-bottom:1px solid #ddd;
-            font-weight:bold;
-        }
-
-        .invoice-box table tr.details td{
-            padding-bottom:20px;
-        }
-
-        .invoice-box table tr.item td{
-            border-bottom:1px solid rgba(158, 158, 158, 0.37);
-            border-top:1px solid rgba(158, 158, 158, 0.37);
-            border-right: 1px solid rgba(158, 158, 158, 0.37);
-        }
-
-        .invoice-box table tr.item.last td{
-            border-bottom:none;
-        }
-
-        .invoice-box table tr.total td:nth-child(2){
-            border-top:2px solid #eee;
-            font-weight:bold;
-        }
-
-        .invoice-box p{
-            margin-top: 0px !important;
-            margin-bottom: 0.7px !important;
-        }
-
-        @media only screen and (max-width: 600px) {
-            .invoice-box table tr.top table td{
-                width:100%;
-                display:block;
-                text-align:center;
-            }
-
-            .invoice-box table tr.information table td{
-                width:100%;
-                display:block;
-                text-align:center;
-            }
-        }
-    </style>
-</head>
-
-<body>
 <div class="invoice-box">
     <table cellpadding="0" cellspacing="0">
         <tr class="top">
@@ -200,49 +118,75 @@
         <tr class="information">
             <td colspan="2">
                 <table>
-                  <tr class="item">
-                        <td>
-                            <i class="icon icon-entire-place icon-size-2" aria-hidden="true"></i>NAME
-                        </td>
-
-                        <td>
-                            DESTINATION
-                        </td>
-                  </tr>
                     <tr class="item">
                         <td>
-                            ADDRESS
+                            <i class="glyphicon glyphicon-user"></i>
+                            Name
+                            <h3>{{booking.userDetails.firstname}} &nbsp;{{booking.userDetails.lastname}}</h3>
                         </td>
 
                         <td>
-                            PROPERTY NAME
+                            <i class="glyphicon glyphicon-map-marker"></i>
+                            Travel destination
+                            <h3> {{booking.city}}</h3>
+
+
+                        </td>
+                    </tr>
+                    <tr class="item">
+                        <td >
+                            <i class="glyphicon glyphicon-transfer"></i>
+                            Accommodation Address
+                            <h3> {{booking.propertyDetails.street}}</h3>
+                        </td>
+
+                        <td>
+                            <i class="glyphicon glyphicon-home"></i>
+                            Property
+                            <h3> {{booking.propertyDetails.title}}</h3>
                         </td>
                     </tr>
                     <tr class="item">
                         <td>
-                            ACCOMODATION TYPE
+                            <i class="glyphicon glyphicon-home"></i>
+                            Accommodation Type
+                            <h3> {{booking.propertyDetails.guestaccess}}</h3>
                         </td>
 
                         <td>
-                            NUMBER OF GUESTS
+                            <i class="glyphicon glyphicon-user"></i>
+                            Guests
+                            <h3> {{booking.propertyDetails.noofguests}}</h3>
+
                         </td>
                     </tr>
                     <tr class="item">
                         <td>
-                            CHECKIN
+                            <i class="glyphicon glyphicon-calendar"></i>
+                            Check In
+                            <h3>{{booking.from_date}}</h3>
+
                         </td>
 
                         <td>
-                            CHECKOUT
+                            <i class="glyphicon glyphicon-calendar"></i>
+                            Check Out
+                            <h3>{{booking.till_date}}</h3>
+
                         </td>
                     </tr>
                     <tr class="item">
                         <td>
-                            NIGHTS
+                            <i class="glyphicon glyphicon-picture"></i>
+                            Nights
+                            <h3>4</h3>
+
                         </td>
 
                         <td>
-                            DEPOSIT
+                            <i class="glyphicon glyphicon-credit-card"></i>
+                            Deposit
+                            <h3>4</h3>
                         </td>
                     </tr>
                 </table>
@@ -251,7 +195,7 @@
 
         <tr class="heading">
             <td>
-               Payment Details
+                Payment Details
             </td>
 
             <td>
@@ -264,7 +208,7 @@
             </td>
 
             <td>
-                $5000
+                {{booking.price}}
             </td>
         </tr>
         <tr class="item">
@@ -282,13 +226,11 @@
             </td>
 
             <td>
-                $5300
+                {{booking.price}}
             </td>
         </tr>
-       </br>
+        </br>
     </table>
     <br>
     <p>Thanks for traveling with Airbnb</p>
 </div>
-</body>
-</html>

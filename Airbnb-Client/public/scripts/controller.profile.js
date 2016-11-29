@@ -150,6 +150,7 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http,$state){
 
 
 
+
 	$http({
 		method : "POST",
 		url : '/getusersession',
@@ -204,7 +205,7 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http,$state){
 
 						console.log(pendingApprovals);
 
-						$scope.allPendingApprovals1 = pendingApprovals;
+						$scope.allCompletedBookings = pendingApprovals;
 
 					}).error(function(error){
 						console.log("error in getpendingpropertyrequests");
@@ -229,9 +230,20 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http,$state){
 		console.log("error");
 	});
 
-	$scope.viewBill = function () {
-		$state.go('home.profile.viewBill');
-	};
+	$scope.viewBill = function (bookingId)
+	{
 
+		for(var i=0; i<$scope.allCompletedBookings.length; i++)
+		{
+			if($scope.allCompletedBookings[i].id == bookingId)
+			{
+				$scope.booking = $scope.allCompletedBookings[i];
+
+			}
+		}
+
+		$state.go('home.profile.viewBill',{bookings : $scope.booking});
+
+	};
 
 })
