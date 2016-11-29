@@ -96,7 +96,7 @@
                     <tr>
                         <td class="title">
                             <h1 style="margin-bottom: 0px !important;">CUSTOMER RECIEPT</h1>
-                            <p style="color: #8d8d8d; font-size:20px;">Confirmation Code: 123</p>
+                            <p style="color: #8d8d8d; font-size:20px;">Confirmation Code: {{booking.id}}</p>
                             <p style="color: #8d8d8d; font-size:15px;">Created: January 1, 2015</p>
                         </td>
                         <td style="color: #8d8d8d;">
@@ -186,7 +186,7 @@
                         <td>
                             <i class="glyphicon glyphicon-credit-card"></i>
                             Deposit
-                            <h3>4</h3>
+                            <h3>$500</h3>
                         </td>
                     </tr>
                 </table>
@@ -208,7 +208,7 @@
             </td>
 
             <td>
-                {{booking.price}}
+               ${{booking.price}}
             </td>
         </tr>
         <tr class="item">
@@ -226,7 +226,7 @@
             </td>
 
             <td>
-                {{booking.price}}
+                ${{total}}
             </td>
         </tr>
         </br>

@@ -62,6 +62,8 @@ airbnbApp.controller('controllerBecomeHost',function($scope,$state,$log,$http,$s
     };
 
 
+    $scope.total =$state.params.bookings.price + 300;
+
 
 
 
