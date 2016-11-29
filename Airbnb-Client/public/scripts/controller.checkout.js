@@ -39,6 +39,8 @@ airbnbApp.controller('controllerCheckout',function($scope,$http,$state,$statePar
 				}
 			}).success(function(data) {
 				console.log("Success");
+		        $state.go('home.profile.trips')
+
 
 			})
 			.error(function(data){
