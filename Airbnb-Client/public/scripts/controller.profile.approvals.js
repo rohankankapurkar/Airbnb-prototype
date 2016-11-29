@@ -165,4 +165,37 @@ airbnbApp.controller('controllerApprovals',function($scope,$state,$log,$http,$st
       });
     }
 
+
+
+    $scope.disapproveBooking = function(propertyId, userId, from, till, index){
+      console.log("------------ApproveBooking--------------");
+      console.log(propertyId);
+      $http({
+        method : "POST",
+        url : '/host/disapproveuserrequest',
+        data : {
+          propid: propertyId,
+          userid: userId,
+          fromdate: from,
+          tilldate: till
+        }
+      }).success(function(disapproveBooking){
+        console.log("------------DisapproveBooking--------------");
+        console.log(disapproveBooking);
+        if (disapproveBooking.statuscode == 0)
+        {
+            $scope.allPendingApprovals[index].approveBooking = false;
+            $scope.allPendingApprovals[index].generateBill = true;
+        }
+        else
+        {
+          // $scope.notAvailableMsg = true;
+        }
+      }).error(function(error) {
+        console.log("error");
+      });
+    }
+
+
+
 })
