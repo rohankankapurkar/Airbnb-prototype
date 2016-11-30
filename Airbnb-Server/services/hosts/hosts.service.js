@@ -424,6 +424,7 @@ exports.saveReview = function(msg, callback) {
 						var review = {
 							rating: msg.ratings,
 							reviewPost: msg.reviewPost,
+							propImage: msg.propImage,
 							from: user.firstname
 						};
 						reviewArray.push(review);

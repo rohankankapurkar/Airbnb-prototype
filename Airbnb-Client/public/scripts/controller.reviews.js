@@ -6,7 +6,9 @@ airbnbApp.controller('controllerReview',function($scope,$state,$log,$http,$state
     $scope.booking = $state.params.bookings;
     $scope.total = $state.params.bookings.price + 300;
     $scope.nights = moment($state.params.bookings.till_date).diff(moment($state.params.bookings.from_date), 'days');
-    $scope.saveReview = function (uname) {
+    $scope.saveReview = function (uname)
+    {
+        alert($window.rating);
         $http({
             method: "POST",
             url: '/host/userReview',
@@ -26,12 +28,14 @@ airbnbApp.controller('controllerReview',function($scope,$state,$log,$http,$state
 
     }
     $scope.savePropReview = function (propId) {
+
         $http({
             method: "POST",
             url: '/user/hostReview',
             data: {
-                ratings: $window.ratings,
+                ratings: $window.rating,
                 propertyId: propId,
+                propImage: $window.propimages,
                 reviewPost: $scope.reviewProp
             }
         }).success(function (data) {

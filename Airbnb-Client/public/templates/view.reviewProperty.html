@@ -1,3 +1,38 @@
+<script src="https://ucarecdn.com/widget/2.10.1/uploadcare/uploadcare.full.min.js" charset="utf-8"></script>
+
+<script>
+    UPLOADCARE_PUBLIC_KEY = '2c62456a3dcc92792dbb';
+    UPLOADCARE_LOCALE = 'en';
+    UPLOADCARE_LIVE = false;
+</script>
+<script>
+    var propimages=[];
+
+    $("#propImage1").on("click", function() {
+
+        uploadcare.openDialog(null, {
+            imagesOnly: true
+        }).done(function(file) {
+            file.done(function(fileInfo) {
+                propimages.push(fileInfo.cdnUrl);
+                $('#image_preview').append("<img src='"+fileInfo.cdnUrl+"' height='200' width='200' >&nbsp;&nbsp;&nbsp;");
+
+
+            });
+        });
+    });
+
+</script>
+
+
+
+
+
+
+
+
+
+
 <main id="site-content" role="main" xmlns="http://www.w3.org/1999/html">
     <div id="lys-redesign-div">
         <style data-aphrodite></style>
@@ -29,6 +64,25 @@
                                             <td><div id="stars-green" data-rating="0"></div></td>
                                         </tr>
                                     </table>
+                                    <div id="image_preview"></div>
+                                    <div>
+
+                                        <br>
+                                        <div class="col-sm-12">
+                                            <button class="input-file" type="hidden" id="propImage1" name="propImage1" ng-model="propImage1"
+                                                    accept="image/jpg, image/jpeg, image/png, image/gif"
+                                                    multiple />
+                                            <label class="col label--no-margin-padding" for="propImage1">
+                                                <div class="col col-center">
+                                                    <div class="btn btn-primary btn-jumbo">
+                                                        <i class="icon icon-upload"></i><span>	</span>
+                                                        <span>Upload Images</span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+
+                                    </div>
                                 </div>
 
                                 <div class="main-panel__actions-wrapper">
@@ -153,7 +207,8 @@
 
         $("#stars-green").rating('create', {
             coloron: 'gold', onClick: function () {
-                var ratings = this.attr('data-rating');
+                var rating = this.attr('data-rating');
+
             }
         });
 

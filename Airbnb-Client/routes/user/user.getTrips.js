@@ -119,6 +119,7 @@ exports.saveHostReview = function(req, res)
 	var msg_payload = {username: req.session.username,
 		propertyId :req.param('propertyId'),
 		reviewPost: req.param('reviewPost'),
+		propImage : req.param('propImage'),
 		ratings : req.param('ratings')
 	};
 
