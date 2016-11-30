@@ -219,10 +219,10 @@ exports.propertyHistory =function(req, res){
 
 exports.saveUserReview =function(req, res)
 {
-	var msg_payload = {hostname: 'shrutil@gmail.com',
+	var msg_payload = {hostname: req.session.username,
 		               username :req.param('username'),
 		               reviewPost: req.param('reviewPost'),
-	                    rating : req.param('rating')
+	                   rating : req.param('rating')
 	                  };
 
 	                  console.log("*******REVIEW INPUTS*******"+msg_payload);
