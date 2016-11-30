@@ -145,4 +145,20 @@ airbnbApp.controller('controllerYourTrips',function($scope,$state,$log,$http,$st
       console.log("error");
     });
 
+
+    $scope.reviewTrip = function (bookingId)
+    {
+
+        for(var i=0; i<$scope.completedTrips.length; i++)
+        {
+            if($scope.completedTrips[i].id == bookingId)
+            {
+                $scope.booking = $scope.completedTrips[i];
+
+            }
+        }
+
+        $state.go('home.profile.reviewTrip',{bookings : $scope.booking});
+
+    };
 })

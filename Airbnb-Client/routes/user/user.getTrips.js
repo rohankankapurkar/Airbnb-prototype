@@ -112,3 +112,27 @@ exports.getPropertiesForBidding = function(req, res) {
 
 
 };
+
+//save User reviews regarding a property
+exports.saveHostReview = function(req, res)
+{
+	var msg_payload = {username: req.session.username,
+		propertyId :req.param('propertyId'),
+		reviewPost: req.param('reviewPost'),
+		ratings : req.param('ratings')
+	};
+
+	console.log("*******REVIEW INPUTS*******"+msg_payload);
+	mq_client.make_request('saveTripReview_queue', msg_payload, function(err, result)
+	{
+		if(err){
+			res.send({statuscode:1, message : "Error occurred while getting avaiable dates"});
+		}else{
+
+			res.send({statuscode:0, result:result});
+		}
+	});
+
+
+};
+

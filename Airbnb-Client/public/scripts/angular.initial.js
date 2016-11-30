@@ -162,7 +162,7 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 			{
 				url:'/bill',
 				templateUrl : './templates/view.getBill.html',
-				controller : 'controllerBecomeHost',
+				controller : 'controllerReview',
 				params :{
 					bookings : null
 				}
@@ -171,7 +171,16 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 			{
 				url:'/reviewUser',
 				templateUrl : './templates/view.host.reviewUser.html',
-				controller : 'controllerBecomeHost',
+				controller : 'controllerReview',
+				params :{
+					bookings : null
+				}
+			})
+		.state('home.profile.reviewTrip',
+			{
+				url:'/reviewTrip',
+				templateUrl : './templates/view.reviewProperty.html',
+				controller : 'controllerReview',
 				params :{
 					bookings : null
 				}

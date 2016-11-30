@@ -11,7 +11,7 @@ airbnbApp.controller('controllerBecomeHost',function($scope,$state,$log,$http,$s
     $scope.firststepdet = $state.params.firstStep;
     $scope.secondstep = $state.params.secondstep;
     $scope.laststp = $state.params.laststep;
-    $scope.booking =$state.params.bookings;
+
 
     if($scope.firststepdet == null && $scope.secondstep == null && !$scope.laststp)
     {
@@ -60,31 +60,5 @@ airbnbApp.controller('controllerBecomeHost',function($scope,$state,$log,$http,$s
     $scope.startHosting3 = function () {
         $state.go('home.becomeHostStep3',{secondstep : $scope.secondstep});
     };
-
-
-    $scope.total =$state.params.bookings.price + 300;
-    $scope.nights =moment($state.params.bookings.till_date).diff(moment($state.params.bookings.from_date),'days');
-
-    $scope.saveReview =function (uname)
-    {
-        $http({
-            method : "POST",
-            url : '/host/userReview',
-            data : {
-                rating : $window.rating,
-                username : uname,
-                reviewPost : $scope.reviewPost
-            }
-        }).success(function(data){
-
-              console.log(data);
-            $state.go('home.profile.history');
-
-        }).error(function(error) {
-            console.log("error");
-        });
-
-    }
-
 
 })

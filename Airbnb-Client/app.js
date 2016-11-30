@@ -155,6 +155,7 @@ app.post('/getPropertiesForUserTrips', userGetTrips.getPropertiesForUserTrips);
 app.post('/getUserAndProperty', userGetTrips.getUserAndProperty);
 //bidding
 app.post('/getPropertiesForBidding', userGetTrips.getPropertiesForBidding);
+app.post('/user/hostReview', userGetTrips.saveHostReview);
 
 /*app.post('/trips/acceptBid', userGetTrips.getPropertiesForBidding);*/
 

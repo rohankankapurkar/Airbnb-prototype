@@ -422,9 +422,9 @@ exports.saveReview = function(msg, callback) {
 							reviewArray = [];
 						}
 						var review = {
-							rating: msg.rating,
+							rating: msg.ratings,
 							reviewPost: msg.reviewPost,
-							from: msg.username
+							from: user.firstname
 						};
 						reviewArray.push(review);
 						property.updateOne({id: msg.propertyId}, {$set: {review: reviewArray}}, {upsert: true}, function (err, user) {
