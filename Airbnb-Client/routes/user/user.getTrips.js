@@ -4,7 +4,7 @@ var mq_client = require('../../rpc/client');
 exports.getTrips = function(req, res) {
 
 	console.log("-------------------user get trips routes-------------");
-	var msg_payload = {userId: req.body.userId};
+	var msg_payload = {userId: req.body.userId, date: req.body.date};
   console.log(msg_payload);
 	mq_client.make_request('getTrips_queue', msg_payload, function(err,result){
     if(err)
@@ -136,4 +136,3 @@ exports.saveHostReview = function(req, res)
 
 
 };
-

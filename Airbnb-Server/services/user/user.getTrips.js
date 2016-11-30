@@ -16,24 +16,68 @@ exports.getTrips = function(msg, callback){
     console.log(msg.userId);
     var res = {statuscode : 0, message : ""};
     var user_id = msg.userId;
+		var booking_params = {"user_id": user_id};
 
-    var booking_params = {"user_id": user_id};
-    mysql.executeQuery("SELECT * FROM BOOKED_PROPERTIES WHERE ?", booking_params, function(booking_result){
-        console.log("booking_result");
-        console.log(booking_result);
-        if(booking_result) {
-            console.log('Selecting trips from booking table');
-            console.log(booking_result);
-            res['statuscode'] = 0;
-            res['message'] = "Get bookings for this user";
-            res['data'] = booking_result;
-            callback(null, res);
-        }else{
-            res['statuscode'] = 1;
-            res['message'] = "Error ocurred while retrieving BOOKED_PROPERTIES";
-            callback(null, res);
-        }
-    });
+		if(user_id)
+	    mysql.executeQuery("SELECT * FROM BOOKED_PROPERTIES WHERE ?", booking_params, function(booking_result){
+	        console.log("booking_result");
+	        console.log(booking_result);
+	        if(booking_result) {
+	            console.log('Selecting trips from booking table');
+	            console.log(booking_result);
+	            res['statuscode'] = 0;
+	            res['message'] = "Get bookings for this user";
+	            res['data'] = booking_result;
+	            callback(null, res);
+	        }else{
+	            res['statuscode'] = 1;
+	            res['message'] = "Error ocurred while retrieving BOOKED_PROPERTIES";
+	            callback(null, res);
+	        }
+	    });
+		else if(msg.date) {
+				var from_date = msg.date.from_date,
+						till_date = msg.date.till_date;
+
+				console.log("-------------date range booking_result------------");
+				mysql.executeQuery('SELECT * FROM BOOKED_PROPERTIES WHERE from_date >= "'+from_date+'" AND till_date <= "'+till_date+'" ', function(err, all_booking_result){
+						if(err)
+								console.log(err);
+						console.log("------------all booking_result with date range---------");
+						console.log(all_booking_result);
+						if(all_booking_result) {
+								console.log('Selecting trips from booking table');
+								console.log(all_booking_result);
+								res['statuscode'] = 0;
+								res['message'] = "Get bookings";
+								res['data'] = all_booking_result;
+								callback(null, res);
+						}else{
+								res['statuscode'] = 1;
+								res['message'] = "NO BOOKING DATA FOUND";
+								callback(null, res);
+						}
+				});
+		}else {
+				mysql.executeQuery("SELECT * FROM BOOKED_PROPERTIES", function(err, all_booking_result){
+						if(err)
+								console.log(err);
+						console.log("------------all booking_result---------");
+						console.log(all_booking_result);
+						if(all_booking_result) {
+								console.log('Selecting trips from booking table');
+								console.log(all_booking_result);
+								res['statuscode'] = 0;
+								res['message'] = "Get bookings";
+								res['data'] = all_booking_result;
+								callback(null, res);
+						}else{
+								res['statuscode'] = 1;
+								res['message'] = "NO BOOKING DATA FOUND";
+								callback(null, res);
+						}
+				});
+		}
 
 }
 
@@ -95,6 +139,7 @@ exports.getUserAndProperty = function(msg, callback){
 	for(var i=0; i<properties.length; i++) {
 		prop_ids.push(properties[i].prop_id);
 		user_ids.push(properties[i].user_id);
+		user_ids.push(properties[i].host_id);
 	}
 	console.log(prop_ids);
 	console.log(user_ids);

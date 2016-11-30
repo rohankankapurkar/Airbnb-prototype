@@ -118,31 +118,31 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 			})
 		.state('home.profile.trips.pendingApprovalTrips',
 		  {
-		    url:'/trips/pendingApprovalTrips',
+		    url:'/pendingApprovalTrips',
 		    templateUrl : './templates/view.trips.pendingApprovalTrips.html',
 		    controller : 'controllerYourTrips'
 		  })
 		.state('home.profile.trips.upcomingTrips',
 		  {
-		    url:'/trips/upcomingTrips',
+		    url:'/upcomingTrips',
 		    templateUrl : './templates/view.trips.upcoming.html',
 		    controller : 'controllerYourTrips'
 		  })
 		.state('home.profile.trips.compeletedTrips',
 		  {
-		    url:'/trips/completedTrips',
+		    url:'/completedTrips',
 		    templateUrl : './templates/view.trips.completed.html',
 		    controller : 'controllerYourTrips'
 		  })
 		.state('home.profile.trips.pendingBids',
 			{
-				url:'/trips/pendingBids',
+				url:'/pendingBids',
 				templateUrl : './templates/view.trips.pendingBids.html',
 				controller : 'controllerTripsBids'
 			})
 		.state('home.profile.trips.approvedBids',
 			{
-				url:'/trips/approvedBids',
+				url:'/approvedBids',
 				templateUrl : './templates/view.trips.approvedBids.html',
 				controller : 'controllerTripsBids'
 			})
@@ -202,6 +202,12 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 				url:'admin',
 				templateUrl : './templates/view.admin.html',
 				controller : 'controllerAdmin'
+			})
+		.state('home.billing',
+			{
+				url:'admin/billing',
+				templateUrl : './templates/view.adminBilling.html',
+				controller : 'controllerAdminBilling'
 			})
 		.state('home.pendingApprovals',
 			{

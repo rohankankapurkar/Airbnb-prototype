@@ -1,0 +1,113 @@
+
+
+<div class="nav navbar-collapse navbar  panel   avatar-tooltip--new" id="myNavbar" style="padding-left: 10%; padding-right: 20%">
+  <!--This is the header for Host user-->
+  <ul class="nav navbar-nav">
+      <h2> <a id="admin-search-billing">Search all Bills by below filters:</a></h2></li>
+  </ul>
+</div>
+
+<body id="adminBilling">
+
+
+  <div id="search-billing" style="height: 90%; padding-left: 15%; padding-right: 10%">
+
+      <div class="container-fluid">
+ <!-- style="padding-left: 10%; padding-right: 10%; padding-top: 5%;" -->
+          <div>
+
+              <form class="form">
+
+                  <div class="row" content="width=device-width, initial-scale=1">
+              				<div class="col-sm-3" id="home-where-search">
+              					<div class="home-main-dest-lbl">
+              						<label class="">Search by month</lable>
+              					</div>
+              					<div>
+              						<select class="" ng-model="month">
+                            <option>01</option>
+                            <option>02</option>
+                            <option>03</option>
+                            <option>04</option>
+                            <option>05</option>
+                            <option>06</option>
+                            <option>07</option>
+                            <option>08</option>
+                            <option>09</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                          </select>
+              					</div>
+              					<div> {{resultCities}} </div>
+              				</div>
+              				<div class="col-sm-4" id="home-when-search">
+              					<label class="home-main-search-tag">When</label><br>
+              					<div id="home-main-srch-intag-cont">
+              						<div class="home-main-search-intag" id="home-srch-when">
+              							<md-datepicker id="fromdate-billing" ng-model="fromdate" md-placeholder="Start date" ></md-datepicker>
+              						</div>
+              						<div class="home-main-search-intag" id="home-srch-till">
+              							<md-datepicker id="tilldate-billing" ng-model="tilldate" md-placeholder="End date" ></md-datepicker>
+              						</div>
+              					</div>
+              				</div>
+              				<div class="col-sm-2" id="home-guests-srch">
+                        <label class="home-main-search-tag"></label><br>
+              					<div class="home-main-guest-lbl">
+              						<div class="home-main-search-btn" style="float : left ;">
+              							<button id="home-main-srch-btn" class="btn btn-large btn-primary" ng-click="searchBills()">Search</button>
+              						</div>
+                        </div>
+              				</div>
+            			</div>
+                  <hr/>
+
+
+
+              </form>
+
+          </div>
+
+      </div>
+      <div class="container">
+
+          <table class="table table-striped" ng-if="adminBillings">
+              <tr>
+                  <th>Property title</th>
+                  <th>User Email</th>
+                  <th>Host Email</th>
+                  <th>Start date </th>
+                  <th>End date </th>
+                  <th>View Bill section</th>
+
+              </tr>
+              <tr ng-repeat="adminBilling in adminBillings">
+                  <td>{{adminBilling.propertyDetails.title}}</td>
+                  <td>{{adminBilling.userDetails.username}}</td>
+                  <td>{{adminBilling.hostDetails.username}}</td>
+                  <td>{{adminBilling.from_date}}</td>
+                  <td>{{adminBilling.till_date}}</td>
+                  <td>
+                    <button class="btn btn-primary" ng-click="viewBill(adminBilling.id)">View bill</button>
+                  </td>
+
+              </tr>
+          </table>
+          <!-- <table ng-table="vm.tableParams" class="table" show-filter="true">
+              <tr ng-repeat="adminBilling in $data">
+                  <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+                      {{adminBilling.propertyDetails.title}}</</td>
+                  <td title="'Age'" filter="{ email: 'email'}" sortable="'email'">
+                      {{adminBilling.userDetails.username}}</</td>
+                  <td title="'Host'" filter="{ email: 'email'}" sortable="'email'">
+                      {{adminBilling.userDetails.username}}</</td>
+              </tr>
+          </table> -->
+
+
+      </div>
+
+  </div>
+
+</body>
