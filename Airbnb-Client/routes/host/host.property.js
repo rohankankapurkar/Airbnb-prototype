@@ -250,3 +250,38 @@ exports.getclickperpage = function(req, res){
 			}
 		});
 }
+
+exports.updateThisListing = function(req, res){
+	console.log("inside update listing");
+	var msg_payload = {
+		guestaccess : req.param('guestaccess'),
+		roomsinproperty : req.param('roomsinproperety'),
+		popertyownership : req.param('popertyownership'),
+		totbedsavailable : req.param('totbedsavailable'),
+		noofguests : req.param('noofguests'),
+		bedsforuse : req.param('bedsforuse'),
+		bathsforuse : req.param('bathsforuse'),
+		street : req.param('street'),
+		apt : req.param('apt'),
+		city : req.param('city'),
+		state : req.param('state'),
+		zip : req.param('zip'),
+		country : req.param('country'),
+		description : req.param('description'),
+		title : req.param('title'),
+		price : req.param('price'),
+		currency : req.param('currency'),
+		biddingavailable : req.param('biddingavailable'),
+		id: req.param('id')
+	};
+
+	mq_client.make_request('updateListing_queue', msg_payload, function(err, result)
+	{
+		if(err){
+			res.send({statuscode:1, message : "Error occurred while updating the listing."});
+		}else{
+
+			res.send({statuscode:0, result:result});
+		}
+	});
+}

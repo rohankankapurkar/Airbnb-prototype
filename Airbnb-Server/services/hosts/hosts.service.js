@@ -525,7 +525,7 @@ exports.updateListing = function(msg, callback){
 
 				//insert property in the property collection
 
-				prop.updateOne({id:msg.id},{$set : {propertytype:msg.propertytype, guestaccess:msg.guestaccess, roomsinproperty:msg.roomsinproperty, popertyownership:msg.popertyownership, totbedsavailable:msg.totbedsavailable, noofguests:msg.noofguests, bedsforuse:msg.bedsforuse, bathsforuse:msg.bathsforuse, street:msg.street, apt:msg.apt, city:msg.city, state:msg.state, zip:msg.zip, country:msg.country, description:msg.description, title:msg.title, price:msg.price, currency:msg.currency, biddingavailable:msg.biddingavailable}},{upsert:true}, function(err, user){
+				prop.updateOne({id:msg.id},{$set : {guestaccess:msg.guestaccess, roomsinproperty:msg.roomsinproperty, popertyownership:msg.popertyownership, totbedsavailable:msg.totbedsavailable, noofguests:msg.noofguests, bedsforuse:msg.bedsforuse, bathsforuse:msg.bathsforuse, street:msg.street, apt:msg.apt, city:msg.city, state:msg.state, zip:msg.zip, country:msg.country, description:msg.description, title:msg.title, price:msg.price, currency:msg.currency, biddingavailable:msg.biddingavailable}},{upsert:true}, function(err, user){
 					if(!err){
 						res['statuscode'] = 0;
 						res['message'] = "Your request has been submitted for approval.";

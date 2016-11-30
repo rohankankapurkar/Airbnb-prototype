@@ -306,4 +306,48 @@ $scope.inv_credit_card = "";
 		$state.go('home.profile.reviewUser',{bookings : $scope.booking});
 
 	};
+
+	$scope.update_Listing = function(id){
+		var biddingavailable = document.getElementById("" + id + "-bidding-available").checked;
+		$http({
+			method : "POST",
+			url : '/host/updateThisListing',
+			data : {
+			    "guestaccess" : document.getElementById("" + id + "-room-type"),
+			    "roomsinproperety" : document.getElementById("" + id + "-rooms"),
+			    "popertyownership" : document.getElementById("" + id + "-"),
+			    "totbedsavailable" : document.getElementById("" + id + "-beds"),
+			    "noofguests" : document.getElementById("" + id + "-guests"),
+			    "bedsforuse" : document.getElementById("" + id + "-bedsForUse"),
+			    "bathsforuse" : document.getElementById("" + id + "-bathrooms"),
+			    "street" : document.getElementById("" + id + "-street"),
+			    "apt" : document.getElementById("" + id + "-apt"),
+			    "city" : document.getElementById("" + id + "-city"),
+			    "state" : document.getElementById("" + id + "-state"),
+			    "zip" : document.getElementById("" + id + "-zip"),
+			    "country" : document.getElementById("" + id + "-country"),
+			    "description" : document.getElementById("" + id + "-description"),
+			    "title" : document.getElementById("" + id + "-title"),
+			    "price" : document.getElementById("" + id + "-price"),
+			    "currency" : document.getElementById("" + id + "-currency"),
+			    "biddingavailable" : biddingavailable,
+			    "id" : id
+			}
+		}).success(function(data){
+			if (data.statuscode == 0)
+			{
+				console.log("updated the listing successfully");
+			}
+			else
+			{
+				if(data.message != null)
+				{
+					$scope.invEmail = "";
+					$scope.invEmail = data.message;
+				}
+			}
+		}).error(function(error) {
+			console.log("error");
+		});	
+	};
 })

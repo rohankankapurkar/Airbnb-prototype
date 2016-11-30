@@ -121,25 +121,25 @@
                               <!-- <input type="radio" ng-model="data.biddingavailable" ng-value="data.biddingavailable">Yes<br>
                               <input type="radio" ng-model="data.biddingavailable" ng-value="data.biddingavailable">No -->
                               <div class="block-radio-button">
-                                    <label class="btn btn-block block-radio-button__panel" for="residence-type-residence_type_personal_home">
+                                    <label class="btn btn-block block-radio-button__panel" for="{{data.id + '-bidding-available'}}">
                                           <div class="row no-margin-h">
                                                 <div class="pull-left text-lead block-radio-button__label">
                                                       <span>Yes</span>
                                                 </div>
                                                 <div class="pull-right">
-                                                      <input id="residence-type-residence_type_personal_home" type="radio" name="residenceType" value={{data.biddingavailable}} checked={{data.biddingavailable}} class="pointer-input" ng-model="data.biddingavailable" ng-value="true">
+                                                      <input id="{{data.id + '-bidding-available'}}" type="radio" name="residenceType" value={{data.biddingavailable}} checked={{data.biddingavailable}} class="pointer-input" ng-model="data.biddingavailable" ng-value="true">
                                                 </div>
                                           </div>
                                     </label>
                               </div>
                               <div class="block-radio-button">
-                                    <label class="btn btn-block block-radio-button__panel" for="residence-type-residence_type_professional_rental">
+                                    <label class="btn btn-block block-radio-button__panel" for="{{data.id + '-bidding-unavailable'}}">
                                           <div class="row no-margin-h">
                                                 <div class="pull-left text-lead block-radio-button__label">
                                                       <span>No</span>
                                                 </div>
                                                 <div class="pull-right">
-                                                      <input id="residence-type-residence_type_professional_rental" type="radio" name="residenceType" value={{data.biddingavailable}} checked={{data.biddingavailable}} class="pointer-input" ng-model="data.biddingavailable" ng-value="false">
+                                                      <input id="{{data.id + '-bidding-unavailable'}}" type="radio" name="residenceType" value={{data.biddingavailable}} checked={{data.biddingavailable}} class="pointer-input" ng-model="data.biddingavailable" ng-value="false">
                                                 </div>
                                           </div>
                                     </label>
@@ -266,7 +266,7 @@
             </div> -->
       </div>
       <div class="col-md-4"></div>
-      <button type="submit" class="btn btn-primary btn-large col-md-4" ng-click="update_Listing({{data.id}})" id="updateListing">Update Listing</button>
+      <button type="submit" class="btn btn-primary btn-large col-md-4" ng-click="update_Listing('{{data.id}}')" id="updateListing">Update Listing</button>
       <div class="col-md-4"></div>
       <script src="/scripts/util.client.logging.js"></script>
 </div>
