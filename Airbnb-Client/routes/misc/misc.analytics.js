@@ -76,6 +76,7 @@ exports.logPropertyClicks = function(req,res){
 
 	var propertyTitle = req.param('property');
 	var timestamp = getCurrentTime();
+	var city = req.param('city');
 	var response = {}
 
 	if(req.session.username)
@@ -85,6 +86,7 @@ exports.logPropertyClicks = function(req,res){
 			collection.insert({
 				username : req.session.username,
 				property : propertyTitle,
+				city : city,
 				timestamp : timestamp
 			},function(err, records){
 				if(err)
@@ -109,6 +111,7 @@ exports.logPropertyClicks = function(req,res){
 			collection.insert({
 				username : "anonymous user",
 				property : propertyTitle,
+				city : city,
 				timestamp : timestamp
 			},function(err, records){
 				if(err)
