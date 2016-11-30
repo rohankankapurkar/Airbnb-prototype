@@ -77,8 +77,8 @@ airbnbApp.controller('controllerBecomeHost',function($scope,$state,$log,$http,$s
             }
         }).success(function(data){
 
-            console.log("--------------acceptBid success------------");
-            console.log(data);
+              console.log(data);
+            $state.go('home.profile.history');
 
         }).error(function(error) {
             console.log("error");
