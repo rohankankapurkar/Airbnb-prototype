@@ -248,8 +248,7 @@ cnn.on('ready', function(){
 					correlationId:m.correlationId
 				});
 			});
-		});
-	});
+		});	});
 
 	cnn.queue('saveUserReview_queue', function(q){
 		q.subscribe(function(message, headers, deliveryInfo, m){
@@ -266,6 +265,20 @@ cnn.on('ready', function(){
 		});
 	});
 
+	cnn.queue('updateListing_queue', function(q){
+		q.subscribe(function(message, headers, deliveryInfo, m){
+			util.log(util.format( deliveryInfo.routingKey, message));
+			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+			hostService.updateListing(message, function(err,res){
+				//return index sent
+				cnn.publish(m.replyTo, res, {
+					contentType:'application/json',
+					contentEncoding:'utf-8',
+					correlationId:m.correlationId
+				});
+			});
+		});
+	});
 
 
 //////////////////////////////////////////////////////////////////
