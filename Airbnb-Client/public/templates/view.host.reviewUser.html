@@ -17,7 +17,7 @@
                                     </div>
                                     <div>
                                         <fieldset class="lys-input__fieldset">
-                                            <textarea class="lys-summary__textarea hide-scroll" placeholder="" ng-model="description"></textarea>
+                                            <textarea class="lys-summary__textarea hide-scroll" placeholder="" ng-model="reviewPost"></textarea>
                                         </fieldset>
                                     </div>
                                     <table>
@@ -30,7 +30,7 @@
                                         </tr>
                                     </table>
                                 </div>
-                              
+
                                 <div class="main-panel__actions-wrapper">
                                     <div class="centered-content clearfix">
                                         <div class="bg-white main-panel-outer-half clearfix shadowed">
@@ -39,7 +39,7 @@
                                                 <div class="row no-margin-padding__sm">
                                                     <div class="main-panel__actions col-sm-12 no-margin-padding__sm">
                                                         <div>
-                                                            <a class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary"  ng-click="saveReview()" id="step1-BecomeHostDescription">
+                                                            <a class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary"  ng-click="saveReview(booking.userDetails.username)" id="step1-BecomeHostDescription">
                                                                 <div class="btn-progress-next__text">
                                                                     <span>Submit</span>
                                                                 </div>
@@ -151,7 +151,11 @@
     $(document).ready(function(){
 
 
-        $("#stars-green").rating('create',{coloron:'gold',onClick:function(){ var ratings= this.attr('data-rating'); }});
+        $("#stars-green").rating('create', {
+            coloron: 'gold', onClick: function () {
+                var rating = this.attr('data-rating');
+            }
+        });
 
     });
 

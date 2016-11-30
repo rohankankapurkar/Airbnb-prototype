@@ -95,9 +95,9 @@ exports.saveReview = function(msg, callback) {
     var res = {};
     mongo.connect(function () {
         var users = mongo.collection('users');
-        console.log("The user name is" + msg.username);
+        console.log("*******REVIEW INPUTS*******"+msg);
 
-        users.findOne({username: msg.hostUsername}, function (err, user) {
+        users.findOne({username: msg.hostname}, function (err, user) {
             if (user) {
                 res.message = "Found the user";
                 console.log("printing the mess" + msg.username);

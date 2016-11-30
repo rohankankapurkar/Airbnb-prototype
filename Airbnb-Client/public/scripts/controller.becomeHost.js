@@ -5,7 +5,7 @@
  * Created by Shruti Loya on 11/17/2016.
  */
 
-airbnbApp.controller('controllerBecomeHost',function($scope,$state,$log,$http,$state){
+airbnbApp.controller('controllerBecomeHost',function($scope,$state,$log,$http,$state,$window){
 
 
     $scope.firststepdet = $state.params.firstStep;
@@ -65,6 +65,26 @@ airbnbApp.controller('controllerBecomeHost',function($scope,$state,$log,$http,$s
     $scope.total =$state.params.bookings.price + 300;
     $scope.nights =moment($state.params.bookings.till_date).diff(moment($state.params.bookings.from_date),'days');
 
+    $scope.saveReview =function (uname)
+    {
+        $http({
+            method : "POST",
+            url : '/host/userReview',
+            data : {
+                rating : $window.rating,
+                username : uname,
+                reviewPost : $scope.reviewPost
+            }
+        }).success(function(data){
+
+            console.log("--------------acceptBid success------------");
+            console.log(data);
+
+        }).error(function(error) {
+            console.log("error");
+        });
+
+    }
 
 
 })

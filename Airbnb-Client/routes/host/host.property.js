@@ -215,3 +215,25 @@ exports.propertyHistory =function(req, res){
 			});
 
 }
+
+
+exports.saveUserReview =function(req, res)
+{
+	var msg_payload = {hostname: 'shrutil@gmail.com',
+		               username :req.param('username'),
+		               reviewPost: req.param('reviewPost'),
+	                    rating : req.param('rating')
+	                  };
+
+	                  console.log("*******REVIEW INPUTS*******"+msg_payload);
+	mq_client.make_request('saveUserReview_queue', msg_payload, function(err, result)
+	{
+		if(err){
+			res.send({statuscode:1, message : "Error occurred while getting avaiable dates"});
+		}else{
+
+			res.send({statuscode:0, result:result});
+		}
+	});
+
+}
