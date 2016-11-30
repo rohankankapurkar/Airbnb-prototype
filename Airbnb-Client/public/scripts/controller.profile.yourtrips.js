@@ -106,6 +106,8 @@ airbnbApp.controller('controllerYourTrips',function($scope,$state,$log,$http,$st
                             console.log(upcomingTrips);
                             console.log(completedTrips);
                             //update scope values
+                            if(pendingApprovalTrips.length == 0)
+                              $scope.NoUserPendingBidsMsg = true;
                             if(upcomingTrips.length == 0)
                               $scope.noupcomingTripsFoundMsg = true;
                             if(completedTrips.length == 0)
