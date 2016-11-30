@@ -1,4 +1,37 @@
 <div>
+<div>
+	<div style="margin-top=5%;">
+		<div class="col-md-10 col-md-offset-1 panel panel-default">
+			<div class="col-md-8">
+				<canvas id="admin-bar-chart" style="max-height:50%;"></canvas>			
+			</div>
+			<div class="col-md-2">
+				<div ng-repeat= "page in pages">
+					{{page}}
+				</div>
+			</div>
+			<div class="col-md-1">
+				<div ng-repeat= "count in counts track by $index">
+					{{count}}
+				</div>
+			</div>					
+		</div>
 
-	<h1>Coming Soon :D :D :D</h1>
+		<div class="col-md-10 col-md-offset-1 panel panel-default">
+			<div class="col-md-3">
+				<div ng-repeat="prop in props">
+					{{prop}}
+				</div>
+			</div>
+			<div class="col-md-1">
+				<div ng-repeat="count in propClicks track by $index">
+					{{count}}
+				</div>
+			</div>
+			<div class="col-md-8">
+				<canvas id="admin-bar-chart1" style="max-height:50%;"></canvas>			
+			</div>		
+		</div>
+
+	</div>
 </div>

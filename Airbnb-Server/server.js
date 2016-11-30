@@ -51,6 +51,23 @@ cnn.queue('getClickPerPage_queue', function(q){
 	});
 
 
+//service to return clicks per proprty
+cnn.queue('getClickPerProperty_queue', function(q){
+		q.subscribe(function(message, headers, deliveryInfo, m){
+			util.log(util.format( deliveryInfo.routingKey, message));
+			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+			hostDashService.getClickPerProperty(message, function(err,res){
+				//return index sent
+				cnn.publish(m.replyTo, res, {
+					contentType:'application/json',
+					contentEncoding:'utf-8',
+					correlationId:m.correlationId
+				});
+			});
+		});
+	});
+
+
 /////////////////////////////////////////////////////////////////////
 
 
