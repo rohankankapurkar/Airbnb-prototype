@@ -107,7 +107,7 @@ exports.saveReview = function(msg, callback) {
                     if (user) {
                         var reviewArray;
                         if (user.review) {
-                            reviewArray = properties.review;
+                            reviewArray = user.review;
                         } else {
                             reviewArray = [];
                         }
