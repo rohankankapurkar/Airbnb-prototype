@@ -135,7 +135,8 @@ app.post('/host/disapproverequest', host.disapproverequest);
 app.post('/host/getPropertyHistory', host.propertyHistory);
 app.post('/host/userReview', host.saveUserReview);
 app.post('/host/getclicksperpage', host.getclickperpage);
-app.post('/host/getclicksperproperty', host.getclicksperproperty)
+app.post('/host/getclicksperproperty', host.getclicksperproperty);
+app.post('/host/getareaseen', host.getareaseen);
 app.post('/host/updateThisListing', host.updateThisListing);
 
 

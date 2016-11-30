@@ -15,8 +15,6 @@ airbnbApp.controller('controllerHostAnalytics',function($log, $scope,$http,$stat
 		data : {}
 	}).success(function(data){
 		var plotData = data.result.data;
-		$scope.pages = [];
-		$scope.counts = [];
 		var pageColors = [];
 		var counter = 0;
 		for(counter = 0; counter < plotData.length; counter++){			
@@ -74,8 +72,6 @@ airbnbApp.controller('controllerHostAnalytics',function($log, $scope,$http,$stat
 	}).success(function(data){
 		console.log(data.result.data);
 		var plotData = data.result.data;
-		var pages = [];
-		var counts = [];
 		var pageColors = [];
 		var counter = 0;
 		for(counter = 0; counter < plotData.length; counter++){			
@@ -121,7 +117,62 @@ airbnbApp.controller('controllerHostAnalytics',function($log, $scope,$http,$stat
 
 // Area less seen
 
+	$http({
+		method : "POST",
+		url : "/host/getareaseen",
+		data : {}
+	}).success(function(data){
+		var plotData = data.result.data;
+		var pageColors = [];
+		var counter = 0;
+		var allColors =['#FF6384','#36A2EB','#FFCE56','#FF6384','#36A2EB','#FFCE56','#FF6384','#36A2EB','#FFCE56','#FF6384','#36A2EB','#FFCE56','#FF6384','#36A2EB','#FFCE56','#FF6384','#36A2EB','#FFCE56'];
+		var areaColor = [];
+		for(counter = 0; counter < plotData.length; counter++){			
+			if(plotData[counter]._id == null){
+				$scope.area.push("Anonymous");
+			}else{
+				$scope.area.push(plotData[counter]._id);	
+			}
+			areaColor.push(allColors[counter]);
+			$scope.seen.push(plotData[counter].count);
+			pageColors.push('#36A2EB');
+		}
 
+		//Plot the graph here
+
+		pieChartData = {
+				labels: $scope.area,
+				datasets: [
+				{
+					data: $scope.seen,
+					borderWidth	:[0,0,0],
+					backgroundColor: areaColor,
+					hoverBackgroundColor: areaColor
+				}]
+			};
+
+
+		var pieChartElement = document.getElementById('admin-pie-chart');
+		var myPieChart = new Chart(pieChartElement,{
+			type: 'doughnut',
+			animation:{
+	        animateScale:true
+	    	},
+			data: pieChartData,
+			options: {
+	     	   elements: {
+	        	    arc: {
+	            	    borderColor: "#000000"
+	            	}
+	       		 }
+	    	}
+		});
+
+
+	}).error(function(error){
+
+
+	});
 
 
 })

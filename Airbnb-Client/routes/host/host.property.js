@@ -240,7 +240,7 @@ exports.saveUserReview =function(req, res)
 
 
 exports.getclickperpage = function(req, res){
-		console.log("I am here to get clicks per paeg");
+
 		var msg_payload = {};
 		mq_client.make_request("getClickPerPage_queue", msg_payload, function(err, result){
 			if(err){
@@ -252,7 +252,7 @@ exports.getclickperpage = function(req, res){
 }
 
 exports.getclicksperproperty = function(req, res){
-	console.log("I am here to get clicks per paeg");
+
 		var msg_payload = {};
 		mq_client.make_request("getClickPerProperty_queue", msg_payload, function(err, result){
 			if(err){
@@ -263,7 +263,18 @@ exports.getclicksperproperty = function(req, res){
 		});
 }
 
+exports.getareaseen = function(req, res){
+		console.log("Here to see the area");
+		var msg_payload = {};
+		mq_client.make_request("getAreaSeen_queue", msg_payload, function(err, result){
+			if(err){
+				res.send({statuscode:1, message:'Error occurred while getting data from db'});
+			}else{
+				res.send({statuscode:0, result:result});
+			}
+		});
 
+}
 
 exports.updateThisListing = function(req, res){
 	console.log("inside update listing");

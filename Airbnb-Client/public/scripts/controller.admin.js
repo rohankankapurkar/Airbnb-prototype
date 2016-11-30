@@ -78,7 +78,7 @@ airbnbApp.controller('controllerAdmin',function($scope,$log,$http,$state,$stateP
 				cityColors.push(allColors[counter]);
 			}
 
-				pieChartData = {
+			pieChartData = {
 				labels: city,
 				datasets: [
 				{
