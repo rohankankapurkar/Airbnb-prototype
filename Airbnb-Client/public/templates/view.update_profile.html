@@ -1,4 +1,4 @@
-    <link rel='stylesheet' href='/stylesheets/style.homepage.css' />
+    <link rel='stylesheet' href='../stylesheets/style.homepage.css' />
     <link href="https://a2.muscache.com/airbnb/static/packages/common_o2.1-95d643eef69139392786405865038db8.css" media="all" rel="stylesheet" type="text/css" />
     <link href="https://a1.muscache.com/airbnb/static/packages/common-e2aa11d9210d88c08eb62a0e67b5f554.css" media="all" rel="stylesheet" type="text/css" />
     <link href="https://a1.muscache.com/airbnb/static/packages/address_widget-4f18ee66a37930ce1c93c8f33690c7b0.css" media="screen" rel="stylesheet" type="text/css" />
@@ -149,15 +149,19 @@
     </label>
     <div class="col-sm-8">
         <input id="user_email" name="user_phone" size="30" type="text" ng-model="phone" value={{data.phone}} />
+                <h4><b>{{inv_phone}}</b> </h4>
+
     </div>
 </div>
 
 <div class="row row-condensed space-4">
     <label class="text-right col-sm-3" for="user_email">
-        Credit cart
+        Credit card
     </label>
     <div class="col-sm-8">
-        <input id="user_email" name="user_email" size="30" value = {{data.credit_card}} type="text" ng-model="user_creditcard" />
+        <input id="user_credit_card" name="user_email" size="30" value = {{data.credit_card}} type="text" ng-model="user_creditcard" />
+        <h4><b>{{inv_credit_card}}</b> </h4>
+
         <div class="text-muted space-top-1">We won’t share your private information with other Airbnb users. <a href="/help/article/694" target="blank">Learn more</a>.</div>
     </div>
 </div>

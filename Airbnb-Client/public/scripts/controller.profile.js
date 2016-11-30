@@ -2,7 +2,7 @@
 airbnbApp.controller('controllerProfile',function($scope,$log,$http,$state){
 
 
-
+$scope.inv_credit_card = "";
 
 	$http({
 		method : "GET",
@@ -29,7 +29,7 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http,$state){
 			$scope.user_preferred_locale=data.user_preferred_locale;
 			$scope.user_creditcard = data.credit_card;
 			$scope.profile_pic = data.profile_pic;
-
+			$scope.birthday = data.birthday;
 
 		}
 		else
@@ -47,14 +47,54 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http,$state){
 
 
 	$scope.update_Profile = function()
+	
+	
 	{
-
+		$scope.inv_credit_card = "";
+		$scope.inv_phone = "";
 		console.log("Inside update profile " + $scope.user_first_name);
 		console.log("bc profile pic");
 
-		  $scope.profile_pic = $("#profile_pic").val();
+  $scope.profile_pic = $("#profile_pic").val();
 		  console.log( $scope.profile_pic);
-		{
+		  console.log("printing the card"+$scope.user_creditcard);
+		   
+		  if ($scope.user_creditcard.length < 16 || isNaN($scope.user_creditcard) ||  $scope.user_creditcard.length > 16 )
+			  {
+			  
+//			  if ($scope.phone < 10 || isNaN($scope.phone))
+				  
+			  //$scope.inv_credit_card = "invalid credit card number";
+			  console.log("invalid credit card number entered");
+			  alert("invalid credit card bc");
+				  $scope.inv_credit_card = "invalid credit card"
+
+			  
+				  
+			  }
+		  
+		  else 
+			  
+			  if ($scope.phone < 10 || isNaN($scope.phone))
+				  {
+				  
+				  $scope.inv_phone = "invalid number"
+					  alert("invalid phone number")
+
+				  
+				  }
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  else  if($scope.user_creditcard.length == 16)
+		    {
+			  $scope.profile_pic = $("#profile_pic").val();
+		  
+		
 			$http({
 				method : "POST",
 				url : '/user/update_profile',
@@ -62,7 +102,7 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http,$state){
 					"user_first_name" : $scope.user_first_name,
 					"user_last_name" : $scope.user_last_name,
 					"user_sex" : $scope.sex,
-					"user_birthday" : $scope.user_birthday_month+ $scope.user_birthday_date+$scope.user_birthday_date,
+					"birthday" : $scope.birthday,
 					"user_email" : $scope.user_email,
 					"user_phone" : $scope.phone,
 					"user_preferred_locale" : $scope.user_preferred_locale,
@@ -88,8 +128,14 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http,$state){
 			}).error(function(error) {
 				console.log("error");
 			});
-		}
+		
+		    }
+		  else{
+		  alert("invalid card");
+		  console.log("coming out from the update profile");
+		  $scope.inv_credit_card = "invalid credit card number";
 
+		  }
 	}
 
 	$http({
@@ -130,7 +176,7 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http,$state){
 		url : '/host/getPropertyHistory',
 		data : {}
 	}).success(function(property1){
-		if (property.statuscode == 0)
+		if (property1.statuscode == 0)
 		{
 
 			$scope.propertiesused = property1.result.data;

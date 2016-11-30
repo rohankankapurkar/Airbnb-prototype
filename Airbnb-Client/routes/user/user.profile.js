@@ -15,7 +15,7 @@ exports.update_profile = function(req, res){
 	var user_first_name = req.param('user_first_name');
 	var user_last_name =req.param("user_last_name")
 	var user_sex = req.param("user_sex")
-	var user_birthday = req.param("user_birthday")
+	var birthday = req.param("birthday")
 	var user_email = req.session.username;
 	var user_creditcard = req.param("credit_card");
 
@@ -31,7 +31,7 @@ exports.update_profile = function(req, res){
 		firstname : user_first_name,
 		lastname : user_last_name,
 		user_sex : user_sex,
-		birthday : user_birthday,
+		birthday : birthday,
 		username : user_email,
 		user_phone : user_phone,
 		user_preferred_locale : user_preferred_locale,
