@@ -26,6 +26,34 @@ cnn.on('ready', function(){
 
 	console.log("Started Server");
 
+
+
+///////////////////////////////////////////////////////////////
+//
+//			HOST DASHBOARD SERVICE
+///////////////////////////////////////////////////////////////
+
+
+//service to return clicks per page
+cnn.queue('getClickPerPage_queue', function(q){
+		q.subscribe(function(message, headers, deliveryInfo, m){
+			util.log(util.format( deliveryInfo.routingKey, message));
+			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+			hostDashService.getClickPerPage(message, function(err,res){
+				//return index sent
+				cnn.publish(m.replyTo, res, {
+					contentType:'application/json',
+					contentEncoding:'utf-8',
+					correlationId:m.correlationId
+				});
+			});
+		});
+	});
+
+
+/////////////////////////////////////////////////////////////////////
+
+
 	// Signin qeue to make user sigin into the system
 	cnn.queue('signin_queue', function(q){
 		q.subscribe(function(message, headers, deliveryInfo, m){
@@ -699,25 +727,3 @@ cnn.on('ready', function(){
 
 
 
-
-///////////////////////////////////////////////////////////////
-//
-//			HOST DASHBOARD SERVICE
-///////////////////////////////////////////////////////////////////
-
-
-//service to return clicks per page
-cnn.queue('getClickPerPage_queue', function(q){
-		q.subscribe(function(message, headers, deliveryInfo, m){
-			util.log(util.format( deliveryInfo.routingKey, message));
-			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
-			hostDashService.getClickPerPage(message, function(err,res){
-				//return index sent
-				cnn.publish(m.replyTo, res, {
-					contentType:'application/json',
-					contentEncoding:'utf-8',
-					correlationId:m.correlationId
-				});
-			});
-		});
-	});

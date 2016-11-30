@@ -246,7 +246,7 @@ exports.getclickperpage = function(req, res){
 			if(err){
 				res.send({statuscode:1, message:'Error occurred while getting data from db'});
 			}else{
-				res.end({statuscode:0, result:result});
+				res.send({statuscode:0, result:result});
 			}
 		});
 }
