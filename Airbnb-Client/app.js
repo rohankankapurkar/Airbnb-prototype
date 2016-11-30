@@ -134,6 +134,9 @@ app.post('/host/getuserpropdata', host.getuserpropdata);
 app.post('/host/disapproverequest', host.disapproverequest);
 app.post('/host/getPropertyHistory', host.propertyHistory);
 app.post('/host/userReview', host.saveUserReview);
+app.post('/host/getclicksperpage', host.getclickperpage);
+
+
 
 app.get('/admin/getadminapprovals',admin.getadminapprovals);
 app.post('/admin/approve',admin.approveHostRequest);

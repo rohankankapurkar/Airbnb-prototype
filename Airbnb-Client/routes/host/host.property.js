@@ -237,3 +237,16 @@ exports.saveUserReview =function(req, res)
 	});
 
 }
+
+
+exports.getclickperpage = function(req, res){
+		console.log("I am here to get clicks per paeg");
+		var msg_payload = {};
+		mq_client.make_request("getClickPerPage_queue", msg_payload, function(err, result){
+			if(err){
+				res.send({statuscode:1, message:'Error occurred while getting data from db'});
+			}else{
+				res.end({statuscode:0, result:result});
+			}
+		});
+}
