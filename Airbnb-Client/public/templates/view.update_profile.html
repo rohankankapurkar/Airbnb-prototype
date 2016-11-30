@@ -115,15 +115,13 @@
       </label>
       <div class="col-sm-8">
 
-        <div class="select" >
-          <input id="user_birthdate" name="user_birthday" ng-model="user_birthday" type = "date" >
+          <input id="user_birthdate" name="user_birthday" ng-model="user_birthday" type = "text" disabled>
       </input>
     <!--
                 <script>
                     $("#user_birthdate").datepicker('getDate');
                 </script>
             -->
-        </div>
         <div class="text-muted space-top-1">The magical day you were dropped from the sky by a stork. We use this data for analysis and never share it with other users.</div>
     </div>
 
@@ -138,7 +136,7 @@
         Email Address <i class="glyphicon glyphicon-lock" data-behavior="tooltip" title="Private"></i>
     </label>
     <div class="col-sm-8">
-        <input id="user_email" name="user_email" size="30" value = {{data.username}} type="text" ng-model="user_email" />
+        <input id="user_email" name="user_email" size="30" value = {{data.username}} type="text" ng-model="user_email" disabled />
         <div class="text-muted space-top-1">We won’t share your private email address with other Airbnb users. <a href="/help/article/694" target="blank">Learn more</a>.</div>
     </div>
 </div>

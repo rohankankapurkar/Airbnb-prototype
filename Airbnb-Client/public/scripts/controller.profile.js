@@ -4,7 +4,7 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http,$state){
 
 $scope.inv_credit_card = "";
 
-	$http({
+	 $http({
 		method : "GET",
 		url : '/user/update_profile',
 //		data : {
@@ -44,7 +44,75 @@ $scope.inv_credit_card = "";
 		console.log("error");
 	});
 
+		
+	 
+	 
+	 
+	 
+	 
+	 
+//	 $scope.update_Profile_pic = function()
+//		
+//		{
+//			$scope.profile_pic = $("#profile_pic").val();
+//			console.log($scope.profile_pic);
+//
+//			$http({
+//				method : "POST",
+//				url : '/user/update_profile_pic',
+//				data : {
+//				
+//					"profile_pic" :$scope.profile_pic
+//				}
+//			}).success(function(data){
+//				if (data.statuscode == 0)
+//				{
+//					console.log("updated the profile picture successfully");
+//				}
+//				else
+//				{
+//					if(data.message != null)
+//					{
+//						$scope.invEmail = "";
+//						$scope.invEmail = data.message;
+//					}
+//				}
+//			}).error(function(error) {
+//				console.log("error");
+//			});
+//
+//			
+//			
+//			
+//			
+//		}
 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 
 	$scope.update_Profile = function()
 	
@@ -55,42 +123,39 @@ $scope.inv_credit_card = "";
 		console.log("Inside update profile " + $scope.user_first_name);
 		console.log("bc profile pic");
 
-  $scope.profile_pic = $("#profile_pic").val();
-		  console.log( $scope.profile_pic);
-		  console.log("printing the card"+$scope.user_creditcard);
+		$scope.profile_pic = $("#profile_pic").val();
+		console.log( $scope.profile_pic);
+		console.log("printing the card"+$scope.user_creditcard);
 		   
-		  if ($scope.user_creditcard.length < 16 || isNaN($scope.user_creditcard) ||  $scope.user_creditcard.length > 16 )
-			  {
-			  
-//			  if ($scope.phone < 10 || isNaN($scope.phone))
-				  
-			  //$scope.inv_credit_card = "invalid credit card number";
-			  console.log("invalid credit card number entered");
-			  alert("invalid credit card bc");
-				  $scope.inv_credit_card = "invalid credit card"
+	if (!($scope.user_creditcard.length == 16 || !isNaN($scope.user_creditcard)))  
+		{
+		 $scope.inv_credit_card = "invalid credit card number" ;
+		alert("invalid credit card");
+		$state.reload();
 
-			  
-				  
-			  }
-		  
-		  else 
-			  
-			  if ($scope.phone < 10 || isNaN($scope.phone))
-				  {
-				  
-				  $scope.inv_phone = "invalid number"
-					  alert("invalid phone number")
+		
+		}
+		
+	else 
+		
+		if (!($scope.phone.length == 10 && !isNaN($scope.phone)))
+		{
+			
 
+			 $scope.inv_phone = "invalid phone number" ;
+			 alert("invalid phone number");
+				$state.reload();
+
+		}
+		
+		
+		
+		
+		
+		
+		
 				  
-				  }
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  else  if($scope.user_creditcard.length == 16)
+		else if($scope.user_creditcard.length == 16 && $scope.phone.length == 10 && !isNaN($scope.user_creditcard) && !isNaN($scope.phone) )
 		    {
 			  $scope.profile_pic = $("#profile_pic").val();
 		  
@@ -131,9 +196,9 @@ $scope.inv_credit_card = "";
 		
 		    }
 		  else{
-		  alert("invalid card");
+		  alert("invalid card number or phone number");
 		  console.log("coming out from the update profile");
-		  $scope.inv_credit_card = "invalid credit card number";
+		//  $scope.inv_credit_card = "invalid credit card number or mobile number. Kindly check";
 
 		  }
 	}
