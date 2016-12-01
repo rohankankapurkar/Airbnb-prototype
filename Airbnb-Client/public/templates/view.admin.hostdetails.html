@@ -148,6 +148,9 @@
 
                                                 </div>
                                             </div>
+                                            <span class="stars">
+                                                  <span ng-style="{ 'width': getStars({{ reviews.rating }}) }"></span>
+                                            </span>
                                         </div>
                                     </div>
                                         <div class="row space-2 line-separation">
@@ -174,11 +177,11 @@
                                                         <img alt="Ashlee" class="lazy"
                                                              data-original="https://a1.muscache.com/im/users/34784980/profile_pic/1433226890/original.jpg?aki_policy=profile_medium"
                                                              height="68"
-                                                             src="https://a1.muscache.com/defaults/user_pic-68x68.png?v=2"
+                                                             src="{{hostdetails.hostdata.profile_pic}}"
                                                              title="Ashlee" width="68" />
                                                     </div>
                                                     <div class="text-center profile-name text-wrap">
-                                                        Ashlee</div>
+                                                        {{hostdetails.hostdata.firstname}}</div>
 
                                                 </a> <span class="show-sm"> <span class="text-muted date">June
 													2015</span> <span class="sm-review-date-divider">&middot;</span> <span
@@ -196,17 +199,10 @@
                                                             them back!</p>
                                                         <div class="expandable-indicator"></div>
                                                     </div>
-                                                    <a class="expandable-trigger-more text-muted" href="#">
-                                                        <strong>+ More</strong>
-                                                    </a>
+
                                                 </div>
 
 
-                                                <span class="text-muted date hide-sm pull-left"> <span>
-													From <a href=/s/Denver--CO class='link-reset'>Denver,
-														CO </a> &middot; June 2015 &nbsp;&middot;&nbsp;
-											</span> <span class="review-flag" data-review-flag-id="35713682"></span>
-											</span>
                                             </div>
                                         </div>
                                     </div>
