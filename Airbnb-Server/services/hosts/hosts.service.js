@@ -501,12 +501,13 @@ exports.getPropertiesHistory = function(msg, callback){
 }
 
 exports.updateListing = function(msg, callback){
-
+console.log("**************UPDATE LISTING**********");
 	var res = {statuscode : 0, message : ""};
 	mongo.connect(function(){
 
 		var coll = mongo.collection('users');
 		var prop = mongo.collection('properties');
+		
 
 		//check for user in the db with given username
 		coll.findOne({username:msg.username}, function(err, user){
@@ -518,14 +519,12 @@ exports.updateListing = function(msg, callback){
 			if(user){
 				// user exists in db
 				// delete user name from request and add host_id as we are inserting this document in property collection.
-				var hostUsername = msg['username'];
-				delete msg['username'];
-				msg['host_id'] = user['id'];
-				msg['id'] = counter;
+				console.log("**************update LISTING rooms**********"+msg.roomsinproperty);
+								var uid = user.id;
 
 				//insert property in the property collection
 
-				prop.updateOne({id:msg.id},{$set : {guestaccess:msg.guestaccess, roomsinproperty:msg.roomsinproperty, popertyownership:msg.popertyownership, totbedsavailable:msg.totbedsavailable, noofguests:msg.noofguests, bedsforuse:msg.bedsforuse, bathsforuse:msg.bathsforuse, street:msg.street, apt:msg.apt, city:msg.city, state:msg.state, zip:msg.zip, country:msg.country, description:msg.description, title:msg.title, price:msg.price, currency:msg.currency, biddingavailable:msg.biddingavailable}},{upsert:true}, function(err, user){
+				prop.updateOne({id:uid},{$set : {guestaccess:msg.guestaccess, roomsinproperty:msg.roomsinproperty, popertyownership:msg.popertyownership, totbedsavailable:msg.totbedsavailable, noofguests:msg.noofguests, bedsforuse:msg.bedsforuse, bathsforuse:msg.bathsforuse, street:msg.street, apt:msg.apt, city:msg.city, state:msg.state, zip:msg.zip, country:msg.country, description:msg.description, title:msg.title, price:msg.price, currency:msg.currency, biddingavailable:msg.biddingavailable}},{upsert:true}, function(err, user){
 					if(!err){
 						res['statuscode'] = 0;
 						res['message'] = "Your request has been submitted for approval.";

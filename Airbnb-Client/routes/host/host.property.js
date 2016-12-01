@@ -253,7 +253,7 @@ exports.getclicksperproperty = function(req, res){
 
 
 exports.updateThisListing = function(req, res){
-	console.log("inside update listing");
+	console.log("***********inside update listing");
 	var msg_payload = {
 		guestaccess : req.param('guestaccess'),
 		roomsinproperty : req.param('roomsinproperety'),
@@ -273,7 +273,8 @@ exports.updateThisListing = function(req, res){
 		price : req.param('price'),
 		currency : req.param('currency'),
 		biddingavailable : req.param('biddingavailable'),
-		id: req.param('id')
+		id: req.param('id'),
+		username : req.session.username
 	};
 
 	mq_client.make_request('updateListing_queue', msg_payload, function(err, result)
