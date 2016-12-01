@@ -6,20 +6,20 @@
 
 	<nav class="navbar navbar-light bg-faded" data-offcanvass="yes">
 		<a id="home-nav-img" ui-sref="home"><img  class="pull-left" src="images/logo.png" alt="" width="5%" height="5%"  /></a>
-		<nav class="navbar navbar-light bg-faded">
+		<nav class="navbar navbar-light bg-faded" style="left: -80px; right: -180px;">
 			<a ui-sref="home"><img  class="pull-left" src="images/logo.png" alt="" width="5%" height="5%"/></a>
-			<div class="container">
-				<div class="navbar-header">
+			<!-- <div class="container"> -->
+				<!-- <div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="myNavbar">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" href="#">
-						<!--  <img src="logo.png" style="display: inline-block;">-->
+						  <img src="logo.png" style="display: inline-block;">
 						<span style="display: inline-block;"></span>
 					</a>
-				</div>
+				</div> -->
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<!--This is a the default header of a not signed in user-->
 					<ul class="nav navbar-nav navbar-right" ng-show="default">
@@ -67,7 +67,7 @@
 						<li><a ng-click="logout()" id="logout-admin">Logout</a></li>
 					</ul>
 				</div>
-			</div>
+			<!-- </div> -->
 		</nav>
 	</nav>
 	<!-- model for sign up -->
@@ -343,7 +343,7 @@
 
 
 <hr/>
-	<div class="footer-table" id="footer">
+	<footer class="footer-table" id="footer" style="bottom: 0; position: absolute">
 	    <ul class="list-inline icon-list list-border" itemscope="" itemtype="http://schema.org/Organization">
 	    	<i class="icon icon-airbnb-alt icon-gray belo-icon icon-size-2"></i>
 	          <div class="text-muted">
@@ -374,4 +374,4 @@
 				</a>
 			</li>
 	      </ul>
-	</div>
+	</footer>
