@@ -1,2 +1,239 @@
-<p>HELOOO </p>
-<h2>{{hostdetails}}</h2>
+<div class="flash-container"></div>
+
+<main id="site-content" role="main">
+
+
+    <div id="recommendation_container" class="clearfix container"></div>
+
+
+
+    <div
+            class="page-container page-container-responsive space-top-4 space-8">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 hide-sm">
+                <div id="user" class="space-4 ">
+                    <div>
+                        <div class="space-2" id="user-media-container">
+
+                                        <img class="img-responsive" height="225"
+                                            src="{{hostdetails.hostdata.profile_pic}}"
+                                            width="225" /></li>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel space-4">
+                    <div class="panel-header">Verified info</div>
+                    <div class="panel-body">
+                        <ul class="list-unstyled space-3">
+                            <li class="row row-table space-2">
+                                <div class="col-12 col-middle">Personal info</div>
+                                <div class="col-3 col-middle">
+                                    <i class="icon icon-ok h3"></i>
+                                </div>
+                            </li>
+                            <li class="row row-table space-2">
+                                <div class="col-12 col-middle">Email address: {{hostdetails.hostdata.username}}</div>
+                                <div class="col-3 col-middle">
+                                    <i class="icon icon-ok h3"></i>
+                                </div>
+                            </li>
+                            <li class="row row-table space-2">
+                                <div class="col-12 col-middle">Phone number: {{hostdetails.hostdata.phone}}</div>
+                                <div class="col-3 col-middle">
+                                    <i class="icon icon-ok h3"></i>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
+
+                <div class="panel space-4">
+                    <div class="panel-header">Listings &nbsp;&nbsp;&nbsp;{{hostdetails.propertydata.length}}</div>
+                    <div class="panel-body">
+                        <dl>
+
+                            <ul class="list-unstyled space-3" ng-repeat="property in hostdetails.propertydata">
+                                <li class="row row-table space-2">
+                                    <div class="col-12 col-middle">{{property.title}}</div>
+                                    <div class="col-3 col-middle">
+                                        <i class="icon icon-ok h3"></i>
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </dl>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-9 col-md-8 col-sm-12">
+                <div class="row space-4">
+                    <div class="col-sm-4 show-sm">
+                        <div class="media-photo media-photo-block media-round">
+                            <img alt="Matthew" class="img-responsive" height="225"
+                                 src="https://a1.muscache.com/im/users/14664116/profile_pic/1433628808/original.jpg?aki_policy=profile_x_medium"
+                                 title="Matthew" width="225" />
+                        </div>
+                    </div>
+                    <div class="col-sm-8 col-md-12 col-lg-12">
+                        <h1>Hey, I’m {{hostdetails.hostdata.firstname}}!</h1>
+                        <div class="h5 space-top-2">
+                          <span class="text-normal"> {{hostdetails.propertydata[0].city}} </span>
+                        </div>
+                        <div class="text-muted space-top-2">
+                            <div data-hypernova-key="user_flag_controlbundlejs">
+                                <div data-reactid=".tzie7jsd1c" data-react-checksum="-883584005">
+                                    <div class="flag-widget" data-reactid=".tzie7jsd1c.1">
+                                        <a href="#" class="link-reset" title="Report this user"
+                                           data-prevent-default="true" data-reactid=".tzie7jsd1c.1.0"><i
+                                                class="icon icon-flag h4" data-reactid=".tzie7jsd1c.1.0.0"></i><span
+                                                data-reactid=".tzie7jsd1c.1.0.1"> </span><span
+                                                data-reactid=".tzie7jsd1c.1.0.2">Report this user</span></a>
+                                    </div>
+                                    <noscript data-reactid=".tzie7jsd1c.2"></noscript>
+                                </div>
+                            </div>
+                          </div>
+                        <div class="edit_profile_container space-3"></div>
+                    </div>
+                </div>
+                <div class="space-top-2">
+                    <p></p>
+                </div>
+                 <div class="social_connections_and_reviews">
+                    <div class="report_review_modal_container"></div>
+                    <div class="reviews row-space-4" id="reviews">
+                        <h2>
+                            Reviews
+                        </h2>
+                        <div>
+                            <div class="reviews_section as_host">
+                                <h4 class="space-4">Reviews of Properties From Guests</h4>
+                                <div class="reviews" ng-repeat="property in hostdetails.propertydata">
+                                    <div ng-repeat="reviews in property.review">
+                                    <div class="row text-center-sm" id="review-113025784">
+                                        <div class="col-md-2 col-sm-12">
+                                            <div class="avatar-wrapper">
+                                                <a href="/users/show/95603926" class="text-muted"
+                                                   rel="nofollow">
+                                                    <div class="media-photo media-round space-1">
+                                                        <img alt="Elliott" class="lazy"
+                                                             data-original="https://a2.muscache.com/im/pictures/76800ad5-40ad-40ee-a759-1058af0a3a85.jpg?aki_policy=profile_medium"
+                                                             height="68"
+                                                             src="https://a1.muscache.com/defaults/user_pic-68x68.png?v=2"
+                                                             title="Elliott" width="68" />
+                                                    </div>
+                                                    <div class="text-center profile-name text-wrap">
+                                                        {{reviews.from}}</div>
+
+                                                </a> <span class="show-sm"> <span class="text-muted date">November
+													2016</span> <span class="sm-review-date-divider">&middot;</span> <span
+                                                    class="review-flag" data-sm-review-flag-id="113025784"></span>
+											</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10 col-sm-12">
+                                            <div class="space-2">
+                                                <div
+                                                        class="comment-container expandable expandable-trigger-more space-2"%>
+                                                    <div class="expandable-content">
+                                                        <p>{{reviews.reviewPost}}</p>
+                                                        <div class="expandable-indicator"></div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <div class="row space-2 line-separation">
+                                            <div class="col-10 col-offset-2">
+                                                <hr>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+                            <div class="reviews_section as_guest space-top-3">
+                                <h4 class="space-4">Reviews From Hosts</h4>
+                                <div class="reviews">
+                                    <div class="row text-center-sm" id="review-35713682">
+                                        <div class="col-md-2 col-sm-12">
+                                            <div class="avatar-wrapper">
+                                                <a href="/users/show/34784980" class="text-muted"
+                                                   rel="nofollow">
+                                                    <div class="media-photo media-round space-1">
+                                                        <img alt="Ashlee" class="lazy"
+                                                             data-original="https://a1.muscache.com/im/users/34784980/profile_pic/1433226890/original.jpg?aki_policy=profile_medium"
+                                                             height="68"
+                                                             src="https://a1.muscache.com/defaults/user_pic-68x68.png?v=2"
+                                                             title="Ashlee" width="68" />
+                                                    </div>
+                                                    <div class="text-center profile-name text-wrap">
+                                                        Ashlee</div>
+
+                                                </a> <span class="show-sm"> <span class="text-muted date">June
+													2015</span> <span class="sm-review-date-divider">&middot;</span> <span
+                                                    class="review-flag" data-sm-review-flag-id="35713682"></span>
+											</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10 col-sm-12">
+                                            <div class="space-2">
+                                                <div
+                                                        class="comment-container expandable expandable-trigger-more space-2"%>
+                                                    <div class="expandable-content">
+                                                        <p>Matt and his friends were excellent guests-
+                                                            respectful, clean and trustworthy. I would absolutely have
+                                                            them back!</p>
+                                                        <div class="expandable-indicator"></div>
+                                                    </div>
+                                                    <a class="expandable-trigger-more text-muted" href="#">
+                                                        <strong>+ More</strong>
+                                                    </a>
+                                                </div>
+
+
+                                                <span class="text-muted date hide-sm pull-left"> <span>
+													From <a href=/s/Denver--CO class='link-reset'>Denver,
+														CO </a> &middot; June 2015 &nbsp;&middot;&nbsp;
+											</span> <span class="review-flag" data-review-flag-id="35713682"></span>
+											</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row space-2 line-separation">
+                                        <div class="col-10 col-offset-2">
+                                            <hr>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="staged-photos"></div>
+
+</main>
+
+
+
+

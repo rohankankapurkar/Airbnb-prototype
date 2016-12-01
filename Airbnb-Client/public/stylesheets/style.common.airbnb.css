@@ -1487,8 +1487,9 @@ pre code {
         right: 16.66667%
     }
     .col-lg-3 {
-        width: 25%;
-        float: left
+        width: 20%;
+        float: left;
+        margin-right: 20px;
     }
     .col-lg-offset-3 {
         margin-left: 25%
