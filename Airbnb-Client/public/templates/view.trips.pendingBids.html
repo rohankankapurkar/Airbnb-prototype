@@ -1,7 +1,7 @@
 <div class="container" style="padding-left: 13%; padding-right: 13%" ng-controller="controllerTripsBids">
   <div class="panel">
     <div class="panel-body panel-light">
-      <h1 ng-if= NoUserPendingBidsMsg> You dont have any approved bids yet. </h1>
+      <h1 ng-if= NoUserPendingBidsMsg> You dont have any pending bids. </h1>
       <!-- for ng repeat -->
       <div class="row" ng-if= !NoUserPendingBidsMsg ng-repeat="userPendingBid in userPendingBids">
         <div class="col-md-6 col-sm-6 co-xs-12 gal-item">

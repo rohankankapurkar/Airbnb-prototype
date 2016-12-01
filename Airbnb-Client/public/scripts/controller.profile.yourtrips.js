@@ -49,19 +49,7 @@ airbnbApp.controller('controllerYourTrips',function($scope,$state,$log,$http,$st
                             console.log(tripProperties);
 
                             //get todays date
-                            var today = new Date(),
-                                dd = today.getDate(),
-                                mm = today.getMonth()+1,
-                                yyyy = today.getFullYear();
-
-                            if(dd<10) {
-                                dd='0'+dd
-                            }
-
-                            if(mm<10) {
-                                mm='0'+mm
-                            }
-                            today = yyyy+'/'+mm+'/'+dd;
+                            today = moment().format('YYYY-MM-DD');
 
                             var allUserTrips = userTrips.data,
                                 tripsData = tripProperties.data,
@@ -87,6 +75,7 @@ airbnbApp.controller('controllerYourTrips',function($scope,$state,$log,$http,$st
 
                             for(var i=0; i<allUserTrips.length; i++) {
 
+                                console.log(allUserTrips[i].till_date+ " "+today);
                                 if(allUserTrips[i].till_date > today && allUserTrips[i].approved == 0) {
                                   pendingApprovalTrips.push(allUserTrips[i]);
                                 }

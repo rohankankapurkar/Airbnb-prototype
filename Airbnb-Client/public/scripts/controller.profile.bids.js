@@ -23,7 +23,7 @@ airbnbApp.controller('controllerTripsBids',function($scope,$http,$state,$statePa
           console.log(user);
 
 
-          if(user.bids.length > 0 || user.bidswon.length > 0) {
+          if(user.bids || user.bidswon) {
 
             //get all properties id from bids
             var propertyIds = [];
@@ -88,6 +88,9 @@ airbnbApp.controller('controllerTripsBids',function($scope,$http,$state,$statePa
               console.log("error");
             });
 
+          }else {
+            $scope.NoUserPendingBidsMsg = true;
+            $scope.NoUserApprovedBidsMsg = true;
           }
 
 
