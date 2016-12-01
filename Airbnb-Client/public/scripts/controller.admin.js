@@ -6,6 +6,14 @@ airbnbApp.controller('controllerAdmin',function($scope,$log,$http,$state,$stateP
 
 	// This is bar chart
 
+	$scope.pages = [];
+	$scope.counts = [];
+
+	$scope.props = [];
+	$scope.propClicks = [];
+
+	$scope.area = [];
+	$scope.seen = [];
 
 // Plot bar chart for property revenue
 		$http({
@@ -170,5 +178,118 @@ airbnbApp.controller('controllerAdmin',function($scope,$log,$http,$state,$stateP
 		return size + '%';
 	}
 
+
+	$http({
+		method : "POST",
+		url : "/admin/getclicksperpage",
+		data : {}
+	}).success(function(data){
+		var plotData = data.result.data;
+		var pageColors = [];
+		var counter = 0;
+		for(counter = 0; counter < plotData.length; counter++){			
+			if((plotData[counter]._id.split("#/"))[1] == ""){
+				console.log('I am here for null');
+				$scope.pages.push("home");
+			}else{
+				$scope.pages.push(plotData[counter]._id.split("#/")[1]);	
+			}
+			
+			$scope.counts.push(plotData[counter].count);
+			pageColors.push('#36A2EB');
+		}
+
+		//Plot the graph here
+		var barChartData = {
+				labels: $scope.pages,
+				datasets: [{
+					label: 'Page Clicks',
+					data: $scope.counts,
+					backgroundColor: pageColors,
+					borderWidth: 0
+				}]
+			};
+
+
+		var barChartElement = document.getElementById("admin-bar-chart-2");
+		var barChart = new Chart(barChartElement, {
+			type: 'bar',
+			data: barChartData,
+			options: {
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero:true
+						}
+					}]
+				}
+			}
+		});	
+
+
+	}).error(function(error){
+
+
+	});
+
+
+// Area less seen
+
+	$http({
+		method : "POST",
+		url : "/admin/getareaseen",
+		data : {}
+	}).success(function(data){
+		var plotData = data.result.data;
+		var pageColors = [];
+		var counter = 0;
+		var allColors =['#FF6384','#36A2EB','#FFCE56','#FF6384','#36A2EB','#FFCE56','#FF6384','#36A2EB','#FFCE56','#FF6384','#36A2EB','#FFCE56','#FF6384','#36A2EB','#FFCE56','#FF6384','#36A2EB','#FFCE56'];
+		var areaColor = [];
+		for(counter = 0; counter < plotData.length; counter++){			
+			if(plotData[counter]._id == null){
+				$scope.area.push("Anonymous");
+			}else{
+				$scope.area.push(plotData[counter]._id);	
+			}
+			areaColor.push(allColors[counter]);
+			$scope.seen.push(plotData[counter].count);
+			pageColors.push('#36A2EB');
+		}
+
+		//Plot the graph here
+
+		pieChartData = {
+				labels: $scope.area,
+				datasets: [
+				{
+					data: $scope.seen,
+					borderWidth	:[0,0,0],
+					backgroundColor: areaColor,
+					hoverBackgroundColor: areaColor
+				}]
+			};
+
+
+		var pieChartElement = document.getElementById('admin-pie-chart-1');
+		var myPieChart = new Chart(pieChartElement,{
+			type: 'doughnut',
+			animation:{
+	        animateScale:true
+	    	},
+			data: pieChartData,
+			options: {
+	     	   elements: {
+	        	    arc: {
+	            	    borderColor: "#000000"
+	            	}
+	       		 }
+	    	}
+		});
+
+
+	}).error(function(error){
+
+
+	});
 
 });

@@ -1,22 +1,5 @@
 <div>
-<div>
-	<div style="margin-top=5%;">
-		<div class="col-md-10 col-md-offset-1 panel panel-default">
-			<div class="col-md-8">
-				<canvas id="admin-bar-chart" style="max-height:50%;"></canvas>			
-			</div>
-			<div class="col-md-2">
-				<div ng-repeat= "page in pages">
-					{{page}}
-				</div>
-			</div>
-			<div class="col-md-1">
-				<div ng-repeat= "count in counts track by $index">
-					{{count}}
-				</div>
-			</div>					
-		</div>
-
+	<div>
 		<div class="col-md-10 col-md-offset-1 panel panel-default">
 			<div class="col-md-3">
 				<div ng-repeat="prop in props">
@@ -29,27 +12,9 @@
 				</div>
 			</div>
 			<div class="col-md-8">
-				<canvas id="admin-bar-chart1" style="max-height:50%;"></canvas>			
+				<canvas id="admin-bar-chart" style="max-height:50%;"></canvas>			
 			</div>		
 		</div>
-
-		<div class="col-md-10 col-md-offset-1 panel panel-default">
-			<div class="col-md-3">
-				<div ng-repeat="ar in area">
-					{{ar}}
-				</div>
-			</div>
-			<div class="col-md-1">
-				<div ng-repeat="see in seen track by $index">
-					{{see}}
-				</div>
-			</div>
-			<div class="col-md-2"></div>
-			<div class="col-md-4">
-				<canvas id="admin-pie-chart" style="max-height:50%;"></canvas>			
-			</div>		
-		</div>
-
 
 	</div>
 </div>

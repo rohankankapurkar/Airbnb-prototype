@@ -1,28 +1,81 @@
 <div>
   <div>
-    <div class="col-md-6 admin-bar-chart">
-      <div class="col-md-6 col-md-offset-3 admin-bar-chart-inner">
-        <canvas id="admin-bar-chart" width="400" height="400"></canvas>
-        <p> Top 10 properties</p>
+
+<!-- Graph 1  -->
+    <div class="col-md-10 col-md-offset-1 panel panel-default">
+      <div class="col-md-12">Properties with top revenue</div>
+      <div class="col-md-8">
+        <canvas id="admin-bar-chart" style="max-height:50%;"></canvas>      
       </div>
     </div>
-  </div>
-  <div class="col-md-6 admin-pie-chart">
-    <div class="col-md-6 col-md-offset-3 admin-pie-chart-inner">
-      <canvas id="admin-pie-chart" width="400" height="400"></canvas>
-      <p> Top 10 Cities with highest revenue </p>
-    </div>  
-  </div>
-</div>
-<div>
-  <div class="col-md-6 admin-bar-chart">
-    <div class="col-md-6 col-md-offset-3 admin-bar-chart-inner">
-      <canvas id="admin-bar-chart-1" width="400" height="400"></canvas>
-      <p> Top 10 properties
+
+<!-- Graph 2 -->
+    <div class="col-md-10 col-md-offset-1 panel panel-default">
+      <div class="col-md-12">Cities with top revenue</div>
+      <div class="col-md-3">
+        <div ng-repeat="prop in props">
+          {{prop}}
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div ng-repeat="count in propClicks track by $index">
+          {{count}}
+        </div>
+      </div>
+      <div class="col-md-4">
+        <canvas id="admin-pie-chart" style="max-height:50%;"></canvas>     
+      </div>    
     </div>
+
+<!-- Graph 3 -->
+    <div class="col-md-10 col-md-offset-1 panel panel-default">
+      <div class="col-md-12">Hosts with top revenue</div>
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-2"></div>
+      <div class="col-md-4">
+        <canvas id="admin-bar-chart-1" style="max-height:50%;"></canvas>      
+      </div>    
+    </div>
+
+<!-- Graph4 -->
+    <div class="col-md-10 col-md-offset-1 panel panel-default">
+      <div class="col-md-8">
+        <canvas id="admin-bar-chart-2" style="max-height:50%;"></canvas>      
+      </div>
+      <div class="col-md-2">
+        <div ng-repeat= "page in pages">
+          {{page}}
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div ng-repeat= "count in counts track by $index">
+          {{count}}
+        </div>
+      </div>          
+    </div>
+
+
+<!-- graph 5 -->
+    <div class="col-md-10 col-md-offset-1 panel panel-default">
+      <div class="col-md-3">
+        <div ng-repeat="ar in area">
+          {{ar}}
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div ng-repeat="see in seen track by $index">
+          {{see}}
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+      <div class="col-md-4">
+        <canvas id="admin-pie-chart-1" style="max-height:50%;"></canvas>      
+      </div>    
+    </div>
+
+
   </div>
-  
 </div>
-
-
-
