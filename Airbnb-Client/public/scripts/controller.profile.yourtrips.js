@@ -154,4 +154,24 @@ airbnbApp.controller('controllerYourTrips',function($scope,$state,$log,$http,$st
         $state.go('home.profile.reviewTrip',{bookings : $scope.booking});
 
     };
+
+
+    $scope.editTrip = function (bookingId)
+    {
+
+        for(var i=0; i<$scope.upcomingTrips.length; i++)
+        {
+            if($scope.upcomingTrips[i].id == bookingId)
+            {
+                $scope.tripToEdit = $scope.upcomingTrips[i];
+
+            }
+        }
+        console.log("---------tripToEdit--------");
+        console.log($scope.tripToEdit);
+        $state.go('home.profile.trips.editTrip',{trip : $scope.tripToEdit});
+
+    };
+
+
 })

@@ -1,7 +1,7 @@
-<div class="container" style="padding-left: 13%; padding-right: 13%">
+<div class="container">
   <div class="panel">
     <div class="panel-body panel-light">
-      <h1 ng-if= noupcomingTripsFoundMsg> You dont have any upcoming trips. </h1>
+      <h1 ng-if= errorInUpdatingTrip> You dont have any upcoming trips. </h1>
       <!-- for ng repeat -->
       <div class="row" ng-if= !noupcomingTripsFoundMsg ng-repeat="upcomingTrip in upcomingTrips">
         <div class="col-md-6 col-sm-6 co-xs-12 gal-item">
@@ -38,16 +38,33 @@
           <!-- trip title -->
           <div class="space-5">
             <h3 class="landing__title-title">
-            	<span class="font-airbnb">{{upcomingTrip.propertyDetails.title}}</span>
+                <span class="font-airbnb">Edit trip </span>
             </h3>
-            <span class="font-airbnb-faded"><b>Start date: </b>{{upcomingTrip.from_date}}</span>
+            <h3 class="landing__title-title">
+            	<span class="font-airbnb">{{editTrip.propertyDetails.title}}</span>
+            </h3>
+            <span class="font-airbnb-faded"><b>Price paid: </b>{{editTrip.propertyDetails.price}}</span>
             <br/>
-            <span class="font-airbnb-faded"><b>End date: </b>{{upcomingTrip.till_date}}</span>
-            <br/>
-            <span class="font-airbnb-faded"><b>Price paid: </b>{{upcomingTrip.propertyDetails.price}}</span>
             <br/>
             <span class="font-airbnb-faded">
-              <button class="btn btn-primary" ng-click="editTrip(upcomingTrip.id)">Edit trip</button>
+              <b>Start date: </b>
+              <md-datepicker id="fromdate-EditTrip" ng-model="fromdateEditTrip" md-placeholder="Start date" ></md-datepicker>
+            </span>
+            <span class="font-airbnb-faded">
+              <b>End date: </b>
+              <md-datepicker id="tilldateEditTrip" ng-model="tilldateEditTrip" md-placeholder="End date" ></md-datepicker>
+            </span>
+            <br/>
+            <br/>
+            <span class="font-airbnb-faded">
+              <button class="btn btn-primary" id="checkAvailabilityStatus" ng-show= checkAvailabilityStatusForEditTrip ng-click="checkPropertyAvailability(editTrip.prop_id, fromdateEditTrip, tilldateEditTrip)">
+                Check Availability
+              </button>
+              <span ng-if= errorInCheckTrip> Sorry, the rooms not available for the dates. </span>
+              <button class="btn btn-primary" id="updateTrip" ng-show= updateEditTrip ng-click="updateTrip(editTrip.prop_id, editTrip.user_id, fromdateEditTrip, tilldateEditTrip)">
+                Update trip
+              </button>
+              <span ng-if= errorInUpdatingTrip> Sorry, there was an error in updating trip. Please try again. </span>
             </span>
           </div>
 

@@ -136,6 +136,7 @@ app.post('/host/getPropertyHistory', host.propertyHistory);
 app.post('/host/userReview', host.saveUserReview);
 app.post('/host/getclicksperproperty', host.getclicksperproperty);
 app.post('/host/updateThisListing', host.updateThisListing);
+app.post('/host/getReviewCount', host.getreviewcount);
 
 app.post('/admin/getareaseen', adminSearch.getareaseen);
 app.post('/admin/getclicksperpage', adminSearch.getclickperpage);
@@ -159,6 +160,8 @@ app.post('/analytics/pagetime',analytics.logPagetimes);
 app.post('/getUserTrips', userGetTrips.getTrips);
 app.post('/getPropertiesForUserTrips', userGetTrips.getPropertiesForUserTrips);
 app.post('/getUserAndProperty', userGetTrips.getUserAndProperty);
+app.post('/updateTrip', userGetTrips.updateTrip);
+
 //bidding
 app.post('/getPropertiesForBidding', userGetTrips.getPropertiesForBidding);
 app.post('/user/hostReview', userGetTrips.saveHostReview);
