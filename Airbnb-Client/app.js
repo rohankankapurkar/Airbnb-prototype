@@ -160,6 +160,8 @@ app.post('/analytics/pagetime',analytics.logPagetimes);
 app.post('/getUserTrips', userGetTrips.getTrips);
 app.post('/getPropertiesForUserTrips', userGetTrips.getPropertiesForUserTrips);
 app.post('/getUserAndProperty', userGetTrips.getUserAndProperty);
+app.post('/updateTrip', userGetTrips.updateTrip);
+
 //bidding
 app.post('/getPropertiesForBidding', userGetTrips.getPropertiesForBidding);
 app.post('/user/hostReview', userGetTrips.saveHostReview);

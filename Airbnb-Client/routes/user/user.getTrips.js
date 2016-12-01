@@ -136,3 +136,28 @@ exports.saveHostReview = function(req, res)
 
 
 };
+
+
+
+//updating trips
+exports.updateTrip = function(req, res)
+{
+	var msg_payload = {
+		from_date: req.param('from_date'),
+		till_date: req.param('till_date')
+	};
+
+	console.log("*******Updated trip INPUTS*******"+msg_payload);
+
+	mq_client.make_request('updateTrip_queue', msg_payload, function(err, result)
+	{
+		if(err){
+			res.send({statuscode:1, message : "Error occurred while getting avaiable dates"});
+		}else{
+
+			res.send({statuscode:0, result:result});
+		}
+	});
+
+
+};

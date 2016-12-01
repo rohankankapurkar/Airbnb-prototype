@@ -110,6 +110,15 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 				templateUrl : './templates/view.trips.html',
 				controller : 'controllerYourTrips'
 			})
+		.state('home.profile.trips.editTrip',
+			{
+				url:'/editTrip',
+				templateUrl : './templates/view.editTrip.html',
+				controller : 'controllerEditTrip',
+				params : {
+					trip : null
+				}
+			})
 		.state('home.profile.hostAnalytics',
 			{
 				url:'/host/analytics',
