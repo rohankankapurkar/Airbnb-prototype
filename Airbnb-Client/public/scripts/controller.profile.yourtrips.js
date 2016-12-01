@@ -9,8 +9,9 @@ airbnbApp.controller('controllerYourTrips',function($scope,$state,$log,$http,$st
      | User trips section
      |-----------------------------------------------------------
     */
+    $scope.noPendingTripsFoundMsg = false;
     $scope.noupcomingTripsFoundMsg = false;
-    $scope.noupcomingTripsFoundMsg = false;
+    $scope.nocompletedTripsFoundMsg = false;
 
     $http({
       method : "POST",
@@ -107,7 +108,7 @@ airbnbApp.controller('controllerYourTrips',function($scope,$state,$log,$http,$st
                             console.log(completedTrips);
                             //update scope values
                             if(pendingApprovalTrips.length == 0)
-                              $scope.NoUserPendingBidsMsg = true;
+                              $scope.noPendingTripsFoundMsg = true;
                             if(upcomingTrips.length == 0)
                               $scope.noupcomingTripsFoundMsg = true;
                             if(completedTrips.length == 0)
@@ -124,6 +125,7 @@ airbnbApp.controller('controllerYourTrips',function($scope,$state,$log,$http,$st
 
 
                 }else {
+                  $scope.noPendingTripsFoundMsg = true;
                 	$scope.noupcomingTripsFoundMsg = true;
                   $scope.nocompletedTripsFoundMsg = true;
                 }
