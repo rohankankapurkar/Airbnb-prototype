@@ -99,10 +99,10 @@ airbnbApp.controller('controllerEditTrip',function($scope,$state,$log,$http,$sta
         data: {
           prop_id: propid,
           user_id: userid,
-          from_date_previous: $state.params.trip.from_date,
-          till_date_previous: $state.params.trip.till_date,
-          from_date: fromdate,
-          till_date: tilldate
+          from_date_previous: moment($state.params.trip.from_date).format('YYYY-MM-DD'),
+          till_date_previous: moment($state.params.trip.till_date).format('YYYY-MM-DD'),
+          from_date: moment(fromdate).format('YYYY-MM-DD'),
+          till_date: moment(tilldate).format('YYYY-MM-DD')
         }
       }).success(function(updatedTrip){
 

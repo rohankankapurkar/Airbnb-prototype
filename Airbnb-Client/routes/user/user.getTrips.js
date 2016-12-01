@@ -143,8 +143,12 @@ exports.saveHostReview = function(req, res)
 exports.updateTrip = function(req, res)
 {
 	var msg_payload = {
-		from_date: req.param('from_date'),
-		till_date: req.param('till_date')
+		prop_id: req.body.prop_id,
+		user_id: req.body.user_id,
+		from_date_previous: req.body.from_date_previous,
+		till_date_previous: req.body.till_date_previous,
+		from_date: req.body.from_date,
+		till_date: req.body.till_date
 	};
 
 	console.log("*******Updated trip INPUTS*******"+msg_payload);
