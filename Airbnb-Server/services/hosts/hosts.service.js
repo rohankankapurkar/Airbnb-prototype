@@ -538,3 +538,25 @@ console.log("**************UPDATE LISTING**********");
 		});
 	});
 }
+
+exports.updateTrip = function(msg, callback){
+
+	var res = {"statuscode" : 0, "message" : ""};
+
+	var user_id = msg.user_id;
+	var prop_id = msg.prop_id;
+	var from_date = msg.from_date;
+	var till_date = msg.till_date;
+	var from_date_old = msg.from_date_previous;
+	var till_date_old = msg.till_date_previous;
+
+
+	mysql.executeQuery('SELECT * FROM BOOKED_PROPERTIES WHERE prop_id = "'+prop_id+'" AND user_id = "'+user_id+'" AND from_date = "'+from_date_old+'" AND till_date =  "'+till_date_old+'"', {}, function(result){
+
+		id = result[0]["id"];
+		mysql.executeQuery('UPDATE BOOKED_PROPERTIES SET from_date = "'+from_date+'" AND till_date = "'+till_date+'" WHERE id = '+id+'', {}, function(result1){
+			result["message"] = "Dates updated successfully";
+			callback(null, res);
+		});
+	});
+}

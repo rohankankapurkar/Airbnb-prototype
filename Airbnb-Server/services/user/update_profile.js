@@ -77,7 +77,7 @@ exports.update_Profile = function(msg, callback){
 
 exports.updateVideo = function(msg, callback){
 
-    var res = {"statuscode":0, ,"message":""};
+    var res = {"statuscode":0,"message":""};
     mongo.connect(function(){
 
         var coll = mongo.collection('users');

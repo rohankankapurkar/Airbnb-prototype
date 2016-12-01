@@ -161,6 +161,23 @@ cnn.queue('getReviewCount_queue', function(q){
 /////////////////////////////////////////////////////////////////
 
 
+	// Service to update the trip dates
+	cnn.queue('updateTrip_queue', function(q){
+		q.subscribe(function(message, headers, deliveryInfo, m){
+			util.log(util.format( deliveryInfo.routingKey, message));
+			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+			hostService.updateTrip(message, function(err,res){
+				//return index sent
+				cnn.publish(m.replyTo, res, {
+					contentType:'application/json',
+					contentEncoding:'utf-8',
+					correlationId:m.correlationId
+				});
+			});
+		});
+	});
+
+
 	// Service to check if the user is host or not
 	cnn.queue('checkIsHost_queue', function(q){
 		q.subscribe(function(message, headers, deliveryInfo, m){
