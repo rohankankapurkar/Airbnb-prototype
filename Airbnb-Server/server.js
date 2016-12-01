@@ -84,7 +84,6 @@ cnn.queue('getAreaSeen_queue', function(q){
 		});
 	});
 
-getReviewCount
 
 //service to return review count of property
 cnn.queue('getReviewCount_queue', function(q){
