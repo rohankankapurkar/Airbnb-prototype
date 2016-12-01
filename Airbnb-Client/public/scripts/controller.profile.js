@@ -18,6 +18,8 @@ $http({
 }).success(function(data){
 	if (data.statuscode == 0)
 	{
+		$scope.inv_phone = "";
+		$scope.inv_credit_card = "";
 		console.log("got the show_prfile data"+data.username);
 		console.log("got the videolink  " + data.videolink);
 		//printing the user name here babyslash@gmail.com{"_id":"5832d422402a63fcf41fc033","username":"slash@gmail.com","password":"f70feeaffcd3f592a4fb7812b7d86d","firstname":"bapu","lastname":"jamm","birthday":"2016-11-01","ishost":false,"id":"428-82-0311","lastLogin":"Mon Nov 21 2016 03:24:32 GMT-0800 (PST)","sex":"Female","phone":"1234","user_preferred_locale":"de","user_native_currency":"CLP","city":"lonfon","about":"man i aint cool"}
@@ -76,16 +78,16 @@ $scope.update_Profile = function()
 		console.log("this is id"+$("#profile_pic").val());
 		console.log( $scope.profile_pic);
 		
-		if ($scope.user_creditcard.length == 16 && !isNaN($scope.user_creditcard) && $scope.user_creditcard == null)
+		if ($scope.user_creditcard.length == 16 && !isNaN($scope.user_creditcard) && $scope.user_creditcard != null)
 			{
 			console.log("correct credit card")
 			}
-		else
+		else 
 			{
 			$scope.inv_credit_card = "Invalid credit card";
 			}
 		
-		if ($scope.phone.length == 10 && !(isNaN($scope.phone)) && $scope.phone == null)
+		if ($scope.phone.length == 10 && !(isNaN($scope.phone)) && $scope.phone != null)
 			{
 			console.log("corrct phone")
 			}
@@ -102,9 +104,13 @@ $scope.update_Profile = function()
 		
 		
 		if ( $scope.profile_pic != "" && $scope.user_creditcard.length == 16 && !isNaN($scope.user_creditcard) && $scope.phone.length == 10 && !isNaN($scope.phone) && $scope.user_creditcard != null && $scope.phone != null )
+		
+
 
 		
 		{
+			$scope.inv_phone = "";
+			$scope.inv_credit_card = "";
 		$http({
 			method : "POST",
 			url : '/user/update_profile',
