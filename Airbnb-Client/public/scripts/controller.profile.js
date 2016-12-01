@@ -1,5 +1,5 @@
 
-airbnbApp.controller('controllerProfile',function($scope,$log,$http,$state){
+airbnbApp.controller('controllerProfile',function($scope,$log,$http,$state,$sce){
 
 
 $scope.inv_credit_card = "";
@@ -19,6 +19,7 @@ $http({
 	if (data.statuscode == 0)
 	{
 		console.log("got the show_prfile data"+data.username);
+		console.log("got the videolink  " + data.videolink);
 		//printing the user name here babyslash@gmail.com{"_id":"5832d422402a63fcf41fc033","username":"slash@gmail.com","password":"f70feeaffcd3f592a4fb7812b7d86d","firstname":"bapu","lastname":"jamm","birthday":"2016-11-01","ishost":false,"id":"428-82-0311","lastLogin":"Mon Nov 21 2016 03:24:32 GMT-0800 (PST)","sex":"Female","phone":"1234","user_preferred_locale":"de","user_native_currency":"CLP","city":"lonfon","about":"man i aint cool"}
 
 		$scope.user_first_name = data.firstname;
@@ -32,6 +33,7 @@ $http({
 		$scope.user_preferred_locale=data.user_preferred_locale;
 		$scope.user_creditcard = data.credit_card;
 		$scope.profile_pic = data.profile_pic;
+		$scope.videolink = data.videolink;
 
 
 	}
@@ -372,23 +374,45 @@ $scope.update_Profile = function()
 	
 	$scope.$watch('video', function(newVal, oldVal){
 	    console.log("Search was changed to:"+newVal);
-	    $scope.video = newVal;
+	    
+	    if (newVal != "" || newVal != null)
+	    	{
+	    $scope.videolink = newVal;
 	    $http({
 			method : "POST",
 			url : '/host/uploadVideo',
 			data : {"video" :  $scope.video}
 			    
-	    })
+	    }).success(function(data){
+			if (data.statuscode == 0)
+			{
+				console.log("updated the video successfully");
+				 //$scope.videolink = oldVal;
+				//$scope.videolink = data.videolink;
+			}
 	
 	    
 	    
 	    
 	    
 	  });
+	    	}
+	    
+	    else
+	    	
+	    	{
+	        newVal = oldVal;
+	        $scope.videolink = oldVal;
+	    	
+	    	}
 	
+	});
 	
-	
-	
+	 $scope.trustSrc = function(src) {
+		    return $sce.trustAsResourceUrl(src);
+		  }
+	  $scope.movie = {src:"http://www.youtube.com/embed/Lx7ycjC8qjE", title:"Egghead.io AngularJS Binding"};
+
 	
 	
 })

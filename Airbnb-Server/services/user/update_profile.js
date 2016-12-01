@@ -76,8 +76,13 @@ exports.update_Profile = function(msg, callback){
 
 
 exports.updateVideo = function(msg, callback){
+<<<<<<< Updated upstream
 
     var res = {"statuscode":0,"message":""};
+=======
+var  res = {}
+    //var res = {"statuscode":0, ,"message":""};
+>>>>>>> Stashed changes
     mongo.connect(function(){
 
         var coll = mongo.collection('users');

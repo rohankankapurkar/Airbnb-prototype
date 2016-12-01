@@ -97,6 +97,7 @@ exports.uploadVideo = function(req, res){
 	console.log("inside updating the video "+ req.session.username);
 
 	var validRegistration = { "flag" : false, "message": null};
+	console.log(req.param("video"));
 	
 	
 	
