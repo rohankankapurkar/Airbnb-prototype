@@ -204,7 +204,7 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
 
     $http({
       method : 'POST',
-      url : 'property/clicks',
+      url : '/analytics/property/clicks',
       data : {
         property : title,
         city : city

@@ -132,6 +132,111 @@ exports.logPropertyClicks = function(req,res){
 
 }
 
-exports.logPageData = function(req,res){
+
+exports.logPagetimes = function(req,res){
+
+	var pagetime = req.param('pagetimefrom');
+	var pagefrom = req.param('pagefrom');
+	var pageto = req.param('pageto');
+	var timestamp = getCurrentTime();
+	var flag = false;
+
+	var response = {};
+	var next = null;
 	
+	if(req.session.username)
+	{
+		var userjourney = req.session.userjourney
+		if(userjourney.root.start == "INIT")
+		{
+			console.log("in start");
+			userjourney.root.page = pagefrom;
+			userjourney.root.pagetime = pagetime;
+			userjourney.root.child = null;
+			userjourney.root.start = "START"
+		}
+		else
+		{
+			console.log("building tree");
+			next = userjourney.root;
+			console.log(next);
+			while (next != null)
+			{
+				if(next.child == null)
+				{
+					next.child = {
+						page : pagefrom,
+						pagetime : pagetime,
+						child : null
+					}
+					break;
+				}
+				else
+				{
+					next = next.child;	
+				}
+				
+			}
+
+			
+		}
+		console.log("+++++++++++++Tree++++++++++++++++++");
+		console.log(userjourney);
+		console.log("+++++++++++++Tree++++++++++++++++++");
+
+		mongo.connect(MongoUrl,function(){
+		var collection = mongo.collection("pagetimelogs");
+			collection.insert({
+				username : req.session.username,
+				pagefrom : pagefrom,
+				pageto : pageto,
+				pagetimefrom: pagetime,
+				timestamp : timestamp
+			},function(err, records){
+				if(err)
+				{
+					response.statuscode = 0;
+					response.message = err
+					res.send(response);
+				}
+				else
+				{
+					response.statuscode = 1;
+					response.message = null;
+					res.send(response);
+				}
+			});
+		});
+	}
+	else
+	{
+		mongo.connect(MongoUrl,function(){
+		var collection = mongo.collection("pagetimelogs");
+			collection.insert({
+				username : "anonymous user",
+				pagefrom : pagefrom,
+				pageto : pageto,
+				pagetimefrom : pagetime,
+				timestamp : timestamp
+			},function(err, records){
+				if(err)
+				{
+					response.statuscode = 0;
+					response.message = err
+					res.send(response);
+				}
+				else
+				{
+					response.statuscode = 1;
+					response.message = null;
+					res.send(response);
+				}
+			});
+		});		
+	}
 }
+
+
+/*exports.logPageData = function(req,res){
+	
+}*/

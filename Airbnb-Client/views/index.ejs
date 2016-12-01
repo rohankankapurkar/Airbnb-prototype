@@ -21,7 +21,7 @@
     <!-- angular-js-library for Charts-->
     <script src="/libraries/Chart.js"></script>
     <!-- angular-js-library for maps-->
-<!--     <script src="/libraries/angular-google-maps.js"></script>
+    <!--<script src="/libraries/angular-google-maps.js"></script>
     <script src="/libraries/underscore-min.js"></script> -->
     <script src='//maps.googleapis.com/maps/api/js?key=AIzaSyDLOdiZRCkHi93wGx-6aaNMRqe8CAuM4ik'></script>
 
@@ -44,9 +44,6 @@
     <script src="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.1/angular-material.js"></script>
     <!--Angular material \m/-->
 
-    <!-- slider code import -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/X.X.X/rzslider.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/X.X.X/rzslider.min.css"></script> -->
 
     <!-- city search -->
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAkqQ3wuJz7XzOn0pdY5emxJns9cQbDcY0&libraries=places"></script>
@@ -75,7 +72,7 @@
     <script src="/scripts/controller.property.js"></script>
     <script src="/scripts/controller.checkout.js"></script>
     <script src="/scripts/controller.hostanalytics.js"></script>
-      <script src="/scripts/controller.reviews.js"></script>
+    <script src="/scripts/controller.reviews.js"></script>
     <script src="/scripts/util.client.logging.js"></script>
 
     <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -87,7 +84,7 @@
     <link rel='stylesheet' href='/libraries/angular-slider.css' />
 
 
-<!--
+
      <script>
      $(document).ready(function (){
       var strLocation = window.location.href;
@@ -104,8 +101,9 @@
             pagetime = (endtime - starttime)/1000;
             starttime = endtime;
             endtime = "";
-
+            console.log("page changed");
             $( window.location ).trigger(
+
                 "change",
                 {
                     currentHref: strLocation,
@@ -114,16 +112,16 @@
 
                 $.post("/analytics/pagetime",
                 {
-                  page : strPrevLocation,
-                  pagetime : pagetime
+                  pagefrom : strPrevLocation,
+                  pageto : strLocation,
+                  pagetimefrom : pagetime
                 });
               }
             }
             setInterval( calculatepagetime, 100 );
-
      })
      </script>
--->
+
 
 
 

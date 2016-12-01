@@ -154,49 +154,88 @@ function recordBidTransaction(bidder, host_id, propertyid, propertytitle, bid_am
 
 
 exports.updateBidLog = function(message, callback){
-	mongo.connect(function(connection){
-		var collection = mongo.collection("users");
-		var counterBidLog = mongo.collection("counter");
+
+	try
+	{
+		var propertyid = message.propertyid;
+		var title = message.title;
+		var bidamount = message.bidamount;
+		var bidder = message.bidder;
+		var timestamp = getCurrentTime();
 		
-		counterBidLog.findAndModify(
-			{_id:"id"},
-			[],
-			{$inc:{seq:1}}, 
-			{new : true},
-			function(err,doc){
-				if(err)
-				{
-					console.log("Unsuccessful Transaction");
-					response = { statuscode: 1, propertyid: null, message : null}
-					callback(null,response);
-				}	
-				else
-				{
-					collection.update({username : message.bidder },{ $push : { bids : {
-						bid_id : doc.value.seq,
-						id : message.propertyid,
-						title : message.title,
-						bid_amount : parseFloat(message.bidamount),
-						bidder : message.bidder,
-						bid_time : getCurrentTime() } } },
-						function(err, records){
-							if(err)
-							{
-								console.log("Unsuccessful Transaction");
-								response = { statuscode: 1, propertyid: null, message : null}
-								callback(null,response);
-							}
-							else
-							{
-								response = { statuscode: 0, propertyid: null, message : null}
-								console.log("bid log updated");
-								callback(null,response);
-							}
-					});
-				}	
-			}
-		);
-	});
+		mongo.connect(function(){
+			var collection = mongo.collection("users");
+			var counterBidLog = mongo.collection("counter");
+			var bidlogcollection = mongo.collection("bidlogs");
+			counterBidLog.findAndModify(
+				{_id:"id"},
+				[],
+				{$inc:{seq:1}}, 
+				{new : true},
+				function(err,doc){
+					if(err)
+					{
+						console.log("Unsuccessful Transaction");
+						var response = { statuscode: 1, propertyid: null, message : null}
+						callback(null,response);
+					}	
+					else
+					{
+						bidlogcollection.update({username : message.bidder },{ $push : { bids : {
+							bid_id : doc.value.seq,
+							id : message.propertyid,
+							title : message.title = message.title,
+							bid_amount : parseFloat(message.bidamount),
+							bidder : message.bidder,
+							bid_time : getCurrentTime() } } },
+							function(err, records){
+								if(err)
+								{
+									console.log("Unsuccessful Transaction");
+									var response = { statuscode: 1, propertyid: null, message : null}
+									callback(null,response);
+								}
+								else
+								{
+									response = { statuscode: 0, propertyid: null, message : null}
+									console.log("bid log updated");
+
+									collection.insert({
+										propertyid : propertyid, 
+										title : title,
+										bidamount : bidamount,
+										bidder : bidder,
+										timestamp : timestamp
+									},function(err, records){
+										if(err)
+										{
+											var response = {};
+											response.statuscode = 0;
+											response.message = "Bid Logs not updated Successfully";
+											callback(null,response);
+										}
+										else
+										{
+											var response = {};
+											response.statuscode = 0;
+											response.message = "Bid Successfully submitted";
+											callback(null,response);
+										}
+									});
+								}	
+							});
+
+						}	
+					}
+				);
+			});
+	}
+	catch(error)
+	{
+		var response = {statuscode : 1, message : "Internal Server error occurred :"+error}
+		console.log(response);
+		callback(nul,response);
+	}
 }
 
 exports.updatePropertyCollection = function(message, callback){

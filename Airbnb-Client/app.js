@@ -151,7 +151,8 @@ app.post('/admin/top_cities', adminSearch.gettopcities);
 
 //analytics -- here
 app.post('/analytics/clicks',analytics.logClickData);
-app.post('/property/clicks',analytics.logPropertyClicks);
+app.post('/analytics/property/clicks',analytics.logPropertyClicks);
+app.post('/analytics/pagetime',analytics.logPagetimes);
 
 
 //trips section

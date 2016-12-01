@@ -7,6 +7,17 @@
  *  				setSessionCart	
  */
 
+var dateFormat = require('dateformat');
+var mongo = require('./../utils/util.mongo');
+var MongoUrl = "mongodb://localhost:27017/airbnb";
+
+function getCurrentTime()
+{
+	var currTime;
+	var date = new Date();
+	currTime = dateFormat(date,"yyyy-mm-dd HH:MM:ss");
+	return currTime;
+}
 /*
  * Sets the session after the user has logged in.
  * Not called by any api request.
@@ -17,7 +28,18 @@
 var mq_client = require('../../rpc/client');
 
 exports.setSession = function(req,username){
+	var timestamp = getCurrentTime();
+	var userjourney = {
+		root : {start : "INIT"},
+		timestamp : timestamp,
+		user : username
+	}
 	req.session.username = username;
+	req.session.userjourney = userjourney;
+
+	//req.session.userjourney.root = null
+	//req.session.userjourney.timestamp = timestamp;
+	
 }
 
 /*
@@ -115,10 +137,29 @@ exports.sessionDestroy = function(req,res)
 			result : ""
 	};
 	
+	var userjourney = req.session.userjourney;
+
+
+
 	try{
 		response.statuscode = 0;
 		response.message = "User session successfully deleted";
 		response.result = null;
+		mongo.connect(MongoUrl,function(connection){
+			var tracelogs = mongo.collection("tracelogs")
+			tracelogs.insertOne(userjourney, function(err,result){
+				if(err)
+				{
+					console.log("Unable to insert user journey in DB");
+				}
+				else
+				{
+					console.log("User Journey logged successfully");
+				}
+
+			});
+		})
+
 		req.session.destroy();
 		res.send(response);
 	}
