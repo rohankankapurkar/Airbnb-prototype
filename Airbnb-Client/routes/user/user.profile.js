@@ -90,3 +90,37 @@ exports.show_profile = function(req, res){
 	});
 };
 
+
+
+exports.uploadVideo = function(req, res){
+	
+	console.log("inside updating the video "+ req.session.username);
+
+	var validRegistration = { "flag" : false, "message": null};
+	
+	
+	
+	var msg_payload = {
+		username:req.session.username,
+		video:req.param("video")
+		
+	}
+	
+	//console.log("printing teh msg payload"+msg_payload);
+
+	mq_client.make_request('updateVideo_queue',msg_payload, function(err,result){
+		console.log("sending data to upload the video");
+		if(result.err){
+			//res.send(result);
+			System.out.println("error"+result.err);
+		}
+		else 
+		{		
+		console.log("successfully uploaded the video");
+		//console.log("printing the user name here baby"+result.username+ JSON.stringify(result));
+		result.statuscode= 0 ;
+		res.send(result)
+		}  
+	});
+};
+

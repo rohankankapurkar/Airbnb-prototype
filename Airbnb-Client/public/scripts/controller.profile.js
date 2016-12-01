@@ -363,4 +363,29 @@ $scope.update_Profile = function()
 			console.log("error");
 		});	
 	};
+	
+	
+
+	
+	$scope.$watch('video', function(newVal, oldVal){
+	    console.log("Search was changed to:"+newVal);
+	    $scope.video = newVal;
+	    $http({
+			method : "POST",
+			url : '/host/uploadVideo',
+			data : {"video" :  $scope.video}
+			    
+	    })
+	
+	    
+	    
+	    
+	    
+	  });
+	
+	
+	
+	
+	
+	
 })

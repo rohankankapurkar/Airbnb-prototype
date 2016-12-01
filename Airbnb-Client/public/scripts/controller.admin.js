@@ -184,6 +184,7 @@ airbnbApp.controller('controllerAdmin',function($scope,$log,$http,$state,$stateP
 		url : "/admin/getclicksperpage",
 		data : {}
 	}).success(function(data){
+		console.log("inside the clikcs per page"+data.result.data);
 		var plotData = data.result.data;
 		var pageColors = [];
 		var counter = 0;
@@ -291,5 +292,8 @@ airbnbApp.controller('controllerAdmin',function($scope,$log,$http,$state,$stateP
 
 
 	});
+	
+	
+	
 
 });
