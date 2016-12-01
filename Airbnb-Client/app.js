@@ -158,6 +158,8 @@ app.post('/admin/top_cities', adminSearch.gettopcities);
 app.post('/analytics/clicks',analytics.logClickData);
 app.post('/analytics/property/clicks',analytics.logPropertyClicks);
 app.post('/analytics/pagetime',analytics.logPagetimes);
+app.get('/analytics/getuserid',analytics.getUserIds);
+app.post('/analytics/userjourney', analytics.getuserjourney);
 
 
 //trips section

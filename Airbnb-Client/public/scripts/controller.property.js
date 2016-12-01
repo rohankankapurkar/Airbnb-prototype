@@ -174,30 +174,36 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 		$scope.bidError = "";
 		$scope.bidSuccess = "";
 
-		if(parseFloat($scope.bidamount) < parseFloat($scope.selectedProperty.currentBid))
+		if(angular.isNumber($scope.bidamount))
 		{
-			$scope.bidError = "Bid Amount should be greater than the Current Bid!"
+   			if(parseFloat($scope.bidamount) <= parseFloat($scope.selectedProperty.currentBid))
+			{
+				$scope.bidError = "Bid Amount should be greater than the Current Bid!"
+			}
+			else
+			{
+				$http({
+					method : "POST",
+					url : '/bid',
+					data :{
+						propertyid : $scope.selectedProperty.id,
+						title : $scope.selectedProperty.title,
+						bidamount : $scope.bidamount,
+						bidder : $scope.username
+					}
+				}).success(function(data){
+					console.log("success");
+					$scope.bidSuccess = "Bid submitted";
+					$scope.bidBtn = false;
+				}).error(function(error){
+					console.log("error")
+				});	
+			}
 		}
-		else
+		else 
 		{
-			$http({
-				method : "POST",
-				url : '/bid',
-				data :{
-					propertyid : $scope.selectedProperty.id,
-					title : $scope.selectedProperty.title,
-					bidamount : $scope.bidamount,
-					bidder : $scope.username
-				}
-			}).success(function(data){
-				console.log("success");
-				$scope.bidSuccess = "Bid submitted";
-				$scope.bidBtn = false;
-			}).error(function(error){
-				console.log("error")
-			});	
+   			$scope.bidError = "Please Enter a valid bid amount";
 		}
-
 	}
 	
 	

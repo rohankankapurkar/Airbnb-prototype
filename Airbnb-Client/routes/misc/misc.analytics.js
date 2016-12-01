@@ -237,6 +237,74 @@ exports.logPagetimes = function(req,res){
 }
 
 
-/*exports.logPageData = function(req,res){
+exports.getUserIds = function(req,res){
+
+	mongo.connect(MongoUrl,function(){
+		var collection = mongo.collection("tracelogs");
+		collection.distinct("user",function(err, result){
+			if(err)
+			{
+				res.send({statuscode:1})
+			}
+			else
+			{
+				console.log("+++++++Distinct user id+++++++")
+				console.log(result);
+				res.send({statuscode:0,result : result});
+			}
+		})
+	})
 	
-}*/
+}
+
+exports.getuserjourney = function(req, res){
+
+	var user = req.param('userid');
+	console.log(user);
+
+	mongo.connect(MongoUrl, function(){
+		var collection = mongo.collection("tracelogs");
+		collection.find({user : user}).sort({"timestamp":-1}).limit(1).toArray(function(err, result){
+			if(err)
+			{
+				res.send({statuscode : 1, result : result});
+
+			}	
+			else
+			{
+				
+				
+				userjourney = result[0].root;
+				
+				var graphNodes = [];
+				var graphEdges = [];
+				var next = userjourney
+				var graphJson = {};
+
+				while(next != null)
+				{
+					var edge = []
+					graphNodes.push(next.page);
+					edge[0] = next.page;
+					if(next.child != null)
+					{
+						next = next.child;
+						edge[1] = next.page;
+					}
+					else
+						break
+					graphEdges.push(edge);
+				}
+
+				console.log("++++++++Node and Edges++++++")
+				console.log(graphNodes);
+				console.log(graphEdges);
+				graphJson.nodes = graphNodes;
+				graphJson.edges = graphEdges;
+				console.log("++++++++Node and Edges++++++")
+				res.send({statuscode : 0, result : graphJson});
+
+			}
+		});
+	})
+}

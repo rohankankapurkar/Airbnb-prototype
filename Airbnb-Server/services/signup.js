@@ -24,6 +24,7 @@ exports.signupUser = function(msg, callback){
 
 			coll.findOne({username:msg.username},function(err, user){
 				if(user){
+					res.statuscode = 1;
 					res.message = "User already exists";
 				}else{
 					msg['password'] = encryption.encrypt(msg['password']);
