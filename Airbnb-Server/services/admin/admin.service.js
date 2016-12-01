@@ -77,7 +77,7 @@ exports.searchHosts = function(msg, callback){
 		var props  =mongo.collection('properties');
 
 
-		props.find({city:msg.area}).toArray(function(err, result){
+		props.find({city:msg.area}).toArray(function(err, properties){
 
 			if(err){
 				console.log('Error occurred while getting the properties collection');
@@ -87,17 +87,24 @@ exports.searchHosts = function(msg, callback){
 			}else{
 
 				// get all hosts from users collection using host_id from properties results
-				for (var i = 0; i < result.length; i++) {
-					ids.push(result[i].host_id);
+				for (var i = 0; i < properties.length; i++) {
+					ids.push(properties[i].host_id);
 				}
 				hosts.find({id:{$in:ids}}).toArray(function(err, resultHosts){
 					if(err){
 						console.log("Error occurred while getting the Hosts");
 						res['statuscode'] = 1;
 						res['message'] = "Unexpected Error occurred on server while getting the hosts";
-					}else{
+					}else
+						{
 						res['statuscode'] = 0;
-						res['data'] = resultHosts;
+							var result = {
+								resultProperties: properties,
+								resultHosts: resultHosts
+							};
+							res['data'] = result;
+							console.log("*****RESULT DATA"+res['data']);
+
 					}
 					callback(null, res);
 				});

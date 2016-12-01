@@ -314,4 +314,24 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
 
 	}
 
+	$scope.viewHostDetails =function (host)
+	{
+		var hostid= host.id;
+		var properties =[];
+		for(var i=0; i<$scope.Hosts.resultProperties.length; i++)
+		{
+			if($scope.Hosts.resultProperties[i].host_id == hostid)
+			{
+				properties.push($scope.Hosts.resultProperties[i]);
+
+			}
+		}
+		var hostdetails = {
+			hostdata : host,
+			propertydata : properties
+		}
+		$state.go('home.hostdetails',{Hostdetail : hostdetails});
+	}
+
+
 })

@@ -160,7 +160,7 @@ airbnbApp.controller('controllerAdmin',function($scope,$log,$http,$state,$stateP
 			return false;
 		});
 
-
+	$scope.hostdetails=$state.params.Hostdetail;
 
 
 

@@ -224,6 +224,17 @@ airbnbApp.config(function($stateProvider, $urlRouterProvider){
 					Hosts : null
 				}
 			})
+		.state('home.hostdetails',
+			{
+				url:'admin/getHosts',
+				templateUrl : './templates/view.admin.hostdetails.html',
+				controller : 'controllerAdmin',
+				params : {
+					Hostdetail : null
+				}
+			})
+
+
 		/*
 		|-----------------------------------------------------------
 		| Get properties

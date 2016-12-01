@@ -4,14 +4,14 @@
         <thead>
         <tr>
 
-            <th class="col-md-2">Host Name</th>
-             <th class="col-md-2">Details</th>
+            <th class="col-md-2"><h2>Host Name</h2></th>
+             <th class="col-md-2"><h2>Details</h2></th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="host in Hosts">
-            <td class="col-md-2">{{host.firstname}}&nbsp;&nbsp;&nbsp;{{host.lastname}}</td>
-            <td class="col-md-2"><button class="btn btn-primary" ng-click="viewDetails(host.id)">View Details</button></td>
+        <tr ng-repeat="host in Hosts.resultHosts">
+            <td class="col-md-2"><h3>{{host.firstname}}&nbsp;&nbsp;&nbsp;{{host.lastname}}</h3></td>
+            <td class="col-md-2"><button class="btn btn-primary" ng-click="viewHostDetails(host)">View Details</button></td>
         </tr>
         </tbody>
     </table>
