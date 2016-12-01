@@ -321,7 +321,7 @@ $scope.update_Profile = function()
 	};
 
 	$scope.update_Listing = function(id){
-		var biddingavailable = document.getElementById("" + id + "-bidding-available").checked;
+		//var biddingavailable = document.getElementById("" + id + "-bidding-available").checked;
 		$http({
 			method : "POST",
 			url : '/host/updateThisListing',
@@ -343,7 +343,7 @@ $scope.update_Profile = function()
 			    "title" : document.getElementById("" + id + "-title"),
 			    "price" : document.getElementById("" + id + "-price"),
 			    "currency" : document.getElementById("" + id + "-currency"),
-			    "biddingavailable" : biddingavailable,
+			    "biddingavailable" : "yes",
 			    "id" : id
 			}
 		}).success(function(data){
