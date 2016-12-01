@@ -72,7 +72,7 @@ $scope.update_Profile = function()
 		console.log("this is id"+$("#profile_pic").val());
 		console.log( $scope.profile_pic);
 		
-		if ($scope.user_creditcard.length == 16 && !isNaN($scope.user_creditcard))
+		if ($scope.user_creditcard.length == 16 && !isNaN($scope.user_creditcard) && $scope.user_creditcard == null)
 			{
 			console.log("correct credit card")
 			}
@@ -81,7 +81,7 @@ $scope.update_Profile = function()
 			$scope.inv_credit_card = "Invalid credit card";
 			}
 		
-		if ($scope.phone.length == 10 && !isNaN($scope.phone))
+		if ($scope.phone.length == 10 && !(isNaN($scope.phone)) && $scope.phone == null)
 			{
 			console.log("corrct phone")
 			}
@@ -97,7 +97,7 @@ $scope.update_Profile = function()
 		
 		
 		
-		if ( $scope.profile_pic != "" && $scope.user_creditcard.length == 16 && !isNaN($scope.user_creditcard) && $scope.phone.length == 10 && !isNaN($scope.phone))
+		if ( $scope.profile_pic != "" && $scope.user_creditcard.length == 16 && !isNaN($scope.user_creditcard) && $scope.phone.length == 10 && !isNaN($scope.phone) && $scope.user_creditcard != null && $scope.phone != null )
 
 		
 		{
