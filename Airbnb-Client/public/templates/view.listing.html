@@ -245,28 +245,23 @@
                         <input id="{{data.id + '-till'}}" name="from" size="30" type="text" value={{data.till}} ng-model="data.till" disabled />
                         </div>
             </div>
-
-
-            <!-- <div class="row row-condensed space-3">
-                        <label class="text-right col-sm-3" for="host_id">
-                        Host_id
-                        </label>
-                        <div class="col-sm-8">
-                        <input id="host_id" name="host_id" size="30" type="text" value={{data.host_id}} ng-model="data.host_id" readonly/>
-                        </div>
-            </div>
-
-            <div class="row row-condensed space-3">
-                        <label class="text-right col-sm-3" for="id">
-                        ID
-                        </label>
-                        <div class="col-sm-8">
-                        <input id="id" name="id" size="30" type="text" value={{data.id}} ng-model="data.id" readonly/>
-                        </div>
-            </div> -->
       </div>
       <div class="col-md-4"></div>
-      <button type="submit" class="btn btn-primary btn-large col-md-4" ng-click="update_Listing('{{data.id}}')" id="updateListing">Update Listing</button>
+      <button type="submit" class="btn btn-primary btn-large col-md-4" ng-click="update_Listing(data.id)" id="updateListing">Update Listing</button>
       <div class="col-md-4"></div>
+      <div class="col-md-12">
+            <div class="col-md-4"></div>
+            <div class="alert alert-success col-md-4" ng-hide="updatedListing">
+                  <strong>Listing updated successfully.</strong>
+            </div>
+            <div class="col-md-4"></div>
+      </div>
+      <div class="col-md-12">
+            <div class="col-md-4"></div>
+            <div class="alert alert-danger col-md-4" ng-hide="updatedListingFailed">
+                  <strong>Updating listing failed.</strong>
+            </div>
+            <div class="col-md-4"></div>
+      </div>
       <script src="/scripts/util.client.logging.js"></script>
 </div>

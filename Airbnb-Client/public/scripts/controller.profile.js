@@ -3,6 +3,8 @@ airbnbApp.controller('controllerProfile',function($scope,$log,$http,$state){
 
 
 $scope.inv_credit_card = "";
+$scope.updatedListing = true;
+$scope.updatedListingFailed = true;
 
 
 $http({
@@ -321,35 +323,35 @@ $scope.update_Profile = function()
 	};
 
 	$scope.update_Listing = function(id){
-		//var biddingavailable = document.getElementById("" + id + "-bidding-available").checked;
+		var biddingavailable = document.getElementById("" + id + "-bidding-available").checked;
 		$http({
 			method : "POST",
 			url : '/host/updateThisListing',
 			data : {
-			    "guestaccess" : document.getElementById("" + id + "-room-type"),
-			    "roomsinproperety" : document.getElementById("" + id + "-rooms"),
-			    "popertyownership" : document.getElementById("" + id + "-"),
-			    "totbedsavailable" : document.getElementById("" + id + "-beds"),
-			    "noofguests" : document.getElementById("" + id + "-guests"),
-			    "bedsforuse" : document.getElementById("" + id + "-bedsForUse"),
-			    "bathsforuse" : document.getElementById("" + id + "-bathrooms"),
-			    "street" : document.getElementById("" + id + "-street"),
-			    "apt" : document.getElementById("" + id + "-apt"),
-			    "city" : document.getElementById("" + id + "-city"),
-			    "state" : document.getElementById("" + id + "-state"),
-			    "zip" : document.getElementById("" + id + "-zip"),
-			    "country" : document.getElementById("" + id + "-country"),
-			    "description" : document.getElementById("" + id + "-description"),
-			    "title" : document.getElementById("" + id + "-title"),
-			    "price" : document.getElementById("" + id + "-price"),
-			    "currency" : document.getElementById("" + id + "-currency"),
-			    "biddingavailable" : "yes",
+			    "guestaccess" : document.getElementById("" + id + "-room-type").value,
+			    "roomsinproperety" : document.getElementById("" + id + "-rooms").value,
+			    "totbedsavailable" : document.getElementById("" + id + "-beds").value,
+			    "noofguests" : document.getElementById("" + id + "-guests").value,
+			    "bedsforuse" : document.getElementById("" + id + "-bedsForUse").value,
+			    "bathsforuse" : document.getElementById("" + id + "-bathrooms").value,
+			    "street" : document.getElementById("" + id + "-street").value,
+			    "apt" : document.getElementById("" + id + "-apt").value,
+			    "city" : document.getElementById("" + id + "-city").value,
+			    "state" : document.getElementById("" + id + "-state").value,
+			    "zip" : document.getElementById("" + id + "-zip").value,
+			    "country" : document.getElementById("" + id + "-country").value,
+			    "description" : document.getElementById("" + id + "-description").value,
+			    "title" : document.getElementById("" + id + "-title").value,
+			    "price" : document.getElementById("" + id + "-price").value,
+			    "currency" : document.getElementById("" + id + "-currency").value,
+			    "biddingavailable" : biddingavailable,
 			    "id" : id
 			}
 		}).success(function(data){
 			if (data.statuscode == 0)
 			{
 				console.log("updated the listing successfully");
+				$scope.updatedListing = false;
 			}
 			else
 			{
@@ -358,6 +360,7 @@ $scope.update_Profile = function()
 					$scope.invEmail = "";
 					$scope.invEmail = data.message;
 				}
+				$scope.updatedListingFailed = false;
 			}
 		}).error(function(error) {
 			console.log("error");

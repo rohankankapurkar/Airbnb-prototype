@@ -257,7 +257,6 @@ exports.updateThisListing = function(req, res){
 	var msg_payload = {
 		guestaccess : req.param('guestaccess'),
 		roomsinproperty : req.param('roomsinproperety'),
-		popertyownership : req.param('popertyownership'),
 		totbedsavailable : req.param('totbedsavailable'),
 		noofguests : req.param('noofguests'),
 		bedsforuse : req.param('bedsforuse'),
