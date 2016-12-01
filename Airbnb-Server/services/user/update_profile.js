@@ -34,6 +34,7 @@ exports.show_Profile = function(msg, callback){
     });
 }
 
+
 exports.update_Profile = function(msg, callback){
     console.log("The user name is boom"+ msg.username);
 
@@ -69,6 +70,27 @@ exports.update_Profile = function(msg, callback){
                 callback(null, res);
 
             }
+        });
+    });
+}
+
+
+exports.updateVideo = function(msg, callback){
+
+    var res = {"statuscode":0, ,"message":""};
+    mongo.connect(function(){
+
+        var coll = mongo.collection('users');
+
+        coll.update({"username":msg.username},{$set : {"videolink":msg.video}}, function(err, result){
+            if(!err){
+                res["statuscode"] = 0;
+                res["message"] = "Video updated successfully";
+            }else{
+                res["statuscode"] = 1;
+                res["message"] = "Unexpected error occurred while updating the video link";
+            }
+            callback(null, res);
         });
     });
 }
