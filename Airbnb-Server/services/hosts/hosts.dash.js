@@ -63,7 +63,6 @@ exports.getClickPerProperty = function(msg, callback){
 					callback(null, res);
 				});
 		});
-
 }
 
 
@@ -88,8 +87,33 @@ exports.getAreaSeen = function(msg, callback){
 					callback(null, res);
 				});
 		});
-
-
 }
 
 
+exports.getReviewCount = function(msg, callback){
+
+	var res = {"statuscode":0,"message":""};
+	var host_id = msg.host_id;
+	mongo.connect(function(){
+
+		var coll = mongo.collection("properties");
+		var output = [];
+		coll.find({"host_id":host_id},{"prop_id":1, "review":1}).toArray(function(err, result){
+			if(!err){
+				var counter = 0;
+				for(counter = 0; counter < result.length; counter++){
+					var temp = {};
+					temp["prop_id"] = result[counter].id;
+					temp["count"] = result[count].review.length;
+					output.push(temp);
+				}
+				res["data"] = output;
+			}else{
+				console.log("Unexpected error occurred while getting daata from database");
+				res["statuscode"] = -1;
+				res["message"] = "Unexpected error occurred while getting daata from database";
+			}
+			callback(null,res);
+		});
+	});
+}

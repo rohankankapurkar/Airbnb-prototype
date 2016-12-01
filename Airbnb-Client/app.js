@@ -136,6 +136,7 @@ app.post('/host/getPropertyHistory', host.propertyHistory);
 app.post('/host/userReview', host.saveUserReview);
 app.post('/host/getclicksperproperty', host.getclicksperproperty);
 app.post('/host/updateThisListing', host.updateThisListing);
+app.post('/host/getReviewCount', host.getreviewcount);
 
 app.post('/admin/getareaseen', adminSearch.getareaseen);
 app.post('/admin/getclicksperpage', adminSearch.getclickperpage);
