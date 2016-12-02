@@ -1,11 +1,38 @@
 airbnbApp.controller('controllerCheckout',function($scope,$http,$state,$stateParams){
+
+	if (typeof(Storage) !== "undefined") {
+    	if($state.params.numberOfDays != null && $state.params.numberOfDays != "" && $state.params.numberOfDays != undefined)
+    	{
+      		localStorage.setItem('numberOfDays',JSON.stringify($state.params.numberOfDays));
+    	}
+    	if($state.params.property != null && $state.params.property != "" && $state.params.property != undefined)
+    	{
+    		localStorage.setItem('property',JSON.stringify($state.params.property));	
+    	}
+    	if($state.params.fromdate != null && $state.params.fromdate != "" && $state.params.fromdate != undefined)
+    	{
+    		localStorage.setItem('fromdate',JSON.stringify($state.params.fromdate));	
+    	}
+    	if($state.params.tilldate != null && $state.params.tilldate != "" && $state.params.tilldate != undefined)
+    	{
+    		localStorage.setItem('tilldate',JSON.stringify($state.params.tilldate));	
+    	}
+    	if($state.params.username != null && $state.params.username != "" && $state.params.username != undefined)
+    	{
+    		localStorage.setItem('username',JSON.stringify($state.params.username));	
+    	}
+    	if($state.params.userid != null && $state.params.userid != "" && $state.params.userid != undefined)
+    	{
+    		localStorage.setItem('userid',JSON.stringify($state.params.userid));	
+    	}
+  	} 
 	
-	$scope.numberOfDays = $state.params.numberOfDays;
-	$scope.property = $state.params.property;
-	$scope.fromdate = $state.params.fromdate;
-	$scope.tilldate = $state.params.tilldate;
-	$scope.username = $state.params.username;
-	$scope.userid = $state.params.userid
+	$scope.numberOfDays = JSON.parse(localStorage.getItem('numberOfDays'));
+	$scope.property = JSON.parse(localStorage.getItem('property'));
+	$scope.fromdate = JSON.parse(localStorage.getItem('fromdate'));
+	$scope.tilldate = JSON.parse(localStorage.getItem('tilldate'));
+	$scope.username = JSON.parse(localStorage.getItem('username'));
+	$scope.userid = JSON.parse(localStorage.getItem('userid'));
 
 	console.log($scope.numberOfDays);
 	console.log($scope.property);

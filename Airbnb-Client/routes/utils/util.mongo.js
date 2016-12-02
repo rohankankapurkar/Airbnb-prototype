@@ -3,15 +3,23 @@ var db;
 var connected = false;
 
 exports.connect = function(url, callback){    
-	MongoClient.connect(url, function(err, _db){       
-		if (err) { 
-			throw new Error('Could not connect: '+err); 
-		}      
-		console.log("Connected to : "+url)
-		db = _db;      
-		connected = true;            
-		callback(db);     
-	}); 
+	try{
+
+		MongoClient.connect(url, function(err, _db){       
+			if (err) { 
+				throw new Error('Could not connect: '+err); 
+			}      
+			console.log("Connected to : "+url)
+			db = _db;      
+			connected = true;            
+			callback(db);     
+		});	
+	}
+	catch(error)
+	{
+		console.log("Unexpected Mongo Error Occurred : "+error);
+	}
+	 
 };
 
 exports.collection = function(name){    

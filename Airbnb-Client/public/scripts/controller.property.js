@@ -45,37 +45,98 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 		$scope.bidtilldate = new Date($scope.selectedProperty.till);
 	}
 	
-	$http({
-		method : "POST",
-		url : '/getusersession'
-	}).success(function(data) {
-		if(data.statuscode == 0) 
-		{
-			$scope.username = data.username;
-			$scope.userid = data.credentials.id;
-			if(data.credentials.isadmin == true)
+
+	$scope.getAvailableDates = function(){
+		
+		$http({
+			method : "POST",
+			url : '/getusersession'
+		}).success(function(data) {
+			if(data.statuscode == 0) 
 			{
-				return false;
-			}
-			else
-			{
-				if(data.credentials.ishost == true)
-				{	
-					return true;
+				$scope.username = data.username;
+				$scope.userid = data.credentials.id;
+				if(data.credentials.isadmin == true)
+				{
+					alert("You are an Admin!");
 				}
 				else
-				{	
-					return true;
+				{
+					$scope.invDates = "";
+
+					var dateArray = $scope.getDates($scope.fromdate,$scope.tilldate);
+					var firstDate = dateArray[0];
+					var lastDate = dateArray[dateArray.length-1];
+
+					$http({
+						method : "POST",
+						url : '/host/getavailabledates',
+						data :{
+							prop_id : $scope.selectedProperty.id
+						}
+					}).success(function(data) {
+						if(data.statuscode == 0) 
+						{	
+							var dateForMessage = "";
+							$scope.availableDates = data.result.data;
+							var counter = 0;
+							var flag = false;
+							console.log($scope.availableDates);
+
+							for(var i = 0; i < dateArray.length; i++)
+							{	
+								flag=false;
+								var dateRequired = moment(dateArray[i]).format('MM/DD/YYYY');
+								for(var j=0; j < $scope.availableDates.length; j++)
+								{
+									var datesAvailable = moment($scope.availableDates[j]).format('MM/DD/YYYY');
+							
+									if(dateRequired == datesAvailable)
+									{
+										flag =true;
+										dateForMessage = dateRequired
+										break;
+									}	
+								}
+								if(flag == false)
+								{
+									$scope.invDates = "Dates you Selected are not Available";
+									break;
+								}
+								else
+								{
+									counter++;
+								}	
+							}
+							if(flag != false)
+							{
+								$state.go('home.finalPayment',{
+									fromdate : firstDate, 
+									tilldate : lastDate, 
+									numberOfDays : counter,
+									property : $scope.selectedProperty,
+									userid: $scope.userid,
+									username : $scope.username});
+								}
+							}	
+							else 
+							{
+								console.log("No available Dates")
+							}
+					}).error(function(error) {
+						console.log("No available Dates");
+					});
+
 				}
 			}
-		}
-		else 
-		{
-			return false
-		}
+			else 
+			{
+				alert("Please Login!");
+			}
 	}).error(function(error) {
 		return false;
 	});
+}
 	
 
    $scope.addDays = function(date, days)
@@ -98,112 +159,64 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
    		return dateArray;
    }
 
-
-	$scope.getAvailableDates = function()
-	{
-		$scope.invDates = "";
-
-		var dateArray = $scope.getDates($scope.fromdate,$scope.tilldate);
-		var firstDate = dateArray[0];
-		var lastDate = dateArray[dateArray.length-1];
-
-		$http({
-			method : "POST",
-			url : '/host/getavailabledates',
-			data :{
-				prop_id : $scope.selectedProperty.id
-			}
-		}).success(function(data) {
-				if(data.statuscode == 0) 
-				{	
-					var dateForMessage = "";
-					$scope.availableDates = data.result.data;
-					var counter = 0;
-					var flag = false;
-					console.log($scope.availableDates);
-
-					for(var i = 0; i < dateArray.length; i++)
-					{	
-						flag=false;
-						var dateRequired = moment(dateArray[i]).format('MM/DD/YYYY');
-						for(var j=0; j < $scope.availableDates.length; j++)
-						{
-							var datesAvailable = moment($scope.availableDates[j]).format('MM/DD/YYYY');
-							
-							if(dateRequired == datesAvailable)
-							{
-								flag =true;
-								dateForMessage = dateRequired
-								break;
-							}	
-						}
-						if(flag == false)
-						{
-							$scope.invDates = "Dates you Selected are not Available";
-						
-							break;
-						}
-						else
-						{
-							counter++;
-						}	
-					}
-					if(flag != false)
-					{
-						$state.go('home.finalPayment',{
-							fromdate : firstDate, 
-							tilldate : lastDate, 
-							numberOfDays : counter,
-							property : $scope.selectedProperty,
-							userid: $scope.userid,
-							username : $scope.username});
-						}
-					}	
-				else 
-				{
-					console.log("No available Dates")
-				}
-		}).error(function(error) {
-				console.log("No available Dates");
-		});
-	}
-
-
 	$scope.placeYourBid = function(){
 		
 		$scope.bidError = "";
 		$scope.bidSuccess = "";
 
-		if(angular.isNumber($scope.bidamount))
-		{
-   			if(parseFloat($scope.bidamount) <= parseFloat($scope.selectedProperty.currentBid))
+		$http({
+			method : "POST",
+			url : '/getusersession'
+		}).success(function(data){
+			
+			if(data.statuscode == 0)
 			{
-				$scope.bidError = "Bid Amount should be greater than the Current Bid!"
+				username = data.username;
+				if(data.credentials.isadmin == true)
+				{
+					alert("You are an Admin!");
+				}
+				else
+				{					
+					if(!isNaN($scope.bidamount) && angular.isNumber(+$scope.bidamount))
+					{
+   						if(parseFloat($scope.bidamount) <= parseFloat($scope.selectedProperty.currentBid))
+						{
+							$scope.bidError = "Bid Amount should be greater than the Current Bid!"
+						}
+						else
+						{
+							$http({
+								method : "POST",
+								url : '/bid',
+								data :{
+									propertyid : $scope.selectedProperty.id,
+									title : $scope.selectedProperty.title,
+									bidamount : $scope.bidamount,
+									bidder : username
+								}
+							}).success(function(data){
+								console.log("success");
+								$scope.bidSuccess = "Bid submitted";
+								$scope.bidBtn = false;
+							}).error(function(error){
+								console.log("error")
+							});	
+						}
+					}
+					else 
+					{
+   						$scope.bidError = "Please Enter a valid bid amount";
+					}
+				}
 			}
 			else
 			{
-				$http({
-					method : "POST",
-					url : '/bid',
-					data :{
-						propertyid : $scope.selectedProperty.id,
-						title : $scope.selectedProperty.title,
-						bidamount : $scope.bidamount,
-						bidder : $scope.username
-					}
-				}).success(function(data){
-					console.log("success");
-					$scope.bidSuccess = "Bid submitted";
-					$scope.bidBtn = false;
-				}).error(function(error){
-					console.log("error")
-				});	
+				alert("Please Login!")
 			}
-		}
-		else 
-		{
-   			$scope.bidError = "Please Enter a valid bid amount";
-		}
+			
+		});
+		
 	}
 	
 	

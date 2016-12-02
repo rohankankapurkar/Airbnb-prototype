@@ -181,13 +181,14 @@ exports.updateBidLog = function(message, callback){
 					}	
 					else
 					{
-						bidlogcollection.update({username : message.bidder },{ $push : { bids : {
+						bidlogcollection.insert({
 							bid_id : doc.value.seq,
 							id : message.propertyid,
-							title : message.title = message.title,
+							title : message.title,
 							bid_amount : parseFloat(message.bidamount),
 							bidder : message.bidder,
-							bid_time : getCurrentTime() } } },
+							bid_time : getCurrentTime()},
+
 							function(err, records){
 								if(err)
 								{
@@ -199,28 +200,23 @@ exports.updateBidLog = function(message, callback){
 								{
 									response = { statuscode: 0, propertyid: null, message : null}
 									console.log("bid log updated");
-
-									collection.insert({
+									
+									collection.update({username : message.bidder}, { $push : { bids :{
 										propertyid : propertyid, 
 										title : title,
 										bidamount : bidamount,
 										bidder : bidder,
-										timestamp : timestamp
-									},function(err, records){
-										if(err)
-										{
-											var response = {};
-											response.statuscode = 0;
-											response.message = "Bid Logs not updated Successfully";
-											callback(null,response);
-										}
-										else
-										{
-											var response = {};
-											response.statuscode = 0;
-											response.message = "Bid Successfully submitted";
-											callback(null,response);
-										}
+										timestamp : timestamp}}},
+										function(err,results){
+											if(err)
+											{
+												callback(null,response);
+											}
+											else
+											{
+												callback(null,response);
+											}
+
 									});
 								}	
 							});
