@@ -6,7 +6,7 @@
 
 	<nav class="navbar navbar-light bg-faded" data-offcanvass="yes">
 		<a id="home-nav-img" ui-sref="home"><img  class="pull-left" src="images/logo.png" alt="" width="5%" height="5%"  /></a>
-		<nav class="navbar navbar-light bg-faded" style="left: -80px; right: -180px;">
+		<nav class="navbar navbar-light bg-faded" style="left: -80px; margin-right: -80px; font-weight: bold;">
 			<a ui-sref="home"><img  class="pull-left" src="images/logo.png" alt="" width="5%" height="5%"/></a>
 			<!-- <div class="container"> -->
 				<!-- <div class="navbar-header">
@@ -24,29 +24,34 @@
 					<!--This is a the default header of a not signed in user-->
 					<ul class="nav navbar-nav navbar-right" ng-show="default">
 						<!--<li><a ui-sref="home.becomeHost">Become a Host</a></li> -->
-						<li><a href="#contact">Help</a></li>
+						<li><a href="#contact" class="header-airbnb-font">Help</a></li>
 						<li><a data-toggle="modal" data-target="#myModalNorm" id="signup">Sign up</a></li>
 						<li><a data-toggle="modal" data-target="#myModalSignIn" id="login">Login</a></li>
 					</ul>
 					<!--This is the header when the user has signed in and is not a host-->
 					<ul class="nav navbar-nav navbar-right" ng-show="signedin">
-						<li><a ui-sref="home.becomeHost" id="becomeAHost">Become a Host</a></li>
-						<li><a href="#contact" id="help">Help</a></li>
-						<li class="dropdown"><a ui-sref="home.profile" class="dropdown-toggle" data-toggle="dropdown" id="profile-header">Profile</a>
-					    	<ul class="dropdown-menu">
-                             	<li><a ui-sref="home.profile" ng-click= "edit_profile()" id="edit-profile">Edit Profile</a></li>
-                             	<li><a ui-sref="home" ng-click="logout()" id="logout">Logout</a></li>
-                        	</ul>
+						<li><a ui-sref="home.becomeHost" class="header-airbnb-font" id="becomeAHost">Become a Host</a></li>
+						<li><a ui-sref="home.profile.trips.upcomingTrips" class="header-airbnb-font" id="becomeAHost">Trips</a></li>
+						<li><a href="#contact" class="header-airbnb-font" id="help">Help</a></li>
+						<li class="dropdown">
+							<a ui-sref="home.profile.profileUpdate" class="dropdown-toggle header-airbnb-font" data-toggle="dropdown" id="profile-header" style="margin-top: -10px">
+									<img src="./images/paris.jpg" class="img-circle" width="30px" height="30px">
+							</a>
+					    	<ul class="dropdown-menu" style="width: 220px; padding-top: 10px;">
+                   	<li><a ui-sref="home.profile.profileUpdate" class="header-airbnb-font" id="edit-profile" style=" margin-left: -15px;">Edit Profile</a></li>
+										<hr/ style="margin-left: 15px; margin-right: 15px;">
+                   	<li><a ui-sref="home" ng-click="logout()" class="header-airbnb-font" id="logout" style=" margin-left: -15px;">Logout</a></li>
+              	</ul>
 						</li>
 					</ul>
 					<!--This is the header when the user has signed in and is a host-->
 					<ul class="nav navbar-nav navbar-right" ng-show="signedhost">
-						<li><a ui-sref="home.becomeHost" id="addProperty">Add Property</a></li>
-						<li><a href="#contact" id="help">Help</a></li>
-						<li class="dropdown"><a ui-sref="home.profile" class="dropdown-toggle" data-toggle="dropdown">Profile</a>
+						<li><a ui-sref="home.becomeHost" class="header-airbnb-font" id="addProperty">Add Property</a></li>
+						<li><a href="#contact" class="header-airbnb-font" id="help">Help</a></li>
+						<li class="dropdown"><a ui-sref="home.profile.profileUpdate" class="dropdown-toggle header-airbnb-font" data-toggle="dropdown">Profile</a>
 					    	<ul class="dropdown-menu">
-                             	<li><a ui-sref="home.profile" id="edit-profile-host">Edit Profile</a></li><!-- ng-click="edit_profile()" -->
-                             	<li><a  ng-click="logout()" id="logout-host">Logout</a></li> <!-- ui-sref="home" -->
+                             	<li><a ui-sref="home.profile.profileUpdate" class="header-airbnb-font" id="edit-profile-host">Edit Profile</a></li><!-- ng-click="edit_profile()" -->
+                             	<li><a  ng-click="logout()" class="header-airbnb-font" id="logout-host">Logout</a></li> <!-- ui-sref="home" -->
                         	</ul>
 						</li>
 					</ul>
@@ -61,10 +66,10 @@
 						</form>
 					</div>
 					<ul class="nav navbar-nav navbar-right" ng-show="admin">
-						<li><a ui-sref="home.admin" id="dashboard-admin">Dashboard</a></li>
-						<li><a ui-sref="home.billing" id="dashboard-admin-billing">Billing</a></li>
-						<li><a ui-sref="home.pendingApprovals" id="pendingApprovals-admin">Pending Approvals</a></li>
-						<li><a ng-click="logout()" id="logout-admin">Logout</a></li>
+						<li><a ui-sref="home.admin" class="header-airbnb-font" id="dashboard-admin">Dashboard</a></li>
+						<li><a ui-sref="home.billing" class="header-airbnb-font" id="dashboard-admin-billing">Billing</a></li>
+						<li><a ui-sref="home.pendingApprovals" class="header-airbnb-font" id="pendingApprovals-admin">Pending Approvals</a></li>
+						<li><a ng-click="logout()" class="header-airbnb-font" id="logout-admin">Logout</a></li>
 					</ul>
 				</div>
 			<!-- </div> -->
@@ -175,16 +180,16 @@
     	<div id="myCarousel" class="carousel slide">
     	<div class="carousel-inner">
       		<div class="item active">
-       			<img src="../images/home1.png" alt="" width="100%" height= "40px" class="img-responsive">
+       			<img src="../images/home2.png" alt="" width="100%" height= "40px" class="img-responsive">
            		<div class="carousel-caption">
               		<p class="lead">Homes, experiences, and places — all in one app.</p>
-           			<a class="btn btn-large btn-primary" data-toggle="modal" data-target="#myModalNorm" id="signup">Sign up today</a>
+           			<!-- <a class="btn btn-large btn-primary" data-toggle="modal" data-target="#myModalNorm" id="signup">Sign up today</a> -->
             	</div>
 	        </div>
         	<div class="item">
-          		<img src="../images/home2.png" alt="" width="100%" height= "40px" class="img-responsive">
+          		<img src="../images/home1.png" alt="" width="100%" height= "40px" class="img-responsive">
             	<div class="carousel-caption">
-                    <a class="btn btn-large btn-primary" data-toggle="modal" data-target="#myModalNorm" id="signup">Sign up today</a>
+                    <!-- <a class="btn btn-large btn-primary" data-toggle="modal" data-target="#myModalNorm" id="signup">Sign up today</a> -->
 	            </div>
         	</div>
         	<div class="item">
@@ -342,8 +347,8 @@
 </div>
 
 
-<hr/>
-	<footer class="footer-table" id="footer">
+	<footer class="footer-table" id="footer" style="right: 0; bottom: 0; left: 0; border-top: 3px;">
+		<hr/>
 	    <ul class="list-inline icon-list list-border" itemscope="" itemtype="http://schema.org/Organization">
 	    	<i class="icon icon-airbnb-alt icon-gray belo-icon icon-size-2"></i>
 	          <div class="text-muted">

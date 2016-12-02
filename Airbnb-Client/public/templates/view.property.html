@@ -2,31 +2,31 @@
 
 <style>
 #map{
-    height:500px; 
-    width:500px; 
-/*    box-shadow: 3px 3px 10px gray;*/  
+    height:500px;
+    width:500px;
+/*    box-shadow: 3px 3px 10px gray;*/
     }
-#repeat{ 
+#repeat{
      display: inline;
      }
-#country_container { 
-     margin: 8px 2px 2px 0px; 
-     text-align: center; 
-     width: 90px; 
-     padding: 5px; 
-     color: white; 
-     background-color: gray; 
-     font-size: 16px; 
+#country_container {
+     margin: 8px 2px 2px 0px;
+     text-align: center;
+     width: 90px;
+     padding: 5px;
+     color: white;
+     background-color: gray;
+     font-size: 16px;
      cursor: pointer;
      }
-#country_container:hover { 
+#country_container:hover {
      box-shadow: 0px 0px 10px blue;
-     background-color: gray; 
-     border: 1px solid gray; 
-     cursor: pointer; 
+     background-color: gray;
+     border: 1px solid gray;
+     cursor: pointer;
      }
-#names { 
-     cursor: pointer; 
+#names {
+     cursor: pointer;
        }
 </style>
 
@@ -350,7 +350,7 @@
                         <h1> map section </h1>
                         <br/>
                         <br/>
-                          
+
 <!-- <head>
 <title>Simle Map</title>
 <meta name="description" content="Simple Map">
@@ -381,19 +381,53 @@
       	</div>
       	<span></span>
       </div>
+
+      <h2 style="padding-left: 20px">{{selectedProperty.review.length}}&nbsp;&nbsp;Reviews</h2>
+      <div ng-repeat="prop in selectedProperty.review" style="padding-left: 25px;">
+        <!-- Testimonial -->
+        <div class="testimonial">
+          <!-- Author Photo -->
+          <div class="author-photo">
+            <p class="quote"><strong>{{ prop.from }}</strong> </p>
+          </div>
+          <div class="testimonial-bubble">
+            <blockquote>
+
+              <p class="quote">{{ prop.reviewPost }} </p>
+
+
+
+              <span class="stars">
+            <span ng-style="{ 'width': getStars({{ prop.rating }}) }"></span>
+        </span>
+
+            </blockquote>
+            <div class="sprite arrow-speech-bubble"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div>
+          <div id="map" style="width:100%; height:300px;"></div>
+          <div id="repeat" ng-repeat="marker in markers | orderBy : 'title'">
+          </div>
+      </div>
+
+
     </div>
   </div>
 </div>
-<div class="col-md-5 landing_right-col" style="padding-right: 0px; margin-right:0px;">
+<div class="col-md-5 landing_right-col" style="padding-right: 0px; margin-right:0px; width: 400px; margin-top: -40px;">
 <!-- booking window -->
 <!-- <div class="book-it">-->
   <div class = "col-md-11">
     <div class="book-it__container fixed">
     <!-- first box -->
-      <div class="box-border">
+      <div class="box-border" style="opacity: 3 !important; background-color: gba(60,63,64,0.9) !important;">
         <div class="row" style="padding:10px;">
           <div class="col-sm-8">
-             <span> Base Price : ${{selectedProperty.price}} </span> 
+             <span> Base Price : ${{selectedProperty.price}} </span>
           </div>
           <div class="col-sm-4">
             <span style="float:right"> per night </span>
@@ -408,31 +442,41 @@
             <div class="row row-condensed" style="margin-bottom:20px;">
               <div class="col-md-11">
                 <div class="row ">
-                  <div class="col-md-6">
+                  <div class="col-md-5">
                     <label class="font-airbnb-faded">Check In</label>
                     <!-- <input type="text" class="form-control" placeholder="Check in" id="checkInProperty"> -->
-                    <md-datepicker id="fromdate" ng-model="fromdate" md-placeholder="Enter date" ></md-datepicker>
+                    <md-datepicker id="fromdate" ng-model="fromdate" md-placeholder="Enter date" md-hide-icons="calendar"></md-datepicker>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-5">
                     <label class="font-airbnb-faded">Check Out</label>
                       <!-- <input type="text" class="form-control" placeholder="Check out" id="checkOutProperty"> -->
-                    <md-datepicker id="tilldate" ng-model="tilldate" md-placeholder="Enter date" ></md-datepicker>
+                    <md-datepicker id="tilldate" ng-model="tilldate" md-placeholder="Enter date" md-hide-icons="calendar"></md-datepicker>
+                  </div>
+                  <div class="col-md-2">
+                    <label class="font-airbnb-faded">Guests</label>
+                      <select id="guestNumber" class="form-control">
+                        <option selected>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                      </select>
                   </div>
                 </div>
               </div>
-              <div class="col-md-1">
+              <!-- <div class="col-md-1">
                 <label class="font-airbnb-faded">Guests</label>
                   <select id="guestNumber" class="form-control">
                     <option selected>1</option>
                     <option>2</option>
                     <option>3</option>
                   </select>
-              </div>
+              </div> -->
             </div>
             <div style="display:block; width: 100%;">
             <div class="text-danger">{{invDates}}</div>
               <button type="button" class="btn btn-primary" ng-click="getAvailableDates()" style="width: 100%" id="propertyPage-book">Book</button>
-                <div style="font-size: 10px; padding-left:25%; padding-top: 5%;"></div>
+                <div style="font-size: 10px; padding-left:25%; padding-top: 5%;">
+                    <span class="font-airbnb-faded"> You wont be charged yet. </span>
+                </div>
                 <hr/>
             </div>
           </div>
@@ -475,37 +519,12 @@
 
     </div>
 
-    <div>
+    <!-- <div>
         <div id="map" style="width:100%; height:300px;"></div>
         <div id="repeat" ng-repeat="marker in markers | orderBy : 'title'">
         </div>
-    </div>
+    </div> -->
 
-    <h2 style="padding-left: 20px">{{selectedProperty.review.length}}&nbsp;&nbsp;Reviews</h2>
-    <div ng-repeat="prop in selectedProperty.review" style="padding-left: 25px;">
-      <!-- Testimonial -->
-      <div class="testimonial">
-        <!-- Author Photo -->
-        <div class="author-photo">
-          <p class="quote"><strong>{{ prop.from }}</strong> </p>
-        </div>
-        <div class="testimonial-bubble">
-          <blockquote>
-
-            <p class="quote">{{ prop.reviewPost }} </p>
-
-
-
-            <span class="stars">
-          <span ng-style="{ 'width': getStars({{ prop.rating }}) }"></span>
-      </span>
-
-          </blockquote>
-          <div class="sprite arrow-speech-bubble"></div>
-        </div>
-      </div>
-
-    </div>
   </div>
 
 </div>

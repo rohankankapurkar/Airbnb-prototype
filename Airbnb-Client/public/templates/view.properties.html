@@ -2,31 +2,31 @@
 
 <style>
 #map{
-    height:500px; 
-    width:500px; 
-/*    box-shadow: 3px 3px 10px gray;*/  
+    height:500px;
+    width:500px;
+/*    box-shadow: 3px 3px 10px gray;*/
     }
-#repeat{ 
+#repeat{
      display: inline;
      }
-#country_container { 
-     margin: 8px 2px 2px 0px; 
-     text-align: center; 
-     width: 90px; 
-     padding: 5px; 
-     color: white; 
-     background-color: gray; 
-     font-size: 16px; 
+#country_container {
+     margin: 8px 2px 2px 0px;
+     text-align: center;
+     width: 90px;
+     padding: 5px;
+     color: white;
+     background-color: gray;
+     font-size: 16px;
      cursor: pointer;
      }
-#country_container:hover { 
+#country_container:hover {
      box-shadow: 0px 0px 10px blue;
-     background-color: gray; 
-     border: 1px solid gray; 
-     cursor: pointer; 
+     background-color: gray;
+     border: 1px solid gray;
+     cursor: pointer;
      }
-#names { 
-     cursor: pointer; 
+#names {
+     cursor: pointer;
        }
 </style>
 
@@ -146,6 +146,9 @@
 											<img src="{{property.images[0]}}" alt="Third slide">
 										</div>
 										<span class="glyphicon glyphicon-heart homepage-thumbnails-h2 properties-heart"></span>
+                    <span class="properties-host-pic">
+                        <img src="/images/tokyo.jpg" class="img-circle">
+                    </span>
 									</div>
 									<a class="left carousel-control" data-target="#carousel-example-generic" role="button" data-slide="prev">
 										<span class="icon-prev" aria-hidden="true"></span>
@@ -156,50 +159,60 @@
 										<span class="sr-only">Next</span>
 									</a>
 								</div>
-								<br/>
 								<span style="margin-left:4%"></span><br/>
-								<span style="font-size:12px; font-color:#888888; margin-left:4%">Entire home/apt · 9 guests 48 reviews</span>
+								<span style="font-size:12px; font-color:#888888; margin-left:4%">{{property.guestaccess}} · {{property.noofguests}} guests {{property.review.length}} reviews</span>
 							</a>
 						</div>
 					</div>
 				</section>
 
+        <br/>
+        <br/>
+        <br/>
+        <br/>
 				<!-- pagination -->
-				<span style="margin-left: 15px">
-					<ul class="pagination">
-						<li>
-							<span aria-hidden="true">&laquo;</span>
-						</li>
-						<li>
-							<a ng-click = pageChanged(1)>
-								1
-							</a>
-						</li>
-						<li>
-							<a ng-click = pageChanged(2)>
-								2
-							</a>
-						</li>
-						<li>
-							<a ng-click = pageChanged(3)>
-								3
-							</a>
-						</li>
-						<li>
-							<a ng-click = pageChanged(4)>
-								4
-							</a>
-						</li>
-						<li>
-							<a ng-click = pageChanged(5)>
-								5
-							</a>
-						</li>
-						<li>
-							<span aria-hidden="true">&raquo;</span>
-						</li>
-					</ul>
-				</span>
+        <div class="row">
+            <div class="col-md-8">
+        				<span style="margin-left: 15px">
+        					<ul class="pagination">
+        						<li>
+        							<span aria-hidden="true">&laquo;</span>
+        						</li>
+        						<li>
+        							<a ng-click = pageChanged(1)>
+        								1
+        							</a>
+        						</li>
+        						<li>
+        							<a ng-click = pageChanged(2)>
+        								2
+        							</a>
+        						</li>
+        						<li>
+        							<a ng-click = pageChanged(3)>
+        								3
+        							</a>
+        						</li>
+        						<li>
+        							<a ng-click = pageChanged(4)>
+        								4
+        							</a>
+        						</li>
+        						<li>
+        							<a ng-click = pageChanged(5)>
+        								5
+        							</a>
+        						</li>
+        						<li>
+        							<span aria-hidden="true">&raquo;</span>
+        						</li>
+        					</ul>
+        				</span>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
 			</div>
 	<div class="col-md-5 absolute">
 				<!-- <img src="images/becomeHost.JPG" alt="" width="440" height="550"  /> -->
@@ -210,7 +223,7 @@
 						<div id="repeat" ng-repeat="marker in markers | orderBy : 'title'">
 						</div>
 					</div>
-				</div>		
+				</div>
       </div>
   </span>
   <script src="/scripts/util.client.logging.js"></script>
