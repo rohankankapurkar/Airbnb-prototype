@@ -33,53 +33,58 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
 	 | Check for user session
 	 |-----------------------------------------------------------
 	*/
-	$http({
-		method : "POST",
-		url : '/getusersession'
-	}).success(function(data) {
+	if(!$scope.session)
+	{
+		$http({
+			method : "POST",
+			url : '/getusersession'
+		}).success(function(data) {
 
-		if(data.statuscode == 0)
-		{
-			if(data.credentials.isadmin == true)
+			if(data.statuscode == 0)
 			{
-
-				$scope.admin = true;
-    			$scope.signedin = false;
-				$scope.default = false;
-				$scope.signedinhost = false;
-				//$state.go('home.admin');
-			}
-			else
-			{
-				if(data.credentials.ishost == true)
+				$scope.session = true;
+				if(data.credentials.isadmin == true)
 				{
-					$scope.signedin = false;
-					$scope.signedhost = true;
-					$scope.admin = false;
+
+					$scope.admin = true;
+    				$scope.signedin = false;
 					$scope.default = false;
+					$scope.signedinhost = false;
+					$state.go('home.admin');
 				}
 				else
 				{
-					$scope.signedhost = false;
-					$scope.signedin = true;
-					$scope.default = false;
-					$scope.admin = false;
+					if(data.credentials.ishost == true)
+					{
+						$scope.signedin = false;
+						$scope.signedhost = true;
+						$scope.admin = false;
+						$scope.default = false;
+					}
+					else
+					{
+						$scope.signedhost = false;
+						$scope.signedin = true;
+						$scope.default = false;
+						$scope.admin = false;
+					}
 				}
 			}
-		}
-		else
-		{
-			$scope.signedin = false;
-			$scope.signedhost = false;
-			$scope.admin = false;
-			$scope.default = true;
-		}
-	}).error(function(error) {
+			else
+			{
+				$scope.signedin = false;
+				$scope.signedhost = false;
+				$scope.admin = false;
+				$scope.default = true;
+			}
+		}).error(function(error) {
 			console.log("Internal Server error occurred")
 			$scope.signedin = false;
 			$scope.signedhost = false;
 			$scope.default = true;
-	});
+		});	
+	}
+
 
 
 
@@ -252,8 +257,10 @@ airbnbApp.controller('controllerHome',function($scope,$log,$http,$state,$statePa
       		url : '/user/logout'
     	}).success(function(data)
     	{
+    		$scope.session = false;
     	  	if(data.statuscode == 0)
     		{
+
     			$scope.signedin = false;
 				$scope.signedhost = false;
 				$scope.default = true;
