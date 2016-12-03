@@ -283,7 +283,7 @@ exports.updateThisListing = function(req, res){
 
 exports.getreviewcount = function(req, res){
 
-	var msg_payload = {"host_id":hostid};
+	var msg_payload = {"username":req.session.username};
 
 	mq_client.make_request("getReviewCount_queue", msg_payload, function(err, result){
 		if(err){
@@ -293,3 +293,29 @@ exports.getreviewcount = function(req, res){
 		}
 	});
 }
+
+
+
+
+
+exports.getReviewForHost = function(req, res){
+	
+	console.log("lala printing the host id"+req.param('host_id'));
+
+	var msg_payload = {"host_id":req.param('host_id')};
+	
+	console.log("mc");
+
+	mq_client.make_request("getReviewCount_queue", msg_payload, function(err, result){
+		if(err){
+			res.send({statuscode:1, message:'Error occurred while getting data from db'});
+		}else{
+			res.send({statuscode:0, result:result});
+			console.log("lala printing the result" +JSON.Stringify(result))
+		}
+	});
+}
+
+
+
+

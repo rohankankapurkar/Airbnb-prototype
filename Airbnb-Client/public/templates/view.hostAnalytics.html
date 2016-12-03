@@ -55,8 +55,34 @@ function drawGraph(userjourney){
 			<div id="useridOptions">
 				<select id="useridList"></select>
 			</div>
-			<canvas id="springydemo" width="640" height="480" />
+			<canvas id="springydemo" width="1000" height="600" />
 		</div>
+        
+        <div class="col-md-10 col-md-offset-1 panel panel-default">
+			<div class="col-md-3">
+				<div ng-repeat="prop in props1">
+					{{prop}}
+				</div>
+			</div>
+			<div class="col-md-1">
+				<div ng-repeat="countReview in countReviews track by $index">
+					{{count}}
+				</div>
+			</div>
+			<div class="col-md-8">
+				<canvas id="admin-bar-chart-review" style="max-height:50%;"></canvas>			
+			</div>		
+		</div>
+        
+        
+      
+        
+        
+        
+        
+        
+        
+        
 
 
 	</div>

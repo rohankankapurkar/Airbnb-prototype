@@ -91,28 +91,43 @@ exports.getAreaSeen = function(msg, callback){
 
 
 exports.getReviewCount = function(msg, callback){
+	console.log("inside the getreviewcount rohan");
 
 	var res = {"statuscode":0,"message":""};
-	var host_id = msg.host_id;
+	var username = msg.username;
 	mongo.connect(function(){
 
 		var coll = mongo.collection("properties");
 		var output = [];
-		coll.find({"host_id":host_id},{"prop_id":1, "review":1}).toArray(function(err, result){
+		coll.find({"host_id":msg.host_id},{"prop_id":1, "review":1}).toArray(function(err, result){
+
+			console.log(err + "rohankanka");
+			console.log(JSON.stringify(result)+ "rohan");
+
 			if(!err){
+
+
+
+
 				var counter = 0;
 				for(counter = 0; counter < result.length; counter++){
 					var temp = {};
-					temp["prop_id"] = result[counter].id;
-					temp["count"] = result[count].review.length;
-					output.push(temp);
+					if(result[counter].review != null){
+						temp["prop_id"] = result[counter].id;
+						temp["count"] = result[counter].review.length;
+						output.push(temp);
+					}
+
 				}
 				res["data"] = output;
+				console.log("lala "+output);
 			}else{
 				console.log("Unexpected error occurred while getting daata from database");
 				res["statuscode"] = -1;
 				res["message"] = "Unexpected error occurred while getting daata from database";
 			}
+			//console.log("lala "+JSON.stringify(res));
+
 			callback(null,res);
 		});
 	});

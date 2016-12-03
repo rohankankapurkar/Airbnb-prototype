@@ -15,8 +15,8 @@ var createMyPool = function(noConn){
 		conn = mysql.createConnection({
 			host : 'localhost',
 			user : 'root',
-			password : 'Unix_11!',
-			database : 'starttest'
+			password : 'SonyVaio',
+			database : 'test'
 		});
 	connStack.push(conn);
 	}
