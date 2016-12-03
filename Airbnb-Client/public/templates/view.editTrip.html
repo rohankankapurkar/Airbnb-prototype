@@ -48,11 +48,11 @@
             <br/>
             <span class="font-airbnb-faded">
               <b>Start date: </b>
-              <md-datepicker id="fromdate-EditTrip" ng-model="fromdateEditTrip" md-placeholder="Start date" ></md-datepicker>
+              <md-datepicker id="fromdate-EditTrip" ng-model="fromdateEditTrip" md-placeholder="Start date" ng-disabled= !checkAvailabilityStatusForEditTrip></md-datepicker>
             </span>
             <span class="font-airbnb-faded">
               <b>End date: </b>
-              <md-datepicker id="tilldateEditTrip" ng-model="tilldateEditTrip" md-placeholder="End date" ></md-datepicker>
+              <md-datepicker id="tilldateEditTrip" ng-model="tilldateEditTrip" md-placeholder="End date" ng-disabled= !checkAvailabilityStatusForEditTrip></md-datepicker>
             </span>
             <br/>
             <br/>
@@ -60,13 +60,15 @@
               <button class="btn btn-primary" id="checkAvailabilityStatus" ng-show= checkAvailabilityStatusForEditTrip ng-click="checkPropertyAvailability(editTrip.prop_id, fromdateEditTrip, tilldateEditTrip)">
                 Check Availability
               </button>
-              <span ng-if= errorInCheckTrip> Sorry, the rooms not available for the dates. </span>
               <button class="btn btn-primary" id="updateTrip" ng-show= updateEditTrip ng-click="updateTrip(editTrip.prop_id, editTrip.user_id, fromdateEditTrip, tilldateEditTrip)">
                 Update trip
               </button>
               <button class="btn btn-primary" id="deleteTrip" ng-click="deleteTrip(editTrip.prop_id, editTrip.user_id)">
                 Delete trip
               </button>
+              <br/>
+              <span ng-if= errorInCheckTrip><b> Sorry, the rooms not available for the dates. </b></span>
+              <br/>
               <span ng-if= errorInUpdatingTrip> Sorry, there was an error in updating trip. Please try again. </span>
             </span>
           </div>
