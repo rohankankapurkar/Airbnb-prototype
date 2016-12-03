@@ -48,9 +48,12 @@
 					<ul class="nav navbar-nav navbar-right" ng-show="signedhost">
 						<li><a ui-sref="home.becomeHost" class="header-airbnb-font" id="addProperty">Add Property</a></li>
 						<li><a href="#contact" class="header-airbnb-font" id="help">Help</a></li>
-						<li class="dropdown"><a ui-sref="home.profile.profileUpdate" class="dropdown-toggle header-airbnb-font" data-toggle="dropdown">Profile</a>
-					    	<ul class="dropdown-menu">
-                             	<li><a ui-sref="home.profile.profileUpdate" class="header-airbnb-font" id="edit-profile-host">Edit Profile</a></li><!-- ng-click="edit_profile()" -->
+						<li class="dropdown"><a ui-sref="home.profile.profileUpdate" class="dropdown-toggle header-airbnb-font" data-toggle="dropdown" style="margin-top: -10px">
+								<img src="./images/paris.jpg" class="img-circle" width="30px" height="30px">
+						</a>
+					    	<ul class="dropdown-menu" style="width: 220px; padding-top: 10px;">
+                             	<li><a ui-sref="home.profile.profileUpdate" class="header-airbnb-font" id="edit-profile-host">Edit Profile</a></li>
+															<hr/ style="margin-left: 15px; margin-right: 15px;"><!-- ng-click="edit_profile()" -->
                              	<li><a  ng-click="logout()" class="header-airbnb-font" id="logout-host">Logout</a></li> <!-- ui-sref="home" -->
                         	</ul>
 						</li>
@@ -117,7 +120,7 @@
 							<input ng-model="regbday" type="date" class="form-control" id="regbday" name="regbday" ng-model="regbday" />
 							<div class="text-danger">{{invBday}}</div>
 						</div>
-						<button id="register" name="register" type="submit" class="btn btn-block signup-login-form__btn-xl btn-primary btn-danger" ng-click="signup()">Signup</button>
+						<button id="register" name="register" type="submit" class="btn btn-block signup-login-form__btn-xl btn-primary btn-danger" data-target="#myModalNorm" ng-click="signup()">Signup</button>
 					</form>
 				</div>
 				<div class="modal-footer">
