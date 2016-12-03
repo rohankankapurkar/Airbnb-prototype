@@ -560,3 +560,24 @@ exports.updateTrip = function(msg, callback){
 		});
 	});
 }
+
+
+
+exports.deleteTrip = function(msg, callback){
+
+	console.log("-----------deleteTrip server----------");
+	var res = {"statuscode" : 0, "message" : ""};
+
+	var user_id = msg.user_id;
+	var prop_id = msg.prop_id;
+	var from_date = msg.from_date;
+	var till_date = msg.till_date;
+
+	console.log(user_id + prop_id + from_date + till_date+ from_date + till_date);
+	mysql.executeQuery('DELETE FROM BOOKED_PROPERTIES WHERE prop_id = "'+prop_id+'" AND user_id = "'+user_id+'" AND from_date = "'+from_date+'" AND till_date =  "'+till_date+'"', {}, function(result){
+
+		res["message"] = "Trips deleted successfully";
+		callback(null, res);
+
+	});
+}

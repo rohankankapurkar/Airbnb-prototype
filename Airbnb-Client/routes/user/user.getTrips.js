@@ -165,3 +165,30 @@ exports.updateTrip = function(req, res)
 
 
 };
+
+
+//deleting trips
+exports.deleteTrip = function(req, res)
+{
+	var msg_payload = {
+		prop_id: req.body.prop_id,
+		user_id: req.body.user_id,
+		from_date: req.body.from_date,
+		till_date: req.body.till_date
+	};
+
+	console.log("*******Delete trip INPUTS*******");
+	console.log(msg_payload);
+
+	mq_client.make_request('deleteTrip_queue', msg_payload, function(err, result)
+	{
+		console.log(result);
+		if(err){
+			res.send({statuscode:1, message : "Error occurred while updating trips"});
+		}else{
+			res.send({statuscode:0, result:result});
+		}
+	});
+
+
+};

@@ -167,6 +167,7 @@ app.post('/getUserTrips', userGetTrips.getTrips);
 app.post('/getPropertiesForUserTrips', userGetTrips.getPropertiesForUserTrips);
 app.post('/getUserAndProperty', userGetTrips.getUserAndProperty);
 app.post('/updateTrip', userGetTrips.updateTrip);
+app.post('/deleteTrip', userGetTrips.deleteTrip);
 
 //bidding
 app.post('/getPropertiesForBidding', userGetTrips.getPropertiesForBidding);

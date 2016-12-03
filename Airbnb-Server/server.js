@@ -68,7 +68,7 @@ cnn.queue('getClickPerProperty_queue', function(q){
 	});
 
 
-//service to return area seen 
+//service to return area seen
 cnn.queue('getAreaSeen_queue', function(q){
 		q.subscribe(function(message, headers, deliveryInfo, m){
 			util.log(util.format( deliveryInfo.routingKey, message));
@@ -167,6 +167,23 @@ cnn.queue('getReviewCount_queue', function(q){
 			util.log(util.format( deliveryInfo.routingKey, message));
 			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
 			hostService.updateTrip(message, function(err,res){
+				//return index sent
+				cnn.publish(m.replyTo, res, {
+					contentType:'application/json',
+					contentEncoding:'utf-8',
+					correlationId:m.correlationId
+				});
+			});
+		});
+	});
+
+
+	// Service to delete trip
+	cnn.queue('deleteTrip_queue', function(q){
+		q.subscribe(function(message, headers, deliveryInfo, m){
+			util.log(util.format( deliveryInfo.routingKey, message));
+			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+			hostService.deleteTrip(message, function(err,res){
 				//return index sent
 				cnn.publish(m.replyTo, res, {
 					contentType:'application/json',
@@ -806,7 +823,3 @@ cnn.queue('getReviewCount_queue', function(q){
 		});
 
 });
-
-
-
-

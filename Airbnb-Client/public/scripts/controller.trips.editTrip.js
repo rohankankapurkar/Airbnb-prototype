@@ -11,9 +11,13 @@ airbnbApp.controller('controllerEditTrip',function($scope,$state,$log,$http,$sta
     $scope.errorInCheckTrip = false;
     $scope.errorInUpdatingTrip = false;
 
-    $scope.editTrip = $state.params.trip
+    $scope.editTrip = $state.params.trip;
     $scope.fromdateEditTrip = new Date(tripData.from_date);
     $scope.tilldateEditTrip = new Date(tripData.till_date);
+
+    console.log(tripData.from_date);
+    console.log($scope.fromdateEditTrip);
+    console.log($scope.tilldateEditTrip);
 
 
     $scope.checkPropertyAvailability = function(propertyId, fromdateData, tilldateData){
@@ -110,6 +114,39 @@ airbnbApp.controller('controllerEditTrip',function($scope,$state,$log,$http,$sta
               $state.go('home.profile.trips.upcomingTrips');
           }else {
               $scope.errorInUpdatingTrip = true;
+          }
+
+      }).error(function(error) {
+        console.log("error");
+      });
+
+
+    }
+
+
+    $scope.deleteTrip = function(propid, userid) {
+
+      console.log("--------------deleteTrip---------------");
+      console.log(propid + userid + moment($state.params.trip.from_date).format('YYYY-MM-DD') + moment($state.params.trip.till_date).format('YYYY-MM-DD'));
+
+      $http({
+        method : "POST",
+        url : '/deleteTrip',
+        data: {
+          prop_id: propid,
+          user_id: userid,
+          from_date: moment($state.params.trip.from_date).format('YYYY-MM-DD'),
+          till_date: moment($state.params.trip.till_date).format('YYYY-MM-DD')
+        }
+      }).success(function(deleteTrip){
+
+        console.log("--------success deleteTrip-------");
+        console.log(deleteTrip);
+
+          if(deleteTrip.statuscode == 0) {
+              $state.go('home.profile.trips.pendingApprovalTrips');
+          }else {
+              $scope.errorInDeletingTrip = true;
           }
 
       }).error(function(error) {

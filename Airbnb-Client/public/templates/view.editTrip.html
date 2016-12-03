@@ -64,6 +64,9 @@
               <button class="btn btn-primary" id="updateTrip" ng-show= updateEditTrip ng-click="updateTrip(editTrip.prop_id, editTrip.user_id, fromdateEditTrip, tilldateEditTrip)">
                 Update trip
               </button>
+              <button class="btn btn-primary" id="deleteTrip" ng-click="deleteTrip(editTrip.prop_id, editTrip.user_id)">
+                Delete trip
+              </button>
               <span ng-if= errorInUpdatingTrip> Sorry, there was an error in updating trip. Please try again. </span>
             </span>
           </div>

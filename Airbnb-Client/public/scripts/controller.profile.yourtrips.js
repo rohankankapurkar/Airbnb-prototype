@@ -159,11 +159,11 @@ airbnbApp.controller('controllerYourTrips',function($scope,$state,$log,$http,$st
     $scope.editTrip = function (bookingId)
     {
 
-        for(var i=0; i<$scope.upcomingTrips.length; i++)
+        for(var i=0; i<$scope.pendingApprovalTrips.length; i++)
         {
-            if($scope.upcomingTrips[i].id == bookingId)
+            if($scope.pendingApprovalTrips[i].id == bookingId)
             {
-                $scope.tripToEdit = $scope.upcomingTrips[i];
+                $scope.tripToEdit = $scope.pendingApprovalTrips[i];
 
             }
         }
