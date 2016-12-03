@@ -45,14 +45,14 @@ exports.addproperty = function(req,res){
 
 			mq_client.make_request('becomeHost_queue',msg_payload, function(err,result){
 				if(err){
-					
+
 					res.send({statuscode : 1, message : "Not able to add property"});
 				}
-				else 
+				else
 				{
 					res.send(result);
-				}  
-			});	
+				}
+			});
 		}
 		else
 		{
@@ -99,7 +99,7 @@ console.log("host update listing");
 
 exports.getavailabledates = function(req, res){
 
-		/*console.log(req.param('prop_id'));*/	
+		/*console.log(req.param('prop_id'));*/
 		var msg_payload = {prop_id: req.param('prop_id')};
 
 		mq_client.make_request('getAvailableDates_queue', msg_payload, function(err, result){
@@ -139,7 +139,7 @@ exports.getpropertyavailable = function(req, res){
 					fromdate : req.param('fromdate'),
 					tilldate : req.param('tilldate')
 		};
- 
+
 	mq_client.make_request('checkPropertyAvailable_queue', msg_payload, function(err, result){
 		if(err){
 			res.send({statuscode:1, message : "Error occurred while getting avaiable dates"});
@@ -153,7 +153,7 @@ exports.getpropertyavailable = function(req, res){
 exports.getpendingpropertyrequests = function(req, res){
 
 	var msg_payload = {host_id: req.param('hostid')};
- 
+
 	mq_client.make_request('getPendingPropertyRequests_queue', msg_payload, function(err, result){
 		if(err){
 			res.send({statuscode:1, message : "Error occurred while getting avaiable dates"});
@@ -185,18 +185,11 @@ exports.disapproverequest = function(req, res){
 					tilldate : req.param('tilldate')
 		};
 
-	var msg_payload = {propid: "000-00-0006",
-					userid : "000-00-0004",
-					fromdate : "2017-02-09",
-					tilldate : "2017-02-10"
-		};
-
-
 	mq_client.make_request('disapproveRequest_queue', msg_payload, function(err, result){
 		if(err){
 			res.send({statuscode:1, message : "Error occurred while getting avaiable dates"});
 		}else{
-			res.send({statuscode:0, result:result});		
+			res.send({statuscode:0, result:result});
 		}
 	});
 }

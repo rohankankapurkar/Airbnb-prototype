@@ -172,7 +172,7 @@ airbnbApp.controller('controllerApprovals',function($scope,$state,$log,$http,$st
       console.log(propertyId);
       $http({
         method : "POST",
-        url : '/host/disapproveuserrequest',
+        url : '/host/disapproverequest',
         data : {
           propid: propertyId,
           userid: userId,
@@ -185,7 +185,7 @@ airbnbApp.controller('controllerApprovals',function($scope,$state,$log,$http,$st
         if (disapproveBooking.statuscode == 0)
         {
             $scope.allPendingApprovals[index].approveBooking = false;
-            $scope.allPendingApprovals[index].generateBill = true;
+            $state.go('home.profile.trips.pendingApprovalTrips');
         }
         else
         {

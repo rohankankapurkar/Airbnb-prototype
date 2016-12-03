@@ -78,6 +78,7 @@ airbnbApp.controller('controllerEditTrip',function($scope,$state,$log,$http,$sta
     					if(flag != false)
     					{
                   $scope.checkAvailabilityStatusForEditTrip = false;
+                  $scope.errorInCheckTrip = false;
       						$scope.updateEditTrip = true;
     					}
     				}
