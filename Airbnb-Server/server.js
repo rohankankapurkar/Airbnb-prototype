@@ -19,6 +19,7 @@ var getProperties = require('./services/user/user.properties');
 var userGetTrips = require('./services/user/user.getTrips');
 var bidding = require('./services/bidding/service.bidding');
 var hostDashService = require('./services/hosts/hosts.dash');
+var userDelete = require('./services/user/user.deleteUser');
 
 var cnn = amqp.createConnection({host:'127.0.0.1'});
 
@@ -582,6 +583,23 @@ cnn.queue('getReviewCount_queue', function(q){
 			util.log(util.format( deliveryInfo.routingKey, message));
 			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
 			hostService.saveReview(message, function(err,res){
+				//return index sent
+				cnn.publish(m.replyTo, res, {
+					contentType:'application/json',
+					contentEncoding:'utf-8',
+					correlationId:m.correlationId
+				});
+			});
+		});
+	});
+
+
+	//User Reviewing Property
+	cnn.queue('deleteUser_queue', function(q){
+		q.subscribe(function(message, headers, deliveryInfo, m){
+			util.log(util.format( deliveryInfo.routingKey, message));
+			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+			userDelete.deleteUser(message, function(err,res){
 				//return index sent
 				cnn.publish(m.replyTo, res, {
 					contentType:'application/json',

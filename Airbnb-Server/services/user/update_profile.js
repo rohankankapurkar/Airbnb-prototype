@@ -81,7 +81,6 @@ exports.updateVideo = function(msg, callback){
 
 var  res = {}
     //var res = {"statuscode":0, ,"message":""};
-
     mongo.connect(function(){
 
         var coll = mongo.collection('users');

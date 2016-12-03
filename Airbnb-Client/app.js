@@ -176,6 +176,8 @@ app.post('/user/hostReview', userGetTrips.saveHostReview);
 /*app.post('/trips/acceptBid', userGetTrips.getPropertiesForBidding);*/
 
 
+app.post('/user/deleteUser', profile.deleteUser);
+
 mongo.connect(mongoSessionConnectURL, function(){
 	console.log('Connected to mongo at: ' + mongoSessionConnectURL);
 	http.createServer(app).listen(app.get('port'), function(){

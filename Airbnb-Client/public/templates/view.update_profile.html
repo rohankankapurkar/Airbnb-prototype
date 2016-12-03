@@ -329,6 +329,10 @@
         <button type="submit" class="btn btn-primary btn-large" ng-click=update_Profile()>
           Save
       </button>
+      <button type="submit" class="btn btn-primary btn-large" ng-click=deleteUser()>
+        Delete user
+    </button>
+    <span class="font-airbnb-faded" ng-if= deleteUserErrorMsg> Error in deleting your profile. Please refresh and try again </span>
   </div>
 <script src="/scripts/util.client.logging.js"></script>
 </div>

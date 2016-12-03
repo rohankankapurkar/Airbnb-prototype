@@ -6,6 +6,9 @@ $scope.inv_credit_card = "";
 $scope.updatedListing = true;
 $scope.updatedListingFailed = true;
 
+//for delete user error msg
+$scope.deleteUserErrorMsg = false;
+
 
 $http({
 	method : "GET",
@@ -16,8 +19,12 @@ $http({
 //
 //	}
 }).success(function(data){
+	console.log("--------udpatePrrofile--------------");
+	console.log(data);
+
 	if (data.statuscode == 0)
 	{
+		$scope.userId = data.id;
 		$scope.inv_phone = "";
 		$scope.inv_credit_card = "";
 		console.log("got the show_prfile data"+data.username);
@@ -62,52 +69,52 @@ $scope.update_Profile = function()
 
 		console.log("Inside update profile " + $scope.user_first_name);
 		console.log("bc profile pic");
-			
-		
+
+
 		if ($("#profile_pic").val()){
 		$scope.profile_pic = $("#profile_pic").val();
 		}
-		
+
 		else
 			{
-			
+
 			console.log( $scope.profile_pic);
 
 			}
-		
+
 		console.log("this is id"+$("#profile_pic").val());
 		console.log( $scope.profile_pic);
-		
+
 		if ($scope.user_creditcard.length == 16 && !isNaN($scope.user_creditcard) && $scope.user_creditcard != null)
 			{
 			console.log("correct credit card")
 			}
-		else 
+		else
 			{
 			$scope.inv_credit_card = "Invalid credit card";
 			}
-		
+
 		if ($scope.phone.length == 10 && !(isNaN($scope.phone)) && $scope.phone != null)
 			{
 			console.log("corrct phone")
 			}
 		else
-			
+
 		{
 			$scope.inv_phone = "Invalid phone number";
 
 		}
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
 		if ( $scope.profile_pic != "" && $scope.user_creditcard.length == 16 && !isNaN($scope.user_creditcard) && $scope.phone.length == 10 && !isNaN($scope.phone) && $scope.user_creditcard != null && $scope.phone != null )
-		
 
 
-		
+
+
 		{
 			$scope.inv_phone = "";
 			$scope.inv_credit_card = "";
@@ -145,14 +152,14 @@ $scope.update_Profile = function()
 		}).error(function(error) {
 			console.log("error");
 		});
-	
+
 
 }
-		
+
 		else
 			{
 			alert("incorrect info");
-			
+
 			}
 
 
@@ -372,15 +379,15 @@ $scope.update_Profile = function()
 			}
 		}).error(function(error) {
 			console.log("error");
-		});	
+		});
 	};
-	
-	
 
-	
+
+
+
 	$scope.$watch('video', function(newVal, oldVal){
 	    console.log("Search was changed to:"+newVal);
-	    
+
 	    if (newVal != "" || newVal != null)
 	    	{
 	    $scope.videolink = newVal;
@@ -388,7 +395,7 @@ $scope.update_Profile = function()
 			method : "POST",
 			url : '/host/uploadVideo',
 			data : {"video" :  $scope.video}
-			    
+
 	    }).success(function(data){
 			if (data.statuscode == 0)
 			{
@@ -396,29 +403,77 @@ $scope.update_Profile = function()
 				 //$scope.videolink = oldVal;
 				//$scope.videolink = data.videolink;
 			}
-	
-	    
-	    
-	    
-	    
+
+
+
+
+
 	  });
 	    	}
-	    
+
 	    else
-	    	
+
 	    	{
 	        newVal = oldVal;
 	        $scope.videolink = oldVal;
-	    	
+
 	    	}
-	
+
 	});
-	
+
 	 $scope.trustSrc = function(src) {
 		    return $sce.trustAsResourceUrl(src);
 		  }
 	  $scope.movie = {src:"http://www.youtube.com/embed/Lx7ycjC8qjE", title:"Egghead.io AngularJS Binding"};
 
-	
-	
+
+
+
+
+		//delete user
+		$scope.deleteUser = function()
+		{
+				console.log("---------deleteUser--------");
+				console.log($scope.userId);
+
+
+				$http({
+					method : "POST",
+					url : '/user/deleteUser',
+					data : {
+						userId: $scope.userId
+					}
+				}).success(function(data){
+						if (data.statuscode == 0)
+						{
+									$http({
+											method : "POST",
+											url : '/user/logout'
+									}).success(function(data)
+									{
+											window.location = '/';
+
+									}).error(function(error)
+									{
+											alert("Internal sever error occured");
+											window.setTimeout(function()
+											{
+												window.location = '/';
+											}, 3000);
+
+									});
+						}
+						else
+						{
+								$scope.deleteUserErrorMsg = true;
+						}
+				}).error(function(error) {
+					console.log("error");
+				});
+
+
+		}
+
+
+
 })
