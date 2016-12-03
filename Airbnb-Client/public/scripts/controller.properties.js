@@ -34,7 +34,7 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
 
 
   $scope.propertyPriceRangeFilter = function(property) {
-    return (parseInt(property['price']) >= $scope.property_min_price && parseInt(property['price']) <= $scope.property_max_price);
+    return (parseInt(property['price']) <= $scope.property_max_price);
   };
   
   $scope.propertyDateRangeFilter = function(property){
@@ -92,8 +92,8 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
     if(data.statuscode == 0)
     {
       $scope.properties = data.data;
-      //$scope.property_max_price = Math.max.apply(Math,$scope.properties.map(function(property){return property.price;}));
-      //$scope.property_min_price = Math.min.apply(Math,$scope.properties.map(function(property){return property.price;}));
+      $scope.property_max_price = Math.max.apply(Math,$scope.properties.map(function(property){return property.price;}));
+      
 
 
       // Map initialization  

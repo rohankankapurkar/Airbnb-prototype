@@ -110,6 +110,7 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 							}
 							if(flag != false)
 							{
+								
 								$state.go('home.finalPayment',{
 									fromdate : firstDate, 
 									tilldate : lastDate, 
