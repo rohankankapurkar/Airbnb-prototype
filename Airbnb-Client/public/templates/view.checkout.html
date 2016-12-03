@@ -1,9 +1,5 @@
 
 
-
-
-
-
 <link rel='stylesheet' href='/stylesheets/style.homepage.css' />
 <link href="https://a2.muscache.com/airbnb/static/packages/common_o2.1-95d643eef69139392786405865038db8.css" media="all" rel="stylesheet" type="text/css" />
 <link href="https://a1.muscache.com/airbnb/static/packages/common-e2aa11d9210d88c08eb62a0e67b5f554.css" media="all" rel="stylesheet" type="text/css" />
@@ -62,9 +58,6 @@
 
     <div class="row">
 
-
-
-
     <div class = " col-md-7">
         <div class="row">
             <div class="panel-header col-md-4"> 
@@ -83,14 +76,38 @@
         <div class=" space-5">
             <div class="panel-header">Photos</div>
              <div class = "panel-header">
-    <img src="{{property.images[1]}}" height="100%" width="100%" style="{ padding : 0}" >    
+    <img src="{{property.images[1]}}" height="100%" width="100%" style="{ padding : 10}" >    
+            </div>
+            <br>
+            <!--Credit Card form-->
+            <div class="col-md-12 panel-header"> 
+              <div class="credi-card-number-cnt">
+                <input type="text" ng-model="creditCard" name="credi-card-number" id="credit-card-number" class="credi-card-number col-md-12">
+                <div class="text-danger">{{invCreditCardNumber}}</div>
+              </div>
+              </br>
+              <div class="credi-card-cvv">
+                <input type="text" ng-model="creditCardCVV" name="credi-card-cvv" id="credit-card-cvv" class="credi-card-cvv col-md-12">
+                <div class="text-danger">{{invCreditCardCVV}}</div>
+              </div></br>
+              <div class="credi-card-exp">
+                <input type="date" ng-model="creditCardExp" name="credi-card-exp" id="credit-card-exp" class="credi-card-exp col-md-12">
+                <div class="text-danger">{{invExpDate}}</div>
+              </div></br>
+              <div class="credi-card-name">
+                <input type="text" ng-model="creditCardName" name="credi-card-name" id="credit-card-name" class="credi-card-name col-md-12">
+                <div class="text-danger">{{invName}}</div>
+              </div></br>
             </div>
 
+
+            <br><br>
     </div>  
 
-
+<br><br>
 
         <div>
+        
         <button class= " btn btn-large btn-block btn-babu"ng-click="finalCheckout()">Confirm Booking</button>
     </div>
 
@@ -116,96 +133,96 @@
     
     
 
-<div class="panel-header" data-reactid=".1iqowse7dvk.2">
+  <div class="panel-header" data-reactid=".1iqowse7dvk.2">
     <div class="pull-right space-3 summary-card__host-profile-photo" data-reactid=".1iqowse7dvk.1">
-</div>
-<div class="panel-body" data-reactid=".1iqowse7dvk.2.0">
-<div class="text-muted space-2" ><span0.0.0">Hosted by {{property.hostdata[0].firstname}} {{property.hostdata[0].lastname}} </span></div>
-<div class="sidebar-text-large" > Address : {{property.street}},{{property.apt}},{{property.city}}, {{property.state}} , {{property.zip}} </div>
-<div class="hide-sm text-muted" >
-<ul class="list-layout summary-card__additional-details-list"0.2.0">
-<li > {{property.propertytype}}</li>
-<li >
-<div class="star-rating-wrapper" >
-<div class="star-rating" </div>
-<span class="h6"><small data-reactid=".1iqowse7dvk.2.0.2.0.1.0.0.3.0"><span data-reactid=".1iqowse7dvk.2.0.2.0.1.0.0.3.0.0"><span data-reactid=".1iqowse7dvk.2.0.2.0.1.0.0.3.0.0.0">Check the below details</span></span></small></span></div>
-</li>
-</ul>
-<div data-reactid=".1iqowse7dvk.2.0.2.1">{{property.description}}</div>
-</div>
-</div>
-<div class="panel-body hide-sm" data-reactid=".1iqowse7dvk.2.1">
-<div class="row row-condensed" data-reactid=".1iqowse7dvk.2.1.0">
-<div class="col-sm-5" data-reactid=".1iqowse7dvk.2.1.0.0">
-<div class="text-muted space-bottom-2" data-reactid=".1iqowse7dvk.2.1.0.0.0"><span data-reactid=".1iqowse7dvk.2.1.0.0.0.0">Check-in</span></div>
-<span data-reactid=".1iqowse7dvk.2.1.0.0.1">{{property.from}}</span></div>
-<div class="col-sm-2 summary-card__check-in-icon" data-reactid=".1iqowse7dvk.2.1.0.1">&nbsp;</div>
-<div class="col-sm-5" data-reactid=".1iqowse7dvk.2.1.0.2">
-<div class="text-muted space-bottom-2" data-reactid=".1iqowse7dvk.2.1.0.2.0"><span data-reactid=".1iqowse7dvk.2.1.0.2.0.0">Checkout</span></div>
-<span data-reactid=".1iqowse7dvk.2.1.0.2.1">    {{property.till}}</span></div>
-</div>
-</div>
-<div class="panel-body hide-sm" data-reactid=".1iqowse7dvk.2.2">
-<table class="summary-card__billing-table" data-reactid=".1iqowse7dvk.2.2.0">
-<tbody data-reactid=".1iqowse7dvk.2.2.0.0">
-<tr class="price-item" data-reactid=".1iqowse7dvk.2.2.0.0.1:$$26 x 1 night"><th class="price-item__header" scope="row" data-reactid=".1iqowse7dvk.2.2.0.0.1:$$26 x 1 night.0"><span data-reactid=".1iqowse7dvk.2.2.0.0.1:$$26 x 1 night.0.0">{{numberOfDays}} night</span></th>
-<td class="text-right price-item__price" data-reactid=".1iqowse7dvk.2.2.0.0.1:$$26 x 1 night.1">
-<div class="" data-reactid=".1iqowse7dvk.2.2.0.0.1:$$26 x 1 night.1.0"><span data-reactid=".1iqowse7dvk.2.2.0.0.1:$$26 x 1 night.1.0.0">Price : {{property.price}}</span></div>
-</td>
-</tr>
-<tr class="price-item" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Cleaning fee"><th class="price-item__header" scope="row" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Cleaning fee.0"><span data-reactid=".1iqowse7dvk.2.2.0.0.1:$Cleaning fee.0.0">Cleaning fee</span><noscript data-reactid=".1iqowse7dvk.2.2.0.0.1:$Cleaning fee.0.3.0.1"></noscript></th>
-<td class="text-right price-item__price" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Cleaning fee.1">
-<div class="" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Cleaning fee.1.0"><span data-reactid=".1iqowse7dvk.2.2.0.0.1:$Cleaning fee.1.0.0">$0</span></div>
-</td>
-</tr>
-<tr class="price-item" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Service fee"><th class="price-item__header" scope="row" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Service fee.0"><span data-reactid=".1iqowse7dvk.2.2.0.0.1:$Service fee.0.0">Service fee</span><noscript data-reactid=".1iqowse7dvk.2.2.0.0.1:$Service fee.0.3.0.1"></noscript></th>
-<td class="text-right price-item__price" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Service fee.1">
-<div class="" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Service fee.1.0"><span data-reactid=".1iqowse7dvk.2.2.0.0.1:$Service fee.1.0.0">$0</span></div>
-</td>
-</tr>
-<tr class="price-item" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes"><th class="price-item__header" scope="row" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes.0"><span data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes.0.0">Occupancy Taxes</span><noscript data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes.0.3.0.1"></noscript></th>
-<td class="text-right price-item__price" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes.1">
-<div class="" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes.1.0"><span data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes.1.0.0">$0</span></div>
-</td>
-</tr>
+    </div>
+    <div class="panel-body" data-reactid=".1iqowse7dvk.2.0">
+      <div class="text-muted space-2" ><span0.0.0">Hosted by {{property.hostdata[0].firstname}} {{property.hostdata[0].lastname}} </span></div>
+      <div class="sidebar-text-large" > Address : {{property.street}},{{property.apt}},{{property.city}}, {{property.state}} , {{property.zip}} </div>
+      <div class="hide-sm text-muted" >
+        <ul class="list-layout summary-card__additional-details-list"0.2.0">
+          <li > {{property.propertytype}}</li>
+          <li >
+            <div class="star-rating-wrapper" >
+              <div class="star-rating" </div>
+                <span class="h6"><small data-reactid=".1iqowse7dvk.2.0.2.0.1.0.0.3.0"><span data-reactid=".1iqowse7dvk.2.0.2.0.1.0.0.3.0.0"><span data-reactid=".1iqowse7dvk.2.0.2.0.1.0.0.3.0.0.0">Check the below details</span></span></small></span></div>
+              </li>
+            </ul>
+            <div data-reactid=".1iqowse7dvk.2.0.2.1">{{property.description}}</div>
+          </div>
+        </div>
+        <div class="panel-body hide-sm" data-reactid=".1iqowse7dvk.2.1">
+          <div class="row row-condensed" data-reactid=".1iqowse7dvk.2.1.0">
+            <div class="col-sm-5" data-reactid=".1iqowse7dvk.2.1.0.0">
+              <div class="text-muted space-bottom-2" data-reactid=".1iqowse7dvk.2.1.0.0.0"><span data-reactid=".1iqowse7dvk.2.1.0.0.0.0">Check-in</span></div>
+              <span data-reactid=".1iqowse7dvk.2.1.0.0.1">{{property.from}}</span></div>
+              <div class="col-sm-2 summary-card__check-in-icon" data-reactid=".1iqowse7dvk.2.1.0.1">&nbsp;</div>
+              <div class="col-sm-5" data-reactid=".1iqowse7dvk.2.1.0.2">
+                <div class="text-muted space-bottom-2" data-reactid=".1iqowse7dvk.2.1.0.2.0"><span data-reactid=".1iqowse7dvk.2.1.0.2.0.0">Checkout</span></div>
+                <span data-reactid=".1iqowse7dvk.2.1.0.2.1">    {{property.till}}</span></div>
+              </div>
+            </div>
+            <div class="panel-body hide-sm" data-reactid=".1iqowse7dvk.2.2">
+              <table class="summary-card__billing-table" data-reactid=".1iqowse7dvk.2.2.0">
+                <tbody data-reactid=".1iqowse7dvk.2.2.0.0">
+                  <tr class="price-item" data-reactid=".1iqowse7dvk.2.2.0.0.1:$$26 x 1 night"><th class="price-item__header" scope="row" data-reactid=".1iqowse7dvk.2.2.0.0.1:$$26 x 1 night.0"><span data-reactid=".1iqowse7dvk.2.2.0.0.1:$$26 x 1 night.0.0">{{numberOfDays}} night</span></th>
+                    <td class="text-right price-item__price" data-reactid=".1iqowse7dvk.2.2.0.0.1:$$26 x 1 night.1">
+                      <div class="" data-reactid=".1iqowse7dvk.2.2.0.0.1:$$26 x 1 night.1.0"><span data-reactid=".1iqowse7dvk.2.2.0.0.1:$$26 x 1 night.1.0.0">Price : {{property.price}}</span></div>
+                    </td>
+                  </tr>
+                  <tr class="price-item" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Cleaning fee"><th class="price-item__header" scope="row" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Cleaning fee.0"><span data-reactid=".1iqowse7dvk.2.2.0.0.1:$Cleaning fee.0.0">Cleaning fee</span><noscript data-reactid=".1iqowse7dvk.2.2.0.0.1:$Cleaning fee.0.3.0.1"></noscript></th>
+                    <td class="text-right price-item__price" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Cleaning fee.1">
+                      <div class="" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Cleaning fee.1.0"><span data-reactid=".1iqowse7dvk.2.2.0.0.1:$Cleaning fee.1.0.0">$0</span></div>
+                    </td>
+                  </tr>
+                  <tr class="price-item" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Service fee"><th class="price-item__header" scope="row" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Service fee.0"><span data-reactid=".1iqowse7dvk.2.2.0.0.1:$Service fee.0.0">Service fee</span><noscript data-reactid=".1iqowse7dvk.2.2.0.0.1:$Service fee.0.3.0.1"></noscript></th>
+                    <td class="text-right price-item__price" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Service fee.1">
+                      <div class="" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Service fee.1.0"><span data-reactid=".1iqowse7dvk.2.2.0.0.1:$Service fee.1.0.0">$0</span></div>
+                    </td>
+                  </tr>
+                  <tr class="price-item" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes"><th class="price-item__header" scope="row" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes.0"><span data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes.0.0">Occupancy Taxes</span><noscript data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes.0.3.0.1"></noscript></th>
+                    <td class="text-right price-item__price" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes.1">
+                      <div class="" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes.1.0"><span data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes.1.0.0">$0</span></div>
+                    </td>
+                  </tr>
 
-</tbody>
-</table>
-</div>
-<div class="panel-body hide-sm" data-reactid=".1iqowse7dvk.2.3">
-<table class="summary-card__billing-table" data-reactid=".1iqowse7dvk.2.3.0.0">
-<tbody data-reactid=".1iqowse7dvk.2.3.0.0.0">
-<tr class="price-item" data-reactid=".1iqowse7dvk.2.3.0.0.0.0"><th class="price-item__header" scope="row" data-reactid=".1iqowse7dvk.2.3.0.0.0.0.0"><span data-reactid=".1iqowse7dvk.2.3.0.0.0.0.0.0">Total</span></th>
-<td class="text-right price-item__price" data-reactid=".1iqowse7dvk.2.3.0.0.0.0.1">
-    <div class="" data-reactid=".1iqowse7dvk.2.3.0.0.0.0.1.0"><span data-reactid=".1iqowse7dvk.2.3.0.0.0.0.1.0.0"> : <b>{{numberOfDays * property.price }}</b></span><sup data-reactid=".1iqowse7dvk.2.3.0.0.0.0.1.0.1">USD</sup></div>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="cancellation-policy" data-reactid=".1iqowse7dvk.2.3.1"><span data-reactid=".1iqowse7dvk.2.3.1.0"><span data-reactid=".1iqowse7dvk.2.3.1.0.0">Cancellation policy: </span><span data-reactid=".1iqowse7dvk.2.3.1.0.$0"><a href="/home/cancellation_policies#strict" target="_blank" data-reactid=".1iqowse7dvk.2.3.1.0.$0.0"><span data-reactid=".1iqowse7dvk.2.3.1.0.$0.0.$0">Strict</span></a></span></span></div>
-<noscript data-reactid=".1iqowse7dvk.2.3.2"></noscript></div>
-<div class="show-sm panel-body text-center" data-reactid=".1iqowse7dvk.2.4"><a data-reactid=".1iqowse7dvk.2.4.0"><span data-reactid=".1iqowse7dvk.2.4.0.0">View pricing and trip summary</span></a></div>
-<input id="apply_airbnb_credit" name="apply_airbnb_credit" type="hidden" value="1" data-reactid=".1iqowse7dvk.2.5" /></div>
-<div class="hide-sm" data-reactid=".1iqowse7dvk.6">
-<div class="risk-messagebox-container space-top-md-4 space-top-lg-5" data-reactid=".1iqowse7dvk.6.0">
-<div class="risk-messagebox-pane row row-condensed" data-reactid=".1iqowse7dvk.6.0.0">
-<div class="va-container va-container-h va-container-v" data-reactid=".1iqowse7dvk.6.0.0.0">
-<div class="col-sm-10" data-reactid=".1iqowse7dvk.6.0.0.0.0">
-<h4 class="risk-messagebox__title space-top-1" data-reactid=".1iqowse7dvk.6.0.0.0.0.0"><span data-reactid=".1iqowse7dvk.6.0.0.0.0.0.0">Airbnb will never ask you to wire money</span></h4>
-<hr data-reactid=".1iqowse7dvk.6.0.0.0.0.1" /></div>
-<div class="va-middle col-sm-2" data-reactid=".1iqowse7dvk.6.0.0.0.1">&nbsp;</div>
-</div>
-<div class="col-sm-10 col-md-12 col-lg-12 risk-messagebox__content" data-reactid=".1iqowse7dvk.6.0.0.1"><span data-reactid=".1iqowse7dvk.6.0.0.1.0">Paying through the Airbnb website or app helps keep your payments secure, and helps you stay covered by applicable policies.</span></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<script src="/scripts/util.client.logging.js"></script>
-</div>
+                </tbody>
+              </table>
+            </div>
+            <div class="panel-body hide-sm" data-reactid=".1iqowse7dvk.2.3">
+              <table class="summary-card__billing-table" data-reactid=".1iqowse7dvk.2.3.0.0">
+                <tbody data-reactid=".1iqowse7dvk.2.3.0.0.0">
+                  <tr class="price-item" data-reactid=".1iqowse7dvk.2.3.0.0.0.0"><th class="price-item__header" scope="row" data-reactid=".1iqowse7dvk.2.3.0.0.0.0.0"><span data-reactid=".1iqowse7dvk.2.3.0.0.0.0.0.0">Total</span></th>
+                    <td class="text-right price-item__price" data-reactid=".1iqowse7dvk.2.3.0.0.0.0.1">
+                      <div class="" data-reactid=".1iqowse7dvk.2.3.0.0.0.0.1.0"><span data-reactid=".1iqowse7dvk.2.3.0.0.0.0.1.0.0"> : <b>{{numberOfDays * property.price }}</b></span><sup data-reactid=".1iqowse7dvk.2.3.0.0.0.0.1.0.1">USD</sup></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="cancellation-policy" data-reactid=".1iqowse7dvk.2.3.1"><span data-reactid=".1iqowse7dvk.2.3.1.0"><span data-reactid=".1iqowse7dvk.2.3.1.0.0">Cancellation policy: </span><span data-reactid=".1iqowse7dvk.2.3.1.0.$0"><a href="/home/cancellation_policies#strict" target="_blank" data-reactid=".1iqowse7dvk.2.3.1.0.$0.0"><span data-reactid=".1iqowse7dvk.2.3.1.0.$0.0.$0">Strict</span></a></span></span></div>
+              <noscript data-reactid=".1iqowse7dvk.2.3.2"></noscript></div>
+              <div class="show-sm panel-body text-center" data-reactid=".1iqowse7dvk.2.4"><a data-reactid=".1iqowse7dvk.2.4.0"><span data-reactid=".1iqowse7dvk.2.4.0.0">View pricing and trip summary</span></a></div>
+              <input id="apply_airbnb_credit" name="apply_airbnb_credit" type="hidden" value="1" data-reactid=".1iqowse7dvk.2.5" /></div>
+              <div class="hide-sm" data-reactid=".1iqowse7dvk.6">
+                <div class="risk-messagebox-container space-top-md-4 space-top-lg-5" data-reactid=".1iqowse7dvk.6.0">
+                  <div class="risk-messagebox-pane row row-condensed" data-reactid=".1iqowse7dvk.6.0.0">
+                    <div class="va-container va-container-h va-container-v" data-reactid=".1iqowse7dvk.6.0.0.0">
+                      <div class="col-sm-10" data-reactid=".1iqowse7dvk.6.0.0.0.0">
+                        <h4 class="risk-messagebox__title space-top-1" data-reactid=".1iqowse7dvk.6.0.0.0.0.0"><span data-reactid=".1iqowse7dvk.6.0.0.0.0.0.0">Airbnb will never ask you to wire money</span></h4>
+                        <hr data-reactid=".1iqowse7dvk.6.0.0.0.0.1" /></div>
+                        <div class="va-middle col-sm-2" data-reactid=".1iqowse7dvk.6.0.0.0.1">&nbsp;</div>
+                      </div>
+                      <div class="col-sm-10 col-md-12 col-lg-12 risk-messagebox__content" data-reactid=".1iqowse7dvk.6.0.0.1"><span data-reactid=".1iqowse7dvk.6.0.0.1.0">Paying through the Airbnb website or app helps keep your payments secure, and helps you stay covered by applicable policies.</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script src="/scripts/util.client.logging.js"></script>
+        </div>
 
-</div>    
+      </div>    
 
 
     

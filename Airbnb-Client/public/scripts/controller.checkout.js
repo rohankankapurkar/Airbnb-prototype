@@ -34,24 +34,20 @@ airbnbApp.controller('controllerCheckout',function($scope,$http,$state,$statePar
 	$scope.username = JSON.parse(localStorage.getItem('username'));
 	$scope.userid = JSON.parse(localStorage.getItem('userid'));
 
-	console.log($scope.numberOfDays);
-	console.log($scope.property);
-	console.log($scope.fromdate);
-	console.log($scope.tilldate);
-	console.log($scope.username);
-
-
-
-
-	console.log($scope.property);
-	console.log($scope.userid)
+	$scope.invCreditCardNumber = "";
+	$scope.invCreditCardCVV = "";
+	$scope.invExpDate = "";
+	$scope.invName =  "";
 
 	var price = parseInt($scope.numberOfDays * parseInt($scope.property.price));
 	//This function should be called after all validations.
 	//Either call all the validaion functions from this function or call this from the validation funcitons in if-else
 	//But should be called at the end
 	$scope.finalCheckout = function(){
-		$http({
+
+		if($scope.applyCreditCardValidations())
+		{	
+			$http({
 				method : "POST",
 				url : '/user/bookproperty',
 				data :{
@@ -66,13 +62,102 @@ airbnbApp.controller('controllerCheckout',function($scope,$http,$state,$statePar
 				}
 			}).success(function(data) {
 				console.log("Success");
-		        $state.go('home.profile.trips')
-
-
+		        $state.go('home.profile.trips');
 			})
 			.error(function(data){
 				console.log("Error")
-			})
-
+			})	
+		}
+		
 	}
+
+
+	$scope.applyCreditCardValidations = function(){
+
+		var validFlag = true;
+		
+		if($scope.creditCard != null && $scope.creditCard != undefined && $scope.creditCard != "")
+		{
+			if($scope.creditCard.length != 16)
+			{
+				$scope.invCreditCardNumber = "Invalid Credit Card Number";
+				validFlag = false;
+				alert($scope.invCreditCardNumber);
+			}
+			else
+			{
+				if(/^\d+$/.test($scope.creditCard))
+				{
+					$scope.invCreditCardNumber = "";
+				}
+				else
+				{
+					$scope.invCreditCardNumber = "Credit Card number should only contain digits";
+					validFlag = false;
+				}
+			}
+		}
+		else
+		{
+			$scope.invCreditCardNumber = "Credit Card Number can't be Empty"	
+		}		
+
+		if($scope.creditCardCVV != "" && $scope.creditCardCVV != undefined && $scope.creditCardCVV != "" )
+		{
+			if($scope.creditCardCVV.match(/^\d+$/) || $scope.creditCardCVV.length !=3)
+			{
+				$scope.invCreditCardCVV = "Invalid Credit Card Security Code"
+				validFlag = false;
+			}	
+		}
+		else
+		{
+			$scope.invCreditCardCVV = "Credit Card Security Code can't be Empty"
+			validFlag = false;
+		}
+		
+
+		if($scope.creditCardExp != null || $scope.creditCardExp != undefined && $scope.creditCardExp != "")
+		{
+			var expDate = new Date($scope.creditCardExp);
+			var today = new Date();
+			if(expDate < today)
+			{
+				$scope.invExpDate = "Invalid Expiry Date";
+				validFlag = false;
+			}
+		}
+		else
+		{
+			$scope.invExpDate = "Expiry Date can't be Empty";
+			validFlag = false;
+		}
+
+		if($scope.creditCardName != null || $scope.creditCardName != undefined && $scope.creditCardName != "")
+		{
+			console.log("true");
+		}
+		else
+		{
+			$scope.$scope.invNameinvCreditCardNumber
+			$scope.invCreditCardCVV
+			$scope.invExpDate
+			$scope.invName = "Name Cannot be empty";
+			validFlag = false;
+		}
+
+		return validFlag;
+	}
+
+	$http({
+		method: "GET",
+		url : '/user/update_profile'
+	}).success(function(data){
+		$scope.creditCard = data.credit_card;
+		$scope.creditCardName = data.firstname+" "+data.lastname;
+	}).error(function(data){
+		console.log("Error while fetching user data");
+	})
+
+
 })

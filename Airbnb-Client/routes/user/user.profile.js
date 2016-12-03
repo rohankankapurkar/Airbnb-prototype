@@ -76,9 +76,11 @@ exports.show_profile = function(req, res){
 
 	mq_client.make_request('profile_show_queue',msg_payload, function(err,result){
 		console.log("sending data to profile_update_queue");
-		if(result.err){
-			//res.send(result);
-			System.out.println("error"+result.err);
+		if(err){
+			console.log(err);
+			var response = {};
+			response.statuscode = 1;
+			response.message = "Internal Server Error Occurred";			
 		}
 		else
 		{
