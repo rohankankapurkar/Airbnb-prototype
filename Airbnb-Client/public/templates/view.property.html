@@ -347,7 +347,6 @@
                   <div>
                     <div>
                       <div>
-                        <h1> map section </h1>
                         <br/>
                         <br/>
 
@@ -382,46 +381,21 @@
       	<span></span>
       </div>
 
-      <h2 style="padding-left: 20px">{{selectedProperty.review.length}}&nbsp;&nbsp;Reviews</h2>
-      <div ng-repeat="prop in selectedProperty.review" style="padding-left: 25px;">
-        <!-- Testimonial -->
-        <div class="testimonial">
-          <!-- Author Photo -->
-          <div class="author-photo">
-            <p class="quote"><strong>{{ prop.from }}</strong> </p>
-          </div>
-          <div class="testimonial-bubble">
-            <blockquote>
 
-              <p class="quote">{{ prop.reviewPost }} </p>
-
-
-
-              <span class="stars">
-            <span ng-style="{ 'width': getStars({{ prop.rating }}) }"></span>
-        </span>
-
-            </blockquote>
-            <div class="sprite arrow-speech-bubble"></div>
-          </div>
-        </div>
-
-      </div>
-
-      <div>
+      <!-- <div>
           <div id="map" style="width:100%; height:300px;"></div>
           <div id="repeat" ng-repeat="marker in markers | orderBy : 'title'">
           </div>
-      </div>
+      </div> -->
 
 
     </div>
   </div>
 </div>
-<div class="col-md-5 landing_right-col" style="padding-right: 0px; margin-right:0px; width: 400px; margin-top: -40px;">
+<div class="col-md-5 landing_right-col">
 <!-- booking window -->
 <!-- <div class="book-it">-->
-  <div class = "col-md-11">
+  <div class = "col-md-11" style="padding-right: 0px; margin-right:0px; width: 400px; margin-top: -40px;">
     <div class="book-it__container fixed">
     <!-- first box -->
       <div class="box-border" style="opacity: 3 !important; background-color: gba(60,63,64,0.9) !important;">
@@ -526,6 +500,38 @@
     </div> -->
 
   </div>
+
+  <div style="margin-right: 10px;">
+      <div id="map" style="width:100%; height:300px;"></div>
+      <div id="repeat" ng-repeat="marker in markers | orderBy : 'title'">
+      </div>
+  </div>
+  <h2 style="padding-left: 20px">{{selectedProperty.review.length}}&nbsp;&nbsp;Reviews</h2>
+  <div ng-repeat="prop in selectedProperty.review" style="padding-left: 25px;">
+    <!-- Testimonial -->
+    <div class="testimonial">
+      <!-- Author Photo -->
+      <div class="author-photo">
+        <p class="quote"><strong>{{ prop.from }}</strong> </p>
+      </div>
+      <div class="testimonial-bubble">
+        <blockquote>
+
+          <p class="quote">{{ prop.reviewPost }} </p>
+
+
+
+          <span class="stars">
+        <span ng-style="{ 'width': getStars({{ prop.rating }}) }"></span>
+    </span>
+
+        </blockquote>
+        <div class="sprite arrow-speech-bubble"></div>
+      </div>
+    </div>
+
+  </div>
+
 
 </div>
 <script src="/scripts/util.client.logging.js"></script>
