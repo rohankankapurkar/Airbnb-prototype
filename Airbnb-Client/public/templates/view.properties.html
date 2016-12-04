@@ -138,18 +138,15 @@
 								<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 									<div class="carousel-inner" id="carousel-properties" role="listbox">
 										<div class="item active">
-											<img src="{{property.images[0]}}" alt="First slide">
+											<img src="{{property.images[0]}}" class="property-images" alt="First slide">
 										</div>
 										<div class="item">
-											<img src="{{property.images[0]}}" alt="Second slide">
+											<img src="{{property.images[0]}}" class="property-images" alt="Second slide">
 										</div>
 										<div class="item">
-											<img src="{{property.images[0]}}" alt="Third slide">
+											<img src="{{property.images[0]}}" class="property-images" alt="Third slide">
 										</div>
 										<span class="glyphicon glyphicon-heart homepage-thumbnails-h2 properties-heart"></span>
-                    <span class="properties-host-pic">
-                        <img src="/images/tokyo.jpg" class="img-circle">
-                    </span>
 									</div>
 									<a class="left carousel-control" data-target="#carousel-example-generic" role="button" data-slide="prev">
 										<span class="icon-prev" aria-hidden="true"></span>
@@ -159,9 +156,21 @@
 										<span class="icon-next" aria-hidden="true"></span>
 										<span class="sr-only">Next</span>
 									</a>
+                  <div class="box-border" style="background-color: gba(60,63,64,0.9) !important; width: 70px; height: 30px;">
+                    <div >
+                      <span style="text-color: white; margin-top: -80px; display: block; position:absoulte; padding-left: 10px; font-size: 20px;"> ${{property.price}} </span>
+                    </div>
+                  </div>
 								</div>
+                <!-- <div class="box-border">
+                  <span class="properties-host-pic">
+                      <img src="/images/tokyo.jpg" class="img-circle" style="width: 60px; height: 60px; border-style: bold; border-color:white; position: absolute;">
+                  </span>
+                </div> -->
 								<span style="margin-left:4%"></span><br/>
-								<span style="font-size:12px; font-color:#888888; margin-left:4%">{{property.guestaccess}} · {{property.noofguests}} guests {{property.review.length}} reviews</span>
+                <div style="padding-top: 10% !important;">
+  				        <span style="font-size:12px; font-color:#888888; margin-left:4%;">{{property.guestaccess}} · {{property.noofguests}} guests <span ng-if = "property.review.length > 0">{{property.review.length}}</span><span ng-if= !property.review>0 </span> reviews</span>
+                </div>
 							</a>
 						</div>
 					</div>
