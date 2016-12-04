@@ -7,26 +7,26 @@ airbnbApp.controller('controllerCheckout',function($scope,$http,$state,$statePar
     	}
     	if($state.params.property != null && $state.params.property != "" && $state.params.property != undefined)
     	{
-    		localStorage.setItem('property',JSON.stringify($state.params.property));	
+    		localStorage.setItem('property',JSON.stringify($state.params.property));
     	}
     	if($state.params.fromdate != null && $state.params.fromdate != "" && $state.params.fromdate != undefined)
     	{
-    		localStorage.setItem('fromdate',JSON.stringify($state.params.fromdate));	
+    		localStorage.setItem('fromdate',JSON.stringify($state.params.fromdate));
     	}
     	if($state.params.tilldate != null && $state.params.tilldate != "" && $state.params.tilldate != undefined)
     	{
-    		localStorage.setItem('tilldate',JSON.stringify($state.params.tilldate));	
+    		localStorage.setItem('tilldate',JSON.stringify($state.params.tilldate));
     	}
     	if($state.params.username != null && $state.params.username != "" && $state.params.username != undefined)
     	{
-    		localStorage.setItem('username',JSON.stringify($state.params.username));	
+    		localStorage.setItem('username',JSON.stringify($state.params.username));
     	}
     	if($state.params.userid != null && $state.params.userid != "" && $state.params.userid != undefined)
     	{
-    		localStorage.setItem('userid',JSON.stringify($state.params.userid));	
+    		localStorage.setItem('userid',JSON.stringify($state.params.userid));
     	}
-  	} 
-	
+  	}
+
 	$scope.numberOfDays = JSON.parse(localStorage.getItem('numberOfDays'));
 	$scope.property = JSON.parse(localStorage.getItem('property'));
 	$scope.fromdate = JSON.parse(localStorage.getItem('fromdate'));
@@ -46,7 +46,7 @@ airbnbApp.controller('controllerCheckout',function($scope,$http,$state,$statePar
 	$scope.finalCheckout = function(){
 
 		if($scope.applyCreditCardValidations())
-		{	
+		{
 			$http({
 				method : "POST",
 				url : '/user/bookproperty',
@@ -66,16 +66,16 @@ airbnbApp.controller('controllerCheckout',function($scope,$http,$state,$statePar
 			})
 			.error(function(data){
 				console.log("Error")
-			})	
+			})
 		}
-		
+
 	}
 
 
 	$scope.applyCreditCardValidations = function(){
 
 		var validFlag = true;
-		
+
 		if($scope.creditCard != null && $scope.creditCard != undefined && $scope.creditCard != "")
 		{
 			if($scope.creditCard.length != 16)
@@ -99,25 +99,26 @@ airbnbApp.controller('controllerCheckout',function($scope,$http,$state,$statePar
 		}
 		else
 		{
-			$scope.invCreditCardNumber = "Credit Card Number can't be Empty"	
-		}		
+			$scope.invCreditCardNumber = "Credit Card Number can't be Empty"
+		}
 
-		if($scope.creditCardCVV != "" && $scope.creditCardCVV != undefined && $scope.creditCardCVV != "" )
+		if($scope.creditCardCVV != null && $scope.creditCardCVV != undefined && $scope.creditCardCVV != "" )
 		{
-			if($scope.creditCardCVV.match(/^\d+$/) || $scope.creditCardCVV.length !=3)
+			console.log($scope.creditCardCVV);
+			if(!(/^\d+$/.test($scope.creditCardCVV)) || $scope.creditCardCVV.length !=3)
 			{
 				$scope.invCreditCardCVV = "Invalid Credit Card Security Code"
 				validFlag = false;
-			}	
+			}
 		}
 		else
 		{
 			$scope.invCreditCardCVV = "Credit Card Security Code can't be Empty"
 			validFlag = false;
 		}
-		
 
-		if($scope.creditCardExp != null || $scope.creditCardExp != undefined && $scope.creditCardExp != "")
+
+		if($scope.creditCardExp != null && $scope.creditCardExp != undefined && $scope.creditCardExp != "")
 		{
 			var expDate = new Date($scope.creditCardExp);
 			var today = new Date();
@@ -133,7 +134,7 @@ airbnbApp.controller('controllerCheckout',function($scope,$http,$state,$statePar
 			validFlag = false;
 		}
 
-		if($scope.creditCardName != null || $scope.creditCardName != undefined && $scope.creditCardName != "")
+		if($scope.creditCardName != null && $scope.creditCardName != undefined && $scope.creditCardName != "")
 		{
 			console.log("true");
 		}
