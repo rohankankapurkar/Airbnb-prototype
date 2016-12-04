@@ -108,3 +108,19 @@ describe('book trip', function() {
       })
   })
 });
+
+
+describe('host reviews', function()
+{
+    it('should be able to get Host reviews', function()
+    {
+        chai.request(server)
+            .post('/host/getReviewForHost',  {
+                host_id: '000-00-0052'
+                    })
+                    .end(function(err, res){
+                        res.should.have.status(200);
+                        done();
+                    })
+    });
+})
