@@ -235,13 +235,23 @@ exports.saveUserReview =function(req, res)
 exports.getclicksperproperty = function(req, res){
 
 		var msg_payload = {};
-		mq_client.make_request("getClickPerProperty_queue", msg_payload, function(err, result){
-			if(err){
-				res.send({statuscode:1, message:'Error occurred while getting data from db'});
-			}else{
-				res.send({statuscode:0, result:result});
-			}
-		});
+		if(req.session.username)
+		{
+			msg_payload.username = req.session.username;
+			mq_client.make_request("getClickPerProperty_queue", msg_payload, function(err, result){
+				if(err){
+					res.send({statuscode:1, message:'Error occurred while getting data from db'});
+				}else{
+					res.send({statuscode:0, result:result});
+				}
+			});
+		}
+		else
+		{
+			res.send({statuscode:1, message:'Error occurred while getting data from db'});
+		}
+
+		
 }
 
 
@@ -314,6 +324,26 @@ exports.getReviewForHost = function(req, res){
 			console.log("lala printing the result" +JSON.Stringify(result))
 		}
 	});
+}
+
+
+exports.getBidLogs = function(req,res){
+
+	if(req.session.username)
+	{
+		msg_payload.username = req.session.username;
+		mq_client.make_request("getBidCount_queue", msg_payload, function(err, result){
+			if(err){
+				res.send({statuscode:1, message:'Error occurred while getting data from db'});
+			}else{
+				res.send({statuscode:0, result:result});
+			}
+		});
+	}
+	else
+	{
+		res.send({statuscode:1, message:'Error occurred while getting data from db'});
+	}
 }
 
 

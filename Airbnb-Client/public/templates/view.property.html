@@ -392,7 +392,9 @@
     </div>
   </div>
 </div>
-<div class="col-md-5 landing_right-col">
+
+<div class="col-md-5 landing_right-col" style="padding-right: 0px; margin-right:0px; width: 450px; margin-top: -40px;">
+
 <!-- booking window -->
 <!-- <div class="book-it">-->
   <div class = "col-md-11" style="padding-right: 0px; margin-right:0px; width: 400px; margin-top: -40px;">
@@ -414,7 +416,7 @@
           <div class="panel-body panel-light">
             <!-- check in check out guest number row -->
             <div class="row row-condensed" style="margin-bottom:20px;">
-              <div class="col-md-11">
+              <div class="col-md-12">
                 <div class="row ">
                   <div class="col-md-5">
                     <label class="font-airbnb-faded">Check In</label>
@@ -428,10 +430,11 @@
                   </div>
                   <div class="col-md-2">
                     <label class="font-airbnb-faded">Guests</label>
-                      <select id="guestNumber" class="form-control">
+<!--                       <select id="guestNumber" class="form-control">
                         <option selected>1</option>
                         <option>2</option>
-                        <option>3</option>
+                        <option>3</option> -->
+                        <input type="number" min=1 max={{selectedProperty.noofguests}}  id="guestsSelect"/>
                       </select>
                   </div>
                 </div>
