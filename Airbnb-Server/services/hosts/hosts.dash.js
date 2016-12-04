@@ -47,8 +47,10 @@ exports.getClickPerProperty = function(msg, callback){
 	mongo.connect(function(){
 
 		var coll = mongo.collection("propertylogs");
-
-		coll.aggregate([    
+		console.log("User ------ >")
+		console.log(msg.username);
+		coll.aggregate([  
+				{$match : {hostname : msg.username}},  
 				{$group:{_id: "$property",count : {$sum : 1}}},
 				{$sort: { count: -1}}]).toArray(function(err, result){
 					if(err){

@@ -68,7 +68,7 @@ airbnbApp.controller('controllerHostAnalytics',function($log, $scope,$http,$stat
 		
 	
 	
-	$http({
+	/*$http({
 		method : "POST",
 		url : '/getusersession'
 	}).success(function(data) {
@@ -125,7 +125,7 @@ airbnbApp.controller('controllerHostAnalytics',function($log, $scope,$http,$stat
 		}
 	}).error(function(error) {
 
-	});
+	});*/
 	
 	
 	

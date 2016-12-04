@@ -77,7 +77,9 @@ exports.logPropertyClicks = function(req,res){
 	var propertyTitle = req.param('property');
 	var timestamp = getCurrentTime();
 	var city = req.param('city');
-	var response = {}
+	var hostname = req.param('hostname');
+	var response = {};
+
 
 	if(req.session.username)
 	{
@@ -87,6 +89,7 @@ exports.logPropertyClicks = function(req,res){
 				username : req.session.username,
 				property : propertyTitle,
 				city : city,
+				hostname : hostname,
 				timestamp : timestamp
 			},function(err, records){
 				if(err)

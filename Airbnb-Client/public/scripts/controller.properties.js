@@ -194,20 +194,22 @@ airbnbApp.controller('controllerProperties',function($scope,$http,$state,$stateP
         $scope.selectedProperty = $scope.properties[i];
     }
     
-    $scope.logPropertyClick($scope.selectedProperty.title, $scope.selectedProperty.city);
+    $scope.logPropertyClick($scope.selectedProperty.title, $scope.selectedProperty.city, $scope.selectedProperty.hostdata[0].username);
     $state.go('home.property', {selectedProperty: $scope.selectedProperty});
   }
 
 
 
-  $scope.logPropertyClick = function(title,city){
+  $scope.logPropertyClick = function(title,city,hostname){
 
+    console.log(hostname);
     $http({
       method : 'POST',
       url : '/analytics/property/clicks',
       data : {
         property : title,
-        city : city
+        city : city,
+        hostname : hostname
       }
 
     }).success(function(data){
