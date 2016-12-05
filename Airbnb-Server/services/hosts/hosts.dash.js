@@ -131,3 +131,24 @@ exports.getReviewCount = function(msg, callback){
 		});
 	});
 }
+
+
+exports.getPropertiesByHost = function(msg, callback){
+
+	var res = {"statuscode":0, "message":""};
+	mongo.connect(function(){
+
+		var properties = mongo.collection("properties");
+		var users = mongo.collection("users");
+
+		users.findOne({username:msg.username},{id:1}.function(err, result){
+			if(!err){
+				properties.find({host_id:result["id"]}, {"title":1}).toArray(function(err, result1){
+					res["data"] = result1;
+					callback(null, res);
+				});
+			}
+		});
+	});
+}
+

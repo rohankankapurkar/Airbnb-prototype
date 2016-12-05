@@ -7,6 +7,7 @@ var amqp = require('amqp')
 // set the mode here like connection pooling, sql caching and many more.
 // process.env.MODE = "NONE";
 process.env.MODE = "CONNECTION_POOL";
+process.env.CACHE = "REDIS";
 
 
 var signinService = require('./services/signin');
@@ -100,6 +101,24 @@ cnn.queue('getReviewCount_queue', function(q){
 			});
 		});
 	});
+
+
+//service to get properties losted by host
+cnn.queue('getPropertiesByHost_queue', function(q){
+		q.subscribe(function(message, headers, deliveryInfo, m){
+			util.log(util.format( deliveryInfo.routingKey, message));
+			util.log("DeliveryInfo: "+JSON.stringify(deliveryInfo));
+			hostDashService.getReviewCount(message, function(err,res){
+				//return index sent
+				cnn.publish(m.replyTo, res, {
+					contentType:'application/json',
+					contentEncoding:'utf-8',
+					correlationId:m.correlationId
+				});
+			});
+		});
+	});
+
 
 /////////////////////////////////////////////////////////////////////
 
