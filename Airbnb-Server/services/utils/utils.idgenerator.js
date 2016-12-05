@@ -4,7 +4,7 @@ var MODE = process.env.MODE;
 
 //Identify the mode and then import the required libraries
 if(MODE == "CONNECTION_POOL"){
-	var mongo = require('../utils/utils.mongo');
+	var mongo = require('../utils/utils.mongo.pool');
 }else{
 	var mongo = require('../utils/utils.mongo');
 }

@@ -45,9 +45,7 @@ RedisCache.getCachedDetails = function(key, params, callback) {
 		console.log(reply);
 		var counter= 0;
 		var output = [];
-		console.log(params);
 		reply = JSON.parse(reply);
-		console.log(reply.length);
 		for(counter = 0; counter < reply.length; counter++){
 			if(reply[counter]["prop_id"] == params["prop_id"]){
 				output.push(reply[counter]);

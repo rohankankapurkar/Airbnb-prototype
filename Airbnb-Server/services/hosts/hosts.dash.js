@@ -7,8 +7,8 @@ var moment = require('moment');
 
 //Identify the mode and then import the required libraries
 if(MODE == "CONNECTION_POOL"){
-	var mongo = require('../utils/utils.mongo');
-	var mysql = require('../utils/utils.mysql');
+	var mongo = require('../utils/utils.mongo.pool');
+	var mysql = require('../utils/utils.mysql.pool');
 }else{
 	var mongo = require('../utils/utils.mongo');
 	var mysql = require('../utils/utils.mysql');

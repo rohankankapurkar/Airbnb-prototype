@@ -7,7 +7,7 @@ var amqp = require('amqp')
 // set the mode here like connection pooling, sql caching and many more.
 // process.env.MODE = "NONE";
 process.env.MODE = "CONNECTION_POOL";
-process.env.CACHE = "REDIS";
+//process.env.CACHE = "REDIS";
 
 
 var signinService = require('./services/signin');

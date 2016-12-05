@@ -9,7 +9,7 @@ var redis = require("../utils/redis-cache");
 //Identify the mode and then import the required libraries
 if(MODE == "CONNECTION_POOL"){
 	var mongo = require('../utils/utils.mongo.pool');
-	var mysql = require('../utils/utils.mysql');
+	var mysql = require('../utils/utils.mysql.pool');
 }else{
 	var mongo = require('../utils/utils.mongo');
 	var mysql = require('../utils/utils.mysql');
@@ -227,7 +227,6 @@ exports.getAvailableDates = function(msg, callback){
 					console.log(EndDate);
 				}
 			}
-			console.log("Fuck" + dates);
 			res['statuscode'] = 0;
 			res['data'] = dates;
 		}
