@@ -60,51 +60,49 @@ $http({
 
 
 
-$scope.update_Profile = function()
-{
+$scope.update_Profile = function() {
 	$scope.inv_phone = "";
 	$scope.inv_credit_card = "";
 
 
-
-		console.log("Inside update profile " + $scope.user_first_name);
-		console.log("bc profile pic");
-
-
-		if ($("#profile_pic").val()){
+	if ($("#profile_pic").val()) {
 		$scope.profile_pic = $("#profile_pic").val();
-		}
+	}
 
-		else
-			{
+	else {
 
-			console.log( $scope.profile_pic);
+		console.log($scope.profile_pic);
 
-			}
+	}
 
-		console.log("this is id"+$("#profile_pic").val());
-		console.log( $scope.profile_pic);
+	console.log("this is id" + $("#profile_pic").val());
+	console.log($scope.profile_pic);
 
-		if ($scope.user_creditcard.length == 16 && !isNaN($scope.user_creditcard) && $scope.user_creditcard != null)
-			{
+	if ($scope.user_creditcard == undefined) {
+		$scope.inv_credit_card = "Please enter credit card details";
+	}
+	else {
+		if ($scope.user_creditcard.length == 16 && !isNaN($scope.user_creditcard) && $scope.user_creditcard != null) {
 			console.log("correct credit card")
-			}
-		else
-			{
+		}
+		else {
 			$scope.inv_credit_card = "Invalid credit card";
-			}
+		}
+	}
 
-		if ($scope.phone.length == 10 && !(isNaN($scope.phone)) && $scope.phone != null)
-			{
+	if ($scope.phone == undefined) {
+		$scope.inv_phone = "Please enter your phone number";
+	}
+	else
+	{
+		if ($scope.phone.length == 10 && !(isNaN($scope.phone)) && $scope.phone != null) {
 			console.log("corrct phone")
-			}
-		else
-
-		{
+		}
+		else {
 			$scope.inv_phone = "Invalid phone number";
 
 		}
-
+	}
 
 
 
