@@ -155,15 +155,19 @@ exports.getPropertiesByHost = function(msg, callback){
 
 exports.getBidStats = function(msg, callback){
 
-	var res = {};
+	var res = {"statuscode":0, "message":""};
 	mongo.connect(function(){
 
-		var properties = mongo.collection("bidlogs");
+		var bids = mongo.collection("bidlogs");
 
-		properties.find({"title":msg.title}, {bid_time:1, bid_amount:1}).toArray(function(result){
-
-
-
+		bids.find({"title":msg.title}, {bid_time:1, bid_amount:1}).toArray(function(err, result){
+			if(!err){
+				res["data"] = result;	
+			}
+			else{
+				res["message"] = "Error occurred while getting the bid data from the database";
+			}
+			callback(null, res);
 		});
 	});
 }
