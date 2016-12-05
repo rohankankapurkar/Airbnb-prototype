@@ -138,7 +138,8 @@ app.post('/host/getclicksperproperty', host.getclicksperproperty);
 app.post('/host/updateThisListing', host.updateThisListing);
 
 app.post('/host/getReviewCount', host.getreviewcount);
-app.get('/host/getReviewForHost', host.getReviewForHost)
+app.get('/host/getReviewForHost', host.getReviewForHost);
+app.get('/host/getHostProperties', host.getHostPropertyNames);
 
 
 app.post('/host/uploadVideo',profile.uploadVideo);

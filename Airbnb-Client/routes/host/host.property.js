@@ -354,5 +354,21 @@ exports.getBidLogs = function(req,res){
 }
 
 
+exports.getHostPropertyNames = function(req,res){
+
+	console.log("In propertyr fetch");
+	if(req.session.username)
+	{
+		msg_payload.username = req.session.username;
+		mq_client.make_request("getPropertiesByHost_queue", msg_payload, function(err, result){
+			if(err){
+				res.send({statuscode:1, message:'Error occurred while getting data from db'});
+			}else{
+				res.send({statuscode:0, result:result});
+			}
+		});
+	}
+}
+
 
 
