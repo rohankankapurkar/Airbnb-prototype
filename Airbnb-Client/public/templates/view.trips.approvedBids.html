@@ -44,11 +44,10 @@
             <br/>
             <span class="font-airbnb-faded"><b>End date: </b>{{userApprovedBid.propertyDetails.till}}</span>
             <br/>
-            <span class="font-airbnb-faded"><b>Bidding price: </b>{{userApprovedBid.bid_amount}}</span>
+            <span class="font-airbnb-faded"><b>Bidding price: </b>{{userApprovedBid.propertyDetails.price}}</span>
             <br/>
             <br/>
             <button class="btn btn-primary" ng-click="AcceptBid(userApprovedBid)">Accept</button>
-            <button class="btn btn-primary" ng-click="DeclineBid(userApprovedBid)">Decline</button>
           </div>
 
         </div>

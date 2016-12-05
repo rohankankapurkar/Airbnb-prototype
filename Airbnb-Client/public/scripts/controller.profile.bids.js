@@ -28,12 +28,12 @@ airbnbApp.controller('controllerTripsBids',function($scope,$http,$state,$statePa
             //get all properties id from bids
             var propertyIds = [];
             for(var i=0; i<user.bids.length; i++) {
-              propertyIds.push(user.bids[i].id);
+              propertyIds.push(user.bids[i].propertyid);
             }
 
             if(user.bidswon)
                 for(var i=0; i<user.bidswon.length; i++) {
-                  propertyIds.push(user.bidswon[i].id);
+                  propertyIds.push(user.bidswon[i].propertyid);
                 }
             console.log(propertyIds);
 
@@ -53,10 +53,11 @@ airbnbApp.controller('controllerTripsBids',function($scope,$http,$state,$statePa
 
 
                 //upcoming bookings
-                if($scope.userPendingBids.length > 0)
+                if($scope.userPendingBids)
                     for(var i=0; i<$scope.userPendingBids.length; i++)
                         for(var j=0; j<biddingWithProperties.data.length; j++) {
-                            if(biddingWithProperties.data[j].id == $scope.userPendingBids[i].id) {
+                            console.log();
+                            if(biddingWithProperties.data[j].id == $scope.userPendingBids[i].propertyid) {
                                 $scope.userPendingBids[i].propertyDetails = biddingWithProperties.data[j];
                                 $scope.userPendingBids[i].propertyDetails.from = moment($scope.userPendingBids[i].propertyDetails.from).format('YYYY-MM-DD');
                                 $scope.userPendingBids[i].propertyDetails.till = moment($scope.userPendingBids[i].propertyDetails.till).format('YYYY-MM-DD');
@@ -66,11 +67,11 @@ airbnbApp.controller('controllerTripsBids',function($scope,$http,$state,$statePa
                     $scope.NoUserPendingBidsMsg = true;
 
                 //approved bookings
-                if($scope.userApprovedBids.length > 0)
+                if($scope.userApprovedBids)
                     for(var i=0; i<$scope.userApprovedBids.length; i++)
                         for(var j=0; j<biddingWithProperties.data.length; j++)
                         {
-                            if(biddingWithProperties.data[j].id == $scope.userApprovedBids[i].id) {
+                            if(biddingWithProperties.data[j].id == $scope.userApprovedBids[i].propertyid) {
                                 $scope.userApprovedBids[i].propertyDetails = biddingWithProperties.data[j];
                                 $scope.userApprovedBids[i].propertyDetails.from = moment($scope.userApprovedBids[i].propertyDetails.from).format('YYYY-MM-DD');
                                 $scope.userApprovedBids[i].propertyDetails.till = moment($scope.userApprovedBids[i].propertyDetails.till).format('YYYY-MM-DD');
@@ -110,6 +111,7 @@ airbnbApp.controller('controllerTripsBids',function($scope,$http,$state,$statePa
 
               console.log("--------------acceptBid success------------");
               console.log(acceptBid);
+              $state.go('home.profile.trips.upcomingTrips');
 
           }).error(function(error) {
             console.log("error");
