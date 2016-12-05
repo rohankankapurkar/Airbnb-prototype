@@ -2,21 +2,21 @@
   <div class="panel">
     <div class="panel-body panel-light">
       <h1 ng-if= errorInUpdatingTrip> You dont have any upcoming trips. </h1>
-      <!-- for ng repeat -->
-      <div class="row" ng-if= !noupcomingTripsFoundMsg ng-repeat="upcomingTrip in upcomingTrips">
+      <!-- for ng repeat ng-if= !errorInUpdatingTrip ng-repeat="upcomingTrip in upcomingTrips"-->
+      <div class="row"  >
         <div class="col-md-6 col-sm-6 co-xs-12 gal-item">
         <a ng-click= transitionToProperty(property._id) id="property-display">
 
             <div id="tripsProperty" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner" id="carousel-properties" role="listbox">
                 <div class="item active">
-                  <img src="{{upcomingTrip.propertyDetails.images[0]}}" alt="First slide">
+                  <img src="{{editTrip.propertyDetails.images[0]}}" alt="First slide">
                 </div>
                 <div class="item">
-                  <img src="{{upcomingTrip.propertyDetails.images[0]}}" alt="Second slide">
+                  <img src="{{editTrip.propertyDetails.images[0]}}" alt="Second slide">
                 </div>
                 <div class="item">
-                  <img src="{{upcomingTrip.propertyDetails.images[0]}}" alt="Third slide">
+                  <img src="{{editTrip.propertyDetails.images[0]}}" alt="Third slide">
                 </div>
               </div>
               <a class="left carousel-control" data-target="#carousel-example-generic" role="button" data-slide="prev">
