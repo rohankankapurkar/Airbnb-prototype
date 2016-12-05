@@ -5,7 +5,7 @@ airbnbApp.controller('controllerBecomeHostStep3',function($scope,$state,$log,$ht
     $scope.price = "";
     $scope.currency = "";
     $scope.bidding = "";
-    
+    $scope.price_hide = true;
     $scope.becomeHost = function(){
         $state.go('home.becomeHost')
     }
@@ -14,21 +14,27 @@ airbnbApp.controller('controllerBecomeHostStep3',function($scope,$state,$log,$ht
     $scope.becomeHostDates = function () {
         $scope.secondstep.price = $scope.price;
         $scope.secondstep.currency = $scope.currency;
-        if($scope.bidding == "")
-            $scope.secondstep.biddingavailable = $scope.bidding;
-        else if($scope.bidding == true)
+        if($scope.price == "")
         {
-            $scope.secondstep.biddingavailable = $scope.bidding;
-            $scope.secondstep.currentBid = $scope.price;
-            $scope.secondstep.currentBidder = "";
-            $scope.secondstep.bidFlag = "yes";
-            $scope.secondstep.propertysold = "no";
-            var bidRawStartDate = new Date();
-            var bidRawEndDate = bidRawStartDate;
-            $scope.secondstep.bidStartDate = bidRawStartDate;
-            $scope.secondstep.bidEndDate = bidRawEndDate;
+            $scope.price_hide = false;
         }
-        $state.go('home.becomeHostDates', {pricestep : $scope.secondstep});
+        else
+        {
+            if ($scope.bidding == "")
+                $scope.secondstep.biddingavailable = $scope.bidding;
+            else if ($scope.bidding == true) {
+                $scope.secondstep.biddingavailable = $scope.bidding;
+                $scope.secondstep.currentBid = $scope.price;
+                $scope.secondstep.currentBidder = "";
+                $scope.secondstep.bidFlag = "yes";
+                $scope.secondstep.propertysold = "no";
+                var bidRawStartDate = new Date();
+                var bidRawEndDate = bidRawStartDate;
+                $scope.secondstep.bidStartDate = bidRawStartDate;
+                $scope.secondstep.bidEndDate = bidRawEndDate;
+            }
+            $state.go('home.becomeHostDates', {pricestep: $scope.secondstep});
+        }
     };
 
 })

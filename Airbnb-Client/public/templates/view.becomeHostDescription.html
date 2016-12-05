@@ -18,6 +18,9 @@
                                          <fieldset class="lys-input__fieldset">
 											<textarea class="lys-summary__textarea hide-scroll" placeholder="" ng-model="description"></textarea>
                                         </fieldset>
+                                        <div class="alert alert-danger" ng-hide="desc_hide">
+                                            <strong>Description is mandatory</strong>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -29,6 +32,9 @@
                                         <fieldset class="lys-input__fieldset">
                                             <textarea class="lys-summary__textarea hide-scroll" placeholder="" ng-model="title"></textarea>
                                         </fieldset>
+                                        <div class="alert alert-danger" ng-hide="title_hide">
+                                            <strong>Title is mandatory</strong>
+                                        </div>
                                     </div>
                                 </div>
 
