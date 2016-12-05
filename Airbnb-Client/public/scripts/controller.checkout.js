@@ -29,10 +29,22 @@ airbnbApp.controller('controllerCheckout',function($scope,$http,$state,$statePar
 
 	$scope.numberOfDays = JSON.parse(localStorage.getItem('numberOfDays'));
 	$scope.property = JSON.parse(localStorage.getItem('property'));
-	$scope.fromdate = JSON.parse(localStorage.getItem('fromdate'));
-	$scope.tilldate = JSON.parse(localStorage.getItem('tilldate'));
+//	$scope.fromdate = JSON.parse(localStorage.getItem('fromdate'));
+//	$scope.tilldate = JSON.parse(localStorage.getItem('tilldate'));
 	$scope.username = JSON.parse(localStorage.getItem('username'));
 	$scope.userid = JSON.parse(localStorage.getItem('userid'));
+	
+	
+	
+	
+	
+	var from = moment(JSON.parse(localStorage.getItem('fromdate'))).format('YYYY-MM-DD');
+var till = moment(JSON.parse(localStorage.getItem('tilldate'))).format('YYYY-MM-DD');
+
+$scope.tilldate = till;
+$scope.fromdate = from;
+	
+	
 
 	$scope.invCreditCardNumber = "";
 	$scope.invCreditCardCVV = "";

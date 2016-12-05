@@ -76,11 +76,14 @@
         <div class=" space-5">
             <div class="panel-header">Photos</div>
              <div class = "panel-header">
+                     <img src="{{property.images[0]}}" height="100%" width="100%" style="{ padding : 0}" >    
+
 
             </div>
             <br>
             <!--Credit Card form-->
             <div class="col-md-12 panel-header"> 
+                <h3>Enter the card details </h3>
               <div class="credi-card-number-cnt">
                 <input type="text" ng-model="creditCard" name="credi-card-number" id="credit-card-number" class="credi-card-number col-md-12">
                 <div class="text-danger">{{invCreditCardNumber}}</div>
@@ -99,7 +102,6 @@
                 <div class="text-danger">{{invName}}</div>
               </div></br>
 
-    <img src="{{property.images[0]}}" height="100%" width="100%" style="{ padding : 0}" >    
 
             </div>
 
@@ -159,11 +161,11 @@
           <div class="row row-condensed" data-reactid=".1iqowse7dvk.2.1.0">
             <div class="col-sm-5" data-reactid=".1iqowse7dvk.2.1.0.0">
               <div class="text-muted space-bottom-2" data-reactid=".1iqowse7dvk.2.1.0.0.0"><span data-reactid=".1iqowse7dvk.2.1.0.0.0.0">Check-in</span></div>
-              <span data-reactid=".1iqowse7dvk.2.1.0.0.1">{{property.from}}</span></div>
+              <span data-reactid=".1iqowse7dvk.2.1.0.0.1">{{fromdate}}</span></div>
               <div class="col-sm-2 summary-card__check-in-icon" data-reactid=".1iqowse7dvk.2.1.0.1">&nbsp;</div>
               <div class="col-sm-5" data-reactid=".1iqowse7dvk.2.1.0.2">
                 <div class="text-muted space-bottom-2" data-reactid=".1iqowse7dvk.2.1.0.2.0"><span data-reactid=".1iqowse7dvk.2.1.0.2.0.0">Checkout</span></div>
-                <span data-reactid=".1iqowse7dvk.2.1.0.2.1">    {{property.till}}</span></div>
+                <span data-reactid=".1iqowse7dvk.2.1.0.2.1">    {{tilldate}}</span></div>
               </div>
             </div>
             <div class="panel-body hide-sm" data-reactid=".1iqowse7dvk.2.2">
@@ -189,6 +191,12 @@
                       <div class="" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes.1.0"><span data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes.1.0.0">$0</span></div>
                     </td>
                   </tr>
+                    
+                     <tr class="price-item" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes"><th class="price-item__header" scope="row" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes.0"><span data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes.0.0">Security deposit</span><noscript data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes.0.3.0.1"></noscript></th>
+                    <td class="text-right price-item__price" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes.1">
+                      <div class="" data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes.1.0"><span data-reactid=".1iqowse7dvk.2.2.0.0.1:$Occupancy Taxes.1.0.0">$300</span></div>
+                    </td>
+                  </tr>
 
                 </tbody>
               </table>
@@ -198,12 +206,12 @@
                 <tbody data-reactid=".1iqowse7dvk.2.3.0.0.0">
                   <tr class="price-item" data-reactid=".1iqowse7dvk.2.3.0.0.0.0"><th class="price-item__header" scope="row" data-reactid=".1iqowse7dvk.2.3.0.0.0.0.0"><span data-reactid=".1iqowse7dvk.2.3.0.0.0.0.0.0">Total</span></th>
                     <td class="text-right price-item__price" data-reactid=".1iqowse7dvk.2.3.0.0.0.0.1">
-                      <div class="" data-reactid=".1iqowse7dvk.2.3.0.0.0.0.1.0"><span data-reactid=".1iqowse7dvk.2.3.0.0.0.0.1.0.0"> : <b>{{numberOfDays * property.price }}</b></span><sup data-reactid=".1iqowse7dvk.2.3.0.0.0.0.1.0.1">USD</sup></div>
+                      <div class="" data-reactid=".1iqowse7dvk.2.3.0.0.0.0.1.0"><span data-reactid=".1iqowse7dvk.2.3.0.0.0.0.1.0.0"> : <b>{{numberOfDays * property.price + 300}}</b></span><sup data-reactid=".1iqowse7dvk.2.3.0.0.0.0.1.0.1">USD</sup></div>
                     </td>
                   </tr>
                 </tbody>
               </table>
-              <div class="cancellation-policy" data-reactid=".1iqowse7dvk.2.3.1"><span data-reactid=".1iqowse7dvk.2.3.1.0"><span data-reactid=".1iqowse7dvk.2.3.1.0.0">Cancellation policy: </span><span data-reactid=".1iqowse7dvk.2.3.1.0.$0"><a href="/home/cancellation_policies#strict" target="_blank" data-reactid=".1iqowse7dvk.2.3.1.0.$0.0"><span data-reactid=".1iqowse7dvk.2.3.1.0.$0.0.$0">Strict</span></a></span></span></div>
+<!--              <div class="cancellation-policy" data-reactid=".1iqowse7dvk.2.3.1"><span data-reactid=".1iqowse7dvk.2.3.1.0"><span data-reactid=".1iqowse7dvk.2.3.1.0.0">Cancellation policy: </span><span data-reactid=".1iqowse7dvk.2.3.1.0.$0"><a href="/home/cancellation_policies#strict" target="_blank" data-reactid=".1iqowse7dvk.2.3.1.0.$0.0"><span data-reactid=".1iqowse7dvk.2.3.1.0.$0.0.$0">Strict</span></a></span></span></div>-->
               <noscript data-reactid=".1iqowse7dvk.2.3.2"></noscript></div>
               <div class="show-sm panel-body text-center" data-reactid=".1iqowse7dvk.2.4"><a data-reactid=".1iqowse7dvk.2.4.0"><span data-reactid=".1iqowse7dvk.2.4.0.0">View pricing and trip summary</span></a></div>
               <input id="apply_airbnb_credit" name="apply_airbnb_credit" type="hidden" value="1" data-reactid=".1iqowse7dvk.2.5" /></div>
