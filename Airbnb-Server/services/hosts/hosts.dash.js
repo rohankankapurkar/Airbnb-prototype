@@ -145,6 +145,7 @@ exports.getPropertiesByHost = function(msg, callback){
 			if(!err){
 				properties.find({host_id:result["id"]}, {"title":1}).toArray(function(err, result1){
 					res["data"] = result1;
+					console.log(result1);
 					callback(null, res);
 				});
 			}

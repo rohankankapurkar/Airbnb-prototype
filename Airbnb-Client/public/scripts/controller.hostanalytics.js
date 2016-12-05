@@ -14,6 +14,7 @@ airbnbApp.controller('controllerHostAnalytics',function($log, $scope,$http,$stat
 	
 	var host_id ;
 
+	$scope.hostProperties = "";
 
 // Clicks per property here:
 
@@ -68,7 +69,7 @@ airbnbApp.controller('controllerHostAnalytics',function($log, $scope,$http,$stat
 		
 	$http({
 				method : "GET",
-				url : "/host/getReviewForHost",
+				url : "/host/getReviewForHost"
 				
 			}).success(function(data){
 			
@@ -114,7 +115,16 @@ airbnbApp.controller('controllerHostAnalytics',function($log, $scope,$http,$stat
 	
 	
 	
-	
+	$http({
+		method : "GET",
+		url : "/host/getHostProperties"
+	}).success(function(data){
+		$scope.hostProperties = data.result.data;
+		console.log("----- properties");
+		console.log($scope.hostProperties);
+	}).error(function(error){
+		console.log("Internal Server Occurred");
+	})
 	
 	
 	

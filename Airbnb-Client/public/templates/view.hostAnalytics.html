@@ -71,6 +71,28 @@ function drawGraph(userjourney){
 				<canvas id="admin-bar-chart-review" style="max-height:50%;"></canvas>			
 			</div>		
 		</div>
+
+
+		<div class="col-md-10 col-md-offset-1 panel panel-default" id="bidgraph">
+			<select name="hostProperty" ng-model="selectHostPropertyTitle">
+         		<option ng-repeat="hostProp in hostProperties" value="{{hostProp.title}}">{{hostProp.title}}</option>
+     		</select>  
+			<!-- <div class="col-md-3">
+				<div ng-repeat="property in props1 track by $index">
+					{{property}}
+				</div>
+			</div>
+			<div class="col-md-1">
+				<div ng-repeat="countReview in countReviews track by $index">
+					{{countReview}}
+				</div>
+			</div>
+			<div class="col-md-8">
+				<canvas id="admin-bar-chart-review" style="max-height:50%;"></canvas>			
+			</div> -->		
+		</div>
+
+
         
         <div id="userjourney">
 			<div id="useridOptions">
