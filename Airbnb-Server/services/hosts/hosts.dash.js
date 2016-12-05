@@ -100,37 +100,34 @@ exports.getReviewCount = function(msg, callback){
 	mongo.connect(function(){
 
 		var coll = mongo.collection("properties");
+		var users = mongo.collection("users");
 		var output = [];
-		coll.find({"host_id":msg.host_id},{"prop_id":1, "review":1}).toArray(function(err, result){
 
-			console.log(err + "rohankanka");
-			console.log(JSON.stringify(result)+ "rohan");
-
+		users.findOne({"username":msg.username}, {"id":1}, function(err, result1){
 			if(!err){
+				coll.find({"host_id":result1["id"]},{"title":1, "review":1}).toArray(function(err, result){
+					if(!err){
+						var counter = 0;
+						for(counter = 0; counter < result.length; counter++){
+							var temp = {};
+							if(result[counter].review != null){
+								temp["prop_id"] = result[counter].title;
+								temp["count"] = result[counter].review.length;
+								output.push(temp);
+							}
+						}
+						console.log("--- opt")
+						console.log(output);
 
 
-
-
-				var counter = 0;
-				for(counter = 0; counter < result.length; counter++){
-					var temp = {};
-					if(result[counter].review != null){
-						temp["prop_id"] = result[counter].id;
-						temp["count"] = result[counter].review.length;
-						output.push(temp);
+						res["data"] = output;
+					}else{	
+						res["statuscode"] = -1;
+						res["message"] = "Unexpected error occurred while getting data from database";
 					}
-
-				}
-				res["data"] = output;
-				console.log("lala "+output);
-			}else{
-				console.log("Unexpected error occurred while getting daata from database");
-				res["statuscode"] = -1;
-				res["message"] = "Unexpected error occurred while getting daata from database";
+					callback(null,res);
+				});
 			}
-			//console.log("lala "+JSON.stringify(res));
-
-			callback(null,res);
 		});
 	});
 }

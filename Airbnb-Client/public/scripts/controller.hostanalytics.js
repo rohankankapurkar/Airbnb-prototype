@@ -66,38 +66,26 @@ airbnbApp.controller('controllerHostAnalytics',function($log, $scope,$http,$stat
 	});
 	
 		
-	
-	
-	/*$http({
-		method : "POST",
-		url : '/getusersession'
-	}).success(function(data) {
-		
-		if(data.statuscode == 0)
-		{
-			
-			host_id = data.credentials.id
-			
-			$http({
-				method : "POST",
+	$http({
+				method : "GET",
 				url : "/host/getReviewForHost",
-				data : {host_id:data.credentials.id}
+				
 			}).success(function(data){
 			
 				var plotData = data.result.data;
 				var pageColors = [];
 				var counter = 0;
 				for(counter = 0; counter < plotData.length; counter++){			
-					$scope.props1.push(plotData[counter]._id);	
+					$scope.props1.push(plotData[counter].prop_id);	
 					$scope.countReviews.push(plotData[counter].count);
 					pageColors.push('#4BC0C0');
 				}
-
+				
 			//Plot the graph here
 			var barChartData = {
 				labels: $scope.props1,
 				datasets: [{
-					label: 'Property Clicks',
+					label: 'Property Reviews',
 					data: $scope.countReviews,
 					backgroundColor: pageColors,
 					borderWidth: 0
@@ -122,12 +110,6 @@ airbnbApp.controller('controllerHostAnalytics',function($log, $scope,$http,$stat
 			}).error(function(error){
 
 			});
-		}
-	}).error(function(error) {
-
-	});*/
-	
-	
 	
 	
 	

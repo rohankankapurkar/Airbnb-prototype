@@ -51,22 +51,20 @@ function drawGraph(userjourney){
 				<canvas id="admin-bar-chart" style="max-height:50%;"></canvas>			
 			</div>		
 		</div>
-		<div id="userjourney">
-			<div id="useridOptions">
-				<select id="useridList"></select>
-			</div>
-			<canvas id="springydemo" width="1500" height="600" />
-		</div>
+		
+
+
+
         
          <div class="col-md-10 col-md-offset-1 panel panel-default">
 			<div class="col-md-3">
-				<div ng-repeat="prop in props1">
-					{{prop}}
+				<div ng-repeat="property in props1 track by $index">
+					{{property}}
 				</div>
 			</div>
 			<div class="col-md-1">
 				<div ng-repeat="countReview in countReviews track by $index">
-					{{count}}
+					{{countReview}}
 				</div>
 			</div>
 			<div class="col-md-8">
@@ -74,7 +72,12 @@ function drawGraph(userjourney){
 			</div>		
 		</div>
         
-        
+        <div id="userjourney">
+			<div id="useridOptions">
+				<select id="useridList" class="col-md-5" style="margin-left : 10%"></select>
+			</div>
+			<canvas id="springydemo" width="1500" height="1000" />
+		</div>
       
         
         
