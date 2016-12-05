@@ -69,12 +69,17 @@
 										<span>ZIP Code</span>
 									</label>
 									<input class="input input-block input-jumbo lys-address-form__input lys-invalid" id="address-form-field-zipcode" name="zipcode" type="text" autocomplete="off" placeholder="e.g. 94103" ng-model="zip">
+
 								</div>
+
 								<div class="space-top-10 col-sm-12 col-md-6">
 									<a class="btn btn-large btn-progress-next btn-large__next-btn pull-right-md btn-primary" ng-click="validateAddress()">
 										<div class="btn-progress-next__text">
 											<span>Validate</span>
 										</div></a>
+								</div>
+								<div class="alert alert-danger col-sm-12 " ng-hide="invPin">
+									<strong>Zip Code should be 5 digit number</strong>
 								</div>
 							</div>
 						</form>

@@ -63,71 +63,80 @@ airbnbApp.controller('controllerProperty',function($scope,$http,$state,$statePar
 				else
 				{
 					$scope.invDates = "";
+					var frmd = moment($scope.fromdate).format('MM/DD/YYYY');
+					var tilld = moment($scope.tilldate).format('MM/DD/YYYY');
+					console.log(frmd+" "+tilld);
+					if(tilld <= frmd)
+					{
+						$scope.invDates = "Invalid Dates";
 
-					var dateArray = $scope.getDates($scope.fromdate,$scope.tilldate);
-					var firstDate = dateArray[0];
-					var lastDate = dateArray[dateArray.length-1];
+					}
+					else
+					{
+						var dateArray = $scope.getDates($scope.fromdate,$scope.tilldate);
+						var firstDate = dateArray[0];
+						var lastDate = dateArray[dateArray.length-1];
 
-					$http({
-						method : "POST",
-						url : '/host/getavailabledates',
-						data :{
-							prop_id : $scope.selectedProperty.id
-						}
-					}).success(function(data) {
-						if(data.statuscode == 0) 
-						{	
-							var dateForMessage = "";
-							$scope.availableDates = data.result.data;
-							var counter = 0;
-							var flag = false;
-							console.log($scope.availableDates);
-
-							for(var i = 0; i < dateArray.length; i++)
+						$http({
+							method : "POST",
+							url : '/host/getavailabledates',
+							data :{
+								prop_id : $scope.selectedProperty.id
+							}
+						}).success(function(data) {
+							if(data.statuscode == 0) 
 							{	
-								flag=false;
-								var dateRequired = moment(dateArray[i]).format('MM/DD/YYYY');
-								for(var j=0; j < $scope.availableDates.length; j++)
-								{
-									var datesAvailable = moment($scope.availableDates[j]).format('MM/DD/YYYY');
-							
-									if(dateRequired == datesAvailable)
+								var dateForMessage = "";
+								$scope.availableDates = data.result.data;
+								var counter = 0;
+								var flag = false;
+								console.log($scope.availableDates);
+
+								for(var i = 0; i < dateArray.length; i++)
+								{	
+									flag=false;
+									var dateRequired = moment(dateArray[i]).format('MM/DD/YYYY');
+									for(var j=0; j < $scope.availableDates.length; j++)
 									{
-										flag =true;
-										dateForMessage = dateRequired
+										var datesAvailable = moment($scope.availableDates[j]).format('MM/DD/YYYY');
+							
+										if(dateRequired == datesAvailable)
+										{
+											flag =true;
+											dateForMessage = dateRequired
+											break;
+										}	
+									}
+									if(flag == false)
+									{
+										$scope.invDates = "Dates you Selected are not Available";
 										break;
+									}
+									else
+									{
+										counter++;
 									}	
 								}
-								if(flag == false)
+								if(flag != false)
 								{
-									$scope.invDates = "Dates you Selected are not Available";
-									break;
-								}
-								else
-								{
-									counter++;
-								}	
-							}
-							if(flag != false)
-							{
 								
-								$state.go('home.finalPayment',{
-									fromdate : firstDate, 
-									tilldate : lastDate, 
-									numberOfDays : counter,
-									property : $scope.selectedProperty,
-									userid: $scope.userid,
-									username : $scope.username});
+									$state.go('home.finalPayment',{
+										fromdate : firstDate, 
+										tilldate : lastDate, 
+										numberOfDays : counter,
+										property : $scope.selectedProperty,
+										userid: $scope.userid,
+										username : $scope.username});
+									}
+								}	
+								else 
+								{
+									console.log("No available Dates")
 								}
-							}	
-							else 
-							{
-								console.log("No available Dates")
-							}
-					}).error(function(error) {
-						console.log("No available Dates");
-					});
-
+						}).error(function(error) {
+							console.log("No available Dates");
+						});
+					}
 				}
 			}
 			else 

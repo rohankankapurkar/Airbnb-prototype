@@ -79,3 +79,25 @@ exports.executeQuery = function(userQuery, params, callback) {
 		});
 	});
 }
+
+exports.executeSimpleQuery = function(userQuery, params, callback){
+
+	getConnection(function(err, connection) {
+		connection.query(userQuery, params, function(err, result) {
+			console.log("I am here to simply select the query");
+			if (err) {
+				console.log("Error occurred while executing the query");
+				throw (err);
+			}
+			if (result) {
+				console.log("Length of stack in code : "+ connStack.length)
+				//sleep.sleep(2);
+				connection.releaseConnection;
+				connStack.push(connection);
+				console.log("Length of stack in code : "+ connStack.length)
+				//connection.release()
+				callback(result);
+			}
+		});
+	});
+}
