@@ -15,7 +15,10 @@ airbnbApp.controller('controllerHostAnalytics',function($log, $scope,$http,$stat
 	var host_id ;
 
 	$scope.hostProperties = "";
-
+	$scope.selectHostPropertyTitle = "";
+	$scope.bidtimes = [];
+	$scope.bidamounts = [];
+;
 // Clicks per property here:
 
 	$http({
@@ -120,12 +123,60 @@ airbnbApp.controller('controllerHostAnalytics',function($log, $scope,$http,$stat
 		url : "/host/getHostProperties"
 	}).success(function(data){
 		$scope.hostProperties = data.result.data;
-		console.log("----- properties");
-		console.log($scope.hostProperties);
+
 	}).error(function(error){
-		console.log("Internal Server Occurred");
+		
 	})
 	
+
+	$scope.getBidsForGraphs = function(req,res){
+
+		$http({
+			method : "POST",
+			url : "/host/getBidsForProperty",
+			data :{
+				title : $scope.selectHostPropertyTitle
+			}
+		}).success(function(data){
+			//$scope.hostProperties = data.result.data;
+			var AllBidData = data.result.data;
+			var bidColors = [];
+			for(counter = 0; counter < AllBidData.length; counter++){			
+					$scope.bidtimes.push(AllBidData[counter].bid_time);	
+					$scope.bidamounts.push(AllBidData[counter].bid_amount);
+					bidColors.push('#4BC0C0');
+				} 
+
+						//Plot the graph here
+			var barChartData = {
+				labels: $scope.bidtimes,
+				datasets: [{
+					label: 'Bid Trace',
+					data: $scope.bidamounts,
+					borderWidth: 0
+				}]
+			};
+
+			var barChartElement = document.getElementById("host-bid-graph");
+				var barChart = new Chart(barChartElement, {
+					type: 'line',
+					data: barChartData,
+					options: {
+						scales: {
+							yAxes: [{
+								ticks: {
+									beginAtZero:true
+									}
+								}]
+							}
+						}
+					});	
+
+		}).error(function(error){
+		
+		})
+
+	}
 	
 	
 	

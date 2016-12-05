@@ -370,5 +370,20 @@ exports.getHostPropertyNames = function(req,res){
 	}
 }
 
+exports.getBidsForProperty = function(req, res){
+	console.log("------> Property");
+	console.log(req.param('title'));
+	var msg_payload = {};
+	msg_payload.title = req.param('title');
+	
+	mq_client.make_request("getBidStats_queue", msg_payload, function(err, result){
+		if(err){
+			res.send({statuscode:1, message:'Error occurred while getting data from db'});
+		}else{
+			res.send({statuscode:0, result:result});
+		}
+	});
+}
+
 
 

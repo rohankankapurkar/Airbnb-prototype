@@ -74,22 +74,23 @@ function drawGraph(userjourney){
 
 
 		<div class="col-md-10 col-md-offset-1 panel panel-default" id="bidgraph">
-			<select name="hostProperty" ng-model="selectHostPropertyTitle">
+			
+			<select name="hostProperty" ng-model="selectHostPropertyTitle" ng-change="getBidsForGraphs()" style="width : 100%">
          		<option ng-repeat="hostProp in hostProperties" value="{{hostProp.title}}">{{hostProp.title}}</option>
      		</select>  
-			<!-- <div class="col-md-3">
-				<div ng-repeat="property in props1 track by $index">
-					{{property}}
+			 <div class="col-md-3">
+				<div ng-repeat="time in bidtimes track by $index">
+					{{time}}
 				</div>
 			</div>
 			<div class="col-md-1">
-				<div ng-repeat="countReview in countReviews track by $index">
-					{{countReview}}
+				<div ng-repeat="bidamount in bidamounts track by $index">
+					{{bidamount}}
 				</div>
 			</div>
 			<div class="col-md-8">
-				<canvas id="admin-bar-chart-review" style="max-height:50%;"></canvas>			
-			</div> -->		
+				<canvas id="host-bid-graph" style="max-height:50%;"></canvas>			
+			</div> 		
 		</div>
 
 
