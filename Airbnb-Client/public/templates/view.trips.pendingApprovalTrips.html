@@ -30,7 +30,6 @@
             </div>
             <br/>
             <span style="margin-left:4%"></span><br/>
-            <span style="font-size:12px; font-color:#888888; margin-left:4%">Entire home/apt · 9 guests 48 reviews</span>
           </a>
         </div>
 
@@ -47,7 +46,7 @@
             <span class="font-airbnb-faded"><b>Price paid: </b>{{pendingApprovalTrip.propertyDetails.price}}</span>
             <br/>
             <span class="font-airbnb-faded">
-              <button class="btn btn-primary" ng-click="editTrip(pendingApprovalTrip.id)">Edit trip</button>
+              <button class="btn btn-primary" ng-click="editTrip(pendingApprovalTrip.id, pendingApprovalTrip.from_date, pendingApprovalTrip.till_date, $index)">Edit trip</button>
             </span>
           </div>
 

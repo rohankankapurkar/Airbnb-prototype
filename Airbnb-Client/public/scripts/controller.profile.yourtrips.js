@@ -156,17 +156,26 @@ airbnbApp.controller('controllerYourTrips',function($scope,$state,$log,$http,$st
     };
 
 
-    $scope.editTrip = function (bookingId)
+    $scope.editTrip = function (bookingId, fromdate, tilldate, index)
     {
+        console.log("-------in edit trip--------");
+        console.log(fromdate);
+        console.log(tilldate);
+        console.log(index);
 
-        for(var i=0; i<$scope.pendingApprovalTrips.length; i++)
-        {
-            if($scope.pendingApprovalTrips[i].id == bookingId)
-            {
-                $scope.tripToEdit = $scope.pendingApprovalTrips[i];
-
-            }
-        }
+        // for(var i=0; i<$scope.pendingApprovalTrips.length; i++)
+        // {
+        //     console.log($scope.pendingApprovalTrips[i]);
+        //
+        //     if($scope.pendingApprovalTrips[i].id == bookingId && $scope.pendingApprovalTrips[i].from_date == fromdate && $scope.pendingApprovalTrips[i].till_date == tilldate)
+        //     {
+        //         console.log("-----found pendingApprovalTrips");
+        //         console.log($scope.pendingApprovalTrips[i]);
+        //         $scope.tripToEdit = $scope.pendingApprovalTrips[i];
+        //
+        //     }
+        // }
+        $scope.tripToEdit = $scope.pendingApprovalTrips[index];
         console.log("---------tripToEdit--------");
         console.log($scope.tripToEdit);
         $state.go('home.profile.trips.editTrip',{trip : $scope.tripToEdit});
