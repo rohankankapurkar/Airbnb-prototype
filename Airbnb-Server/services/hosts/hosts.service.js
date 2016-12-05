@@ -4,10 +4,11 @@ var addressValidator = require('address-validator');
 var _ = require('underscore');
 var idGenerator = require('../utils/utils.idgenerator');
 var moment = require('moment');
+var redis = require("../utils/redis-cache");
 
 //Identify the mode and then import the required libraries
 if(MODE == "CONNECTION_POOL"){
-	var mongo = require('../utils/utils.mongo');
+	var mongo = require('../utils/utils.mongo.pool');
 	var mysql = require('../utils/utils.mysql');
 }else{
 	var mongo = require('../utils/utils.mongo');
@@ -104,7 +105,12 @@ exports.becomeHost = function(msg, callback){
 
 							var params = {'prop_id': counter, 'from_date': fromDate, 'till_date': tillDate};
 							mysql.executeQuery("INSERT INTO AVAILABLE_DATES SET ?", params, function(result){
+								console.log("Inserted into avaible dates");
 								if(result){
+									mysql.executeSimpleQuery("SELECT * FROM AVAILABLE_DATES", {}, function(resultDates){
+										console.log("Selected again from avaiable dates to update the cache");
+										redis.cacheDates(resultDates)
+									});
 									console.log('Updated avaiable dates successfully');
 								}
 							});
@@ -199,16 +205,29 @@ exports.getAvailableDates = function(msg, callback){
 	mysql.executeQuery("SELECT * FROM AVAILABLE_DATES where ?", params, function(result){
 		if(result){
 			var dates = [];
+			console.log("This is the result I got from cache : " + result);
+			console.log("result : " + result[0]["from_date"]);
+			console.log("result : " + result[0]["till_date"]);
 			var counter = 0;
 			for( counter = 0; counter < result.length; counter++){
+				console.log("I am here" + result[counter]);
 				var startDate = result[counter]['from_date'];
 				var EndDate = result[counter]['till_date'];
+				startDate = new Date(startDate);
+				EndDate = new Date(EndDate);
 				var currentDate = startDate;
+				console.log(startDate);
+				console.log(EndDate);
+				console.log(currentDate);
 				while(currentDate < EndDate){
+					console.log("Hey there I am here");
 					dates.push(moment(currentDate).format('MM/DD/YYYY'));
 					currentDate = moment(currentDate).add(1, 'days');
+					console.log(currentDate);
+					console.log(EndDate);
 				}
 			}
+			console.log("Fuck" + dates);
 			res['statuscode'] = 0;
 			res['data'] = dates;
 		}
@@ -290,12 +309,14 @@ exports.approveUserRequest = function(msg, callback){
 					// Delete an existing available dates as it has been booked
 					mysql.executeQuery("DELETE FROM AVAILABLE_DATES WHERE id = "+ idToDelete+"", {}, function(innerResult1){
 						// nothing to do here with callback
-						});
-					mysql.executeQuery("INSERT INTO AVAILABLE_DATES SET ? ", prop1, function(innerResult2){
-						// nothing to do here with callback
-						});
-					mysql.executeQuery("INSERT INTO AVAILABLE_DATES SET ? ", prop2, function(innerResult3){
-						// nothing to do here with callback
+						mysql.executeQuery("INSERT INTO AVAILABLE_DATES SET ? ", prop1, function(innerResult2){
+							// nothing to do here with callback
+							mysql.executeQuery("INSERT INTO AVAILABLE_DATES SET ? ", prop2, function(innerResult3){
+								// nothing to do here with callback
+
+								
+								});
+							});						
 						});
 					});
 
